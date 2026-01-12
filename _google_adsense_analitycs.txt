@@ -1,0 +1,146 @@
+
+horizontalni link
+--------------------------
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 728x15, created 10/17/09 */
+google_ad_slot = "8046978970";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+
+vertikalni linkovi
+--------------------------
+
+<br>
+<br>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 120x90, created 10/17/09 */
+google_ad_slot = "0178951326";
+google_ad_width = 120;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+
+vertikalni linkovi 200x200
+--------------------------
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-0327694111200541";
+/* 200x200 add */
+google_ad_slot = "2429232299";
+google_ad_width = 200;
+google_ad_height = 200;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+
+
+horizontalni link malo veci!!!
+--------------------------
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 728x90, created 11/8/09 */
+google_ad_slot = "6602918012";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+
+
+
+
+analytics  immediately before the </body>
+--------------------------
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-11148888-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+
+
+
+Google +1 automatsko trgovanje
+--------------------------
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+<!-- Place this tag where you want the +1 button to render -->
+<g:plusone size="medium" href="http://solair.eunet.rs/~ilicv/automatsko_trgovanje.html"></g:plusone>
+
+Google +1 recnik
+--------------------------
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+<!-- Place this tag where you want the +1 button to render -->
+<g:plusone size="medium" href="http://solair.eunet.rs/~ilicv/recnik.html"></g:plusone>
+
+
+
+
+
+
+
+
+
+In button LinkedIn
+--------------------
+http://www.linkedin.com/shareArticle?mini=true&url={articleUrl}&title={articleTitle}&summary={articleSummary}&source={articleSource}
+
+primer
+http://www.linkedin.com/shareArticle?mini=true&url=http%3A//developer.linkedin.com&title=LinkedIn%20Developer%20Network&summary=My%20favorite%20developer%20program&source=LinkedIn
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<share>
+  <comment>83% of employers will use social media to hire: 78% LinkedIn, 55% Facebook, 45% Twitter [SF Biz Times] http://bit.ly/cCpeOD</comment>
+  <content>
+     <title>Survey: Social networks top hiring tool - San Francisco Business Times</title>
+     <submitted-url>http://sanfrancisco.bizjournals.com/sanfrancisco/stories/2010/06/28/daily34.html</submitted-url>
+     <submitted-image-url>http://images.bizjournals.com/travel/cityscapes/thumbs/sm_sanfrancisco.jpg</submitted-image-url>
+  </content>
+  <visibility>
+     <code>anyone</code>
+  </visibility>
+</share>
+
+
+
+--------------
+moze se ukloniti
+aboutme.htm
+Omeni.htm
+Lista.html

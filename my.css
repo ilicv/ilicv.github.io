@@ -1,0 +1,26 @@
+/* Effective stylesheet produced by snapshot save */
+body { margin: 0pt auto; padding: 0pt; font: 90% Arial,sans-serif; background: url("bg.jpg") repeat scroll 0% 0% rgb(204, 204, 204); color: rgb(58, 58, 58); }
+A:hover { text-decoration: underline; color: rgb(191, 2, 0); background-color: inherit; }
+
+a img { border: 0pt none; }
+
+.menu_back { background-image: url("menu_bg.png"); }
+.menu_back A:link { text-decoration: none; color: rgb(64, 64, 64); background-color: inherit;  }
+.menu_back A:visited { text-decoration: none; color: inherit; background-color: inherit;  }
+.menu_back A:hover { text-decoration: underline; color: rgb(191, 2, 0); background-color: inherit; }
+
+.menu2 { }
+.menu2 A:link { text-decoration: none; color: rgb(64, 64, 64); background-color: inherit;  }
+.menu2 A:visited { text-decoration: none; color: inherit; background-color: inherit;  }
+.menu2 A:hover { text-decoration: underline; color: rgb(191, 2, 0); background-color: inherit; }
+
+.footer { font-size: 9px; line-height: 15px; font-family: Verdana,Arial,Helvetica,sans-serif; font-style: normal; font-weight: normal; }
+.footer A:link { text-decoration: none; color: rgb(64, 64, 64); background-color: inherit;  }
+.footer A:visited { text-decoration: none; color: rgb(64, 64, 64); background-color: inherit;  }
+.footer A:hover { text-decoration: underline; color: rgb(191, 2, 0); background-color: inherit; }
+
+
+.header_top { font-size: 15px; line-height: 15px; font-family: Verdana,Arial,Helvetica,sans-serif; font-style: normal; font-weight: bolder; color: rgb(255, 255, 255); background-image: url("header_title.png"); }
+
+.header_large { font-size: 15px; line-height: 15px; font-family: Verdana,Arial,Helvetica,sans-serif; font-style: normal; font-weight: bolder; color: rgb(255, 255, 255); background-image: url("header_large.png"); }
+
