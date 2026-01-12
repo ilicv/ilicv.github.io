@@ -1,0 +1,497 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+   <meta name="Author" content="Velibor Ilic">
+   <meta name="KeyWords" content="neuronske, mreze, neural, network, networks, ann, ann, nn, ekspertni, sistemi, expert, systems, fazi, logika, fuzzy, logic, ocr, prepoznavanje, cirilicnih slova, optical, character, recognition, ai, artificial, intelligence, vestacka, inteligencija, velibor, ilic, becej, vojvodina, jugoslavija,">
+   <meta name="revisit-after" content="15 days">
+   <meta name="ROBOTS" content="ALL">
+   <meta name="Description" content="Program za kreiranje i obucavanje neuronskih mreza sa backpropagation algoritomom obucavanja. Kod ovog programa je prvi put opotrebljena tehnika selektivnog smanjivanja broja parova kojima se mreza obucava (force learn ).">
+   <title>ANN V2.3 - Program za obucavanje neuronskih mreza</title>
+
+  <link rel="stylesheet" type="text/css" href="my.css" media="screen,projection">
+</head>
+<body>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 728x15, created 10/17/09 */
+google_ad_slot = "8046978970";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<table width=100% cellpadding="0" cellspacing="0">
+<tr>
+<td width="30"></td>
+<td align="left" background="header_bg.png">
+<img src="header.png"><br>
+
+
+
+
+<table width="100%" bgcolor="#FFFFFF" border="1" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td>
+          
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr valign="top">
+
+<td class="menu_back" width="150" align="left"> <!--menu-->
+<table cellpadding="2" cellspacing="0">
+<tbody><tr valign="top">
+<td>
+
+<a href="index.html">Home</a><br>
+<a href="VeliborCV.html">Biografija</a><br>
+<hr width="135" align="center">
+
+<a href="automatsko_trgovanje.html">Automatsko trgovanje</a><br>
+<a href="PProgrami.htm">Poslovni programi</a><br>
+<a href="recnik.html">Rečnik</a><br>
+<a href="PlanB.htm">PlanB</a><br>
+<hr width="135" align="center">
+
+<a href="AI_index.htm">Veštačka inteligencija</a><br>
+<a href="neuro.html">Neuronske mreže</a><br>
+<a href="ANN.html">ANN</a><br>
+<a href="FLAlg.html">Force learn algoritam</a><br>
+<a href="NeuroVCL.html">NeuroVCL</a><br>
+<a href="agenti.html">Agenti</a><br>
+<a href="enaa.html">ENAA</a><br>
+
+<hr width="135" align="center">
+
+<a href="ocr_opis.html">OCR</a><br>
+<a href="ocr.html">OCR soft</a><br>
+<hr width="135" align="center">
+
+<a href="scada.html">Izrada SCADA</a><br>
+<a href="smartscada.html">SmartSCADA</a><br>
+<hr width="135" align="center">
+
+<a href="https://www.dropbox.com/s/a8p6nygmuqemzbf/nanotehnlogija.pdf?dl=0">Nanotehnologija</a><br>
+<a href="linkovi.htm">Linkovi</a><br>
+<a href="free.html">Free Download</a>
+<br>
+<hr width="135" align="center">
+<br>
+<br>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 120x90, created 10/17/09 */
+google_ad_slot = "0178951326";
+google_ad_width = 120;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+<br>
+<br>
+<p style="margin-top: 0; margin-bottom: 0">
+<a href="http://usa.nedstatbasic.net/cgi-bin/viewstat?name=ilicv"><img
+src="http://usa.nedstatbasic.net/cgi-bin/nedstat.gif?name=ilicv"
+border=0 alt="" nosave width=22 height=22></a>
+</center>
+
+
+
+</td></tr></tbody>
+</table>
+</td> <!--menu-->
+
+
+<td valign="top" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+
+
+<td valign="top" width="100%" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="3">
+<tbody><tr>
+
+<td valign="top" align="left"> <!--main left-->
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP BGCOLOR="#333333">
+<center><font size="+2" face="Arial,Helvetica" color="#EDE8DE">
+<b>ANN V2.3 - Program za obučavanje neuronskih mreža</b>
+</font></center></td>
+</tr>
+</table>
+<br> 
+<p><center><img SRC="ANN.jpg" height=227 width=300></center>
+
+<p><b>Autor:</b> <a href="VeliborCV.html">Velibor Ilić</a>
+<p><b>Kratak opis:</b> Program za obučavanje neuronskih mreža na zadatom trening skupu. ANN koristi neuronske mreže sa backpropagation algoritmom obučavanja. Program je rađen kao prateći materijal magistarskog rada "Obučavanje neuronskih mreža za prepoznavanje ćiriličnih slova".
+<p><b>Abstract:</b> Program ANN is used to train neural networks patterns from training set.
+<br>ANN is based on the backpropagation neural networks. ANN is developed as addition to masters thesis "Training neural
+networks for recognition Cyrillic letters".
+<p><b>Programski jezik</b>: Delphi 5
+<p><b>Operativni sistem</b>: Windows 95, 98, NT
+<p><b>Datum izrade</b>: © Avgust 1998-Juli 2000
+
+<p><a href="https://www.dropbox.com/s/b3k6purhw2dl99y/ann.zip?dl=0">Free Download!!!</a> ANN V2.3 (ann.zip 463Kb)
+<p>
+<p>
+<hr width="97%">
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td>
+<a href="http://twitter.com/velibor" class="twitter-follow-button" data-show-count="false">Follow @velibor</a>
+<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+&nbsp; &nbsp; &nbsp;
+<td>
+<a title="Velibor Ilic" href="http://www.researchgate.net/profile/Velibor_Ilic/"><img src="http://www.researchgate.net/images/public/profile_image_my_profile_big.png" alt="Velibor Ilic" /></a>
+</td>
+</tr>
+</table>
+<hr width="97%">
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Sadrzaj"></a>Sadržaj
+</td></tr></tbody></table>
+
+<a href="#Hardver">Hardverski zahtevi</a>
+<br><a href="#softver">Softverski zahtevi</a>
+<br><a href="#Lista">Lista fajlova</a>
+<br><a href="#Objektna realizacija">Objektna realizacija neuronske mreže</a>
+<br><a href="#Force learn">Force Learn algoritam (učenje oblika sa najvećom greškom)</a>
+<br><a href="#Verzije">Verzije programa</a>
+<br><a href="#Primeri">Primeri</a>
+
+<hr>
+
+<p>Program ANN služi za obučavanje generisanje i obučavanje <a href="neuro.html">neuronskih mreža</a> sa backpropagation
+algoritmom obučavanja.
+
+<p>Neuronske mreže se mogu uspešno primenjivati na mnogim zadacima koji su ljudima jednostavni i prirodni, ali se na računarima veoma teško implementiraju klasičnim metodama. Zbog mogućnosti učenja na skupu primera, generalizacije i prikupljanja znanja u novim situacijama, one su odlične za rad koji zahteva adaptivne kontrolisane sisteme. Postoje brojne prednosti neuronskih mreža nad tradicionalnim računarskim sistemima kao na primer: neuronske mreže mogu uspešno da obrađuju podatke sa određenim nivoom šuma, mogu da pretrpe delimična oštećenja a pri tome da nastave da funkcionišu pravilno. Čovek koji rešava probleme putem neuronskih mreža ne mora poznavati složene matematičke i logičke funkcije koje povezuju ulazne i izlazne podatke, kao što bi morao da zna da taj isti problem rešava klasičnim programiranjem. Da bi se mreža obučila da ispravno prepoznaje neke vrednosti, dovoljno je na odgovarajući način mreži predstaviti problem i obučiti je na reprezentativnom skupu podataka (trening skupu), a mreža će, ukoliko je to moguće, pronaći odgovarajuće rešenje, tj. funkciju koja povezuje ulazne i izlazne podatke. Na žalost, još uvek ne postoje razrađene tehnike za očitavanje znanja iz obučene neuronske mreže, kao što je to slučaj sa ekspertnim sistemima, gde se relativno lako mogu tumačiti pravila iz baze znanja. Neuronske mreže i klasične metode rešavanja problema (programiranja) nisu tehnike koje se međusobno isključuju.
+
+<br>Neuronske mreže treba posmatrati kao proširenje mogućnosti današnjih računara.
+
+<p>Iako se pristupi rešavanja problema kod neuronskih mreža i klasičnim programiranjem potpuno razlikuju, ova dva pristupa se međusobno nadopunjuju, kao što je i prikazano u programu (<a href="ocr.html">OCR</a>) za prepoznavanje teksta. U ovom programu neuronsku mrežu možemo posmatrati kao crnu kutiju (nepoznatu složenu logičku funkciju). Klasičnim programiranjem se na ulaz mreže dovodi matrica koja predstavlja slovo koje želimo da identifikujemo. Nakon prolaska kroz matricu očitava se vrednost na izlazu mreže i klasičnom IF naredbom određujemo koje je slovo bilo dovedeno na ulaz matrice. Ukoliko neuronsku mrežu posmatramo na ovaj način, kao modul tj. objekat, programeri bi mogli jednostavno koristiti neuronske mreže u svojim programima bez prevelikog teoretskog znanja o načinu rada neuronskih mreža. Neuronske mreže bi u takvim programima omogućile veću fleksibilnost i mogućnost doobučavanja u realnim uslovima.
+
+<p>Realizovani program za obučavanje neuronskih mreža (ANN V2.3) je univerzalan i mogao bi se upotrebiti za rešavanje niza problema koji se mogu predstaviti u pogodnom obliku a ne samo na problem prepoznavanja ćiriličnih slova. U radu treba posebno istaći force learn algoritam, kojim se postižu značajni rezultati u skraćivanju obučavanja. Takođe, ovaj algoritam povećava verovatnoću da će se neuronska mreža uspešno obučiti. Program koji je razvijen tokom izrade ovog rada (OCR) je izrađen u eksperimentalne svrhe, kao pratnja ovog rada. Da bi ovaj program prerastao u pravu komercijalnu verziju, bilo bi potrebno unaprediti ga i poboljšati pojedine delove u sledećim pravcima. Program bi funkcionisao mnogo efikasnije ukoliko bi se usavršio algoritam za izdvajanje slova iz slike. Takođe bi bilo dobro da se ugrade opcije za korigovanje nagiba slike (ukoliko se tekst nalazi pod nekim uglom), razni filteri za pročišćavanje slike i bolje razdvajanje slova od pozadine, kao i funkcije za prepoznavanje kolona, tabela. Ova verzija programa ne prepoznaje velika i mala slova, što bi u komercijalnoj verziji trebalo doraditi. Postojeći program bi se mogao veoma lako preraditi za prepoznavanje latiničnih slova ili nekih drugih znakova/simbola. Savremeni programi za prepoznavanje teksta imaju ugrađenu podršku za skener, tako da se slike mogu preuzimati direktno sa skenera. Program za prepoznavanje teksta bi se mogao poboljšati integrisanim sistemom za ispravljanje nepravilnih reči (spell checker) i eventualno sistemom za gramatičku proveru reči u rečenici. I pored ovih navedenih nedostataka, realizovani program pokazuje dobre rezultate pri prepoznavanju teksta.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Hardver"></a>Hardverski zahtevi
+</td></tr></tbody></table>
+
+Minimalna hardverska konfiguracija potrebna za korišćenje programa za obučavanje neuronskih mreža:
+<ul>
+<li>PC računar baziran na procesoru klase Intel Pentium 100 ili jačem,</li>
+<li>najmanje 16 megabajta RAM memorije,</li>
+<li>floppy disk jedinica od 3,5" ili 5,25" inča,</li>
+<li>hard disk sa oko 40 MB slobodnog prostora (program za prepoznavanje teksta zauzima 0.5 MB prostora na hard disku, a ostali prostor je potreban za fajlove koji se generišu u toku rada programa).</li>
+</ul>
+
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="softver"></a>Softverski zahtevi
+</td></tr></tbody></table>
+
+Program zahteva da na računaru bude instaliran operativni sistem Microsoft Windows 95 ili noviji.
+<br>
+<br>
+
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Lista"></a>Lista fajlova
+</td></tr></tbody></table>
+
+
+Za obučavanje neuronska mreža koristi sledeće fajlove:
+<br>
+
+<table WIDTH="100%" >
+<tr>
+<td WIDTH="150">ANN.EXE</td>
+<td WIDTH="70%">Program za obučavanje neuronskih mreža.</td>
+</tr>
+
+<tr>
+<td WIDTH="150"></td>
+<td>Ostali fajlovi se nalaze u poddirektorijumu DATA i imaju sledeće značenje:</td>
+</tr>
+
+<tr>
+<td WIDTH="150">*.INI</td>
+<td>Preko ovog fajla se postavlja konfiguracija neuronske mreže, kao i parametri za praćenje obučavanja.</td>
+</tr>
+
+<tr>
+<td WIDTH="150">*.INP</td>
+<td>Podaci kojima se neuronska mreža obučava da ih prepoznaje (ulazi).</td>
+</tr>
+
+<tr>
+<td WIDTH="150">*.OUT</td>
+<td>Podaci koji se očekuju na izlazu neuronske mreže.</td>
+</tr>
+
+<tr>
+<td WIDTH="150">*.NET</td>
+<td>Ovaj fajl nastaje snimanjem svih važnih koeficijenata mreže. U njemu se nalaze stanja threshold i težinskih koeficijenata svakog od neurona koji se nalazi u mreži.</td>
+</tr>
+
+<tr>
+<td WIDTH="150"></td>
+<td>Fajlovi za praćenje obučavanja neuronske mreže.
+<br>Generišu se tokom obučavanja neuronske mreže.</td>
+</tr>
+
+<tr>
+<td WIDTH="150">*.ERR</td>
+<td>Fajlovi sa ekstenzijom *.ERR omogućuju praćenje kretanja grešaka tokom obučavanja neuronske mreže</td>
+</tr>
+
+<tr>
+<td WIDTH="150">*.LOG</td>
+
+<td>Preko ovih fajlova se može pratiti kretanje greške na svakom od izlaza neuronske mreže za svaki od oblika na ulazu.</td>
+</tr>
+</table>
+<br>
+
+
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Objektna realizacija"></a>Objektna realizacija neuronske mreže
+</td></tr></tbody></table>
+
+Program za obučavanje neuronskih mreža je razvijen primenom objektne metodologije. Prilikom izrade programa razvijeni su sledeći objekti:
+<ul>
+<li>niz (Tniz)</li>
+<li>neuron (Tneuron)</li>
+<li>neuronska mreža (Tmreza)</li>
+</ul>
+
+Ovi objekti se lako mogu upotrebiti i za razvoj drugih programa u kojima bi se iskoristile dobre osobine neuronskih mreža. (primer <a href="ocr.html">OCR V1.1</a>)
+<br>
+<br>
+
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Force learn"></a>Force learn algoritam
+</td></tr></tbody></table>
+
+Neuronska mreža se obučava tako što se iz trening skupa na ulaz dovode podaci. Na izlazu mreže se dobijeni rezultati upoređuju sa očekivanim i koriguju težinski koeficijenti u cilju smanjivanja greške. Postupak se ponavlja sve dok greška na izlazu ne bude manja od dozvoljene. Uobičajeni način obučavanja podrazumeva da se iz trening skupa podaci predstavljaju mreži konstantnim redosledom od prvog ka poslednjem podatku.
+
+<p>Prilikom obučavanja neuronskih mreža može se desiti da se greška na izlazu mreže za pojedine ulazne podatke povećava umesto da se smanjuje. Kada se greška poveća na 100% često se dešava da mreža koja se nađe u takvom stanju ne može da popravi grešku čak i posle relativno velikog broja iteracija. Takođe je interesantno da mreža može veoma brzo naučiti da ispravno prepoznaje neke ulazne podatke, dok je za neke druge potreban veoma veliki broj iteracija. Idealno bi bilo da se greške ravnomerno smanjuju tokom obučavanja do željenih vrednosti.
+
+<p>U ovom programu za obučavanje neuronskih mreža prvi put je upotrebljena metoda nazvana Force learn kojom se neuronska mreža obučava samo oblicima iz obučavajućeg skupa kod kojih se javlja najveća greška. Da bi se obezbedilo ravnomernije obučavanje, tj. da se izbegne situacija da se mreža za neke ulaze obučava brže od ostalih, upotrebljena je sledeća taktika. Mreža se obučava samo ulaznim podacima kod koji se pojavljuje najveća greška.
+
+<p>U prethodnoj iteraciji se beleži greška najlošijeg ulaza (maksimalna greška) u promenljivu Granica. Na ulaze mreže se redom dovode vrednosti iz obučavajućeg skupa i ispituje se razlika između dobivenih i željenih rezultata (Pat_Err), ali se korigovanje parametara vrši samo za one ulazne podatke koji imaju rezultate približne najlošijim rezultatima iz prethodne iteracije.
+
+<br>if pat_err>=(granica-(granicax0.20))
+
+<p>Najbolji rezultati su se pokazali ako se uzme opseg 10-20% najlošijih rezultata. Radi postizanja boljih rezultata pri obučavanju, ovaj algoritam se može koristiti kombinovan sa algoritmom slučajnog redosleda biranja uzoraka iz obučavajućeg skupa (Random). U slučajevima kada se na srednjem sloju nalazi minimalan broj neurona, dešavalo se da je mrežu takve konfiguracije moguće uspešno obučiti samo primenom Force Learn algoritma.
+
+<p>Glavni motiv za izradu Force Learn algoritma bio je postizanje veće sigurnosti prilikom obučavanja mreže, ali je njegovom primenom postignut još jedan veoma važan efekat, a to je skraćivanje vremena i smanjivanje broja iteracija potrebnih za obučavanje mreže.
+
+<p>Force learn algoritam se pokazao naročito uspešnim u situacijama u kojima normalnim redosledom obučavanja procenat tačnih izlaza dostiže neku vrednost od oko 95-99% i dalje veoma slabo raste ili gotovo da ne raste. Takođe, u toj situaciji maksimalna greška dostiže vrednost približno 1 a prosečna greška opada veoma polako. U ovakvoj situaciji, da bi se mreža u potpunosti obučila potrebno je upotrebiti neuporedivo veći broj iteracija u odnosu na već upotrebljen broj. Upotrebom force learn algoritma se izbegavaju ovakve situacije, pošto maksimalna greška mnogo brže opada nego kada se primenjuju uobičajeni načini obučavanja.
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Verzije"></a>Verzije programa
+</td></tr></tbody></table>
+
+Prva verzija programa ANN V1.0 je realizovana za DOS operativni sistem na programskom jeziku Pascal. Naredne verzije su rađene pod Windows-om na programskom jeziku Delphi.
+
+<p>Verzija 1.0 realizovana je na programskom jeziku Borland Pascal 7.0 (DOS verzija).
+<ul>
+<li>Nezavisno od izvršnog fajla, preko spoljnih fajlova (*.INI, *.INP,*.OUT) se može menjati konfiguracija mreže i samim tim program se može primenjivati za rešavanje širokog spektara problema.</li>
+<li>Praćenje toka obučavanja pomoću *.LOG fajlova.</li>
+<li>Program je realizovan objektno tako da se može lako integrisati u druge programe.</li>
+<li>Poseduje mogućnost procene vremena do kraja obučavanja.</li>
+</ul>
+
+Verzija ANN V2.0 je realizovana na programskom jeziku Delphi 3.0. Razlike u odnosu na prethodnu verziju:
+<ul>
+<li>Omogućen je rad sa većim mrežama (više neurona po sloju i veći trening skup).</li>
+<li>Optimizovan je algoritam za obučavanje mreže.</li>
+<li>Povećana je brzina obučavanja za više od 7 puta.</li>
+<li>Dodat je algoritam za selektivno učenje (Force Learn).</li>
+<li>Dodata je opcija Shake za izbacivanje mreže iz ravnoteže.</li>
+<li>Omogućeno je vizuelno praćenje proteklog broja iteracija preko progres bara.</li>
+</ul>
+
+Verzija ANN V2.1 je realizovana na programskom jeziku Delphi 4.0. Razlike u odnosu na prethodnu verziju programa.:
+<ul>
+<li>Poboljšan je pristup memoriji, primenom dinamičkih nizova umesto pointera. Primenom novije tehnike pristupanja memoriji ostvaren je znatan napredak u brzini.</li>
+<li>Povećana je brzina obučavanja u odnosu na verziju V2.0 za više od 8 puta a u odnosu na verziju V1.0 za više od 60 puta</li>
+<li>Dodata je opcija Random Learn.</li>
+<li>Pored *.LOG fajlova, sada se greška može detaljnije pratiti u *.ERR fajlovima.</li>
+<li>Dodato je grafičko predstavljanje podataka (Show Graph).</li>
+<li>Dodat je prozor za prikazivanje parametara mreže (View Options).</li>
+<li>Dodata je opcija za zaustavljanje ako je postignuta zadovoljavajuća tačnost.</li>
+<li>Omogućeno je vizuelno praćenje podataka za maksimalnu i srednju grešku i procenat izlaza sa zadovoljavajućom tačnošću preko progres bara.</li>
+</ul>
+
+Verzija ANN V.2.2 je realizovana na programskom jeziku Delphi 5.0 Razlike u odnosu na prethodnu verziju programa.
+<ul>
+<li>Moguće je pratiti promene težinskih koeficijenata preko fajlova sa ekstenzijom</li>
+</ul>
+Od prve verzije programa postignut veliki napredak u brzini obučavanja. Samim prelaskom na novije programske jezike ostvaren je veliki napredak u brzini. Razlozi za napredak u brzini leže u optimizaciji koda i primeni force learn metoda učenja. S obzirom da program izračunavanja vrši iterativno, veoma je bitno upotrebiti najoptimalniji redosled računskih operacija.
+<br>
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Primeri"></a>Primeri
+</td></tr></tbody></table>
+
+Programa obučavanje neuronskih mreža testiran je na više primera neki od njih su:
+<ul>
+<li>funkcija XOR</li>
+<li>predstavljanje logičkih funkcija</li>
+<li>prepoznavanje oblika</li>
+<li>prepoznavanje položaja</li>
+<li>prepoznavanje brojeva</li>
+<li>prepoznavanje slova</li>
+<li>klasifikacija intervala brojeva</li>
+</ul>
+
+Program ANN je upotrebljen prilikom obučavanje neuronske mreže koja se koristi u <a href="ocr.html">programu za prepoznavanje ćirilčnih slova (OCR)</a>.
+
+<p>Konfiguracija mreže je sledeća:
+<br>Troslojna neuronska mreža sa backpropagation algoritmom obučavanja.
+<br>Broj neurona na ulaznom sloju (broj ulaza): 12x12 = 144
+<br>Broj neurona na srednjem sloju: 35
+<br>Broj neurona na izlaznom sloju (broj izlaza): 5
+<br>Broj primera kojima se mreža obučava: 1590 (30 slova u više varijanti)
+<p>Obučavanje je vršeno na trening skupu od 1590 slova. Da bi se dobio toliko veliki skup ulazno-izlaznih podataka, napisan je program koji automatski izdvaja slovo po slovo sa slike i pravi fajlove u odgovarajućem formatu za obučavanje mreže. Za obučavanje ove mreže korišćeni su fontovi: Arial, Times New Roman i Courier New. Slova su pisana u oblicima normalno (Normal), ukošeno (Italic), i podebljano
+(Bold). Takođe su upotrebljene tri veličine fonta koje su zatim skaliranjem svedene na veličinu 12x12. Za sve tipove slova su korišćena velika i mala slova.
+<p>Pri obučavanju su upotrebljene metode obučavanja Random i Force learn.
+<p>Vreme potrebno za obučavanje mreže iznosi 02:12:53 sati bez prekida na računaru Celeron 333. Da bi se mreža obučila,
+bilo je potrebno 667 iteracija. Maksimalna greška je iznosila 0.098874 a prosečna greška je iznosila 0.00573.
+
+<p><a href="https://www.dropbox.com/s/b3k6purhw2dl99y/ann.zip?dl=0">Free Download!!!</a> ANN V2.3 (ann.zip 463Kb)
+<br>
+
+</td>
+
+
+<td valign="top" width="150" class="menu2"> <!--main right or menu-->
+
+<a href="http://translate.google.com/translate?prev=_t&hl=en&ie=UTF-8&u=http%3A%2F%2Fsolair.eunet.rs%2FANN.html&sl=sr&tl=en"><img SRC="en.gif" height=20 width=39> <font size=-2><br>English version<br>(Google Translate)</font></a>
+<br>
+<br>
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#F0F0F0" >
+<tr>
+<td>
+<center>Povezano sa:</center>
+</td>
+</tr>
+</table>
+<a href="ocr.html">OCR</a>
+<p><a href="ocr_opis.html">OCR - prep. ćiriličnih slova</a>
+<p><a href="NeuroVCL.html">NeuroVCL</a>
+<p><a href="AI_index.htm">Veštačka inteligecija</a>
+<p><a href="neuro.html">Neuronske mreže</a>
+<p><a href="FLAlg.html">Force learn algorithm</a>
+<p><a href="enaa.html">ENAA</a></font>
+
+<br>
+<br>
+<br><hr>
+<p>
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+<!-- Place this tag where you want the +1 button to render -->
+<g:plusone size="medium" href="http://SOLAIR.EUnet.rs/~ilicv/ANN.html"></g:plusone>
+
+
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+
+
+
+
+
+</td></tr>
+
+
+
+
+
+
+
+
+
+</tbody></table>
+</td></tr></tbody></table>
+
+
+<table width="100%">
+  <tbody><tr align="center">
+    <td class="footer" align="right">
+	  <hr>
+<table width="100%">
+<tbody><tr><td align="left">
+Page url: <a href="http://SOLAIR.EUnet.rs/~ilicv/ann.html">http://SOLAIR.EUnet.rs/~ilicv/ann.html</a></td>
+<td align="right">
+Web design by: <a href="http://solair.eunet.rs/%7Eilicv/">Velibor Ilic</a>
+</td></tr></tbody></table>
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<td width="30"></td></tr>
+</tbody></table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-11148888-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</center></body></html>

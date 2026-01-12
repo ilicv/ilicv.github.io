@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+   <meta name="Author" content="Velibor Ilic">
+   <meta name="KeyWords" content="agent, agents, agenti, ai, artificial, intelligence, vestacka, velibor, ilic, becej, vojvodina, jugoslavija,">
+   <meta name="revisit-after" content="15 days">
+   <meta name="ROBOTS" content="ALL">
+   <meta name="Description" content="U radu se govori o evolutivnim autonomnim agentima kojima upravlja neuronska mreža. Predložen je hijerarhijskih model neuronskih mreža. Prikazan softver ENAA koji simulira evolutivno obučavanje agenata koji se kreću unutar arene i izvršavaju postavljene ciljeve.">
+   <title>Evolutivni Neuro Autonomni Agenti</title>
+
+  <link rel="stylesheet" type="text/css" href="my.css" media="screen,projection">
+</head>
+<body>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 728x15, created 10/17/09 */
+google_ad_slot = "8046978970";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<table width=100% cellpadding="0" cellspacing="0">
+<tr>
+<td width="30"></td>
+<td align="left" background="header_bg.png">
+<img src="header.png"><br>
+
+
+
+
+<table width="100%" bgcolor="#FFFFFF" border="1" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td>
+          
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr valign="top">
+
+<td class="menu_back" width="150" align="left"> <!--menu-->
+<table cellpadding="2" cellspacing="0">
+<tbody><tr valign="top">
+<td>
+
+<a href="index.html">Home</a><br>
+<a href="VeliborCV.html">Biografija</a><br>
+<hr width="135" align="center">
+
+<a href="automatsko_trgovanje.html">Automatsko trgovanje</a><br>
+<a href="PProgrami.htm">Poslovni programi</a><br>
+<a href="recnik.html">Rečnik</a><br>
+<a href="PlanB.htm">PlanB</a><br>
+<hr width="135" align="center">
+
+<a href="AI_index.htm">Veštačka inteligencija</a><br>
+<a href="neuro.html">Neuronske mreže</a><br>
+<a href="ANN.html">ANN</a><br>
+<a href="FLAlg.html">Force learn algoritam</a><br>
+<a href="NeuroVCL.html">NeuroVCL</a><br>
+<a href="agenti.html">Agenti</a><br>
+<a href="enaa.html">ENAA</a><br>
+
+<hr width="135" align="center">
+
+<a href="ocr_opis.html">OCR</a><br>
+<a href="ocr.html">OCR soft</a><br>
+<hr width="135" align="center">
+
+<a href="scada.html">Izrada SCADA</a><br>
+<a href="smartscada.html">SmartSCADA</a><br>
+<hr width="135" align="center">
+
+<a href="https://www.dropbox.com/s/a8p6nygmuqemzbf/nanotehnlogija.pdf?dl=0">Nanotehnologija</a><br>
+<a href="linkovi.htm">Linkovi</a><br>
+<a href="free.html">Free Download</a>
+<br>
+<hr width="135" align="center">
+<br>
+<br>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 120x90, created 10/17/09 */
+google_ad_slot = "0178951326";
+google_ad_width = 120;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+<br>
+<br>
+<p style="margin-top: 0; margin-bottom: 0">
+<a href="http://usa.nedstatbasic.net/cgi-bin/viewstat?name=ilicv"><img
+src="http://usa.nedstatbasic.net/cgi-bin/nedstat.gif?name=ilicv"
+border=0 alt="" nosave width=22 height=22></a>
+</center>
+
+
+
+</td></tr></tbody>
+</table>
+</td> <!--menu-->
+
+
+<td valign="top" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+
+
+<td valign="top" width="100%" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="3">
+<tbody><tr>
+
+<td valign="top" align="left"> <!--main left-->
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP BGCOLOR="#333333">
+<center><font size="+2" face="Arial,Helvetica" color="#EDE8DE">
+<b>ENAA - Evolutivni Neuro Autonomni Agenti</b>
+</font></center></td>
+</tr>
+</table>
+<br> 
+
+<p><b>Autor:</b> <a href="VeliborCV.html">Velibor Ilić</a>
+<p><b>ABSTRAKT:</b> <i>U radu se govori o evolutivnim autonomnim agentima kojima upravlja neuronska mreža. Predložen je hijerarhijskih model neuronskih mreža. Prikazan softver ENAA koji simulira evolutivno obučavanje agenata koji se kreću unutar arene i izvršavaju postavljene ciljeve.</i>
+
+<p><b>Ključne reči:</b> Evolutivni autonomni agenti (EAA), neuronske mreže (ANN), genetski algoritam (GA), simuliranje evolucije
+
+
+<p><b>Datum izrade</b>: Maj, 2001
+<br><b>Demo:</b> <a href="https://www.dropbox.com/s/cw6y83edi3e0tqv/enaa.zip?dl=0">https://www.dropbox.com/s/cw6y83edi3e0tqv/enaa.zip?dl=0</a><br>
+<p>
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP BGCOLOR="#eeeeee">
+Ilić, V., (2002): “<b><i>Evolutionary Neuro Autonomous Agents</i></b>”, Seminar on Neural Network Applications in Electrical Engineering “Neurel 6th”, Belgrade, Sponsored by IEEE Signal Processing Society, pp 37-40, IEEE Catalog Number 02EX609, ISBN 0-7803-7593-9, Library of Congress: 2002108419,<br>
+<a href="http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=1057963"> http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=1057963</a></td>
+</tr>
+</table>
+<p>
+<p>
+<hr width="97%">
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td>
+<a href="http://twitter.com/velibor" class="twitter-follow-button" data-show-count="false">Follow @velibor</a>
+<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+&nbsp; &nbsp; &nbsp;
+<td>
+<a title="Velibor Ilic" href="http://www.researchgate.net/profile/Velibor_Ilic/"><img src="http://www.researchgate.net/images/public/profile_image_my_profile_big.png" alt="Velibor Ilic" /></a>
+</td>
+</tr>
+</table>
+<hr width="97%">
+<p>
+
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Sadrzaj"></a>Sadržaj
+</td></tr></tbody></table>
+
+<a href="#Uvod">Uvod</a>
+<br><a href="#Opis problema">Opis problema</a>
+<br><a href="#Arena">Arena</a>
+<br><a href="#Agenti">Agenti</a>
+<br><a href="#evolucija">Evolutivno obučavanje agenata</a>
+<br><a href="#enaa">Program ENAA</a>
+<br><a href="#Zakljucak">Zaključak</a>
+<br><a href="#Literatura">Literatura</a>
+
+
+<p>
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Uvod"></a>UVOD
+</td></tr></tbody></table>
+
+Agenti predstavljaju softver koji, u interakciji sa okruženjem, ima sposobnost da fleksibilno i samostalno reaguje u skladu sa ciljevima koji su mu postavljeni. Interakcija sa okruženjem u ovom kontekstu znači da je agent sposoban da reaguje na ulaz dobijen od senzora iz okruženja i da može da izvodi akcije koje menjaju okruženje u kome agenti deluju. Okruženje u kome agenti deluju može biti fizičko (realan svet) ili softversko (računar na kome se agent nalazi ili Internet). Autonomnost znači da je sistem u stanju da reaguje bez intervencije korisnika (ili drugih agenata) i da ima kontrolu nad sopstvenim akcijama i unutrašnjim stanjem. Takav sistem bi takođe trebalo da bude sposoban da uči iz iskustva. <p>Karakteristični eksperimenti u kojima se upotrebljavaju evolutivni autonomni agenti (EAA) sastoje od populacije agenata koji evoluiraju upotrebom genetskog algoritma tokom mnogo generacija, tako što najbolji preživljavaju u datom okruženju. Neuronske mreže su posebno pogodne za ovu svrhu pošto imaju sposobnost obučavanja. Neuronska mreža prima i obrađuje ulazne informacije iz okruženja i upravlja ponašanjem agenta vršeći izbor njegovih akcija.
+<br>
+
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Opis problema"></a>OPIS PROBLEMA
+</td></tr></tbody></table>
+U primeru koji će biti opisan u radu zadatak agenata je da nauče da: pretraže što veću površinu arene, pojedu što više hrane i nauče da izbegavaju polja sa otrovom. Agenti su smešteni u areni veličine 30×30 polja. Početna generacija agenata nema definisan algoritam ponašanja tako da se agenti pokreću nasumično (najčešće se rotiraju u levu ili desnu stranu ili se zaglave na nekom od zidova arene). Agenti dobijaju pozitivne i negativne bodove u zavisnosti od akcije koju načine. Dobijeni bodovi ne utiču na trenutno ponašanje agenata, ali nam omogućavaju da lakše uočimo agenta koji se trenutno najbolje prilagodio zadatku u okruženju u kome se nalazi. Agenti imaju ograničen životni vek. Nakon “smrti” jednog agenta, kreira se novi na slučajnoj poziciji u areni, tako da se u areni uvek nalazi isti broj agenata.
+
+<p>
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Arena"></a>ARENA
+</td></tr></tbody></table>
+
+Arena, po kojoj se kreću agenti se sastoji od 30×30 polja (slika 1). Po areni su slučajno raspoređeni hrana i otrov. Po areni su slučajno razbacani hrana i otrovi, ali u njoj postoje i dve zone sa povećanom količinom hrane odnosno otrova. U gornjem desnom uglu se nalazi povećana količina hrane, dok se u desnom donjem uglu nalazi veća količina otrova.
+
+<center>
+<p><img src="enaa1.gif" border=2 height=331 width=331 /><br>
+Slika 1. – arena u kojoj se kreću agenti
+</center>
+
+<p>Polja su u areni označena na sledeći način:<br>
+
+
+<center><table BORDER COLS=3 >
+<tr BGCOLOR="#CCCCCC">
+<td WIDTH="200">Izgled polja</td>
+<td WIDTH="200">Opis</td>
+<td WIDTH="150">Vrednost na senzoru</td>
+</tr>
+<tr>
+<td>zeleni kružić</td>
+<td>hrana</td>
+<td ALIGN=LEFT><div align=right>-0.5</div></td>
+</tr>
+<tr>
+<td>crveni kružić</td>
+<td>otrov</td>
+<td><div align=right>0.5</div></td>
+</tr>
+<tr>
+<td>sivi pravougaonik</td>
+<td>zid</td>
+<td><div align=right>1.0</div></td>
+</tr>
+<tr>
+<td>plava tačka</td>
+<td>istražena polja</td>
+<td><div align=right>-1.0</div></td>
+</tr>
+<tr>
+<td>bela polja</td>
+<td>neistražena polja</td>
+<td><div align=right>0</div></td>
+</tr>
+</table></center>
+
+<p>Sezone predstavljaju određeni vremenski period nakon koga se u areni obnavlja količina hrane i otrova i brišu se polja koja agenti označavaju kao pretražena. U primeru koji je obrađen u radu, sezona traje 300 vremenskih jedinica.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Agenti"></a>AGENTI
+</td></tr></tbody></table>
+
+Agenti sadrže: senzore (s1, s2, s3) koji im omogućavaju da očitavaju sadržaj polja u svojoj blizini, motore (m1, m2 i m3) pomoću kojih se kreću i upravljačku i nadzornu neuronsku mrežu. Unutrašnja organizacija agenta je prikazana na slici 2. U programu ENAA su agenti predstavljeni strelicama koje mogu biti usmerene u jednom od četiri smera (levo, desno, gore, dole).
+
+<center>
+<p><img SRC="enaa2.gif" BORDER=2 height=204 width=316>
+<br>Slika 2. – organizacija agenta</center>
+
+<p>U agentu su senzori (s1, s2, s3) raspoređeni kao na slici 3. Oni omogućavaju agentima da čitaju sadržaj polja. Jedan senzor očitava polje neposredno ispred agenta, a druga dva senzora očitavaju polja sa leve i desne strane agenta. Agenti se kreću pomoću tri motora, prvi motor omogućava kretanje jedno polje napred, dok ostala dva motora omogućavaju rotiranje agenta u levu ili desnu stranu. Prilikom kretanja, agenti markiraju polja u areni na kojima su boravili.
+<center>
+
+<p><img SRC="enaa3.gif" BORDER=2 height=116 width=80>
+<br>Slika 3. – položaji senzora agenta</center>
+
+<p>Upravljačka neuronska mreža (slika 2.) očitava vrednosti senzora s1, s2, s3 (slika 3.) i na osnovu tih vrednosti upravlja kretanjem agenta (odlučuje koji će se motor uključiti). U jednom koraku može biti uključen samo jedan motor. Nakon obrade vrednosti senzora, na izlazu neuronske mreže se dobiju tri vrednosti (m1, m2 i m3). Agent uključuje motor čiji izlaz neuronske (m1, m2, m3) ima najveću vrednost.
+
+<p>Nadzorna neuronska mreža (slika 2.) prati vrednosti senzora s1, s2, s3 i izlazne vrednost upravljačke neuronske mreže preko parametra O1. Parametar O1 dobija vrednosti (1, 0 ili -1) u zavisnosti od toga koji motor je bio uključen (m1, m2 ili m3). Preko nadzorne neuronske mreže agenti imaju mogućnost da sami koriguju svoju ponašanje za vreme svog životnog perioda. Ukoliko se na izlazu nadzorne neuronske mreže (parametar O2) pojavi vrednost veća od 0.5, agent vrši korekciju težinskih koeficijenta upravljačke neuronske mreže. Agenti imaju znatno slabiji intenzitet dejstva na težinske koeficijente upravljačke neuronske mreže, nego mutacija prilikom kreiranja novog agenta. Međutim, sam agent ima češće priliku da utiče na težinske koeficijente upravljačke neuronske mreže. Ako se posmatra duži vremenski period, dejstvo nadzorne neuronske mreže na upravljačku neuronsku mrežu nije zanemarljivo.
+<br>
+
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="evolucija"></a>EVOLUTIVNO OBUČAVANJE AGENATA
+</td></tr></tbody></table>
+
+U toku evolutivnog obučavanja, agenti izvršavaju svoj zadatak samostalno i nakon određenog vremenskog perioda se ocenjuje njihov učinak. Posle toga se kreira nova generacija agenata po uzoru na agente sa najboljim rezultatima iz prethodne generacije. Postupak se ponavlja preko više generacija agenata, a krajnji rezultat evolucije bi trebalo da predstavlja populacija agenata čije ponašanje i neuro-dinamika najbolje odgovaraju uslovima okruženju.
+
+<p>Početna generacija agenata, koja se kreira pokretanjem simulacije, nema informaciju šta se od njih očekuje i na koji način treba da se ponašaju. Agenti se u početku najčešće stalno rotiraju u levu ili desnu stranu ili se “zaglave” pored zida pošto “ne znaju” da treba da skrenu u stranu kada im se zid nađe na putu. Da bi se agenti naučili da se kreću kroz arenu, neophodno ih je motivisati tako što dobijaju pozitivne poene za ispravne poteze, a negativne poene kada načine potez koji ne bi trebalo da rade.
+
+<p>Ukoliko agent sakupi više bodova od ostalih, uglavnom znači da taj agent ima najbolji algoritam ponašanja, međutim i povoljni početni uslovi takođe mogu omogućiti agentu da prikupi više bodova od drugih.
+
+<br>Na primer, agent koji se kreće ispred drugog agenta ima priliku da pokupi više hrane, ili ako je agent kreiran u zoni gde preovladava hrana ima bolje preduslove nego agent kreiran u zoni sa većom količinom otrova. Agenti koji steknu više bodova zahvaljujući boljim početnim uslovima, a ne boljim algoritmom ponašanja, mogu usporiti evoluciju ili je čak usmeriti u pogrešnom smeru.
+
+<p>Takvi slučajevi utiču na nekoliko generacija agenta u kojima potomci mogu imati lošije rezultate nego prethodna generacija agenata ali na duži vremenski period ovakve pojave nisu previše štetne. 
+
+<p>Životni vek agenta ograničen je količinom energije ili maksimalnom dužinom života. Za svaki načinjeni korak agentima se oduzima po jedna energetska jedinica. Kada agent potroši svu energiju, uništava se i umesto njega se kreira novi agent na slučajnoj poziciji u areni. Koeficijenti neuronske mreže novog agenta formiraju se ukrštanjem agenta koji je upravo uništen i agenta sa najvećim brojem bodova, na tako dobijene težinske koeficijente se primenjuje “mutacija” koja se sastoji u dodavanju slučajnih brojeva u intervalu od -0.3 do 0.3 na težinske koeficijente mreže. Na isti način se podešavaju težinski koeficijenti upravljačke i nadzorne neuronske mreže.
+
+<p>Životni vek agenta je ograničen količinom energije koju agent troši prilikom kretanja kroz arenu. Za svaki korak agentu se oduzima po jedna energetska jedinica. Prilikom kreiranja, svaki agent dobija 300 energetskih jedinica. Prelaskom preko polja na kome se nalazi hrana agent dobija dodatnih 100 energetskih jedinica, dok prilikom prelaska preko polja na kome se nalazi otrov agentu se oduzima 100 energetskih jedinica.
+
+<br>Agenti koji imaju dobar algoritam ponašanja, prikupljaju veću količinu hrane i izbegavaju otrov, na taj način povećavaju sebi šansu da ostvare prednost u odnosu na ostale agente i da svoje iskustvo prenesu na nove generacije agenata. 
+
+<p>Poeni koje agenti dobijaju ne utiču na njihovo trenutno ponašanje, nego se koriste za uočavanje agenata se najboljim algoritmom ponašanja. Agenti sa najvećim brojem bodova stiču mogućnost da svoje “gene” (informacije) prenose na nove generacije. Kada jedan agent uspešno reši situaciju koja mu omogućava da stekne prednost u odnosu na ostale agente, većina agenata narednih generacija će naslediti takvo ponašanje. Ukoliko se neki od agenata počne ponašati loše (npr. agent prikuplja otrove umesto hrane), takav agent ne dobija priliku da takvo ponašanje prenese na potomke. U programu ENAA agenti su bodovani na sledeći način:
+<br>
+
+
+<center><table BORDER COLS=2 WIDTH="200" >
+<tr BGCOLOR="#CCCCCC">
+<td WIDTH="200">Opis akcije</td>
+<td WIDTH="200">Broj bodova</td>
+</tr>
+<tr>
+<td>Istraženo polje</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Otkriveno novo polje</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Polje sa hranom</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Polje sa otrovom</td>
+<td>-1000</td>
+</tr>
+</table></center>
+
+<p>Agenti imaju tri senzora koji mogu da detektuju 5 različitih situacija (neotkriveno polje, istraženo polje, zid, hrana, otrov) što čini skup od 5<sup>3</sup>=125 mogućih situacija koje bi agent trebalo da uspešno nauči. Od tog skupa mogućih situacija agenti prvo uče one situacije sa kojima se češće sreće i one u kojima se direktno ostvaruje veća količina pozitivnih ili negativnih poena. Za postupke u kojima se indirektno ostvaruju bodovi, potrebno je duže obučavanje.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="enaa"></a>ENAA - SIMULACIONI SOFTVER
+</td></tr></tbody></table>
+
+Program ENAA omogućava simulaciju evolutivnog obučavanja agenata u areni veličine 30×30 polja. Agentima početne generacije se upisuju slučajni brojevi u intervalu od -0.5 do 0.5 na težinske koeficijente upravljačke i nadzorne neuronske mreže.
+
+<p>Zadatak agenata je da nauče da istražuju što veću površinu arene, zaobilaze prepreke, prikupljaju hranu i izbegavaju otrove. Program omogućava vizuelno praćenje toka obučavanja agenata, prikazivanje trenutnih rezultata svakog pojedinačnog agenta u areni (broj pređenih polja, broj otkrivenih novih polja arene, broj pojedene hrane i otrova, broj bodova, količinu energije, starost agenta). Tokom simulacije kreiraju se dva log fajla sa rezultatima koje su agenti ostvarili i sa zbirnim rezultatima po sezonama. Ovi log fajlovi se mogu učitati u Microsoft Excel radi statističke analize ili crtanja grafikona. 
+
+<p>Program ENAA omogućava korisniku da tokom simulacija uključi ili isključi pojavljivanje hrane i otrova u areni i da tako simulira različite okolnosti koje se mogu pojaviti. Takođe korisnik može u toku simulacije menjati vrednost bodova koje agenti dobijaju za prikupljenu hranu, otrov i istražena polja, i na taj način uticati na ponašanje agenata. Tokom simulacije se mogu učitavati različiti rasporedi zidova u areni.
+
+<p>Simulacija se može početi u arenu bez hrane i otrova, a kasnije uključiti opcije za njihovo pojavljivanje ili obe opcije istovremeno. Kada agenti jednom nauče da izbegavaju otrove oni prenose to znanje prenose na svoje potomke. To znanje se ne gubi, čak i ako se otrovi ne pojavljuju u areni tokom života više generacija.
+
+<br>Program ENNA je napisan na programskom jeziku Delphi 6.0.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Zakljucak"></a>ZAKLJUČAK
+</td></tr></tbody></table>
+
+Efikasnost evolutivnog obučavanja neuronskih mreža (brzina i tačnost) je manja nego kada se neuronske mreže obučavaju nad tačno definisanim trening skupom (backpropagation algoritma). Iz primera prikazanog u radu se može videti da ovakvi modeli agenata mogu prikupljati informacije o sistemu u kome se nalaze. Takođe, iz opisanog primera u ovom radu vidimo da se neuronske mreže mogu obučavati evolutivnim postupkom, tj. izborom agenta čija neuronska mreža omogućava duži životni vek i prikupljanje najviše poena.
+
+<p>Ovaj način obučavanja neuronskih mreža je interesantan iz razloga što se one ne obučavaju nekom matematičkom funkcijom nego se težinski koeficijenti menjaju dodavanjem slučajnih brojeva i izborom neuronske mreže koja daje najbolje rezultate. 
+
+<p>Demo program ENAA u kome su primenjeni evolutivni neuro agenti i koji je poslužio za eksperimentalna ispitivanja u može se preuzeti sa adrese: 
+<p><a href="https://www.dropbox.com/s/cw6y83edi3e0tqv/enaa.zip?dl=0">https://www.dropbox.com/s/cw6y83edi3e0tqv/enaa.zip?dl=0</a>
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Literatura"></a>LITERATURA I LINKOVI
+</td></tr></tbody></table>
+
+[1] Ilić, V., (1999) “Obučavanje neuronskih mreža za prepoznavanje ćiriličnih slova”, magistarski rad, Tehnički Fakultet “Mihajlo Pupin”, Zrenjanin
+<br>[2] Ilić, V., (2000), “NeuroVCL components for Delphi”, NEUREL 2000, Zavod za grafičku obradu Tehnološko-metalurškog
+fakulteta, Beograd
+<br>[3] Ilić, V. (2000), “Force learn algorithm – training neural networks with patterns which have highest errors”, NEUREL
+2000, Zavod za grafičku obradu Tehnološko-metalurškog fakulteta, Beograd
+<br>[4] Ilić, V., (2001), “Sistemi na bazi tehnologije agenata”, http://solair.EUnet.rs/~ilicv/agenti.html
+<br>[5] Berberski, Ž., (1996).: “Šta sve mogu neuronske mreže?”, časopis “Računari” br 120, BIGZ, Beograd
+<br>[6] Bernander, O., (1998) “Neural Network”, Microsoft(R) Encarta(R) 98 Encyclopedia. (c) 1993-1997 Microsoft Corporation
+<br>[7] Hotomski, P., (1995): “Sistemi Veštačke inteligencije”, Tehnički fakultet “Mihajlo Pupin”, Zrenjanin
+<br>[8] Jocković, M., Ognjanović Z., Stankovski S. (1997) “Veštačka inteligencija inteligentne mašine i sistemi”, Grafomed,
+Beograd
+<br>[9] Milenković, S., (1997): “Veštačke neuronske mreže”, Zadužbina Andrejević, Beograd
+<br>[10] Nikić, B., (1990): “Primena teorije prepoznavanja oblika kod obrade otiska papilarnih linija prstiju”, magistarski
+rad, TF “Mihajlo Pupin”, Zrenjanin
+<br>[11] Reisdorph, K., (1998): “Naučite Delphi za 21 dan”, Kompjuter biblioteka, Beograd
+<br>[12] Sajić, I., (1995): “Neuronske mreže”, časopis “Računari” br 108, BIGZ, Beograd
+<br>[13] Subašić, P., (1998): “Fazi logika i neuronske mreže”, Tehnička Knjiga, Beograd
+<br>[14] “Frequently asked questions about AI”, <a href="http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html">http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html</a>
+<br>[15] “Neural Network Frequently asked questions”, <a href="ftp://ftp.sas.com/pub/neural/FAQ.html">ftp://ftp.sas.com/pub/neural/FAQ.html</a>
+<br>[16] Jennings, N., R., Sycara, K., Wooldridge, M., (1998) “A roadmap of agent research and development” (7-38), “Autonomous Agents and Multi-Agents systems”, Kluwer Academic Publishers, Boston
+<br>[17] Moukas, A., Pattie, M., (1998) “AMALTHAEA: An Evolving Multi-Agent Information Filtering and Discovery” (59-88), “Autonomous Agents and Multi-Agents Systems for the WWW”, Kluwer Academic Publishers, Boston
+<br>[18] Grand, S., Cliff, D., (1998) “Creatures: Entertainment Software Agents with Artificial Life” (39-57), “Autonomous Agents and Multi-Agents systems”, Kluwer Academic Publishers, Boston
+<br>[19] Downing, T., E,. Moss, S., Pahl-Wostl, C., (2000) “Understanding Climate Policy Using Participatory Agent-Based Cocial Simulation”, (199-213), “Multi-Agent-Based Simulation”, Second International Workshop, MABS 2000, Springer, Boston
+<br>[20] Grosof, B., N., (1997) “Building Comercial Agents: An IBM Research Perspective ”, <a href="http://www.research.ibm.com/iagents/paps/rc20835.pdf">http://www.research.ibm.com/iagents/paps/rc20835.pdf</a>
+<br>[21] Grosof, B., N., Foulger, D., A,. (1995) “Globenet and RAISE: Intelligent Agents for Networked Newsgroups and Customer Service Support”, <a href="http://www.research.ibm.com/iagents/paps/rc20226.pdf">http://www.research.ibm.com/iagents/paps/rc20226.pdf</a>
+<br>[22] Chess, D., Harrison, C., Kershenbaum, A., “Mobile Agents: Are They A Good Idea?” <a href="http://www.research.ibm.com/iagents/paps/mobile_idea.pdf">http://www.research.ibm.com/iagents/paps/mobile_idea.pdf</a>
+<br>[23] <a href="http://www.botknowledge.com/">http://www.botknowledge.com/</a>
+<br>[24] <a href="http://agents.umbc.edu/">http://agents.umbc.edu/</a>
+<br>[25] <a href="http://www.research.ibm.com/iagents/">http://www.research.ibm.com/iagents/</a>
+<br>[26] <a href="http://www.iiia.csic.es/~sierra">http://www.iiia.csic.es/~sierra</a>
+<br>[27] <a href="http://www.agentlink.org">http://www.agentlink.org</a>
+<br>[28] <a href="http://multiagent.com/">http://multiagent.com/</a>
+<br>[29] <a href="http://www.botspot.com">http://www.botspot.com</a>
+<br></td>
+
+
+<td valign="top" width="150" class="menu2"> <!--main right or menu-->
+
+<a href="enaa_eng.html"><img SRC="en.gif" height=20 width=39></a><br>
+<font size="-2"><a href="NeuroVCL_eng.html">English version</a></font>
+<p>
+
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#F0F0F0" >
+<tr>
+<td>
+<center>Povezano sa:</center></td>
+</tr>
+</table>
+<a href="AI_index.htm">Veštačka inteligencija</a>
+<p><a href="ocr.html">OCR</a>
+<p><a href="ocr_opis.html">OCR - prep. ćiriličnih slova</a>
+<p><a href="ANN.html">ANN</a>
+<p><a href="NeuroVCL.html">NeuroVCL</a>
+<p><a href="neuro.html">Neuronske mreže</a>
+<p><a href="FLAlg.html">Force learn algorithm</a>
+<br>
+<br>
+
+<br><hr>
+<p>
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+<!-- Place this tag where you want the +1 button to render -->
+<g:plusone size="medium" href="http://SOLAIR.EUnet.rs/~ilicv/enaa.html"></g:plusone>
+
+
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+
+
+
+
+
+</td></tr>
+
+
+
+
+
+
+
+
+
+</tbody></table>
+</td></tr></tbody></table>
+
+
+<table width="100%">
+  <tbody><tr align="center">
+    <td class="footer" align="right">
+	  <hr>
+<table width="100%">
+<tbody><tr><td align="left">
+Page url: <a href="http://SOLAIR.EUnet.rs/~ilicv/enaa.html">http://SOLAIR.EUnet.rs/~ilicv/enaa.html</a></td>
+<td align="right">
+Web design by: <a href="http://solair.eunet.rs/%7Eilicv/">Velibor Ilic</a>
+</td></tr></tbody></table>
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<td width="30"></td></tr>
+</tbody></table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-11148888-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</center></body></html>

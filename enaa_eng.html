@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+   <meta name="Author" content="Velibor Ilic">
+   <meta name="KeyWords" content="agent, agents, agenti, ai, artificial, intelligence, vestacka, velibor, ilic, becej, vojvodina, jugoslavija,">
+   <meta name="revisit-after" content="15 days">
+   <meta name="ROBOTS" content="ALL">
+   <meta name="Description" content="U radu se govori o softverskim sistemima na izrađenim bazi tehnologije               agenata, klasifikaciji agenata prema funkciji i njihovoj primeni. Napravljeno je poređenje               između objektno orijentisanog programiranja i tehnologije na bazi agenata.">
+   <title>ENAA - Evolutionary Neuro Autonomous Agents</title>
+
+  <link rel="stylesheet" type="text/css" href="my.css" media="screen,projection">
+</head>
+<body>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 728x15, created 10/17/09 */
+google_ad_slot = "8046978970";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<table width=100% cellpadding="0" cellspacing="0">
+<tr>
+<td width="30"></td>
+<td align="left" background="header_bg.png">
+<img src="header.png"><br>
+
+
+
+
+<table width="100%" bgcolor="#FFFFFF" border="1" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td>
+          
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr valign="top">
+
+<td class="menu_back" width="150" align="left"> <!--menu-->
+<table cellpadding="2" cellspacing="0">
+<tbody><tr valign="top">
+<td>
+
+<a href="index.html">Home</a><br>
+<a href="VeliborCV.html">Biografija</a><br>
+<hr width="135" align="center">
+
+<a href="automatsko_trgovanje.html">Automatsko trgovanje</a><br>
+<a href="PProgrami.htm">Poslovni programi</a><br>
+<a href="recnik.html">Rečnik</a><br>
+<a href="PlanB.htm">PlanB</a><br>
+<hr width="135" align="center">
+
+<a href="AI_index.htm">Veštačka inteligencija</a><br>
+<a href="neuro.html">Neuronske mreže</a><br>
+<a href="ANN.html">ANN</a><br>
+<a href="FLAlg.html">Force learn algoritam</a><br>
+<a href="NeuroVCL.html">NeuroVCL</a><br>
+<a href="agenti.html">Agenti</a><br>
+<a href="enaa.html">ENAA</a><br>
+
+<hr width="135" align="center">
+
+<a href="ocr_opis.html">OCR</a><br>
+<a href="ocr.html">OCR soft</a><br>
+<hr width="135" align="center">
+
+<a href="scada.html">Izrada SCADA</a><br>
+<a href="smartscada.html">SmartSCADA</a><br>
+<hr width="135" align="center">
+
+<a href="https://www.dropbox.com/s/a8p6nygmuqemzbf/nanotehnlogija.pdf?dl=0">Nanotehnologija</a><br>
+<a href="linkovi.htm">Linkovi</a><br>
+<a href="free.html">Free Download</a>
+<br>
+<hr width="135" align="center">
+<br>
+<br>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 120x90, created 10/17/09 */
+google_ad_slot = "0178951326";
+google_ad_width = 120;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+<br>
+<br>
+<p style="margin-top: 0; margin-bottom: 0">
+<a href="http://usa.nedstatbasic.net/cgi-bin/viewstat?name=ilicv"><img
+src="http://usa.nedstatbasic.net/cgi-bin/nedstat.gif?name=ilicv"
+border=0 alt="" nosave width=22 height=22></a>
+</center>
+
+
+
+</td></tr></tbody>
+</table>
+</td> <!--menu-->
+
+
+<td valign="top" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+
+
+<td valign="top" width="100%" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="3">
+<tbody><tr>
+
+<td valign="top" align="left"> <!--main left-->
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP BGCOLOR="#333333">
+<center><font size="+2" face="Arial,Helvetica" color="#EDE8DE">
+<b>ENAA - Evolutionary Neuro Autonomous Agents</b>
+</font></center></td>
+</tr>
+</table>
+<br> 
+
+<p><b>Author:</b> <a href="VeliborCV.html">Velibor Ilić</a>
+<p><b>ABSTRACT:</b> <i>This paper is about evolutionary autonomously agents controlled by neural networks. One hierarchical model of neural networks is suggested, and we also have a presentation of software ENAA that simulates evolutionary training of agents, which move inside arena and perform given task.</i>
+
+<p><b>Key words:</b> Evolutionary autonomous agents (EAA), artificial neural networks (ANN), genetic algorithm (GA), simulation of evolution
+
+<p><b>Date </b>: Mart, 2002
+<p><b>Demo:</b> <a href="https://www.dropbox.com/s/cw6y83edi3e0tqv/enaa.zip?dl=0">https://www.dropbox.com/s/cw6y83edi3e0tqv/enaa.zip?dl=0</a>
+<p>
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP BGCOLOR="#eeeeee">
+Ilić, V., (2002): “<b><i>Evolutionary Neuro Autonomous Agents</i></b>”, Seminar on Neural Network Applications in Electrical Engineering “Neurel 6th”, Belgrade, Sponsored by IEEE Signal Processing Society, pp 37-40, IEEE Catalog Number 02EX609, ISBN 0-7803-7593-9, Library of Congress: 2002108419,<br>
+<a href="http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=1057963"> http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=1057963</a></td>
+</tr>
+</table>
+<p>
+<p>
+<hr width="97%">
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td>
+<a href="http://twitter.com/velibor" class="twitter-follow-button" data-show-count="false">Follow @velibor</a>
+<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+&nbsp; &nbsp; &nbsp;
+<td>
+<a title="Velibor Ilic" href="http://www.researchgate.net/profile/Velibor_Ilic/"><img src="http://www.researchgate.net/images/public/profile_image_my_profile_big.png" alt="Velibor Ilic" /></a>
+</td>
+</tr>
+</table>
+<hr width="97%">
+<p>
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Table of contents"></a>Table of contents
+</td></tr></tbody></table>
+
+<a href="#Introduction">Introduction</a>
+<br><a href="#description">Problem description</a>
+<br><a href="#Arena">Arena</a>
+<br><a href="#Agents">Agents</a>
+<br><a href="#Evolutionary">Evolutionary training agents</a>
+<br><a href="#enaa">ENAA simulation software</a>
+<br><a href="#Conclusion">Conclusion</a>
+<br><a href="#References">References</a>
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Introduction"></a>INTRODUCTION
+</td></tr></tbody></table>
+
+Agents present software which, in interaction with environment, is capable to react flexible and autonomous by following assigned goals. Interaction with environment in this context means that agent is capable of responding on input values from sensors, which it reads from environment, and to take a course of actions in order to change agent’s environment. Agent’s environment can be real world or virtual (software environment in computer or Internet). Autonomy means that system is capable of reacting without human (or any other agents) intervention. That also means that agents have control of their own actions and internal state. That system should be capable of learning from examples. 
+
+<p>A typical experiment, in which evolutionary autonomous agents (EAA) are used, consists of an agents population which are evolving over many generations, in which only best survive in given environment and have possibility to transfer knowledge to future generations. Neural networks are especially adequate for this purpose because they have capability to learn. Neural network can read and process input information from environment through sensors and control behavior of agents making selection of their actions.
+
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="description"></a>PROBLEM DESCRIPTION
+</td></tr></tbody></table>
+
+In example described in this paper, agents’ goal is to learn: how to explore an area of arena as large as possible, how to discover as much fields with food as possible and to avoid fields with poison. Agents are inserted in arena size 30×30 fields. First generation of agents doesn’t have defined behavior algorithm, so agents move randomly through arena (usually agents rotate on the left or right or their straight line moving is blocked by a wall). Agents get positive or negative points depending on their action. Points don’t affect on agents’ current behavior, but they tell us which of the agents is best adapted to the task in his environment. Agents have limited lifetime. When one of the agents “dies”, new agent is created on random position in arena, so there are always a constant number of the agents.
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Arena"></a>ARENA
+</td></tr></tbody></table>
+
+Arena in which agents move consists of 30×30 fields (figure 1.). Food and poison are randomly scattered in the arena. There are two regions with additional quantity of food and poison. Increased number of food is in the top right corner of arena and increased number of poison is in the right bottom corner.
+
+<center>
+<p><img SRC="enaa1.gif" BORDER=2 height=331 width=331>
+<br>Figure 1. – arena with agents</center>
+
+<p>Fields in arena are marked in this way:
+<br>
+<center><table BORDER COLS=3 >
+<tr BGCOLOR="#CCCCCC">
+<td WIDTH="200">Field look</td>
+<td WIDTH="200">Description</td>
+<td WIDTH="150">Sensor value</td>
+</tr>
+<tr>
+<td>Green circle</td>
+<td>Food</td>
+<td><div align=right>-0.5</div></td>
+</tr>
+<tr>
+<td>Red circle</td>
+<td>Poison</td>
+<td><div align=right>0.5</div></td>
+</tr>
+<tr>
+<td>Grey square</td>
+<td>Wall</td>
+<td><div align=right>1</div></td>
+</tr>
+<tr>
+<td>Blue spot</td>
+<td>Explored field</td>
+<td><div align=right>-1</div></td>
+</tr>
+<tr>
+<td>White field</td>
+<td>Unexplored field</td>
+<td><div align=right>0</div></td>
+</tr>
+</table></center>
+
+<p>Seasons present defined periods of time, which lasts 300 time units in this example. Season begins with placing the exact number of food and poison (50, 50) in arena at random position (considering existence of two regions with irregular concentration of food/poison). During season agents are moving through the arena, collecting food and poison and marking fields they pass as explored fields (blue spot). New season begins with regenerating number of food and poison in arena and fields that have been explored are erased.
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Agents"></a>AGENTS
+</td></tr></tbody></table>
+
+Agent consists of: sensors which enable agents to read field content near him, motor that enable agents to move, control and supervisor neural network. Internal organization of agent is presented on figure 2. In ENAA agents are marked with arrows, which can be pointed to one of four directions (left, right, top or bottom).
+<center>
+<p><img SRC="enaa2.gif" BORDER=2 height=204 width=316>
+<br>Figure 2. – agent organization</center>
+
+<p>Sensors are placed in agents like in figure
+3. Sensors enable agents to read field content. First sensor reads content of field in front of the agent, and other two sensors read fields on the left and right of the agent. Agents move with a help of three motors, first motor enables straight line moving to one field ahead of the agent, and other two motors rotate agent left or right. While moving through arena agents mark fields they went across.
+<center>
+
+<p><img SRC="enaa3.gif" BORDER=2 height=116 width=80>
+<br>Figure 3. – position of sensors in agents</center>
+
+<p>Control neural network (figure 2.) reads values of sensors s1, s2, s3 (figure 2, 3) and using that values controls agents movement (network decides which motor will be activated). Only one motor can be activated in one step (one time unit). Neural network gives three values on output (m1, m2 and m3) after processing values of sensors. Agent activates motor which output of neural network (m1, m2 and m3) has the largest value.
+
+<p>Supervisor neural network (figure 2.) reads values of sensors s1, s2, s3 and control neural network’s values of outputs through parameter O1. Value of this parameter (O1) has values (1, 0 or -1) depending on which motor has been activated. Agents have capability to modify their own behavior using supervisor neural network during their own lifetime. If output of supervisor neural network (parameter O2) has value larger then 0.5, agent changes connection weights values of control neural network. Agents have lower intensity on changing connection weights values of control neural networks than the mutation during which the new agent is created. However, agent frequently affects on connection weights of control neural network. On longer time periods, affect of a supervisor neural network on control neural network is considerable.
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Evolutionary"></a>EVOLUTONARY TRAINING AGENTS
+</td></tr></tbody></table>
+
+During evolutionary training, agents perform their own tasks by themselves and after defined time period their actions had been evaluated. After that, new generation of agents are created on sample of agents with the best results in previous generation. Procedure is repeating over many generations of agents, and finally result should be a population of agents whose behavior is most suitable in the given environment.
+
+<p>First generation of agents, which is created by starting simulation, doesn’t have information on their goals and don’t know how to behave. In beginning, agents are usually rotated to the left or to the right, or simply their moving is blocked by wall because they don’t know that it is necessary to rotate when wall is in front of them. If we want agents to learn how to move through arena and collect food, it’s necessary to motivate them by giving them positive points for right actions and negative points when making mistakes.
+
+<p>If agent collects more points then other agents, it usually means that this agent has better behavior algorithm. If agent has better conditions in environment then the others, which will also allow them to make advantage regarding other agents. For example, agent who moves ahead of any other agent has opportunity to collect more food, or if agent is created in region with more food, this agent has better starting conditions then the agent who is created in region with more poison then food.
+
+<p>Agent which collects more points owing better environment conditions, instead of better behavior algorithm, can slow down evolution progress or even turn in wrong direction. That situations could affect on several generations of agents in which future generations have worse results then the previous generation of the agents, but in longer periods of time these situations aren’t to harmful.
+
+<p>Agent’s lifetime is limited by quantity of life energy or maximum length of life. For every step, agents lose one energy unit. When agent loses all energy, it is destroyed and instead of creating a new agent on random position in arena. New agent’s connection weights of neural networks are shaped by mixing connection weights of agent who is destroyed and agent with the highest score. That given connection weights are performed by “mutation” which consists of adding randomly picked up numbers in interval -0.3 to 0.3 on connection weights of neural network. On the same way connection weights of control and supervisor neural network are obtained.
+
+<p>Agent’s lifetime is limited quantity of life energy which agent spends during movement through the arena. For every step agent loses one energy unit. Every agent gets 300 energy units on its creating. After walking over fields with food, agent receives additional 100 energy units and after walking over fields with poison agent loses 100 energy units.
+
+<p>Agent with good behavior algorithm collects more food and avoids poison. In this way, they increase their chance to make advantage over other agents and transfer their own experience to the new generation of agents.
+
+<br>Points that agents receive don’t affect their current behavior, but points are used to find agents with the best behavior algorithm. Agents with larger amount of points get opportunity to transfer their own gene (information) to new generations. When one of agents successfully solves situation, which allows him to get advantage over other agents, most of agents in next generations will inherit that behavior. If some of agents start to behave “badly” (for example agents start to collect poison instead food), agents with that behavior will not have a chance to transfer that behavior to future generations. In ENAA, agents receive points as the following table shows:
+<br>
+
+<center><table BORDER COLS=2 WIDTH="200" >
+<tr BGCOLOR="#CCCCCC">
+<td WIDTH="200">Description</td>
+<td WIDTH="200">Points</td>
+</tr>
+<tr>
+<td>Explored field</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Find new field</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Field with food</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Field with poison</td>
+<td>-1000</td>
+</tr>
+</table></center>
+
+<p>Agents have three sensors which can detect 5 different field states (non explored field, explored field, field with food, field with poison and walls) that make a set of 5<sup>3</sup>=125 of possible situation which agents should successfully learn. From this number of possible situations, agents first learn more frequent situations and situations where the greater quantity of positive or negative points is realized directly. However, the training is longer for situations where agents receive points indirectly.
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="enaa"></a>ENAA SIMULATON SOFTWARE
+</td></tr></tbody></table>
+
+ENAA enables simulation of evolutionary training of agents in arena size 30×30 fields. In first generation of agents, connection weights of control and supervisory neural network receive random numbers in interval -0.5 do 0.5.
+
+<p>Agent’s goal is to learn how to explore the largest area of arena as possible, to collect food, and avoid walls and poisons. Program enables visually tracking training agents, shows current results of single agents in arena (number of steps, number of fields discovered, number of collected food and poisons, amount of energy, and agent’s age). During simulation, two log files were created with results which agents have realized and summary results by seasons. These log files can be loaded in Microsoft Excel for statistical analysis or drawing graphic.
+
+<p>ENAA allows user to turn on or turn off appearance of food and poison in arena during simulation and so simulate different situation which may occur. During the simulation, user can also change values of points which agents receive for collecting food, poison and explored and non explored fields, and in this way affect on agents behavior. During simulation, different positions of walls in arena can be loaded.
+
+<p>Simulation can be started without any food or poison in the arena. Later, options for their appearance can be turned on separately or at the same time. When agents once learn how to avoid poisons, they transfer knowledge on their future generations. That knowledge will not disappear, even if poisons will not appear in arena during the lifetime of several generations of agents.
+
+<p>ENAA was developed in Delphi 6.0 programming language.
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Conclusion"></a>CONCLUSION
+</td></tr></tbody></table>
+
+Efficiency of evolutionary training neural networks (speed and accuracy) is less than neural networks trained by using defined training set (backpropagation algorithm). Models of agents, from example shown in this paper, can be used for collecting information in unknown systems. Also, example in this paper shows that neural network could be trained by using evolutionary procedure, selecting agents which neural networks will allow longer lifetime and collecting highest number of points.
+
+<p>Training neural networks in this way is interesting because networks are not trained by mathematical function, connection weights are changed by adding random numbers and selection of an agent which neural network gives best results.
+
+<p>Demo version of ENAA in which evolutionary neuro agents are applied and which is used for experimental research can be downloaded at:
+
+<p><a href="https://www.dropbox.com/s/cw6y83edi3e0tqv/enaa.zip?dl=0">https://www.dropbox.com/s/cw6y83edi3e0tqv/enaa.zip?dl=0</a>
+<br>
+
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="References"></a>REFERENCES
+</td></tr></tbody></table>
+
+[1] Ilić, V., (1999): “Training neural networks for recognition Cyrillic letters” (in Serbian), masters thesis, Technical Faculty “Mihajlo Pupin”, Zrenjanin
+<br>[2] Ilić, V., (2000): “NeuroVCL components for Delphi”, NEUREL 2000, Zavod za grafičku obradu Tehnološko-metalurškog fakulteta, Belgrade
+<br>[3] Ilić, V. (2000): “Force learn algorithm – training neural networks with patterns which have highest errors”, NEUREL 2000, Zavod za grafičku obradu Tehnološko-metalurškog fakulteta, Beograd
+<br>[4] Ilić, V., (2001): “Systems based on agents technology” (in Serbian), <a href="http://solair.EUnet.rs/~ilicv/agenti.html">http://solair.EUnet.rs/~ilicv/agenti.html</a>
+<br>[5] Bernander, O., (1998): “Neural Network”, Microsoft(R) Encarta(R) 98 Encyclopedia. (c) 1993-1997 Microsoft Corporation 
+<br>[6] Hotomski, P., (1995): “Systems of artificial intelligence” (in Serbian), Technical Faculty “Mihajlo Pupin”, Zrenjanin
+<br>[7] Jocković, M., Ognjanović Z., Stankovski S. (1997) “Artificial intelligence intelligent machine and systems” (in
+Serbian), Grafomed, Belgrade
+<br>[8] Milenković, S., (1997): “Artificial neural networks” (in Serbian), Zadužbina Andrejević, Belgrade
+<br>[9] Reisdorph, K., (1998): “Learn Delphi for 21 days”, Kompjuter biblioteka, Beograd
+<br>[10] Subašić, P., (1998): “Fuzzy Logic and neural networks”, Tehnička Knjiga, Beograd
+<br>[11] “Frequently asked questions about AI”, <a href="http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html">http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html</a>
+<br>[12] “Neural Network Frequently asked questions”, <a href="ftp://ftp.sas.com/pub/neural/FAQ.html">ftp://ftp.sas.com/pub/neural/FAQ.html</a>
+<br>[13] Ruppin, E., (2002): “Evolutionary Autonomous Agents: A Neuroscience Perspective”, Nature Reviews Neuroscience, 3(2), February issue, p. 132 - 142
+<br>[14] Jennings, N., R., Sycara, K., Wooldridge, M., (1998) “A roadmap of agent research and development” (7-38), “Autonomous Agents and Multi-Agents systems”, Kluwer Academic Publishers, Boston
+<br>[15] Moukas, A., Pattie, M., (1998) “AMALTHAEA: An Evolving Multi-Agent Information Filtering and Discovery” (59-88), “Autonomous Agents and Multi-Agents Systems for the WWW”, Kluwer Academic Publishers, Boston
+<br>[16] Grand, S., Cliff, D., (1998) “Creatures: Entertainment Software Agents with Artificial Life” (39-57), “Autonomous Agents and Multi-Agents systems”, Kluwer Academic Publishers, Boston
+<br>[17] Downing, T., E,. Moss, S., Pahl-Wostl, C., (2000) “Understanding Climate Policy Using Participatory Agent-Based Cocial Simulation”, (199-213), “Multi-Agent-Based Simulation”, Second International Workshop, MABS 2000, Springer, Boston
+<br>[18] Grosof, B., N., (1997) “Building Comercial Agents: An IBM Research Perspective ”, <br>http://www.research.ibm.com/iagents/paps/rc20835.pdf
+<br>[19] Grosof, B., N., (1997) “Building Comercial Agents: An IBM Research Perspective ”, <a href="http://www.research.ibm.com/iagents/paps/rc20835.pdf">http://www.research.ibm.com/iagents/paps/rc20835.pdf</a>
+<br>[20] Grosof, B., N., Foulger, D., A,. (1995) “Globenet and RAISE: Intelligent Agents for Networked Newsgroups and Customer Service Support”, <a href="http://www.research.ibm.com/iagents/paps/rc20226.pdf">http://www.research.ibm.com/iagents/paps/rc20226.pdf</a>
+<br>[21] Chess, D., Harrison, C., Kershenbaum, A., “Mobile Agents: Are They A Good Idea?” <a href="http://www.research.ibm.com/iagents/paps/mobile_idea.pdf">http://www.research.ibm.com/iagents/paps/mobile_idea.pdf</a>
+<br>[22] <a href="http://www.botknowledge.com/">http://www.botknowledge.com/</a>
+<br>[23] <a href="http://agents.umbc.edu/">http://agents.umbc.edu/</a>
+<br>[24] <a href="http://www.research.ibm.com/iagents/">http://www.research.ibm.com/iagents/</a>
+<br>[25] <a href="http://www.iiia.csic.es/~sierra">http://www.iiia.csic.es/~sierra</a>
+<br>[26] <a href="http://www.agentlink.org">http://www.agentlink.org</a>
+<br>[27] <a href="http://multiagent.com/">http://multiagent.com/</a>
+<br>[28] <a href="http://www.botspot.com">http://www.botspot.com</a>
+<br>
+
+
+</td>
+
+
+<td valign="top" width="150" class="menu2"> <!--main right or menu-->
+
+<a href="enaa.html"><img SRC="yu.gif" BORDER=2 height=20 width=39></a><br>
+<font size="-2"><a href="NeuroVCL.html">Verzija na srpskom</a></font>
+<p>
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#F0F0F0" >
+<tr>
+<td>
+<center>Povezano sa:</center>
+</td>
+</tr>
+</table>
+<a href="AI_index.htm">Veštačka inteligencija</a>
+<p><a href="ocr.html">OCR</a>
+<p><a href="ocr_opis.html">OCR - prep. ćiriličnih slova</a>
+<p><a href="ANN.html">ANN</a>
+<p><a href="NeuroVCL.html">NeuroVCL</a>
+<p><a href="neuro.html">Neuronske mreže</a>
+<p><a href="FLAlg.html">Force learn algorithm</a>
+<br>
+
+
+
+<br>
+<br>
+<br><hr>
+<p>
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+<!-- Place this tag where you want the +1 button to render -->
+<g:plusone size="medium" href="http://SOLAIR.EUnet.rs/~ilicv/enaa_eng.html"></g:plusone>
+
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+
+
+
+
+
+</td></tr>
+
+
+
+
+
+
+
+
+
+</tbody></table>
+</td></tr></tbody></table>
+
+
+<table width="100%">
+  <tbody><tr align="center">
+    <td class="footer" align="right">
+	  <hr>
+<table width="100%">
+<tbody><tr><td align="left">
+Page url: <a href="http://SOLAIR.EUnet.rs/~ilicv/enaa_eng.html">http://SOLAIR.EUnet.rs/~ilicv/enaa_eng.html</a></td>
+<td align="right">
+Web design by: <a href="http://solair.eunet.rs/%7Eilicv/">Velibor Ilic</a>
+</td></tr></tbody></table>
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<td width="30"></td></tr>
+</tbody></table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-11148888-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</center></body></html>
