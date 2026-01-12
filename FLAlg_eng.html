@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
-   <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta name="Author" content="Velibor Ilic">
    <meta name="KeyWords" content="ocr, prepoznavanje, cirilicnih slova, optical, character, recognition, fazi, logika, fuzzy, logic, ekspertni, sistemi, expert, systems, neuronske, mreze, neural, network, networks, ann, ann, nn, ai, artificial, intelligence, vestacka, inteligencija, fakultet, delphi, delfi, programiranje, programer, programming, programi, programs, programs, poslovni, programi, business, application, velibor, ilic, becej, vojvodina, jugoslavija,">
    <meta name="revisit-after" content="15 days">
@@ -51,12 +51,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 <a href="automatsko_trgovanje.html">Automatsko trgovanje</a><br>
 <a href="PProgrami.htm">Poslovni programi</a><br>
-<a href="recnik.html">Rečnik</a><br>
+<a href="recnik.html">ReÄŤnik</a><br>
 <a href="PlanB.htm">PlanB</a><br>
 <hr width="135" align="center">
 
-<a href="AI_index.htm">Veštačka inteligencija</a><br>
-<a href="neuro.html">Neuronske mreže</a><br>
+<a href="AI_index.htm">VeĹˇtaÄŤka inteligencija</a><br>
+<a href="neuro.html">Neuronske mreĹľe</a><br>
 <a href="ANN.html">ANN</a><br>
 <a href="FLAlg.html">Force learn algoritam</a><br>
 <a href="NeuroVCL.html">NeuroVCL</a><br>
@@ -136,7 +136,7 @@ border=0 alt="" nosave width=22 height=22></a>
 </table>
 <br> 
 
-<p><b>Author</b>: <a href="VeliborCV_eng.html">Velibor Ilić</a>
+<p><b>Author</b>: <a href="VeliborCV_eng.html">Velibor IliÄ‡</a>
 <p><b>ABSTRACT</b>: This study describes training methods of the neural nets with the backpropagation algorithm of learning
 in which the priority is given to the patterns of the training set with the maximum error during the training.
 <p><b>Date</b>: Mart, 2000
@@ -147,7 +147,7 @@ in which the priority is given to the patterns of the training set with the maxi
 <table BORDER CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" >
 <tr>
 <td VALIGN=TOP BGCOLOR="#eeeeee">
-Ilić, V. (2000): “<b><i>Force learn algorithm – training neural networks with patterns which have highest errors</i></b>”, Seminar on Neural Network Applications in Electrical Engineering “NEUREL 2000”, Belgrade, Sponsored by IEEE Signal Processing Society, IEEE Catalog Number 00EX278, pp 46-48, ISBN 0-7803-5512-1 (Softbounded Edition), ISBN 0-7803-5512-X (Microfishe Edition), Library of Congress: 99-60930, <br><a href="http://ieeexplore.ieee.org/iel5/7232/19516/00902382.pdf?arnumber=902382">http://ieeexplore.ieee.org/iel5/7232/19516/00902382.pdf?arnumber=902382</a>
+IliÄ‡, V. (2000): â€ś<b><i>Force learn algorithm â€“ training neural networks with patterns which have highest errors</i></b>â€ť, Seminar on Neural Network Applications in Electrical Engineering â€śNEUREL 2000â€ť, Belgrade, Sponsored by IEEE Signal Processing Society, IEEE Catalog Number 00EX278, pp 46-48, ISBN 0-7803-5512-1 (Softbounded Edition), ISBN 0-7803-5512-X (Microfishe Edition), Library of Congress: 99-60930, <br><a href="http://ieeexplore.ieee.org/iel5/7232/19516/00902382.pdf?arnumber=902382">http://ieeexplore.ieee.org/iel5/7232/19516/00902382.pdf?arnumber=902382</a>
 </td>
 </tr>
 </table>
@@ -176,7 +176,7 @@ Ilić, V. (2000): “<b><i>Force learn algorithm – training neural networks with pa
 <a href="#Intro">Introduction</a>
 <br><a href="#FL algoritam">Force Learn algorithm</a>
 <br><a href="#Comparation">Force Learn algorithm and regular method for training</a>
-<br><a href="#NM">ANN V2.3 – neural network training program</a>
+<br><a href="#NM">ANN V2.3 â€“ neural network training program</a>
 <br><a href="#References">References</a>
 <p>
 
@@ -185,10 +185,10 @@ Ilić, V. (2000): “<b><i>Force learn algorithm – training neural networks with pa
 </td></tr></tbody></table>
 
 Neural net is trained by bringing data from the training set one by one at the input of the net. At the net output
-obtained outcome is compared with the expected one, and the central coefficients are corrected for the purpose of the error reducing, the proceeding is repeated until the error for each element from the training set, at the net outlet isn’t smaller than allowed. The common procedure of training means that data from training set are presented in a constant order from the first to the last. [1], [2], [5], [6], [7], [8]
+obtained outcome is compared with the expected one, and the central coefficients are corrected for the purpose of the error reducing, the proceeding is repeated until the error for each element from the training set, at the net outlet isnâ€™t smaller than allowed. The common procedure of training means that data from training set are presented in a constant order from the first to the last. [1], [2], [5], [6], [7], [8]
 
-<p>The most common problem that appears during the neural net training is the “uneven training”. The neural net is quickly trained to recognize only some of the training set patterns, while the rest demand larger number of iterations for certain recognition. If some
-training set elements achieve almost 100% error, it’s difficult to reduce their errors in further training, even after relatively great number of iterations. The ideal solution would be if the errors were eventually reduced up to the allowed values during training.
+<p>The most common problem that appears during the neural net training is the â€śuneven trainingâ€ť. The neural net is quickly trained to recognize only some of the training set patterns, while the rest demand larger number of iterations for certain recognition. If some
+training set elements achieve almost 100% error, itâ€™s difficult to reduce their errors in further training, even after relatively great number of iterations. The ideal solution would be if the errors were eventually reduced up to the allowed values during training.
 
 <br>
 <br>
@@ -224,18 +224,18 @@ even equal 1, and percent of correct outcome is about 95-99% and further grows w
 <a NAME="Comparation"></a>Force learn algorithm and regular method for training
 </td></tr></tbody></table>
 
-<p>In this example neural network is trained to recognize 12 different patterns size 3×3 (figure 3.) in array size 5×5. These patterns can be placed in 9 positions in array (figure 2.). The training set for this net is consisted of 108 elements (the number of positions × the number of shapes) and the exact examples (figure 2 and 3). If there is a shape for which the net is not trained, later, in using the net after a successful training, the results in the interval from (limit error)&lt;x&lt;(1-limit error) will appear at the output.
+<p>In this example neural network is trained to recognize 12 different patterns size 3Ă—3 (figure 3.) in array size 5Ă—5. These patterns can be placed in 9 positions in array (figure 2.). The training set for this net is consisted of 108 elements (the number of positions Ă— the number of shapes) and the exact examples (figure 2 and 3). If there is a shape for which the net is not trained, later, in using the net after a successful training, the results in the interval from (limit error)&lt;x&lt;(1-limit error) will appear at the output.
 
 <p>This example is characteristic because it shows privilege of force learn algorithm. On figure 4 is shown graph of regular method for training neural net. Maximum error has reached value 1 and it keeps on that value. Percent of correct outcome has reached of
 99% and it doesn't grow further. On figure 5, there is graph neural net with same configuration but trained with force learn algorithm and with random order of patterns on net input. Maximum error falls much faster despite lot of oscillations.
 
 <p><b>Neural network configuration:</b>
 <br>Three layers neural net with backpropagation algorithm of training:
-<br>Number neurons at input layer (number of inputs): (figure 2.) 5×5 = 25
+<br>Number neurons at input layer (number of inputs): (figure 2.) 5Ă—5 = 25
 <br>Number neurons at hidden layer: 20
 <br>Number neurons at output layer (number of outputs): 12
 <br>Learning coefficient (alpha): 0.25
-<br>Number of patterns in training set: 12×9 = 108 (Figure 2 and figure 3)
+<br>Number of patterns in training set: 12Ă—9 = 108 (Figure 2 and figure 3)
 <p><b>Training set:</b>
 <p><b>a) Inputs:</b>
 <center><img SRC="poz.png" BORDER=2 height=207 width=223>
@@ -255,7 +255,7 @@ net appears one 1 and rest values are 0.
 <hr WIDTH="100%"><b>Example 1</b>
 <hr WIDTH="100%">
 <center><img SRC="normal.jpg" BORDER=2 height=222 width=333>
-<br>Figure 4. Normal order training – maximum and average error and percent of correct outcome</center>
+<br>Figure 4. Normal order training â€“ maximum and average error and percent of correct outcome</center>
 
 <p>Number of iterations: 10000
 <br>Training time: 00:17:47
@@ -269,7 +269,7 @@ trained by using force learn algorithm for more less iterations.
 <hr WIDTH="100%"><b>Example 2</b>
 <hr WIDTH="100%">
 <center><img SRC="fl_graph.jpg" BORDER=2 height=219 width=331>
-<br>Figure 5. Training using Force learn algorithm and random order – maximum and average error and percent of correct outcome</center>
+<br>Figure 5. Training using Force learn algorithm and random order â€“ maximum and average error and percent of correct outcome</center>
 Number of iterations: 1229
 <br>Training time: 00:01:55
 <br>Average error: 0.01869
@@ -280,7 +280,7 @@ Number of iterations: 1229
 
 <br>
 <table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
-<a NAME="NM"></a>ANN V2.3 – neural network training program
+<a NAME="NM"></a>ANN V2.3 â€“ neural network training program
 </td></tr></tbody></table>
 
 
@@ -299,15 +299,15 @@ The advantages of Force learn can be practically demonstrated in the example of 
 <a NAME="References"></a>References
 </td></tr></tbody></table>
 
-[1] “Frequently asked questions about AI”, <a href="http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html">http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html</a>
-<br>[2] “Neural Network Frequently asked questions”,<a href="ftp://ftp.sas.com/pub/neural/FAQ.html">ftp://ftp.sas.com/pub/neural/FAQ.html</a>
-<br>[3] Hotomski, P., (1995): “Sistemi Veštačke inteligencije”, Tehnički fakultet “Mihajlo Pupin”, Zrenjanin
-<br>[4] Ilić, V., (1999) “Obučavanje neuronskih mreža za prepoznavanje ćiriličnih slova”, magistarski rad, Tehnički Fakultet “Mihajlo Pupin”, Zrenjanin
-<br>[5] Jocković, M., Ognjanović Z., Stankovski S. (1997) “Veštačka inteligencija inteligentne mašine i sistemi”, Grafomed, Beograd
-<br>[6] Milenković, S., (1997): “Veštačke neuronske mreže”, Zadužbina Andrejević, Beograd
-<br>[7] Nikolić, T., Opačić, M., (1995): “Veštačka inteligencija i neuronske mreže”, IBN Centar, Beograd
-<br>[8] Sajić, I., (1995): “Neuronske mreže” , časopis “Računari” br 108, BIGZ, Beograd
-<br>[9] Subašić, P., (1998): “Fazi logika i neuronske mreže”, Tehnička Knjiga, Beograd
+[1] â€śFrequently asked questions about AIâ€ť, <a href="http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html">http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html</a>
+<br>[2] â€śNeural Network Frequently asked questionsâ€ť,<a href="ftp://ftp.sas.com/pub/neural/FAQ.html">ftp://ftp.sas.com/pub/neural/FAQ.html</a>
+<br>[3] Hotomski, P., (1995): â€śSistemi VeĹˇtaÄŤke inteligencijeâ€ť, TehniÄŤki fakultet â€śMihajlo Pupinâ€ť, Zrenjanin
+<br>[4] IliÄ‡, V., (1999) â€śObuÄŤavanje neuronskih mreĹľa za prepoznavanje Ä‡iriliÄŤnih slovaâ€ť, magistarski rad, TehniÄŤki Fakultet â€śMihajlo Pupinâ€ť, Zrenjanin
+<br>[5] JockoviÄ‡, M., OgnjanoviÄ‡ Z., Stankovski S. (1997) â€śVeĹˇtaÄŤka inteligencija inteligentne maĹˇine i sistemiâ€ť, Grafomed, Beograd
+<br>[6] MilenkoviÄ‡, S., (1997): â€śVeĹˇtaÄŤke neuronske mreĹľeâ€ť, ZaduĹľbina AndrejeviÄ‡, Beograd
+<br>[7] NikoliÄ‡, T., OpaÄŤiÄ‡, M., (1995): â€śVeĹˇtaÄŤka inteligencija i neuronske mreĹľeâ€ť, IBN Centar, Beograd
+<br>[8] SajiÄ‡, I., (1995): â€śNeuronske mreĹľeâ€ť , ÄŤasopis â€śRaÄŤunariâ€ť br 108, BIGZ, Beograd
+<br>[9] SubaĹˇiÄ‡, P., (1998): â€śFazi logika i neuronske mreĹľeâ€ť, TehniÄŤka Knjiga, Beograd
 <br>
 
 </td>

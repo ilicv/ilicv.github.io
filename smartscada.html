@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
-   <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta name="Author" content="Velibor Ilic">
    <meta name="KeyWords" content="scada, delphi, objektno, orijentisano, programiranje, oop, process, control, signal, alarm,">
    <meta name="revisit-after" content="15 days">
@@ -51,12 +51,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 <a href="automatsko_trgovanje.html">Automatsko trgovanje</a><br>
 <a href="PProgrami.htm">Poslovni programi</a><br>
-<a href="recnik.html">Rečnik</a><br>
+<a href="recnik.html">ReÄŤnik</a><br>
 <a href="PlanB.htm">PlanB</a><br>
 <hr width="135" align="center">
 
-<a href="AI_index.htm">Veštačka inteligencija</a><br>
-<a href="neuro.html">Neuronske mreže</a><br>
+<a href="AI_index.htm">VeĹˇtaÄŤka inteligencija</a><br>
+<a href="neuro.html">Neuronske mreĹľe</a><br>
 <a href="ANN.html">ANN</a><br>
 <a href="FLAlg.html">Force learn algoritam</a><br>
 <a href="NeuroVCL.html">NeuroVCL</a><br>
@@ -139,13 +139,13 @@ border=0 alt="" nosave width=22 height=22></a>
 <br> 
 
 <p><b>Autori:</b>
-<br><a href="VeliborCV.html">Velibor Ilić</a>,
+<br><a href="VeliborCV.html">Velibor IliÄ‡</a>,
 <a href="mailto:ilicv@EUnet.rs">ilicv@EUnet.rs</a>
 <br>Jovan Mirilovic<br>
 
-<p><b>ABSTRAKT: </b><i>U radu se govori o postupku izrade nadzornih i upravljačkih programa upotrebom SmartSCADA
+<p><b>ABSTRAKT: </b><i>U radu se govori o postupku izrade nadzornih i upravljaÄŤkih programa upotrebom SmartSCADA
 programskog alata; sa primerom primene u NIS Naftagas Novi Sad.</i>
-<p><b>KLJUČNE REČI: </b>procesno upravljanje, nadzorni sistemi, OOP (Object Oriented Programming), OPC (Ole for Process
+<p><b>KLJUÄŚNE REÄŚI: </b>procesno upravljanje, nadzorni sistemi, OOP (Object Oriented Programming), OPC (Ole for Process
 Control), ActiveX, baze podataka, client/server, Delphi
 <p>
 <hr WIDTH="100%"><b>Title:</b> SmartSCADA programming tool for development control and monitoring software
@@ -153,7 +153,7 @@ Control), ActiveX, baze podataka, client/server, Delphi
 <br><b>Key words:</b> process control, data acquisition, OOP (Object Oriented Programming), OPC (Ole for Process Control), ActiveX, database, client/server, Delphi
 <br>
 <hr WIDTH="100%">
-<br>Rad je prezentovan na seminaru “Primena informatičkih tehnologija u industriji nafte i gasa” JUNG info
+<br>Rad je prezentovan na seminaru â€śPrimena informatiÄŤkih tehnologija u industriji nafte i gasaâ€ť JUNG info
 <p><b>Datum izrade</b>: Novembar, 2001.
 <br>
 
@@ -175,14 +175,14 @@ Control), ActiveX, baze podataka, client/server, Delphi
 <p>
 
 <table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
-<a NAME="Sadrzaj"></a>Sadržaj
+<a NAME="Sadrzaj"></a>SadrĹľaj
 </td></tr></tbody></table>
 
 <a href="#uvod">Uvod</a>
 <br><a href="#orgnaizacija_scade">Organizacija SmartSCADE</a>
 <br><a href="#komponente">Komponente SmartSCADE</a>
 <br><a href="#otvorenost_sistema">Otvorenost sistema</a>
-<br><a href="#zakljucak">Zaključak</a>
+<br><a href="#zakljucak">ZakljuÄŤak</a>
 <br><a href="smartscada.html#literatura">Literatura</a>
 <p>
 
@@ -190,49 +190,49 @@ Control), ActiveX, baze podataka, client/server, Delphi
 <a NAME="uvod"></a>Uvod
 </td></tr></tbody></table>
 
-Razvoj savremenih objektno orijentisanih programskih jezika u WINDOWS okruženju, sa mogućnošću vizuelnog programiranja pomoću komponenti, omogućio je enormno ubrzanje u kreiranju programa raznih namena. Naročito se razvio deo koji se odnosi na upravljanje bazama podataka. Danas se na tržištu može naći više softverskih paketa koji pružaju mogućnost vizuelnog razvoja aplikacija kao što su Borland Delphi, Borland C++ Builder, Microsoft Visual Studio (Visual C++, Visual Basic), Microsoft Access i drugi.
+Razvoj savremenih objektno orijentisanih programskih jezika u WINDOWS okruĹľenju, sa moguÄ‡noĹˇÄ‡u vizuelnog programiranja pomoÄ‡u komponenti, omoguÄ‡io je enormno ubrzanje u kreiranju programa raznih namena. NaroÄŤito se razvio deo koji se odnosi na upravljanje bazama podataka. Danas se na trĹľiĹˇtu moĹľe naÄ‡i viĹˇe softverskih paketa koji pruĹľaju moguÄ‡nost vizuelnog razvoja aplikacija kao Ĺˇto su Borland Delphi, Borland C++ Builder, Microsoft Visual Studio (Visual C++, Visual Basic), Microsoft Access i drugi.
 
-<p>Ovi programski paketi se odlikuju velikom brzinom izrade aplikacija (RAD, Rapid Application Develop). Programi se u njima kreiraju postavljanjem i povezivanjem softverskih komponenti u celinu, poput slaganja LEGO kockica. Da bi se moglo na ovaj način programirati, ovi programski paketi moraju da imaju niz predefinisanih komponenti, formi i čarobnjaka (wizard) za razne delove programa.
+<p>Ovi programski paketi se odlikuju velikom brzinom izrade aplikacija (RAD, Rapid Application Develop). Programi se u njima kreiraju postavljanjem i povezivanjem softverskih komponenti u celinu, poput slaganja LEGO kockica. Da bi se moglo na ovaj naÄŤin programirati, ovi programski paketi moraju da imaju niz predefinisanih komponenti, formi i ÄŤarobnjaka (wizard) za razne delove programa.
 
-<p>Danas na tržištu postoji veliki broj nezavisnih proizvođača softverskih komponenti za razne namene, pa tako i za razvoj SCADA aplikacija. Međutim, većina njih obuhvata samo pojedine elemente jednog SCADA sistema.
+<p>Danas na trĹľiĹˇtu postoji veliki broj nezavisnih proizvoÄ‘aÄŤa softverskih komponenti za razne namene, pa tako i za razvoj SCADA aplikacija. MeÄ‘utim, veÄ‡ina njih obuhvata samo pojedine elemente jednog SCADA sistema.
 
-<br>SmartSCADA predstavlja nadogradnju (sistem softverskih komponenti) za razvojno okruženje DELPHI i C++ Builder, kompanije Borland, koje omogućava ovim razvojnim sistemima da postanu sistemi za razvoj SCADA aplikacija, zadržavajući jednostavnost i brzinu kreiranja aplikacija.
+<br>SmartSCADA predstavlja nadogradnju (sistem softverskih komponenti) za razvojno okruĹľenje DELPHI i C++ Builder, kompanije Borland, koje omoguÄ‡ava ovim razvojnim sistemima da postanu sistemi za razvoj SCADA aplikacija, zadrĹľavajuÄ‡i jednostavnost i brzinu kreiranja aplikacija.
 
-<p>Sistem komponenti, SmartSCADA, smo kreirali iz sledećih razloga:
+<p>Sistem komponenti, SmartSCADA, smo kreirali iz sledeÄ‡ih razloga:
 <ul>
-<li>Brzina izrade aplikacije. Uvek postoji vremensko ograničenje, odnosno rok do kada aplikacija mora da se završi i proveri
+<li>Brzina izrade aplikacije. Uvek postoji vremensko ograniÄŤenje, odnosno rok do kada aplikacija mora da se zavrĹˇi i proveri
 u praksi.</li>
 <li>Veliki dijapazon zahteva korisnika aplikacija.</li>
-<li>Nedovoljna definisanost projekata i često nejasni ciljevi. Što kasnije dovodi do izmena u softveru, pa i hardveru.</li>
+<li>Nedovoljna definisanost projekata i ÄŤesto nejasni ciljevi. Ĺ to kasnije dovodi do izmena u softveru, pa i hardveru.</li>
 <li>Primena standardnih objektno orjentisanih programskih jezika, DELPHI ili C++ Builder.</li>
-<li>Mogućnost izrade aplikacija sa minimumom koda, čime se drastično povećava stabilnost softvera.</li>
-<li>Standardan interfejs za komunikaciju prema različitim hardverskim uređajima i raznim softverima.</li>
-<li>Niža cena krajnje aplikacije jer se ne koristi Run Time modul, već je proizvod aplikacija u izvršnom kodu (EXE).</li>
+<li>MoguÄ‡nost izrade aplikacija sa minimumom koda, ÄŤime se drastiÄŤno poveÄ‡ava stabilnost softvera.</li>
+<li>Standardan interfejs za komunikaciju prema razliÄŤitim hardverskim ureÄ‘ajima i raznim softverima.</li>
+<li>NiĹľa cena krajnje aplikacije jer se ne koristi Run Time modul, veÄ‡ je proizvod aplikacija u izvrĹˇnom kodu (EXE).</li>
 </ul>
 
 <table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
 <a NAME="orgnaizacija_scade"></a>Organizacija SmartSCADE
 </td></tr></tbody></table>
 
-Zahtevi nadzorno/upravljačkih sistema koje pokriva SmartSCADA su:
+Zahtevi nadzorno/upravljaÄŤkih sistema koje pokriva SmartSCADA su:
 <ul>
 <li>Komuniciranje sa signalima iz realnog sveta.</li>
 <li>Alarmiranje nedozvoljenih stanja signala.</li>
-<li>Konverzija vrednosti signala iz sirovih u inženjerske i obrnuto.</li>
+<li>Konverzija vrednosti signala iz sirovih u inĹľenjerske i obrnuto.</li>
 <li>Arhiviranje podataka stanja signala.</li>
-<li>Prikaz trenutnih vrednosti signala na različite načine.</li>
-<li>Prikaz arhiviranih vrednosti signala na različite načine.</li>
+<li>Prikaz trenutnih vrednosti signala na razliÄŤite naÄŤine.</li>
+<li>Prikaz arhiviranih vrednosti signala na razliÄŤite naÄŤine.</li>
 <li>Menjanje vrednosti signala, radi upravljanja procesima.</li>
-<li>Kreiranje raznih izveštaja, kako standardnih tako i nestandardnih.</li>
-</ul>Komponente koje se upotrebljavaju u SmartSCADI, mogu se podeliti na vizuelne (preko kojih se prikazuje situacija nadgledanog sistema MMI) i nevizuelne komponente koje omogućavaju očitavanje i obradu signala iz realnog sveta.
+<li>Kreiranje raznih izveĹˇtaja, kako standardnih tako i nestandardnih.</li>
+</ul>Komponente koje se upotrebljavaju u SmartSCADI, mogu se podeliti na vizuelne (preko kojih se prikazuje situacija nadgledanog sistema MMI) i nevizuelne komponente koje omoguÄ‡avaju oÄŤitavanje i obradu signala iz realnog sveta.
 
-<br>SmartSCADA komponente su dizajnirane tako da se određene metode objekata automatski izvršavaju bez posebnog programiranja. Na primer, komponenta TAlarmHandler konstantno nadgleda signale koji se nalaze u sistemu i ukoliko neki od signala prekorači dozvoljeni opseg vrednosti, komponenta automatski prikazuje na ekranu poruku o alarmu sa pratećim zvučnim signalom i u bazu podataka upisuje datum/vreme pojave alarma, opis i nivo alarma.
+<br>SmartSCADA komponente su dizajnirane tako da se odreÄ‘ene metode objekata automatski izvrĹˇavaju bez posebnog programiranja. Na primer, komponenta TAlarmHandler konstantno nadgleda signale koji se nalaze u sistemu i ukoliko neki od signala prekoraÄŤi dozvoljeni opseg vrednosti, komponenta automatski prikazuje na ekranu poruku o alarmu sa prateÄ‡im zvuÄŤnim signalom i u bazu podataka upisuje datum/vreme pojave alarma, opis i nivo alarma.
 
-<p>Prenošenje stanja nekog signala na bilo koju vizuelnu ili nevizuelnu komponentu se obavlja prostim povezivanjem osobina jedne komponente sa signalom, što se ostvaruje u vreme dizajniranja aplikacije.
+<p>PrenoĹˇenje stanja nekog signala na bilo koju vizuelnu ili nevizuelnu komponentu se obavlja prostim povezivanjem osobina jedne komponente sa signalom, Ĺˇto se ostvaruje u vreme dizajniranja aplikacije.
 
 <center>
 <p><img SRC="scada.jpg" height=300 width=400>
-<br>Slika 1 – Izgled jedne gotove aplikacije
+<br>Slika 1 â€“ Izgled jedne gotove aplikacije
 na objektu NIS-NAFTAGAS-a</center>
 
 <br>
@@ -250,119 +250,119 @@ Komponente SmartSCADE su podeljene na dve palete komponenti, Process System na k
 <br>Slika 3 - Paleta Process Signal Controls</center>
 
 <p><b>DEKLARACIJA I OBRADA SIGNALA</b>
-<br>Osnovu sistema SmartSCADA predstavljaju nevizuelne komponente, signali različitog tipa (TFloatSignal, TBooleanSignal, TIntegerSignal, TDateTimeSignal i TStringSignal). Upravljanje signalima se vrši pomoću komponente TSignalCollection. Komponenta omogućava kreiranje, brisanje i podešavanje signala.
+<br>Osnovu sistema SmartSCADA predstavljaju nevizuelne komponente, signali razliÄŤitog tipa (TFloatSignal, TBooleanSignal, TIntegerSignal, TDateTimeSignal i TStringSignal). Upravljanje signalima se vrĹˇi pomoÄ‡u komponente TSignalCollection. Komponenta omoguÄ‡ava kreiranje, brisanje i podeĹˇavanje signala.
 
-<p>Signalne komponente su izrađene u skladu sa standardom OPC DA 2.04. Osnovne osobine (property) signala su:
+<p>Signalne komponente su izraÄ‘ene u skladu sa standardom OPC DA 2.04. Osnovne osobine (property) signala su:
 <ul>
-<li>TagName: tehnološki naziv.</li>
+<li>TagName: tehnoloĹˇki naziv.</li>
 <li>Description: opis osnovnih funkcija.</li>
-<li>AditionalProperties: dodatni skup osobina koje korisnik može naknadno definisati.</li>
-<li>IniFile: određuje u koji ini fajl će biti snimljene osobine signala.</li>
-<li>TimeStamp: opisuje vreme između dva osvežavanja stanja signala.</li>
-<li>RawDataType: tip sirovih podataka koji se dobijaju sa upravljačkih sistema.</li>
+<li>AditionalProperties: dodatni skup osobina koje korisnik moĹľe naknadno definisati.</li>
+<li>IniFile: odreÄ‘uje u koji ini fajl Ä‡e biti snimljene osobine signala.</li>
+<li>TimeStamp: opisuje vreme izmeÄ‘u dva osveĹľavanja stanja signala.</li>
+<li>RawDataType: tip sirovih podataka koji se dobijaju sa upravljaÄŤkih sistema.</li>
 <li>Alarms: skup osobina koje opisuju alarmna stanja.</li>
-<li>ConvertProperties: skup osobina koje opisuju konverziju iz sirovih u inženjerske jedinice i obrnuto.</li>
+<li>ConvertProperties: skup osobina koje opisuju konverziju iz sirovih u inĹľenjerske jedinice i obrnuto.</li>
 </ul>
 
-Osim navedenih osnovnih osobina svaki od tipova signala ima i svoje specifične osobine. 
+Osim navedenih osnovnih osobina svaki od tipova signala ima i svoje specifiÄŤne osobine. 
 
-<br>Osobine signala se mogu obrađivati i menjati pomoću standardnih editora (ObjectInspector) ili specijalizovanih editora kako za vreme dizajniranja, tako i za vreme izvršavanja izrađenih aplikacija.
+<br>Osobine signala se mogu obraÄ‘ivati i menjati pomoÄ‡u standardnih editora (ObjectInspector) ili specijalizovanih editora kako za vreme dizajniranja, tako i za vreme izvrĹˇavanja izraÄ‘enih aplikacija.
 
-<br>Specijalizovani editori se koriste prilikom izrade programa (dizajniranja) i omogućavaju grupno podešavanje signala u aplikaciji. Kreirani su sledeći editori:
+<br>Specijalizovani editori se koriste prilikom izrade programa (dizajniranja) i omoguÄ‡avaju grupno podeĹˇavanje signala u aplikaciji. Kreirani su sledeÄ‡i editori:
 
 <p>
 <table WIDTH="100%" >
 <tr>
 <td VALIGN=TOP WIDTH="20%">Signals Editor</td>
-<td WIDTH="80%">omogućava kreiranje, brisanje i konfigurisanje signala koji se upotrebljavaju u sistemu. Editori koji se opisuju u ostatku teksta pozivaju se pomoću dugmića koji se mogu videti na gornjem delu editora.</td>
+<td WIDTH="80%">omoguÄ‡ava kreiranje, brisanje i konfigurisanje signala koji se upotrebljavaju u sistemu. Editori koji se opisuju u ostatku teksta pozivaju se pomoÄ‡u dugmiÄ‡a koji se mogu videti na gornjem delu editora.</td>
 </tr>
 
 <tr>
 <td VALIGN=TOP>Link editor</td>
-<td>prikazuje listu svih signala i komponenti na koje se ti signali mogu vezati. Omogućava povezivanje komponenti upotrebom
-drag and drop tehnike (prevlačenjem mišem).</td>
+<td>prikazuje listu svih signala i komponenti na koje se ti signali mogu vezati. OmoguÄ‡ava povezivanje komponenti upotrebom
+drag and drop tehnike (prevlaÄŤenjem miĹˇem).</td>
 </tr>
 <tr>
 <td VALIGN=TOP>Ini editor</td>
-<td>povezuje signale sa ini komponentom i na taj način se vrednost signala automatski snima i učitava iz ini fajla. Kada je signal povezan na Ini komponentu prilikom učitavanja programa dobija vrednost kakvu je imao pre zatvaranja aplikacije.</td>
+<td>povezuje signale sa ini komponentom i na taj naÄŤin se vrednost signala automatski snima i uÄŤitava iz ini fajla. Kada je signal povezan na Ini komponentu prilikom uÄŤitavanja programa dobija vrednost kakvu je imao pre zatvaranja aplikacije.</td>
 </tr>
 <tr>
 <td VALIGN=TOP>Alarm Editor</td>
-<td>omogućava grupno podešavanje alarma (alarmnih nivoa, alarmnih poruka, zvukova koji se javljaju u slučaju alarmnih situacija i prioritet alarma).</td>
+<td>omoguÄ‡ava grupno podeĹˇavanje alarma (alarmnih nivoa, alarmnih poruka, zvukova koji se javljaju u sluÄŤaju alarmnih situacija i prioritet alarma).</td>
 </tr>
 
 <tr>
 <td VALIGN=TOP>Convert Editor</td>
-<td>pomoću ovog editora se podešava tip i parametri konverzije signala (sirov signal u inženjerske jedinice i obrnuto).</td>
+<td>pomoÄ‡u ovog editora se podeĹˇava tip i parametri konverzije signala (sirov signal u inĹľenjerske jedinice i obrnuto).</td>
 </tr>
 <tr>
 <td VALIGN=TOP>Active Editor</td>
-<td>u ovom editoru se podešava stanje signala (da li su aktivni ili ne).</td>
+<td>u ovom editoru se podeĹˇava stanje signala (da li su aktivni ili ne).</td>
 </tr>
 <tr>
 <td VALIGN=TOP>Description Editor</td>
-<td>omogućava upisivanje komentara za svaki signal (funkcija signala, tip, gde je povezan u realnom sistemu i drugi bitni komentari vezani za određeni signal).</td>
+<td>omoguÄ‡ava upisivanje komentara za svaki signal (funkcija signala, tip, gde je povezan u realnom sistemu i drugi bitni komentari vezani za odreÄ‘eni signal).</td>
 </tr>
 <tr>
 <td VALIGN=TOP>Aditional Properti Editor</td>
-<td>predstavlja editor pomoću koga se mogu dodavati dodatne osobine signala prema specifičnim zahtevima korisnika.</td>
+<td>predstavlja editor pomoÄ‡u koga se mogu dodavati dodatne osobine signala prema specifiÄŤnim zahtevima korisnika.</td>
 </tr>
 </table>
 
-<p><b>Prikaz i podešavanje vrednosti analognih signala</b>
-<br>Komponente koje omogućavaju prikaz i promenu vrednosti signala su u obliku prekidača, klizača, progres barova i mernih instrumenata.
+<p><b>Prikaz i podeĹˇavanje vrednosti analognih signala</b>
+<br>Komponente koje omoguÄ‡avaju prikaz i promenu vrednosti signala su u obliku prekidaÄŤa, klizaÄŤa, progres barova i mernih instrumenata.
 
 <p><b>Vizualizacija procesa</b>
-<br>Grupa komponenata koja omogućava vizuelno predstavljanje situacije u realnom procesu, ima sposobnosti za:
+<br>Grupa komponenata koja omoguÄ‡ava vizuelno predstavljanje situacije u realnom procesu, ima sposobnosti za:
 <ul>
-<li>Promenu boje objekta u nekom geometrijskom obliku (četvorougao, krug, i sl.) u zavisnosti od stanja signala.</li>
+<li>Promenu boje objekta u nekom geometrijskom obliku (ÄŤetvorougao, krug, i sl.) u zavisnosti od stanja signala.</li>
 <li>Smenjivanje slika u zavisnosti od stanja signala.</li>
 <li>Pokretanje i zaustavljanje animacija.</li>
 </ul>
 
 <p><br><b>Alarmni sistem</b>
-<br>Komponente koje omogućavaju detektovanje i evidenciju alarmnih situacija u sistemu kojim se upravlja. Realizovana komponenta detektuje promene digitalnih signala i analognih signala u željenom opsegu (sa razlikovanjem gornje i donje granice).
+<br>Komponente koje omoguÄ‡avaju detektovanje i evidenciju alarmnih situacija u sistemu kojim se upravlja. Realizovana komponenta detektuje promene digitalnih signala i analognih signala u Ĺľeljenom opsegu (sa razlikovanjem gornje i donje granice).
 
-<br>Kada dođe do alarmne situacije na ekranu se pojavljuje tekstualna poruka koja se beleži i u bazu podataka, što kasnije omogućava generisanje izveštaja o pojavi alarmnih situacija u određenom
+<br>Kada doÄ‘e do alarmne situacije na ekranu se pojavljuje tekstualna poruka koja se beleĹľi i u bazu podataka, Ĺˇto kasnije omoguÄ‡ava generisanje izveĹˇtaja o pojavi alarmnih situacija u odreÄ‘enom
 vremenskom periodu.
 
 <p><b>Bezbednosne komponente</b>
-<br>Sistem komponenti koji omogućava zaštitu pojedinih delova programa pomoću lozinki. Pored zaštitne uloge, sistem komponenti omogućava praćenje upotrebe procesne aplikacije (startovanje i zatvaranje programa, podešavanje parametara, generisanje izveštaja). Svaka promena operatera (unos nove lozinke) se beleži u bazu podataka tako da se lako može utvrditi koji operater je bio prisutan kada se vršila izmena parametara sistema ili kada se dogodila alarmna situacija u nadgledanom sistemu. Komponente se mogu podesiti tako da se dijalog za unos lozinke pojavi u tačno određeno vreme (evidentiranje promene operatera prilikom promene smene).
+<br>Sistem komponenti koji omoguÄ‡ava zaĹˇtitu pojedinih delova programa pomoÄ‡u lozinki. Pored zaĹˇtitne uloge, sistem komponenti omoguÄ‡ava praÄ‡enje upotrebe procesne aplikacije (startovanje i zatvaranje programa, podeĹˇavanje parametara, generisanje izveĹˇtaja). Svaka promena operatera (unos nove lozinke) se beleĹľi u bazu podataka tako da se lako moĹľe utvrditi koji operater je bio prisutan kada se vrĹˇila izmena parametara sistema ili kada se dogodila alarmna situacija u nadgledanom sistemu. Komponente se mogu podesiti tako da se dijalog za unos lozinke pojavi u taÄŤno odreÄ‘eno vreme (evidentiranje promene operatera prilikom promene smene).
 
-<p><b>Praćenja eksternih događaja sa procesnog računara</b>
-<br>Pomoću skupa ovih komponenti se prate promene stanja signala iz realnog sistema. Pojava ovakvih signala ne predstavlja alarmnu situaciju ali je bitno evidentirati da su se dogodili i kada su se dogodili (na primer, puštanje u rad nekog motora).
+<p><b>PraÄ‡enja eksternih dogaÄ‘aja sa procesnog raÄŤunara</b>
+<br>PomoÄ‡u skupa ovih komponenti se prate promene stanja signala iz realnog sistema. Pojava ovakvih signala ne predstavlja alarmnu situaciju ali je bitno evidentirati da su se dogodili i kada su se dogodili (na primer, puĹˇtanje u rad nekog motora).
 
-<p><b>Praćenje promene vrednosti analognih signala</b>
-<br>TSignalRecoder je komponenta na koju se vezuju analogni signali čije vrednosti želimo da pratimo radi kasnije obrade. Ima osobinu da automatski kreira sva potrebna polja u bazi sa imenima analognih signala koji su vezani za nju. Može se podesiti period snimanja vrednosti signala u bazu, veličina baze (konstantan broj recorda), da li se popunjava sa test podacima za vreme dizajniranja programa.
+<p><b>PraÄ‡enje promene vrednosti analognih signala</b>
+<br>TSignalRecoder je komponenta na koju se vezuju analogni signali ÄŤije vrednosti Ĺľelimo da pratimo radi kasnije obrade. Ima osobinu da automatski kreira sva potrebna polja u bazi sa imenima analognih signala koji su vezani za nju. MoĹľe se podesiti period snimanja vrednosti signala u bazu, veliÄŤina baze (konstantan broj recorda), da li se popunjava sa test podacima za vreme dizajniranja programa.
 
-<p><b>Generisanje izveštaja</b>
-<br>Izveštaji mogu biti grafički ili tabelarni, i uglavnom se generišu iz baza podataka. Izveštaji se mogu prilagoditi potrebama krajnjeg korisnika. Izveštaji se prikazuju u vremenskom periodu po izboru korisnika. Neki od mogućih izveštaja koji se mogu dobiti su:
+<p><b>Generisanje izveĹˇtaja</b>
+<br>IzveĹˇtaji mogu biti grafiÄŤki ili tabelarni, i uglavnom se generiĹˇu iz baza podataka. IzveĹˇtaji se mogu prilagoditi potrebama krajnjeg korisnika. IzveĹˇtaji se prikazuju u vremenskom periodu po izboru korisnika. Neki od moguÄ‡ih izveĹˇtaja koji se mogu dobiti su:
 <ul>
-<li>Izveštaj o alarmima.</li>
-<li>Izveštaj o događajima u realnom sistemu.</li>
-<li>Izveštaj o upotrebi procesne aplikacije (startovanje i izlasci iz programa i podešavanje osetljivih delova programa).</li>
-<li>Tabelarni izveštaj o promeni analognih signala (temperature, pritisci, nivoi).</li>
+<li>IzveĹˇtaj o alarmima.</li>
+<li>IzveĹˇtaj o dogaÄ‘ajima u realnom sistemu.</li>
+<li>IzveĹˇtaj o upotrebi procesne aplikacije (startovanje i izlasci iz programa i podeĹˇavanje osetljivih delova programa).</li>
+<li>Tabelarni izveĹˇtaj o promeni analognih signala (temperature, pritisci, nivoi).</li>
 </ul>
 
-Pored standardnih izveštaja moguće je kreirati specifične grafičke izveštaje kao što je: 
+Pored standardnih izveĹˇtaja moguÄ‡e je kreirati specifiÄŤne grafiÄŤke izveĹˇtaje kao Ĺˇto je: 
 
-<br>Grafički izveštaj koji vadi podatke iz baze AnalogRecorderTable, a može da prikazuje i trenutne vrednosti iz tih merenih veličina:
+<br>GrafiÄŤki izveĹˇtaj koji vadi podatke iz baze AnalogRecorderTable, a moĹľe da prikazuje i trenutne vrednosti iz tih merenih veliÄŤina:
 <p>
 
 <table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
 <a NAME="otvorenost_sistema"></a>Otvorenost Sistema
 </td></tr></tbody></table>
 
-Signali u sistemu SmartSCADA sistemski su kreirani tako da sadrže editor kojim se omogućava podešavanje sistema bez izmena u izvornom kodu i kompajliranja krajnje aplikacije. Editor se poziva pomoću PopUp menija bilo koje od vizuelnih komponenti na koju je vezan dati signal. Omogućeno je grupno konfigurisanje više signala pozivanjem Edit metode u komponenti TSignalCollection. Naravno, programer koji kreira SCADA aplikaciju ima mogućnost da zaštiti šifrom ili potpuno onemogući konfigurisanje vrednosti programa u krajnjoj aplikaciji.
+Signali u sistemu SmartSCADA sistemski su kreirani tako da sadrĹľe editor kojim se omoguÄ‡ava podeĹˇavanje sistema bez izmena u izvornom kodu i kompajliranja krajnje aplikacije. Editor se poziva pomoÄ‡u PopUp menija bilo koje od vizuelnih komponenti na koju je vezan dati signal. OmoguÄ‡eno je grupno konfigurisanje viĹˇe signala pozivanjem Edit metode u komponenti TSignalCollection. Naravno, programer koji kreira SCADA aplikaciju ima moguÄ‡nost da zaĹˇtiti Ĺˇifrom ili potpuno onemoguÄ‡i konfigurisanje vrednosti programa u krajnjoj aplikaciji.
 
-<p>Editor je kreiran po uzoru na ObjectInspector iz programskog okruženja Delphi. Radi preglednosti, parametri koji se mogu podešavati su podeljeni na grupe (standardni, za konverziju, alarmni, dodatni). Ukoliko se pozove editor za analogni signal može se prikazati i grafikon na kome se vidi promena vrednosti signala u vremenu.
+<p>Editor je kreiran po uzoru na ObjectInspector iz programskog okruĹľenja Delphi. Radi preglednosti, parametri koji se mogu podeĹˇavati su podeljeni na grupe (standardni, za konverziju, alarmni, dodatni). Ukoliko se pozove editor za analogni signal moĹľe se prikazati i grafikon na kome se vidi promena vrednosti signala u vremenu.
 <p>
 
 <table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
-<a NAME="zakljucak"></a>Zaključak
+<a NAME="zakljucak"></a>ZakljuÄŤak
 </td></tr></tbody></table>
 
-Sistem izrade SCADA softvera preko specijalizovanih objekata (komponenti) u standardnim objektno orjentisanim jezicima se, po lakoći upotrebe i brzini izrade softvera, približio gotovim paketima za izradu SCADA. Sve veći broj proizvođača procesnih (PLC) računara, isporučuje drajvere za OPC servere za komunikaciju sa svojim uređajima. Na taj način se sve više širi upotrebna vrednost softverskog paketa za izradu SCADA softvera prikazanog u ovom radu.
+Sistem izrade SCADA softvera preko specijalizovanih objekata (komponenti) u standardnim objektno orjentisanim jezicima se, po lakoÄ‡i upotrebe i brzini izrade softvera, pribliĹľio gotovim paketima za izradu SCADA. Sve veÄ‡i broj proizvoÄ‘aÄŤa procesnih (PLC) raÄŤunara, isporuÄŤuje drajvere za OPC servere za komunikaciju sa svojim ureÄ‘ajima. Na taj naÄŤin se sve viĹˇe Ĺˇiri upotrebna vrednost softverskog paketa za izradu SCADA softvera prikazanog u ovom radu.
 <p>
 
 <table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
@@ -388,18 +388,18 @@ SmartSCADA primeri (examples.zip 165Kb)
 <a NAME="literatura"></a>Literatura
 </td></tr></tbody></table>
 
-[1] Mirilović, J., Ilić, V., (2001), “Izrada upravljačkog i nadzornog softvera upotrebom objektno orijentisanih programskih
-jezika”, II Seminar Automatike, AUP 2000, Banja Koviljača.
-<br>[2] “OPC/Open Control”, OCSTechnical.pdf, <a href="http://www.opctoolkit.com">http://www.opctoolkit.com</a>,
-<br>[3] “Ole for Process Control - Data Access Automation Interface Standard”, Version 2.1, OPC_20_Automation_Interface.pdf,
+[1] MiriloviÄ‡, J., IliÄ‡, V., (2001), â€śIzrada upravljaÄŤkog i nadzornog softvera upotrebom objektno orijentisanih programskih
+jezikaâ€ť, II Seminar Automatike, AUP 2000, Banja KoviljaÄŤa.
+<br>[2] â€śOPC/Open Controlâ€ť, OCSTechnical.pdf, <a href="http://www.opctoolkit.com">http://www.opctoolkit.com</a>,
+<br>[3] â€śOle for Process Control - Data Access Automation Interface Standardâ€ť, Version 2.1, OPC_20_Automation_Interface.pdf,
 January 1999
-<br>[4] Savić, D., (1992): “Uvod u objektno programiranje”, PC Program, Beograd
-<br>[5] Yao. P., Leinecker, C. R., (1995): “Visual C++ 5 Biblija”, Mikro Knjiga, Beograd
-<br>[6] Papeš, I., (1990): “Turbo Paskal 5.5”, Naučna Knjiga, Beograd
-<br>[7] Hansen, A., (1991): “Programiranje na jeziku C”, Mirko Knjiga, Beograd
-<br>[8] Stajić, D., Bilinski, P., (1991): “Računarske telekomunikacije i mreže”, Tehnička Knjiga, Beograd
-<br>[9] Stojić, M., (1978): “Kontinualni sistemi automatskog upravljanja”
-<br>[10] Cantu, M., (2000): “Delphi 5, Detaljan Izvornik”, Kompjuter biblioteka, Čačak
+<br>[4] SaviÄ‡, D., (1992): â€śUvod u objektno programiranjeâ€ť, PC Program, Beograd
+<br>[5] Yao. P., Leinecker, C. R., (1995): â€śVisual C++ 5 Biblijaâ€ť, Mikro Knjiga, Beograd
+<br>[6] PapeĹˇ, I., (1990): â€śTurbo Paskal 5.5â€ť, NauÄŤna Knjiga, Beograd
+<br>[7] Hansen, A., (1991): â€śProgramiranje na jeziku Câ€ť, Mirko Knjiga, Beograd
+<br>[8] StajiÄ‡, D., Bilinski, P., (1991): â€śRaÄŤunarske telekomunikacije i mreĹľeâ€ť, TehniÄŤka Knjiga, Beograd
+<br>[9] StojiÄ‡, M., (1978): â€śKontinualni sistemi automatskog upravljanjaâ€ť
+<br>[10] Cantu, M., (2000): â€śDelphi 5, Detaljan Izvornikâ€ť, Kompjuter biblioteka, ÄŚaÄŤak
 <br>[11] Borland, (1992):"Programers reference"
 <br>[12] Borland, (1992):"Languge guide"
 <p>

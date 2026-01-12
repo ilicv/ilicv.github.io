@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
-   <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta name="Author" content="Velibor Ilic">
    <meta name="KeyWords" content="agent, agents, agenti, ai, artificial, intelligence, vestacka, velibor, ilic, becej, vojvodina, jugoslavija,">
    <meta name="revisit-after" content="15 days">
    <meta name="ROBOTS" content="ALL">
-   <meta name="Description" content="U radu se govori o softverskim sistemima na izrađenim bazi tehnologije               agenata, klasifikaciji agenata prema funkciji i njihovoj primeni. Napravljeno je poređenje               između objektno orijentisanog programiranja i tehnologije na bazi agenata.">
+   <meta name="Description" content="U radu se govori o softverskim sistemima na izraÄ‘enim bazi tehnologije               agenata, klasifikaciji agenata prema funkciji i njihovoj primeni. Napravljeno je poreÄ‘enje               izmeÄ‘u objektno orijentisanog programiranja i tehnologije na bazi agenata.">
    <title>ENAA - Evolutionary Neuro Autonomous Agents</title>
 
   <link rel="stylesheet" type="text/css" href="my.css" media="screen,projection">
@@ -51,12 +51,12 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 
 <a href="automatsko_trgovanje.html">Automatsko trgovanje</a><br>
 <a href="PProgrami.htm">Poslovni programi</a><br>
-<a href="recnik.html">Rečnik</a><br>
+<a href="recnik.html">ReÄŤnik</a><br>
 <a href="PlanB.htm">PlanB</a><br>
 <hr width="135" align="center">
 
-<a href="AI_index.htm">Veštačka inteligencija</a><br>
-<a href="neuro.html">Neuronske mreže</a><br>
+<a href="AI_index.htm">VeĹˇtaÄŤka inteligencija</a><br>
+<a href="neuro.html">Neuronske mreĹľe</a><br>
 <a href="ANN.html">ANN</a><br>
 <a href="FLAlg.html">Force learn algoritam</a><br>
 <a href="NeuroVCL.html">NeuroVCL</a><br>
@@ -138,7 +138,7 @@ border=0 alt="" nosave width=22 height=22></a>
 </table>
 <br> 
 
-<p><b>Author:</b> <a href="VeliborCV.html">Velibor Ilić</a>
+<p><b>Author:</b> <a href="VeliborCV.html">Velibor IliÄ‡</a>
 <p><b>ABSTRACT:</b> <i>This paper is about evolutionary autonomously agents controlled by neural networks. One hierarchical model of neural networks is suggested, and we also have a presentation of software ENAA that simulates evolutionary training of agents, which move inside arena and perform given task.</i>
 
 <p><b>Key words:</b> Evolutionary autonomous agents (EAA), artificial neural networks (ANN), genetic algorithm (GA), simulation of evolution
@@ -150,7 +150,7 @@ border=0 alt="" nosave width=22 height=22></a>
 <table BORDER CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" >
 <tr>
 <td VALIGN=TOP BGCOLOR="#eeeeee">
-Ilić, V., (2002): “<b><i>Evolutionary Neuro Autonomous Agents</i></b>”, Seminar on Neural Network Applications in Electrical Engineering “Neurel 6th”, Belgrade, Sponsored by IEEE Signal Processing Society, pp 37-40, IEEE Catalog Number 02EX609, ISBN 0-7803-7593-9, Library of Congress: 2002108419,<br>
+IliÄ‡, V., (2002): â€ś<b><i>Evolutionary Neuro Autonomous Agents</i></b>â€ť, Seminar on Neural Network Applications in Electrical Engineering â€śNeurel 6thâ€ť, Belgrade, Sponsored by IEEE Signal Processing Society, pp 37-40, IEEE Catalog Number 02EX609, ISBN 0-7803-7593-9, Library of Congress: 2002108419,<br>
 <a href="http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=1057963"> http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=1057963</a></td>
 </tr>
 </table>
@@ -188,7 +188,7 @@ Ilić, V., (2002): “<b><i>Evolutionary Neuro Autonomous Agents</i></b>”, Seminar 
 <a NAME="Introduction"></a>INTRODUCTION
 </td></tr></tbody></table>
 
-Agents present software which, in interaction with environment, is capable to react flexible and autonomous by following assigned goals. Interaction with environment in this context means that agent is capable of responding on input values from sensors, which it reads from environment, and to take a course of actions in order to change agent’s environment. Agent’s environment can be real world or virtual (software environment in computer or Internet). Autonomy means that system is capable of reacting without human (or any other agents) intervention. That also means that agents have control of their own actions and internal state. That system should be capable of learning from examples. 
+Agents present software which, in interaction with environment, is capable to react flexible and autonomous by following assigned goals. Interaction with environment in this context means that agent is capable of responding on input values from sensors, which it reads from environment, and to take a course of actions in order to change agentâ€™s environment. Agentâ€™s environment can be real world or virtual (software environment in computer or Internet). Autonomy means that system is capable of reacting without human (or any other agents) intervention. That also means that agents have control of their own actions and internal state. That system should be capable of learning from examples. 
 
 <p>A typical experiment, in which evolutionary autonomous agents (EAA) are used, consists of an agents population which are evolving over many generations, in which only best survive in given environment and have possibility to transfer knowledge to future generations. Neural networks are especially adequate for this purpose because they have capability to learn. Neural network can read and process input information from environment through sensors and control behavior of agents making selection of their actions.
 
@@ -198,18 +198,18 @@ Agents present software which, in interaction with environment, is capable to re
 <a NAME="description"></a>PROBLEM DESCRIPTION
 </td></tr></tbody></table>
 
-In example described in this paper, agents’ goal is to learn: how to explore an area of arena as large as possible, how to discover as much fields with food as possible and to avoid fields with poison. Agents are inserted in arena size 30×30 fields. First generation of agents doesn’t have defined behavior algorithm, so agents move randomly through arena (usually agents rotate on the left or right or their straight line moving is blocked by a wall). Agents get positive or negative points depending on their action. Points don’t affect on agents’ current behavior, but they tell us which of the agents is best adapted to the task in his environment. Agents have limited lifetime. When one of the agents “dies”, new agent is created on random position in arena, so there are always a constant number of the agents.
+In example described in this paper, agentsâ€™ goal is to learn: how to explore an area of arena as large as possible, how to discover as much fields with food as possible and to avoid fields with poison. Agents are inserted in arena size 30Ă—30 fields. First generation of agents doesnâ€™t have defined behavior algorithm, so agents move randomly through arena (usually agents rotate on the left or right or their straight line moving is blocked by a wall). Agents get positive or negative points depending on their action. Points donâ€™t affect on agentsâ€™ current behavior, but they tell us which of the agents is best adapted to the task in his environment. Agents have limited lifetime. When one of the agents â€śdiesâ€ť, new agent is created on random position in arena, so there are always a constant number of the agents.
 <p>
 
 <table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
 <a NAME="Arena"></a>ARENA
 </td></tr></tbody></table>
 
-Arena in which agents move consists of 30×30 fields (figure 1.). Food and poison are randomly scattered in the arena. There are two regions with additional quantity of food and poison. Increased number of food is in the top right corner of arena and increased number of poison is in the right bottom corner.
+Arena in which agents move consists of 30Ă—30 fields (figure 1.). Food and poison are randomly scattered in the arena. There are two regions with additional quantity of food and poison. Increased number of food is in the top right corner of arena and increased number of poison is in the right bottom corner.
 
 <center>
 <p><img SRC="enaa1.gif" BORDER=2 height=331 width=331>
-<br>Figure 1. – arena with agents</center>
+<br>Figure 1. â€“ arena with agents</center>
 
 <p>Fields in arena are marked in this way:
 <br>
@@ -256,18 +256,18 @@ Arena in which agents move consists of 30×30 fields (figure 1.). Food and poison
 Agent consists of: sensors which enable agents to read field content near him, motor that enable agents to move, control and supervisor neural network. Internal organization of agent is presented on figure 2. In ENAA agents are marked with arrows, which can be pointed to one of four directions (left, right, top or bottom).
 <center>
 <p><img SRC="enaa2.gif" BORDER=2 height=204 width=316>
-<br>Figure 2. – agent organization</center>
+<br>Figure 2. â€“ agent organization</center>
 
 <p>Sensors are placed in agents like in figure
 3. Sensors enable agents to read field content. First sensor reads content of field in front of the agent, and other two sensors read fields on the left and right of the agent. Agents move with a help of three motors, first motor enables straight line moving to one field ahead of the agent, and other two motors rotate agent left or right. While moving through arena agents mark fields they went across.
 <center>
 
 <p><img SRC="enaa3.gif" BORDER=2 height=116 width=80>
-<br>Figure 3. – position of sensors in agents</center>
+<br>Figure 3. â€“ position of sensors in agents</center>
 
 <p>Control neural network (figure 2.) reads values of sensors s1, s2, s3 (figure 2, 3) and using that values controls agents movement (network decides which motor will be activated). Only one motor can be activated in one step (one time unit). Neural network gives three values on output (m1, m2 and m3) after processing values of sensors. Agent activates motor which output of neural network (m1, m2 and m3) has the largest value.
 
-<p>Supervisor neural network (figure 2.) reads values of sensors s1, s2, s3 and control neural network’s values of outputs through parameter O1. Value of this parameter (O1) has values (1, 0 or -1) depending on which motor has been activated. Agents have capability to modify their own behavior using supervisor neural network during their own lifetime. If output of supervisor neural network (parameter O2) has value larger then 0.5, agent changes connection weights values of control neural network. Agents have lower intensity on changing connection weights values of control neural networks than the mutation during which the new agent is created. However, agent frequently affects on connection weights of control neural network. On longer time periods, affect of a supervisor neural network on control neural network is considerable.
+<p>Supervisor neural network (figure 2.) reads values of sensors s1, s2, s3 and control neural networkâ€™s values of outputs through parameter O1. Value of this parameter (O1) has values (1, 0 or -1) depending on which motor has been activated. Agents have capability to modify their own behavior using supervisor neural network during their own lifetime. If output of supervisor neural network (parameter O2) has value larger then 0.5, agent changes connection weights values of control neural network. Agents have lower intensity on changing connection weights values of control neural networks than the mutation during which the new agent is created. However, agent frequently affects on connection weights of control neural network. On longer time periods, affect of a supervisor neural network on control neural network is considerable.
 <p>
 
 <table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
@@ -276,19 +276,19 @@ Agent consists of: sensors which enable agents to read field content near him, m
 
 During evolutionary training, agents perform their own tasks by themselves and after defined time period their actions had been evaluated. After that, new generation of agents are created on sample of agents with the best results in previous generation. Procedure is repeating over many generations of agents, and finally result should be a population of agents whose behavior is most suitable in the given environment.
 
-<p>First generation of agents, which is created by starting simulation, doesn’t have information on their goals and don’t know how to behave. In beginning, agents are usually rotated to the left or to the right, or simply their moving is blocked by wall because they don’t know that it is necessary to rotate when wall is in front of them. If we want agents to learn how to move through arena and collect food, it’s necessary to motivate them by giving them positive points for right actions and negative points when making mistakes.
+<p>First generation of agents, which is created by starting simulation, doesnâ€™t have information on their goals and donâ€™t know how to behave. In beginning, agents are usually rotated to the left or to the right, or simply their moving is blocked by wall because they donâ€™t know that it is necessary to rotate when wall is in front of them. If we want agents to learn how to move through arena and collect food, itâ€™s necessary to motivate them by giving them positive points for right actions and negative points when making mistakes.
 
 <p>If agent collects more points then other agents, it usually means that this agent has better behavior algorithm. If agent has better conditions in environment then the others, which will also allow them to make advantage regarding other agents. For example, agent who moves ahead of any other agent has opportunity to collect more food, or if agent is created in region with more food, this agent has better starting conditions then the agent who is created in region with more poison then food.
 
-<p>Agent which collects more points owing better environment conditions, instead of better behavior algorithm, can slow down evolution progress or even turn in wrong direction. That situations could affect on several generations of agents in which future generations have worse results then the previous generation of the agents, but in longer periods of time these situations aren’t to harmful.
+<p>Agent which collects more points owing better environment conditions, instead of better behavior algorithm, can slow down evolution progress or even turn in wrong direction. That situations could affect on several generations of agents in which future generations have worse results then the previous generation of the agents, but in longer periods of time these situations arenâ€™t to harmful.
 
-<p>Agent’s lifetime is limited by quantity of life energy or maximum length of life. For every step, agents lose one energy unit. When agent loses all energy, it is destroyed and instead of creating a new agent on random position in arena. New agent’s connection weights of neural networks are shaped by mixing connection weights of agent who is destroyed and agent with the highest score. That given connection weights are performed by “mutation” which consists of adding randomly picked up numbers in interval -0.3 to 0.3 on connection weights of neural network. On the same way connection weights of control and supervisor neural network are obtained.
+<p>Agentâ€™s lifetime is limited by quantity of life energy or maximum length of life. For every step, agents lose one energy unit. When agent loses all energy, it is destroyed and instead of creating a new agent on random position in arena. New agentâ€™s connection weights of neural networks are shaped by mixing connection weights of agent who is destroyed and agent with the highest score. That given connection weights are performed by â€śmutationâ€ť which consists of adding randomly picked up numbers in interval -0.3 to 0.3 on connection weights of neural network. On the same way connection weights of control and supervisor neural network are obtained.
 
-<p>Agent’s lifetime is limited quantity of life energy which agent spends during movement through the arena. For every step agent loses one energy unit. Every agent gets 300 energy units on its creating. After walking over fields with food, agent receives additional 100 energy units and after walking over fields with poison agent loses 100 energy units.
+<p>Agentâ€™s lifetime is limited quantity of life energy which agent spends during movement through the arena. For every step agent loses one energy unit. Every agent gets 300 energy units on its creating. After walking over fields with food, agent receives additional 100 energy units and after walking over fields with poison agent loses 100 energy units.
 
 <p>Agent with good behavior algorithm collects more food and avoids poison. In this way, they increase their chance to make advantage over other agents and transfer their own experience to the new generation of agents.
 
-<br>Points that agents receive don’t affect their current behavior, but points are used to find agents with the best behavior algorithm. Agents with larger amount of points get opportunity to transfer their own gene (information) to new generations. When one of agents successfully solves situation, which allows him to get advantage over other agents, most of agents in next generations will inherit that behavior. If some of agents start to behave “badly” (for example agents start to collect poison instead food), agents with that behavior will not have a chance to transfer that behavior to future generations. In ENAA, agents receive points as the following table shows:
+<br>Points that agents receive donâ€™t affect their current behavior, but points are used to find agents with the best behavior algorithm. Agents with larger amount of points get opportunity to transfer their own gene (information) to new generations. When one of agents successfully solves situation, which allows him to get advantage over other agents, most of agents in next generations will inherit that behavior. If some of agents start to behave â€śbadlyâ€ť (for example agents start to collect poison instead food), agents with that behavior will not have a chance to transfer that behavior to future generations. In ENAA, agents receive points as the following table shows:
 <br>
 
 <center><table BORDER COLS=2 WIDTH="200" >
@@ -321,9 +321,9 @@ During evolutionary training, agents perform their own tasks by themselves and a
 <a NAME="enaa"></a>ENAA SIMULATON SOFTWARE
 </td></tr></tbody></table>
 
-ENAA enables simulation of evolutionary training of agents in arena size 30×30 fields. In first generation of agents, connection weights of control and supervisory neural network receive random numbers in interval -0.5 do 0.5.
+ENAA enables simulation of evolutionary training of agents in arena size 30Ă—30 fields. In first generation of agents, connection weights of control and supervisory neural network receive random numbers in interval -0.5 do 0.5.
 
-<p>Agent’s goal is to learn how to explore the largest area of arena as possible, to collect food, and avoid walls and poisons. Program enables visually tracking training agents, shows current results of single agents in arena (number of steps, number of fields discovered, number of collected food and poisons, amount of energy, and agent’s age). During simulation, two log files were created with results which agents have realized and summary results by seasons. These log files can be loaded in Microsoft Excel for statistical analysis or drawing graphic.
+<p>Agentâ€™s goal is to learn how to explore the largest area of arena as possible, to collect food, and avoid walls and poisons. Program enables visually tracking training agents, shows current results of single agents in arena (number of steps, number of fields discovered, number of collected food and poisons, amount of energy, and agentâ€™s age). During simulation, two log files were created with results which agents have realized and summary results by seasons. These log files can be loaded in Microsoft Excel for statistical analysis or drawing graphic.
 
 <p>ENAA allows user to turn on or turn off appearance of food and poison in arena during simulation and so simulate different situation which may occur. During the simulation, user can also change values of points which agents receive for collecting food, poison and explored and non explored fields, and in this way affect on agents behavior. During simulation, different positions of walls in arena can be loaded.
 
@@ -350,28 +350,28 @@ Efficiency of evolutionary training neural networks (speed and accuracy) is less
 <a NAME="References"></a>REFERENCES
 </td></tr></tbody></table>
 
-[1] Ilić, V., (1999): “Training neural networks for recognition Cyrillic letters” (in Serbian), masters thesis, Technical Faculty “Mihajlo Pupin”, Zrenjanin
-<br>[2] Ilić, V., (2000): “NeuroVCL components for Delphi”, NEUREL 2000, Zavod za grafičku obradu Tehnološko-metalurškog fakulteta, Belgrade
-<br>[3] Ilić, V. (2000): “Force learn algorithm – training neural networks with patterns which have highest errors”, NEUREL 2000, Zavod za grafičku obradu Tehnološko-metalurškog fakulteta, Beograd
-<br>[4] Ilić, V., (2001): “Systems based on agents technology” (in Serbian), <a href="http://solair.EUnet.rs/~ilicv/agenti.html">http://solair.EUnet.rs/~ilicv/agenti.html</a>
-<br>[5] Bernander, O., (1998): “Neural Network”, Microsoft(R) Encarta(R) 98 Encyclopedia. (c) 1993-1997 Microsoft Corporation 
-<br>[6] Hotomski, P., (1995): “Systems of artificial intelligence” (in Serbian), Technical Faculty “Mihajlo Pupin”, Zrenjanin
-<br>[7] Jocković, M., Ognjanović Z., Stankovski S. (1997) “Artificial intelligence intelligent machine and systems” (in
+[1] IliÄ‡, V., (1999): â€śTraining neural networks for recognition Cyrillic lettersâ€ť (in Serbian), masters thesis, Technical Faculty â€śMihajlo Pupinâ€ť, Zrenjanin
+<br>[2] IliÄ‡, V., (2000): â€śNeuroVCL components for Delphiâ€ť, NEUREL 2000, Zavod za grafiÄŤku obradu TehnoloĹˇko-metalurĹˇkog fakulteta, Belgrade
+<br>[3] IliÄ‡, V. (2000): â€śForce learn algorithm â€“ training neural networks with patterns which have highest errorsâ€ť, NEUREL 2000, Zavod za grafiÄŤku obradu TehnoloĹˇko-metalurĹˇkog fakulteta, Beograd
+<br>[4] IliÄ‡, V., (2001): â€śSystems based on agents technologyâ€ť (in Serbian), <a href="http://solair.EUnet.rs/~ilicv/agenti.html">http://solair.EUnet.rs/~ilicv/agenti.html</a>
+<br>[5] Bernander, O., (1998): â€śNeural Networkâ€ť, Microsoft(R) Encarta(R) 98 Encyclopedia. (c) 1993-1997 Microsoft Corporation 
+<br>[6] Hotomski, P., (1995): â€śSystems of artificial intelligenceâ€ť (in Serbian), Technical Faculty â€śMihajlo Pupinâ€ť, Zrenjanin
+<br>[7] JockoviÄ‡, M., OgnjanoviÄ‡ Z., Stankovski S. (1997) â€śArtificial intelligence intelligent machine and systemsâ€ť (in
 Serbian), Grafomed, Belgrade
-<br>[8] Milenković, S., (1997): “Artificial neural networks” (in Serbian), Zadužbina Andrejević, Belgrade
-<br>[9] Reisdorph, K., (1998): “Learn Delphi for 21 days”, Kompjuter biblioteka, Beograd
-<br>[10] Subašić, P., (1998): “Fuzzy Logic and neural networks”, Tehnička Knjiga, Beograd
-<br>[11] “Frequently asked questions about AI”, <a href="http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html">http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html</a>
-<br>[12] “Neural Network Frequently asked questions”, <a href="ftp://ftp.sas.com/pub/neural/FAQ.html">ftp://ftp.sas.com/pub/neural/FAQ.html</a>
-<br>[13] Ruppin, E., (2002): “Evolutionary Autonomous Agents: A Neuroscience Perspective”, Nature Reviews Neuroscience, 3(2), February issue, p. 132 - 142
-<br>[14] Jennings, N., R., Sycara, K., Wooldridge, M., (1998) “A roadmap of agent research and development” (7-38), “Autonomous Agents and Multi-Agents systems”, Kluwer Academic Publishers, Boston
-<br>[15] Moukas, A., Pattie, M., (1998) “AMALTHAEA: An Evolving Multi-Agent Information Filtering and Discovery” (59-88), “Autonomous Agents and Multi-Agents Systems for the WWW”, Kluwer Academic Publishers, Boston
-<br>[16] Grand, S., Cliff, D., (1998) “Creatures: Entertainment Software Agents with Artificial Life” (39-57), “Autonomous Agents and Multi-Agents systems”, Kluwer Academic Publishers, Boston
-<br>[17] Downing, T., E,. Moss, S., Pahl-Wostl, C., (2000) “Understanding Climate Policy Using Participatory Agent-Based Cocial Simulation”, (199-213), “Multi-Agent-Based Simulation”, Second International Workshop, MABS 2000, Springer, Boston
-<br>[18] Grosof, B., N., (1997) “Building Comercial Agents: An IBM Research Perspective ”, <br>http://www.research.ibm.com/iagents/paps/rc20835.pdf
-<br>[19] Grosof, B., N., (1997) “Building Comercial Agents: An IBM Research Perspective ”, <a href="http://www.research.ibm.com/iagents/paps/rc20835.pdf">http://www.research.ibm.com/iagents/paps/rc20835.pdf</a>
-<br>[20] Grosof, B., N., Foulger, D., A,. (1995) “Globenet and RAISE: Intelligent Agents for Networked Newsgroups and Customer Service Support”, <a href="http://www.research.ibm.com/iagents/paps/rc20226.pdf">http://www.research.ibm.com/iagents/paps/rc20226.pdf</a>
-<br>[21] Chess, D., Harrison, C., Kershenbaum, A., “Mobile Agents: Are They A Good Idea?” <a href="http://www.research.ibm.com/iagents/paps/mobile_idea.pdf">http://www.research.ibm.com/iagents/paps/mobile_idea.pdf</a>
+<br>[8] MilenkoviÄ‡, S., (1997): â€śArtificial neural networksâ€ť (in Serbian), ZaduĹľbina AndrejeviÄ‡, Belgrade
+<br>[9] Reisdorph, K., (1998): â€śLearn Delphi for 21 daysâ€ť, Kompjuter biblioteka, Beograd
+<br>[10] SubaĹˇiÄ‡, P., (1998): â€śFuzzy Logic and neural networksâ€ť, TehniÄŤka Knjiga, Beograd
+<br>[11] â€śFrequently asked questions about AIâ€ť, <a href="http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html">http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html</a>
+<br>[12] â€śNeural Network Frequently asked questionsâ€ť, <a href="ftp://ftp.sas.com/pub/neural/FAQ.html">ftp://ftp.sas.com/pub/neural/FAQ.html</a>
+<br>[13] Ruppin, E., (2002): â€śEvolutionary Autonomous Agents: A Neuroscience Perspectiveâ€ť, Nature Reviews Neuroscience, 3(2), February issue, p. 132 - 142
+<br>[14] Jennings, N., R., Sycara, K., Wooldridge, M., (1998) â€śA roadmap of agent research and developmentâ€ť (7-38), â€śAutonomous Agents and Multi-Agents systemsâ€ť, Kluwer Academic Publishers, Boston
+<br>[15] Moukas, A., Pattie, M., (1998) â€śAMALTHAEA: An Evolving Multi-Agent Information Filtering and Discoveryâ€ť (59-88), â€śAutonomous Agents and Multi-Agents Systems for the WWWâ€ť, Kluwer Academic Publishers, Boston
+<br>[16] Grand, S., Cliff, D., (1998) â€śCreatures: Entertainment Software Agents with Artificial Lifeâ€ť (39-57), â€śAutonomous Agents and Multi-Agents systemsâ€ť, Kluwer Academic Publishers, Boston
+<br>[17] Downing, T., E,. Moss, S., Pahl-Wostl, C., (2000) â€śUnderstanding Climate Policy Using Participatory Agent-Based Cocial Simulationâ€ť, (199-213), â€śMulti-Agent-Based Simulationâ€ť, Second International Workshop, MABS 2000, Springer, Boston
+<br>[18] Grosof, B., N., (1997) â€śBuilding Comercial Agents: An IBM Research Perspective â€ť, <br>http://www.research.ibm.com/iagents/paps/rc20835.pdf
+<br>[19] Grosof, B., N., (1997) â€śBuilding Comercial Agents: An IBM Research Perspective â€ť, <a href="http://www.research.ibm.com/iagents/paps/rc20835.pdf">http://www.research.ibm.com/iagents/paps/rc20835.pdf</a>
+<br>[20] Grosof, B., N., Foulger, D., A,. (1995) â€śGlobenet and RAISE: Intelligent Agents for Networked Newsgroups and Customer Service Supportâ€ť, <a href="http://www.research.ibm.com/iagents/paps/rc20226.pdf">http://www.research.ibm.com/iagents/paps/rc20226.pdf</a>
+<br>[21] Chess, D., Harrison, C., Kershenbaum, A., â€śMobile Agents: Are They A Good Idea?â€ť <a href="http://www.research.ibm.com/iagents/paps/mobile_idea.pdf">http://www.research.ibm.com/iagents/paps/mobile_idea.pdf</a>
 <br>[22] <a href="http://www.botknowledge.com/">http://www.botknowledge.com/</a>
 <br>[23] <a href="http://agents.umbc.edu/">http://agents.umbc.edu/</a>
 <br>[24] <a href="http://www.research.ibm.com/iagents/">http://www.research.ibm.com/iagents/</a>
@@ -398,12 +398,12 @@ Serbian), Grafomed, Belgrade
 </td>
 </tr>
 </table>
-<a href="AI_index.htm">Veštačka inteligencija</a>
+<a href="AI_index.htm">VeĹˇtaÄŤka inteligencija</a>
 <p><a href="ocr.html">OCR</a>
-<p><a href="ocr_opis.html">OCR - prep. ćiriličnih slova</a>
+<p><a href="ocr_opis.html">OCR - prep. Ä‡iriliÄŤnih slova</a>
 <p><a href="ANN.html">ANN</a>
 <p><a href="NeuroVCL.html">NeuroVCL</a>
-<p><a href="neuro.html">Neuronske mreže</a>
+<p><a href="neuro.html">Neuronske mreĹľe</a>
 <p><a href="FLAlg.html">Force learn algorithm</a>
 <br>
 
