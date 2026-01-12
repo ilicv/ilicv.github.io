@@ -1,0 +1,673 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+   <meta name="Author" content="Velibor Ilic">
+   <meta name="KeyWords" content="neuronske, mreze, neural, network, networks, ann, ann, nn, velibor, ilic, becej, ai, artificial, intelligence, vestacka, inteligencija, ekspertni, sistemi, expert, systems, fazi, logika, fuzzy, logic,  ocr, prepoznavanje, cirilicnih slova, optical, character, recognition,">
+   <meta name="revisit-after" content="15 days">
+   <meta name="ROBOTS" content="ALL">
+   <meta name="Description" content="History of neural networks. What are neural networks. Model of artificial neuron, model of artificial neural network. Differences between classical algorithms and neural networks.Istorijat razvoja neuronskih mreza. Sta su neuronske mreze? Model vestackog neurona, model neuronske mreze. Razlike izmedju neuronskih mreza i klasicnih racunara i primene.">
+   <title>Neuronske Mreze</title>
+
+  <link rel="stylesheet" type="text/css" href="my.css" media="screen,projection">
+</head>
+<body>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 728x15, created 10/17/09 */
+google_ad_slot = "8046978970";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<table width=100% cellpadding="0" cellspacing="0">
+<tr>
+<td width="30"></td>
+<td align="left" background="header_bg.png">
+<img src="header.png"><br>
+
+
+
+
+<table width="100%" bgcolor="#FFFFFF" border="1" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td>
+          
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr valign="top">
+
+<td class="menu_back" width="150" align="left"> <!--menu-->
+<table cellpadding="2" cellspacing="0">
+<tbody><tr valign="top">
+<td>
+
+<a href="index.html">Home</a><br>
+<a href="VeliborCV.html">Biografija</a><br>
+<hr width="135" align="center">
+
+<a href="automatsko_trgovanje.html">Automatsko trgovanje</a><br>
+<a href="PProgrami.htm">Poslovni programi</a><br>
+<a href="recnik.html">Rečnik</a><br>
+<a href="PlanB.htm">PlanB</a><br>
+<hr width="135" align="center">
+
+<a href="AI_index.htm">Veštačka inteligencija</a><br>
+<a href="neuro.html">Neuronske mreže</a><br>
+<a href="ANN.html">ANN</a><br>
+<a href="FLAlg.html">Force learn algoritam</a><br>
+<a href="NeuroVCL.html">NeuroVCL</a><br>
+<a href="agenti.html">Agenti</a><br>
+<a href="enaa.html">ENAA</a><br>
+
+<hr width="135" align="center">
+
+<a href="ocr_opis.html">OCR</a><br>
+<a href="ocr.html">OCR soft</a><br>
+<hr width="135" align="center">
+
+<a href="scada.html">Izrada SCADA</a><br>
+<a href="smartscada.html">SmartSCADA</a><br>
+<hr width="135" align="center">
+
+<a href="https://www.dropbox.com/s/a8p6nygmuqemzbf/nanotehnlogija.pdf?dl=0">Nanotehnologija</a><br>
+<a href="linkovi.htm">Linkovi</a><br>
+<a href="free.html">Free Download</a>
+<br>
+<hr width="135" align="center">
+<br>
+<br>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 120x90, created 10/17/09 */
+google_ad_slot = "0178951326";
+google_ad_width = 120;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+<br>
+<br>
+<p style="margin-top: 0; margin-bottom: 0">
+<a href="http://usa.nedstatbasic.net/cgi-bin/viewstat?name=ilicv"><img
+src="http://usa.nedstatbasic.net/cgi-bin/nedstat.gif?name=ilicv"
+border=0 alt="" nosave width=22 height=22></a>
+</center>
+
+
+
+</td></tr></tbody>
+</table>
+</td> <!--menu-->
+
+
+<td valign="top" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+
+
+<td valign="top" width="100%" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="3">
+<tbody><tr>
+
+<td valign="top" align="left"> <!--main left-->
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP BGCOLOR="#333333">
+<center><font size="+2" face="Arial,Helvetica" color="#EDE8DE">
+<b>Neuronske Mreže</b>
+</font></center></td>
+</tr>
+</table>
+<br> 
+
+<p><b>Autor:</b> <a href="VeliborCV.html">Velibor Ilić</a>
+
+<p><b>Abstrakt: </b>Istorijat razvoja neuronskih mreža. Šta su neuronske mreže? Model veštačkog neurona, model neuronske mreže. Razlike između neuronskih mreža i klasičnih računara i primene.
+
+<p><b>Abstract: </b>History of neural networks. What are neural networks. Model of artificial neuron, model of artificial neural network. Differences between classical algorithms and neural networks.
+<p><b>Datum izrade</b>: Novembar, 1999
+
+<p>
+<p>
+<hr width="97%">
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td>
+<a href="http://twitter.com/velibor" class="twitter-follow-button" data-show-count="false">Follow @velibor</a>
+<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+&nbsp; &nbsp; &nbsp;
+<td>
+<a title="Velibor Ilic" href="http://www.researchgate.net/profile/Velibor_Ilic/"><img src="http://www.researchgate.net/images/public/profile_image_my_profile_big.png" alt="Velibor Ilic" /></a>
+</td>
+</tr>
+</table>
+<hr width="97%">
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Sadrzaj"></a>Sadržaj
+</td></tr></tbody></table>
+
+<a href="#Istorijat">Istorijat neuronskih mreža</a><br>
+<a href="#Sta su to NM">Šta su neuronske mreže</a><br>
+<a href="#Model neurona">Model veštačkog neurona</a><br>
+<a href="#Model mreze">Model neuronske mreže</a><br>
+<a href="#Aktivacione funkcije">Aktivacione funkcije</a><br>
+<a href="#Tezinski koeficijenti">Težinski koeficijenti</a><br>
+<a href="#Obucavanje NM">Obučavanje neuronskih mreža</a><br>
+<a href="#Realizacija">Realizacija neuronskih mreža</a><br>
+<a href="#Podela">Podela neuronskih mreža</a><br>
+<a href="#Mogucnosti">Mogućnosti neuronskih mreža</a><br>
+<a href="#Razlike">Razlike između neuronskih mreža i klasičnih računara</a><br>
+<a href="#Nacini implementacije">Načini implementacije neuronskih mreža</a><br>
+<a href="#Domeni">Domeni primene</a><br>
+<a href="ANN.html">ANN - program za obučavanje neuronskih mreža</a><br>
+<a href="ocr.html">OCR - program za prepoznavanje ćiriličnih slova primenom neuronskih mreža</a>
+
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Istorijat"></a>Istorijat neuronskih mreža
+</td></tr></tbody></table>
+
+Početak neuro-računarstva obično se vezuje za 1943. godinu i članak Warrena McCullocha i Waltera Pittsa “Logički račun ideja svojstvenih nervnoj aktivnosti”. Ovaj članak je često citiran. Kibernetičar Norbert Winer i matematičar John von Neumann su smatrali da bi istraživanja na polju računarstva, inspirisana radom ljudskog mozga, mogla biti izuzetno zanimljiva.
+
+<br>Knjiga Donalda Hebb-a iz 1949. godine “The Organization of behavior” (Organizacija ponašanja) iskazuje ideju da je klasično psihološko uslovljeno ponašanje prisutno kod svih životinja, jer je ono svojstvo neurona. Ova ideja nije bila nova, ali ju je Hebb više
+razradio od prethodnika, predlažući određeni zakon učenja za sinapse, a pomoću njega je izveo kvalitativno objašnjenje nekih eksperimentalnih rezultata iz psihologije.
+
+<p>Početkom pedesetih godina, najviše uticaja na dalji razvoj neuronskih mreža je imao rad Marvin Minsky-a koji je u tom periodu konstruisao neuroračunar pod imenom Snark (1951). Frank Rosenblatt je zaslužan za otkriće jednoslojne neuronske mreže, zvane perceptron. Ovaj računar je mogao uspešno da podešava težinske koeficijente, međutim ovaj računar nije postigao značajnije praktične rezultate. Tek krajem pedesetih godina (1957-1958), Frank Rosenblatt i Charles Wightman sa svojim saradnicima su uspeli da razviju računar pod nazivom Mark I koji predstavlja prvi neuroračunar. Nešto posle Rosenblatta, Bernard Widrow je sa svojim studentima (najpoznatiji je Ted Hoff, kasnije tvorac mikroprocesora) razradio novi tip “neurona” - ADALINE (ADAptivini LINearni Element, prenosna funkcija f(x)=x) i odgovarajući zakon učenja.
+
+<p>U periodu od 1950-tih do ranih 1960-tih godina napisano je nekoliko knjiga i osnovano nekoliko kompanija koje se bave neuroračunarima. Međutim, sredinom 1960-tih godina došlo je do zastoja zbog dva očigledna problema. Prvo, većina istraživača je prišla problemu sa kvalitativne i eksperimentalne strane, zanemarujući analitički pristup. Drugo, početni entuzijazam je bio toliko jak da su uveliko publikovana predviđanja da nas od veštačkog mozga deli samo nekoliko godina istraživanja. Ovakav zanos je dalje diskreditovao ovu oblast i odbio veliki broj istraživača. Mnogi od ovih ljudi su napustili neuroračunarstvo i prešli u srodna polja.
+
+<p>Sredinom 1960-ih godina je pristup rešavanja problema neuronskih mreža okarakterisan kao pogrešan, nakon što Marvin Minsky i Seyour Papert u knjizi “Perceptrons” objavljuju matematički dokaz da jednoslojna neuronska mreža “Perceptron” ne može da nauči funkciju XOR,
+uz pretpostavku da dodavanjem više slojeva neurona taj problem neće biti prevaziđen. Tačno je da neuron nije u stanju da izvede pomenutu funkciju, ali za iole složeniju mrežu od nekoliko neurona to predstavlja veoma jednostavan zadatak. Njihov dokaz je diskreditovao istraživanja neuronskih mreža, a finansiranja su preusmerena na druge oblasti <a href="ai_index.htm">veštačke inteligencije</a>.
+
+<p>U periodu između 1967. do 1982. godine pojavljuju se istraživači koji daju značajan doprinos razvoju ove oblasti kao što su Teuvo Kohonen, Kunihiko Fukushima i Stephnen Grossberg. Naročito se istakao Teuvo Kohonen, koji je otkrio nekoliko tipova neuronskih mreža koje su po njemu dobile naziv. U ovom periodu se pojavio i backpropagation algoritam. U radu na ovom algoritmu su se posebno istakli sledeći načunici: Amari (1967.) dodaje unutrašnje slojeve perceptronskoj mreži, Bryson i Ho (1969.) razvijaju algoritam sličan backpropagation algoritmu, Werbos (1974) nezavisno od prethodnika razvija backpropagation algoritam, a Parker (1982) unapređuje backpropagation algoritam. Početkom 80-ih, američka vojna agencija DARPA (Agencija za odbrambene istraživačke projekte) postala je zainteresovana za NM i finansiranja su ponovo započela. Sredinom 80-tih, poznati fizičar John Hopfield dao je veliki doprinos popularizaciji neuronskih mreža, objavljujući rad u kome je napravio paralelu između neuronskih mreža i određenih fizičkih sistema. Početkom devedesetih, Bart Kosko u knjizi “Neural Networks and Fuzzy Systems” dokazuje da neuronske mreže i fuzzy logika opisuju isti skup problema i samim tim otvara novu oblast koja se naziva soft computing.
+
+<p>Rumenel, Hinton i Williams (1986) dokazuju veliku promenljivost i potencijal backpropagation algoritma. Krajem 80-tih i početkom 90-tih, neuronske mreže i neuro računarstvo se uvodi kao predmet na nekoliko elitnih univerziteta u SAD, dok se danas neuronske mreže gotovo mogu sresti na svim univerzitetima. 
+
+<br>Iako su NM imale neobičnu istoriju, one su još uvek u ranoj fazi razvoja. Možda se sad može reći da smo na kraju početka. Danas NM nalaze veoma širok spektar primena u različitim praktičnim oblastima.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Sta su to NM"></a>Šta su neuronske mreže
+</td></tr></tbody></table>
+
+<p>Postoje dve kategorije neuronskih mreža:
+veštačke i biološke neuronske mreže. Predstavnik bioloških neuronskih mreža je nervni sistem živih bića. Veštačke neuronske mreže su po strukturi, funkciji i obradi informacija slične biološkim neuronskim mrežama, ali se radi o veštačkim tvorevinama. Neuronska mreža u računarskim naukama predstavlja veoma povezanu mrežu elemenata koji obrađuju podatke. One su sposobne da izađu na kraj sa problemima koji se tradicionalnim pristupom teško rešavaju, kao što su govor i prepoznavanje oblika. Jedna od važnijih osobina neuronskih mreža je njihova sposobnost da uče na ograničenom skupu primera.
+
+<p>U ovom radu, kada se govori o neuronskim mrežama, misli se prvenstveno na “veštačke neuronske mreže” (engleski termin Artificial Neural Networks skraćeno ANN), zbog toga što se uglavnom govori o modelima neuronskih mreža (skraćeno NM), realizovanim na računarima.
+U stručnoj literaturi, nije redak slučaj da se izostavlja reč “veštačke” iako se misli na njih. Biološke neuronske mreže su daleko komplikovanije od svojih matematičkih modela koji se koriste za veštačke neuronske mreže. 
+
+<br>NM predstavljaju sistem sastavljen od veoma velikog broja jednostavnih elemenata za obradu podataka. Ovakvi sistemi su sposobni za prikupljanje, memorisanje i korišćenje eksperimentalnog znanja. Ne postoji jedinstvena definicija neuronskih mreža. Međutim, većina
+ljudi bi neuronske mreže definisala na sledeći način:
+
+<p>Neuronska mreža je sistem sastavljen od više jednostavnih procesora (jedinica, neurona), svaki od njih ima lokalnu memoriju u kojoj pamti podatke koje obrađuje. Te jedinice su povezane komunikacionim kanalima (vezama). Podaci koji se ovim kanalima razmenjuju su obično numerički. Jedinice obrađuju samo svoje lokalne podatke i ulaze koje primaju preko konekcije. Ograničenja lokalnih operatora se mogu otkloniti tokom treninga.
+
+<p>Veliki broj NM su nastale kao modeli bioloških neuronskih mreža. Istorijski gledano, inspiracija za razvoj NM proizilazi iz želje da se konstruiše veštački sistem sposoban za prefinjeno, možda “inteligentno”, izračunavanje na sličan način kao što to ljudski mozak rutinski izvodi. Potencijalno, NM nam pružaju mogućnost za razumevanje rada ljudskog mozga.
+
+<br>Veštačke neuronske mreže su kolekcija matematičkih modela koji simuliraju neke od posmatranih osobina bioloških nervnih sistema i povlače sličnosti sa prilagodljivim biološkim učenjem. Sačinjene su od velikog broja međusobno povezanih neurona (obrađujućih
+elemenata) koji su, slično biološkim neuronima, povezani svojim vezama koje sadrže propusne (težinske) koeficijente, koje su po ulozi slične sinapsama.
+
+<p>Učenje se kod bioloških sistema obavlja putem regulisanja sinaptičkih veza koje povezuju aksone i dendrite neurona. Učenje tipičnih događaja putem primera se ostvaruje preko treninga ili otkrića do tačnih setova podataka ulaza-izlaza koji treniraju algoritam
+ponavljanjem podešavajući propusne (težinske) koeficijente veza (sinapse). Ove veze memorišu znanje neophodno za rešavanje specifičnog problema.
+
+<p>Većina NM ima neku vrstu pravila za “obučavanje”, čime se koeficijenti veza između neurona podešavaju na osnovu ulaznih podataka.
+Drugim rečima, NM “uče” preko primera (kao što deca uče da prepoznaju konkretan predmet, objekat, proces ili pojavu preko odgovarajućih primera) i poseduju sposobnost za generalizaciju posle trening podataka.
+
+<p>Veliki potencijal NM se nalazi u mogućnosti paralelne obrade podataka, tokom izračunavanja komponenti koje su nezavisne jedne od drugih. Neuronske mreže su sistemi sastavljeni od više jednostavnih elemenata (neurona) koji obrađuju podatke paralelno. Funkcije koje su NM u stanju da obrađuju određene su strukturom mreže, jačinom konekcije a obrada podataka se izvodi u neuronima. Svaki elemenat operiše samo lokalnim informacijama. Svaki elemenat radi asinhrono, kao da nema sistemskog
+sata.
+
+<p>Iako NM postoje od 1940-tih godina, one nisu imale značajniju praktičnu primenu sve do 1980-tih, kada su algoritmi postali dovoljno prefinjeni za opštu upotrebu (aplikacije). Danas se NM primenjuju za rešavanje sve većeg broja svakodnevnih problema sa značajnom
+kompleksnošću. U programiranju se mogu koristiti kao “generator” (engleski engine) koji je u stanju da vrši različita prepoznanja i klasifikacije i koji ima sposobnost da izvrši generalizaciju prilikom odlučivanja pri nepreciznim ulaznim podacima. NM nude idealno rešenje za raznovrsno klasifikovanje problema, kao što je prevođenje teksta u govor, prepoznavanje slova, rešavanje problema za koje ne postoji algoritamsko rešenje. Pokazuju dobre rezultate prilikom predviđanja i modelovanja sistema gde fizički procesi nisu jasni
+ili su veoma kompleksni. Prednost NM leži u visokoj elastičnosti prema poremećajima u ulaznim podacima i u sposobnosti da uči. NM često uspešno rešava probleme koji su previše kompleksni za konvencionalne tehnologije (na primer, problem koji nema algoritamsko rešenje ili za koji je algoritam previše komplikovan da bi bio pronađen) i one su često dobra pratnja problemima koje ljudi rešavaju.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Model neurona"></a>Model veštačkog neurona
+</td></tr></tbody></table>
+
+<p>Veštački neuroni, kao i biološki, imaju jednostavnu strukturu i imaju slične funkcije kao i biološki neuroni. Telo
+neurona se naziva čvor ili jedinica.
+
+<center><img SRC="s_neuron.gif" BORDER=2 height=175 width=226></center>
+
+<i>u<sub>1..n</sub></i> – ulazni podaci<br>
+<i>w<sub>1..n</sub></i> – težinski koeficijenti<br>
+<i>f( )</i> – aktivaciona funkcija<br>
+<i>i</i> – izlazni podatak<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Model mreze"></a>Model neuronske mreže
+</td></tr></tbody></table>
+
+
+Neuronsku mrežu čine:
+<ul>
+<li>arhitektura (topologija) mreže, odnosno šema vezivanja neurona</li>
+<li>prenosna funkcija neurona</li>
+<li>zakoni učenja</li>
+</ul>
+
+Arhitekturu veštačke neuronske mreže predstavlja specifično uređenje i povezivanje neurona u obliku mreže. Po arhitekturi, neuronske mreže se razlikuju prema broju neuronskih slojeva. Obično svaki sloj prima ulaze iz prethodnog sloja, a svoje izlaze šalje narednom sloju.
+Prvi sloj se naziva ulazni, poslednji je izlazni, ostali slojevi se obično nazivaju skrivenim slojevima. Jedna od najčešćih arhitektura neuronskih mreža je mreža sa tri sloja. Prvi sloj (ulazni) je jedini sloj koji prima signale iz okruženja. Prvi sloj prenosi signale sledećem sloju (skriveni sloj) koji obrađuje ove podatke i izdvaja osobine i šeme iz primljenih signala. Podaci koji se smatraju važnim se upućuju izlaznom sloju, poslednjem sloju mreže. Na izlazima neurona trećeg sloja se dobijaju konačni rezultati obrade. Složenije neuronske mreže mogu imati više skrivenih slojeva, povratne petlje i elemente za odlaganje vremena, koji su dizajnirani da omoguće
+što efikasnije odvajanje važnih osobina ili šema sa ulaznog nivoa. 
+<center>
+
+<p><img SRC="s_mreza.gif" BORDER=2 height=187 width=214>
+<br>Slika Model neuronske mreže</center>
+
+<p>Učenje NM se svodi na učenje iz primera kojih bi trebalo da bude što više da bi mreža mogla da se ponaša preciznije u kasnijoj eksploataciji. Proces učenja dovodi do korigovanja sinaptičkih težina. Kada uzorci koji se predstavljaju mreži ne dovode više do promene
+ovih koeficijenata, smatra se da je mreža obučena.
+
+<br>Postoji tri tipa obučavanja: 
+<ul>
+<li>nadgledano obučavanje - mreži se predstavljaju ulazni podaci i očekivani izlazni podaci</li>
+<li>obučavanje ocenjivanjem - mreži se ne predstavljaju očekivani izlazni podaci nego joj se posle izvesnog vremena predstavlja
+ocena prethodnog rada. Jedan od primera je mreža koja uči da balansira štap. Kad god štap padne, mreži se prosleđuje ocena prethodnog rada, na primer, u obliku ugaonog odstupanja štapa od ravnoteže.</li>
+<li>samoorganizacija - mreži se predstavljajuisključivo ulaz</li>
+</ul>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Aktivacione funkcije"></a>Aktivacione funkcije
+</td></tr></tbody></table>
+
+Aktivacione funkcije neurona na skrivenim slojevima su potrebne da bi mreža bila u stanju da nauči nelinearne funkcije. Bez nelinearnosti, neuroni skrivenih slojeva ne bi imali veće mogućnosti od obične perceptronske mreže (koja se sastoji samo od ulaza i izlaza). Kombinovanjem linearnih funkcija se ponovo dobija linearna funkcija. Zbog toga se na izlazu neurona nalazi aktivaciona funkcija koja je najčešće nelinearna. Ova nelinearnost čini mreže sa više slojeva naročito moćnima. Gotovo svaka nelinearna funkcija može da se koristi, mada se za backpropagation algoritam najčešće koriste sigmoidne funkcije kao što su logistička, arcustangens ili gausova funkcija. 
+
+<p>Za neurone na izlaznom sloju se mogu birati aktivacione funkcije koje odgovaraju raspodeli ciljnih vrednosti. Granične aktivacione funkcije, kakva je logistička, su naročito korisne kada su ciljne vrednosti ograničene. Ali ako ciljne vrednosti nemaju ograničene
+vrednosti, bolje je da se koristi aktivaciona funkcija koja nije ograničena. Ako su ciljne vrednosti pozitivne ali nemaju gornju granicu, najbolje je koristiti eksponencijalnu aktivacionu funkciju. Postoji izvesna prirodna povezanost između izlaznih aktivacionih funkcija i različite raspodele šuma koji se izučava statistički u kontekstu generalizacije izlaznog modela. 
+
+<center>
+<p><img SRC="s_sigma.gif" BORDER=2 height=239 width=342></center>
+
+<p><br>
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Tezinski koeficijenti"></a>Težinski koeficijenti
+</td></tr></tbody></table>
+Sinapse kojima biološki neuroni regulišu prohodnost određene putanje između aksona i dendrita, kod veštačkih neurona se ostvaruju
+preko prilagodljivih težinskih koeficijenata (engleski weight) ili težina veza. Kada se na ulaz neurona dovedu neke vrednosti i pomnože težinskim koeficijentima, dobijaju se ulazni podaci. Zbir ulaznih vrednosti neurona pomnoženih sa odgovarajućim težinskim koeficijentima se propušta kroz aktivacionu funkciju i ta vrednost predstavlja izlaz iz neurona. Iako neuroni imaju prilično jednostavne (linearne) funkcije, kada se povežu u višeslojnu mrežu, u stanju su da obrade veoma složene (nelinearne) funkcije.
+
+<center>
+<p><img SRC="s_neuron.gif" BORDER=2 height=175 width=226></center>
+
+<p>Neuroni na skrivenim i izlaznim slojevima pored težinskih koeficijenata koriste i koeficijent “threshold” (“bias”) u računanju mrežnih ulaznih vrednosti. Koeficijent threshold se može tretirati kao dodatni težinski koeficijent na ulazu koji ima konstantnu težinu jedan.
+Rukovanje ovim koeficijentom je slično kao i za svaki drugi težinski koeficijent.
+
+<p>Prirodni neuroni su znatno komplikovaniji od veštačkih. Iako su veštački neuroni, izvedeni u VLSI tehnologiji, znatno brži od
+<br>prirodnih, visok stepen međusobne povezanosti, njihov ogroman broj i još veći broj veza između njih, čine biološke nervne sisteme nedostižnim za današnju tehnologiju i nepotpuno razumljivim za današnju nauku. Uz to, mala je verovatnoća da će principijelna šema stotine
+milijardi veza biti za dogledno vreme analizirana. Šta više, mi još uvek ne znamo kako da protumačimo težinske koeficijente čak i u mrežama od samo nekoliko neurona.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Obucavanje NM"></a>Obučavanje neuronskih mreža
+</td></tr></tbody></table>
+
+
+U svim biološkim neuronskim mrežama veze između pojedinačnog dendrita i aksona mogu biti pojačane ili oslabljene. Na primer, veze mogu postati pojačane ako se više signala šalje kroz njih, ili mogu biti oslabljene ako se signali ređe šalju kroz njih. Pojačavanje određenog
+neuralnog prolaza, ili veze između dendrita i aksona, rezultuje u povećanoj verovatnoći da će signal biti prenesen kroz tu putanju, daljim pojačavanjem tog puta. Putevi između neurona koji su retko korišteni polako atrofiraju, ili se umanjuju, praveći manju verovatnoću da će signal biti prenesen kroz njih.
+
+<p>Slična situacija se pojavljuje i kod veštačkih neurona. Podaci iz trening skupa se periodično propuštaju kroz NM. Dobijene vrednosti na izlazu mreže se upoređuju sa očekivanim. Ukoliko postoji razlika između dobijenih i očekivanih podataka, prave se modifikacije na vezama
+između neurona u cilju smanjivanja razlike trenutnog i željenog izlaza. Ulazno-izlazni skup se ponovo predstavlja mreži zbog daljih podešavanja težina, pošto u prvih nekoliko koraka mreža obično daje pogrešan rezultat. Posle podešavanja težina puta za sve ulazno izlazne šeme u trening skupu, mreža nauči da reaguje na željeni način.
+
+<p>NM je obučena ako može tačno da rešava zadatke za koje je obučavana. NM je sposobna da izdvoji važne osobine i šeme u klasi trening primera. Nakon obučavanja sa određenom verovatnoćom, NM može da generalizuje nove ulazne podatke za koje nije obučavana. Na primer, generalizaciju možemo videti na primeru mreže obučavane da prepoznaje serije slika: ako na ulaz takve mreže dovedemo slike za koje mreža nije obučavana, ona do izvesne mere može uspešno da klasifikuje takve slike.
+
+<p>Najčešće korišten algoritam za obučavanje NM je backpropagation, razvijen nezavisno od strane naučnika: Paul Werbos (1974), David Parker (1984/1985), i David Rumelhart, Ronald Williams, i drugih (1985). Backpropagation uči šeme poredeći izlaz neuronske mreže sa željenim izlazom i računa greške za svaki čvor u mreži. Neuronska mreža podešava težine veza prema vrednostima greške dodeljenim za svaki čvor.
+Izračunavanje počinje od izlaznog sloja, preko skrivenih slojeva, prema ulaznom sloju. Nakon modifikacije parametara, na mrežu se dovode novi ulazi. Obučavanje se prekida tek kada mreža bude u stanju da daje izlaze sa zadovoljavajućom
+tačnošću.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Realizacija"></a>Realizacija neuronskih mreža
+</td></tr></tbody></table>
+
+Neuronska mreža se može realizovati na dva načina: hardverski i softverski.
+
+<br>Hardverska realizacija: Veštački neuroni su fizički međusobno povezani, oponašajući veze između bioloških neurona. Neuroni se realizuju kao jednostavna integrisana kola. <p>Softverska realizacija: NM se obično simuliraju na tradicionalnim računarima, u kojima je veza između čvorova logička (virtualna).
+
+<p>Svaki od ovih načina realizacije NM ima svoje prednosti kao i mane. Prednost hardverske realizacije je to što može da koristi mogućnost paralelnog procesiranja informacija ukoliko se svakom neuronu u mreži dodeli po jedan procesor. Prednost softverske realizacije NM na standardnom PC računaru je u tome što se lakše uspostavljaju (i kasnije menjaju) veze između pojedinih neurona u mreži. U praksi se softverska realizacija koristi za testiranje, a konkretna realizacija koja se primenjuje u praksi može biti realizovana i hardverski čime se dobija na brzini.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Podela"></a>Podela neuronskih mreža
+</td></tr></tbody></table>
+
+
+Postoji veliki broj različitih realizacija neuronskih mreža, a samim tim postoji i mnogo podela. NM možemo klasifikovati prema:
+<ul>
+<li>broju slojeva,</li>
+<li>vrsti veza između neurona,</li>
+<li>vrsti obučavanja neuronskih mreža,</li>
+<li>prema smeru prostiranja informacija,</li>
+<li>prema vrsti podataka.</li>
+</ul>
+
+<b>Podela neuronskih mreža prema broju slojeva</b>
+
+<p>Postoji veliki broj različitih tipova NM. Jedna od najopštijih podela NM je prema broju slojeva. Mreže možemo podeliti
+na:
+<ul>
+<li>jednoslojne i</li>
+<li>višeslojne.</li>
+</ul>
+Danas se uglavnom izučavaju i primenjuju višeslojne NM koje pored ulaznih i izlaznih slojeva sadrže neurone na srednjim (skrivenim)
+slojevima.
+<p>
+<b>Podela NM prema vrsti veza</b>
+
+<p>NM se mogu podeliti prema vrstama veza
+tj. arhitekturi na:
+<br>
+
+<ul>
+<li>slojevite Neuroni su raspoređeni tako da formiraju slojeve. Na ulaz jednog neurona se dovode izlazi svih neurona sa prethodnog
+sloja, a njegov izlaz se vodi na ulaze svih neurona na narednom sloju. Neuroni sa prvog (ulaznog) sloja imaju samo po jedan ulaz. Izlazi neurona sa zadnjeg (izlaznog) sloja predstavljaju izlaze mreže. Predstavnik: backpropagation algoritam.</li>
+
+<li>potpuno povezane Izlaz jednog neurona se vodi ka ulazu svih neurona u mreži. Predstavnik: Hopfildova NM.</li>
+
+<li>celularne Međusobno su povezani samo susedni neuroni. Bez obzira na lokalnu povezanost, signali se prostiru i na neurone
+i van susedstva zbog indirektnog prostiranja informacija. Predstavnik: CNN – Cellular Neural Network.</li>
+</ul>
+	
+<b>Vrste obučavanja neuronskih mreža></b>
+<br>
+<br>Postoje tri različita pristupa obučavanju neuronskih mreža:
+<ul>
+<li>Nadgledano obučavanje - Supervised training
+<br>Tokom obučavanja mreže, algoritam koji nadzire obučavanje (supervisor) upoređuje podatke dobivene na izlazu sa
+očekivanim podacima. Razlika između dobivenih i očekivanih podataka se šalje proceduri za učenje, koja koriguje težinske koeficijente mreže. Kontrolisan trening je sličan studentu koga profesor vodi u učenju, ukazuje na greške i propuste i usmerava ka željenom cilju. Predstavnici: perceptron, backpropagation algoritam.
+
+<p><li>Delimično nadgledano obučavanje
+<br>Delimično nadgledano učenje radi na principu da mreža uči samostalno, a povremeno dobija ocenu prethodnog rada. Primer ovakve mreže je mreža koja balansira štap. Dok je štap uspravan sve je u redu, ali kada štap padne, mreža treba
+da koriguje ponašanje da bi štap ostao uspravan. Sličan slučaj je i sa partijom šaha. Ukoliko je partija izgubljena znači da je došlo do greške, ali se ne zna u kome trenutku je povučen pogrešan potez, niti koji je potez doveo do gubitka partije.
+
+<p><li>Nenadgledano obučavanje - Unsupervised training
+<br>U nenadgledanom učenju mreža je nezavisna. Pri obučavanju se predstavljaju samo ulazni podaci koje NM pokušava da generalizuje i “uoči” zajedničke osobine. Predstavnik: Kohonenove samoorganizujuće mape.
+</ul>
+
+<p>
+<b>Podela neuronskih mreža prema smeru prostiranja informacija</b>
+<br>NM se mogu podeliti prema smeru prostiranja informacija kroz mrežu:
+
+<ul>
+<li>Feedforward (nerekurzivne, nerekurentne ili nepovratne) - Viši slojevi ne vraćaju informaciju u niže slojeve. Vrše prostiranje signala samo u jednom smeru (od ulaza prema izlazu) odnosno propagaciju signala.Predstavnici: Višeslojni perceptron sa primenjenim
+backpropagation algoritmom.</li>
+<li>(Feedback) rekurzivne ili rekurentne ili povratne - Viši slojevi vraćaju informacije nazad u niže slojeve. Izlaz iz neurona se vraća u niže slojeve ili u isti sloj. Predstavnici: Hopfildove, Celularne NM, Kohonenove NM, dvostruko asocijativne NM. Feedback mreže imaju mnogo veće procesne sposobnosti od Feedforward mreža.</li>
+</ul>
+
+<b>Podela neuronskih mreža prema vrsti podataka</b>
+<br>Prema vrsti podataka koje obrađuju NM se mogu podeliti na:
+
+<ul>
+<li>analogne i</li>
+<li>diskretne.</li>
+</ul>
+Ova podela se retko koristi pošto su gotovo sve NM diskretne.
+<p>
+Vrste neuronskih mreža podeljene prema vrsti učenja i pravcu prostiranje signala:
+<p>1. NENADGLEDANO UČENJE
+<blockquote><b>A) Feedback mreže</b>
+<br>1) Aditivna Grossbergova - Additive Grossberg (AG)
+<br>2) Grossbergova sa odlaganjem - Shunting Grossberg (SG)
+<br>3) Teorija binarne adaptivne rezonancije - Binary Adaptive Resonance Theory (ART1)
+<br>4) Teorija analogne adaptivne rezonancije - Analog Adaptive Resonance Theory (ART2, ART2a)
+<br>5) Diskretna Hopfildova - Discrete Hopfield (DH)
+<br>6) Kontinualna Hopfildova - Continuous Hopfield (CH)
+<br>7) Diskretna bidirekciona asocijativna memorija - Discrete Bidirectional Associative Memory (BAM)
+<br>8) Privremena asocijativna memorija - Temporal Associative Memory (TAM)
+<br>9) Adaptivna bidirekciona asocijativna memorija - Adaptive Bidirectional Associative Memory (ABAM)
+<br>10) Kohenove samoorganizujuće mape - Kohonen Self-organizing Map/Topology-preserving map (SOM/TPM)
+<br>11) Kompetitivno učenje - Competitive learning
+<p><b>B) Feedforward - mreže:</b>
+<br>1) Matrice sa mogućnošću učenja- Learning Matrix (LM)
+<br>2) Pobuđeno-primorano učenje - Driver-Reinforcement Learning (DR)
+<br>3) Linearna asocijativna memorija - Linear Associative Memory (LAM)
+<br>4) Optimizovana linearna asocijativna memorija - Optimal Linear Associative Memory (OLAM)
+<br>5) Slabo raspoređena distribuirana asocijativna memorija - Sparse Distributed Associative Memory (SDM)
+<br>6) Fuzzy ascocijativna memorija - Fuzzy Associative Memory (FAM)
+<br>7) Counterpropagation (CPN)</blockquote>
+
+2. NADGLEDANO UČENJE
+<blockquote><b>
+A) Feedback mreže</b>
+<br>1) Brain-State-in-a-Box (BSB)
+<br>2) Fuzzy kongitivne mape - Fuzzy Congitive Map (FCM)
+<br>3) Bolcmanova mašina - Boltzmann Machine (BM)
+<br>4) Mean Field Annealing (MFT)
+<br>5) Rekurzivno kaskadno povezivanje - Recurrent Cascade Correlation (RCC)
+<br>6) Povratna propagacija kroz vreme - Backpropagation through time (BPTT)
+<br>7) Povratno učenje u realnom vremenu - Real-time recurrent learning (RTRL)
+<br>8) Recurrent Extended Kalman Filter (EKF)
+<p><b>B) Feedforward-mreže:</b>
+<br>1) Perceptron
+<br>2) Adaline, Madaline
+<br>3) Backpropagation (BP)
+<br>4) Košijeva mašina - Cauchy Machine (CM)
+<br>5) Adaptivni heuristički kriterijum -
+Adaptive Heuristic Critic (AHC)
+<br>6) NM sa vremenskim zadržavanjem - Time Delay Neural Network (TDNN)
+<br>7) Asocijativno nagrađivanje - Associative Reward Penalty (ARP)
+<br>8) Avalanche Matched Filter (AMF)
+<br>9) Backpercolation (Perc)
+<br>10) Artmap
+<br>11) Adaptivne logičke mreže - Adaptive Logic Network (ALN)
+<br>12) Kaskadne veze- Cascade Correlation (CasCor)
+<br>13) Prošireni Kalman-ov filter - Extended Kalman Filter(EKF)
+<br>14) Kvantizacija vektora učenja - Learning Vector Quantization (LVQ)
+<br>15) NM zasnovane na verovatnoći- Probabilistic Neural Network (PNN)
+<br>16) Opšte regresione NM - General Regression Neural Network (GRNN)
+</blockquote>
+
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Mogucnosti"></a>Mogućnosti neuronskih mreža
+</td></tr></tbody></table>
+
+Teoretski se NM mogu obučiti za izračunavanje svake izračunljive funkcije. One mogu uraditi sve što može normalan digitalan
+računar da uradi. 
+
+<p>Međutim u praksi, NM najbolje rezultate pokazuju na području klasifikacije, funkcije aproksimacije, na problemima mapiranja čija je tolerancija neprecizna, na problemima koji imaju dosta dostupnih podataka za trening ili na problemima koji zahtevaju brzu primenu
+odgovarajućeg pravila u zavisnosti od ulaznih podataka. Isto tako mapiranje vektora između prostora može se aproksimirati precizno putem NM. NM ne mogu da stvore informaciju koju ne sadrže trening podaci.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Razlike"></a>Razlike između neuronskih mreža i klasičnih računara
+</td></tr></tbody></table>
+
+Neuronska mreža se razlikuje od tradicionalnih računara (PC računara, radnih stanica, i mainframe računara) u formi i funkcionisanju. Dok neuronska mreža koristi veliki broj jednostavnih procesora da bi obavila njene kalkulacije, tradicionalni računari koriste jedan ili,
+u ređim slučajevima, svega nekoliko veoma kompleksnih procesorskih jedinica. Neuronska mreža ne poseduje centralno lokalizovanu memoriju, niti se programira sekvencama instrukcija, kao svi tradicionalni računari. 
+
+<p>Klasični računari koji rade na binarnoj logičkoj osnovi, koriste algoritamski način obrade podataka (sekvencijalni) sa veoma niskim stepenom paralelizacije. U algoritamskom načinu obrade podataka računar obrađuje jednu po jednu informaciju ili u boljem slučaju obrađuje manji broj informacija u isto vreme. Za razliku od ovog pristupa obrade podataka, NM procesira istovremeno više informacija, tj. najbolja
+varijanta za NM je da je svaki neuron po jedan procesor. Razvoj NM je doveo do novih arhitektura računara koji se u mnogome razlikuju od računara kakvi su danas rasprostranjeni. Ako bismo posmatrali primer prepoznavanja slova, algoritamsko rešenje bi zahtevalo da se zadato slovo uporedi sa svim slovima u bazi, slovo po slovo, dok NM može da uporedi zadato slovo istovremeno sa svim slovima, a rešenje je slovo sa najvećom verovatnoćom. Ovo je moguće jer se memoriji pristupa uz pomoć sadržaja, a ne adrese. 
+
+<p>Kod klasičnih računara su elementi obrade informacija i elementi memorisanja informacija potpuno odvojene komponente. Kod neuronske mreže memorisanje i obrada predstavljaju jednu kompaktnu celinu. Podaci koji su vezani za rad neuronske mreže nemaju nikakav smisao bez jedinica obrade. 
+
+<p>Neuronska mreža se razlikuje od tradicionalnih računara po načinu na koji se “programira”. Umesto programa napisanih kao serije instrukcija, kao što to rade klasični računari, može se upotrebiti obučena NM, gde arhitektura i težinski koeficijenti određuju njenu funkciju. Koeficijenti se podešavaju tokom obučavanja na ograničenom skupu karakterističnih primera. Kada se mreža obuči do zadovoljavajuće granice, vrednosti veza se mogu memorisati i koristiti u kasnijem radu.
+
+<p>Kod klasičnih računara softver mora biti gotovo savršen da bi radio. Razvoj softvera zahteva iscrpan dizajn, testiranje i postepeno usavršavanje čine ga dugim i skupim procesom. NM omogućavaju evolutivni razvoj softvera, tj. NM mreža se može naknadno adaptirati realnim
+i novo nastalim uslovima. Neuronske mreže imaju sposobnost da menjaju svoju strukturu i funkciju, za razliku od klasičnih algoritama koji nemaju toliku fleksibilnost.
+
+<p>Decentralizovana obrada i memorisanje omogućavaju mreži da nastavi funkcionisanje i u uslovima kada se deo mreže ošteti (jedan deo neurona prestane da funkcioniše ili se neke veze prekinu). Oštećena mreža će i dalje biti u stanju da funkcioniše ali sa smanjenom tačnošću. Mreža je takođe tolerantna i na prisustvo šuma u ulaznom signalu. Svaki memorisani uzorak je delokalizovan, tj. smešten je u celu mrežu. Ova osobina je još jedna veoma važna osobina NM.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Nacini implementacije"></a>Načini implementacije neuronskih mreža
+</td></tr></tbody></table>
+
+
+Neuronske mreže su obično simulirane na tradicionalnim računarima. Prednost ovog pristupa je u tome što se računari mogu lako reprogramirati da promene arhitekturu ili pravilo učenja simulirane neuronske mreže. Računanje u neuronskoj mreži je uglavnom paralelno, tako da brzina obrade simulirane neuronske mreže može biti znatno uvećana korišćenjem paralelnih procesora.
+<p>
+
+NM i klasično programiranje mogu se posmatrati kao fundamentalno različiti, ali komplementarni prilazi obradi informacija.
+NM su zasnovane na transformacijama, dok je programiranje zasnovano na algoritmima i pravilima.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Domeni"></a>Domeni primene
+</td></tr></tbody></table>
+
+
+<p>U početku su NM koristili naučnici računarskih i kognitivnih nauka koji su pokušavali da modeliraju čulni sistem živih organizama. Danas neuronske mreže predstavljaju veoma atraktivnu oblast istraživanja i postoje brojne oblasti u kojima se koriste. Primenjuju
+se za:
+
+<ul>
+<li>prepoznavanje oblika,</li>
+<li>prepoznavanje rukopisa,</li>
+<li>prepoznavanje govora,</li>
+<li>finansijske i ekonomske modele,</li>
+<li>predviđanje kretanja cena na tržištu,</li>
+<li>upravljanje sistemima,</li>
+<li>upravljanje proizvodnim procesima,</li>
+<li>analizu električnih kola,</li>
+<li>psihijatrijske procene,</li>
+<li>kompresovanje podataka,</li>
+<li>naftna istraživanja,</li>
+<li>kriminološka istraživanja,</li>
+<li>analizu medicinskih testova,</li>
+<li>ispitivanje EEG i EKG signala,</li>
+<li>pronalaženje optimalnog rešenja,</li>
+<li>upravljanje robotima,</li>
+<li>analiziranje podataka pri pirolizi i spektroskopiji,</li>
+<li>u bioračunarskim sistemima,</li>
+<li>vremensku prognozu i</li>
+<li>u drugima oblastima.</li>
+</ul>
+
+Primenu neuronskih mreža je moguće podeliti na tri karakteristične oblasti:
+<ul>
+<li>procesiranje senzorskih informacija</li>
+<li>analiza podataka</li>
+<li>kontrola upravljanja</li>
+</ul>
+
+Konkretana primena neuronskih mreža se može videti preko dva realizovana programa (program za prepoznavanje ćiriličnih slova <a href="ocr.html">OCR</a>, program za obučavanje neuronskih mreža <a href="ANN.html">ANN</a>).
+
+<br>
+</td>
+
+<td valign="top" width="150" class="menu2"> <!--main right or menu-->
+
+<a href="http://translate.google.com/translate?prev=_t&hl=en&ie=UTF-8&u=http%3A%2F%2Fsolair.eunet.rs%2F%7Eilicv%2Fneuro.html&sl=sr&tl=en"><img SRC="en.gif" height=20 width=39> <font face="Arial,Helvetica"size=-2><br>English version<br>(Google Translate)</a>
+
+<br>
+<br>
+
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#F0F0F0" >
+<tr>
+<td>
+<center>Povezano sa:</center>
+</td>
+</tr>
+</table>
+</font>
+<a href="ocr.html">OCR</a>
+<p><a href="ocr_opis.html">OCR - prep. ćiriličnih slova</a>
+<p><a href="ANN.html">ANN</a>
+<p><a href="NeuroVCL.html">NeuroVCL</a>
+<p><a href="AI_index.htm">Veštačka inteligecija</a>
+<p><a href="FLAlg.html">Force learn algorithm</a>
+<p><a href="agenti.html">Softverski agenti</a>
+<p><a href="enaa.html">ENAA</a>
+
+<br>
+<br>
+<br><hr>
+<p>
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+<!-- Place this tag where you want the +1 button to render -->
+<g:plusone size="medium" href="http://SOLAIR.EUnet.rs/~ilicv/neuro.html"></g:plusone>
+
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+
+
+
+
+
+</td></tr>
+
+
+
+
+
+
+
+
+
+</tbody></table>
+</td></tr></tbody></table>
+
+
+<table width="100%">
+  <tbody><tr align="center">
+    <td class="footer" align="right">
+	  <hr>
+<table width="100%">
+<tbody><tr><td align="left">
+Page url: <a href="http://SOLAIR.EUnet.rs/~ilicv/neuro.html">http://SOLAIR.EUnet.rs/~ilicv/neuro.html</a></td>
+<td align="right">
+Web design by: <a href="http://solair.eunet.rs/%7Eilicv/">Velibor Ilic</a>
+</td></tr></tbody></table>
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<td width="30"></td></tr>
+</tbody></table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-11148888-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</center></body></html>

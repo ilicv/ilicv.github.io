@@ -1,0 +1,1142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+   <meta name="Author" content="Velibor Ilic">
+   <meta name="KeyWords" content="neuronske, mreze, neural, network, networks, delphi, vcl, komponente, ann, ann, nn, ekspertni, sistemi, expert, systems, fazi, logika, fuzzy, logic, ocr, prepoznavanje, cirilicnih slova, optical, character, recognition, ai, artificial, intelligence, vestacka, inteligencija, velibor, ilic, becej, vojvodina, jugoslavija,">
+   <meta name="revisit-after" content="15 days">
+   <meta name="ROBOTS" content="ALL">
+   <meta name="Description" content="In this text the appliance of neural networks at object-oriented programming is being discussed. NeuroVCL components for Delphi represent development kit for building programs with backpropagation neural networks. In this text the example of program developing using these components has been given.">
+   <title>Neuro VCL V1.0</title>
+
+  <link rel="stylesheet" type="text/css" href="my.css" media="screen,projection">
+</head>
+<body>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 728x15, created 10/17/09 */
+google_ad_slot = "8046978970";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<table width=100% cellpadding="0" cellspacing="0">
+<tr>
+<td width="30"></td>
+<td align="left" background="header_bg.png">
+<img src="header.png"><br>
+
+
+
+
+<table width="100%" bgcolor="#FFFFFF" border="1" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td>
+          
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr valign="top">
+
+<td class="menu_back" width="150" align="left"> <!--menu-->
+<table cellpadding="2" cellspacing="0">
+<tbody><tr valign="top">
+<td>
+
+<a href="index.html">Home</a><br>
+<a href="VeliborCV.html">Biografija</a><br>
+<hr width="135" align="center">
+
+<a href="automatsko_trgovanje.html">Automatsko trgovanje</a><br>
+<a href="PProgrami.htm">Poslovni programi</a><br>
+<a href="recnik.html">Rečnik</a><br>
+<a href="PlanB.htm">PlanB</a><br>
+<hr width="135" align="center">
+
+<a href="AI_index.htm">Veštačka inteligencija</a><br>
+<a href="neuro.html">Neuronske mreže</a><br>
+<a href="ANN.html">ANN</a><br>
+<a href="FLAlg.html">Force learn algoritam</a><br>
+<a href="NeuroVCL.html">NeuroVCL</a><br>
+<a href="agenti.html">Agenti</a><br>
+<a href="enaa.html">ENAA</a><br>
+
+<hr width="135" align="center">
+
+<a href="ocr_opis.html">OCR</a><br>
+<a href="ocr.html">OCR soft</a><br>
+<hr width="135" align="center">
+
+<a href="scada.html">Izrada SCADA</a><br>
+<a href="smartscada.html">SmartSCADA</a><br>
+<hr width="135" align="center">
+
+<a href="NanoTech.htm">Nanotehnologija</a><br>
+<a href="linkovi.htm">Linkovi</a><br>
+<a href="free.html">Free Download</a>
+
+<br>
+<hr width="135" align="center">
+<br>
+<br>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 120x90, created 10/17/09 */
+google_ad_slot = "0178951326";
+google_ad_width = 120;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+<br>
+<br>
+<p style="margin-top: 0; margin-bottom: 0">
+<a href="http://usa.nedstatbasic.net/cgi-bin/viewstat?name=ilicv"><img
+src="http://usa.nedstatbasic.net/cgi-bin/nedstat.gif?name=ilicv"
+border=0 alt="" nosave width=22 height=22></a>
+</center>
+
+
+
+</td></tr></tbody>
+</table>
+</td> <!--menu-->
+
+
+<td valign="top" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+
+
+<td valign="top" width="100%" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="3">
+<tbody><tr>
+
+<td valign="top" align="left"> <!--main left-->
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP BGCOLOR="#333333">
+<center><font size="+2" color="#EDE8DE">
+<b>Neuro VCL V1.0</b></font></center></td>
+</tr>
+</table>
+<br> 
+
+
+<p>
+<b>Author:</b><a href="VeliborCV.html"> Velibor Ilić</a>
+<p><b>Abstract: </b>In this text the appliance of neural networks at object-oriented programming is being discussed. NeuroVCL components for Delphi represent development kit for building programs with backpropagation neural networks. In this text the example of program developing using these components has been given.
+<p>
+
+<b>Programming languages:</b> Delphi 5
+<p>
+
+<b>Operating systems:</b> Windows 95, 98, NT
+<p>
+
+<b>Date:</b> Jun, 2000
+<p>
+
+<p><b>NeuroVCL Components</b> (Delphi 6)
+<br>Available for download since 25.11.2001.
+<br><a href="https://www.dropbox.com/s/d2becyna22c8il9/NEUROVCLD6.ZIP?dl=0">Download!!!</a> NeuroVCL V1.0 (NEUROVCLD6.ZIP 69Kb)
+<br>https://www.dropbox.com/s/d2becyna22c8il9/NEUROVCLD6.ZIP?dl=0
+<p><b>NeuroVCL Components</b> (Delphi 5)
+<br>Available for download since 05.12.2000.
+<br><a href="https://www.dropbox.com/s/2l6a7pip3yc5ecc/NEUROVCL.ZIP?dl=0">Download!!!</a> NeuroVCL V1.0 (NEUROVCL.ZIP 68Kb)
+<br>https://www.dropbox.com/s/2l6a7pip3yc5ecc/NEUROVCL.ZIP?dl=0
+<p><b>NeuroVCL Examples</b>
+<br>Available for download since 25.11.2001.
+<br><a href="https://www.dropbox.com/s/t4vg5lyluoz4z2h/neuro_examples.zip?dl=0">Download source code</a> (23KB)
+<br>https://www.dropbox.com/s/t4vg5lyluoz4z2h/neuro_examples.zip?dl=0
+<br>
+This paper was presented on 5th seminar on neural networks (NEUREL)
+<p>
+
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP BGCOLOR="#eeeeee">Ilić, V., (2000): “<b><i>NeuroVCL components for Delphi</i></b>”, Seminar on Neural Network Applications in Electrical Engineering “NEUREL 2000”, Belgrade, Sponsored by IEEE Signal Processing Society, pp 130-134, IEEE Catalog Number 00EX278, ISBN 0-7803-5512-1 (Softbounded Edition), ISBN 0-7803-5512-X (Microfishe Edition), Library of Congress: 99-60930, <a href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=902400 ">http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=902400 </a>
+</td>
+</tr>
+</table>
+<p>
+<p>
+<hr width="97%">
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td>
+<a href="http://twitter.com/velibor" class="twitter-follow-button" data-show-count="false">Follow @velibor</a>
+<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+&nbsp; &nbsp; &nbsp;
+<td>
+<a title="Velibor Ilic" href="http://www.researchgate.net/profile/Velibor_Ilic/"><img src="http://www.researchgate.net/images/public/profile_image_my_profile_big.png" alt="Velibor Ilic" /></a>
+</td>
+</tr>
+</table>
+<hr width="97%">
+<p>
+
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Sadrzaj"></a>Table of contents
+</td></tr></tbody></table>
+
+<center>
+<a href="#INTRODUCTION">Introduction</a><br>
+<a href="#Software">Software requests</a><br>
+<a href="#ANN">ANN V2.3 - neural net training program</a><br>
+<a href="#VCL">Object VCL components for Delphi</a><br>
+<a href="#TNNSignal">Object TNNSignal</a><br>
+<a href="#TNeuralNet">Object TNeuralNet</a><br>
+<a href="#Example 1">Example 1 - using NeuroVCL components</a><br>
+<a href="#example 2">Example 2 - binary functions</a><br>
+<a href="#example 3">Example 3 - pattern recognition</a><br>
+<a href="#Conclusion">Conclusion</a><br>
+<a href="#References">Referecnes</a>
+</center>
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="INTRODUCTION"></a>INTRODUCTION
+</td></tr></tbody></table>
+
+Theoretically a neural network can be trained to calculate every countable function. Practically, neural networks show best results in fields such as: classification, pattern recognition, voice recognition, processing information with noise, approximation functions, solving problems with a lot of available examples for training, and problems which need fast selection role depending on input.
+<p>
+
+This is exactly the class of problems, which is hard to handle with the usage of the common programming languages. Exposing a neural net as the object component is the best way to utilize advantages of this different way of solving problems.
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Software"></a><b>SOFTWARE REQUESTS
+</td></tr></tbody></table>
+
+1. Windows 95/98, NT/2000<br>
+2. Borland Delphi 5.0<br>
+3. NeuroVCL components<br>
+4. ANN V2.3 - neural net training program
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="ANN"></a>ANN V2.3 - NEURAL NET TRAINING PROGRAM
+</td></tr></tbody></table>
+
+The program ANN is based on the backpropagation neural networks. This program is used for training neural networks that are used in programs developed by NeuroVCL components.
+<p>
+
+<center>
+<img SRC="ANN.jpg" height=227 width=300>
+<br>Figure 1. - ANN V2.3 - Neural network training program</center>
+<p>
+
+The program ANN is used to train neural networks with patterns from training set. The following files are necessary to assign neural network configurations and to determinate training set:
+<br>
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr BGCOLOR="#F0F0F0">
+<td WIDTH="15%">Extension</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>*.INI</td>
+<td>This file describes neural network configuration: number of layers, number of neurons on layers, learning coefficient, coefficient
+to survey training.</td>
+</tr>
+<tr>
+<td>*.INP</td>
+<td>Inputs – Training data set which neural networks are trained to recognize</td>
+</tr>
+<tr>
+<td>*.OUT</td>
+<td>Outputs - Training data set expected on output.</td>
+</tr>
+</table>
+<p>
+
+Files created by ANN after training the neural network:
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr BGCOLOR="#F0F0F0">
+<td WIDTH="15%">Extension</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>*.NET</td>
+<td>This file is created with saving of all important coefficients of the neural network. It contains the states of all weights and thresholds of all the neurons in the network.</td>
+</tr>
+<tr>
+<td>*.ERR</td>
+<td>This file contains recorded changes minimal, maximum and average error at the end of each iteration.</td>
+</tr>
+<tr>
+<td>*.LOG</td>
+<td>In this file is given values of neural networks outputs and expected ones after XX iteration for all the patterns
+from training set.</td>
+</tr>
+<tr>
+<td>*.PAR</td>
+<td>In this file the weight and a threshold change of every neuron of the network has been saved.</td>
+</tr>
+</table>
+<p>
+
+After the successful training weights are saved to file (with *.NET extension) and later are loaded in neuro components which are used in the final application.
+<p>
+
+ANN is developed with the Delphi 5 programming language. The program is developed with the usage of object-oriented methodology. During the development, the following objects have been created: TArray, TNeuron and TNet. These objects are used as a base for the development of the NeuroVCL components for Delphi.
+<p>
+
+<a href="ANN.html">More information...</a>
+<br><a href="https://www.dropbox.com/s/b3k6purhw2dl99y/ann.zip?dl=0">Download!!!</a> ANN V2.3 (ann.zip 463Kb)
+<br>https://www.dropbox.com/s/b3k6purhw2dl99y/ann.zip?dl=0
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="VCL"></a>OBJECT VCL COMPONENTS FOR DELPHI
+</td></tr></tbody></table>
+
+
+Classes' present a base for object oriented programming. Class is the set of the related fields and methods (functions and procedures), which are used to complete a certain program task. Classes represent a set of data, and the objects are particular specimens of the classes.
+<p>
+
+Programming in Delphi is based on VCL classes (VCL Visual Components Class).
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="TNNSignal"></a>OBJECT TNNSIGNAL
+</td></tr></tbody></table>
+
+With the help of TNNSignal type object, the values of the neural network inputs are changed and read on the network outputs after the calculation.
+<p>
+
+<img SRC="vcl_signal.jpg" height=30 width=30>
+Look of components on form
+<p><b>Properties of TNNSignal:</b>
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=3 >
+<tr BGCOLOR="#F0F0F0">
+<td WIDTH="120">Properties name</td>
+<td WIDTH="160">Type</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>Limited</td>
+<td>Boolean</td>
+<td>If this property is set True program does not allow overvaluing min/max in property Value</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Integer</td>
+<td>Maximum value of the signal if value is limited</td>
+</tr>
+<tr>
+<td>Min</td>
+<td>Integer</td>
+<td>Minimum value of the signal If value is limited</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>String</td>
+<td>Object name</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>Real</td>
+<td>Value of signal</td>
+</tr>
+</table>
+<p>
+
+<b>Events of TNNSignal</b>
+<br>OnChange - Events are performing if value of property <b><tt>Value</tt></b> is changed.
+<p>
+<b>Methods</b>
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=2 >
+<tr VALIGN=TOP BGCOLOR="#F0F0F0">
+<td WIDTH="120">Method name</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>Constructor Create</td>
+<td>Create object TNNSignal</td>
+</tr>
+<tr>
+<td>Destructor Destroy</td>
+<td>Free memory taken by object</td>
+</tr>
+</table>
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="TNeuralNet"></a><b>OBJECT TNEURALNET
+</td></tr></tbody></table>
+
+The object of the TNeuralNet type presents a neural network. This object does the processing of the inputs signals (TNNSignal) and calculates appropriate values, which are read by output signals (TNNSignal). Data from file (*.NET) with weights, generated by ANN determinates the function of this object (performance, “algorithm”), information on the way of outputs calculation, depending on inputs. 
+<p>
+
+<img SRC="vcl_NM.jpg" height=30 width=30> VCL Net
+<p>
+
+<b>Properties</b>
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=3 >
+<tr VALIGN=TOP BGCOLOR="#F0F0F0">
+<td WIDTH="120">Properties name</td>
+<td WIDTH="160">Type</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>Active</td>
+<td>Boolean</td>
+<td>Property determinates if network is active or not.</td>
+</tr>
+<tr>
+<td>FileName</td>
+<td>TStrings</td>
+<td>Path to file (*.NET) that created after the neural network training with ANN program. This file contains the states of threshold and weights of the neurons of the network.</td>
+</tr>
+
+<tr>
+<td>LayerHidden01</td>
+<td>Integer</td>
+<td>Number of neurons on 1. hidden layer</td>
+</tr>
+<tr>
+<td>LayerHidden02</td>
+<td>Integer</td>
+<td>Number of neurons on 2. hidden layer</td>
+</tr>
+<tr>
+<td>LayerHidden03</td>
+<td>Integer</td>
+<td>Number of neurons on 3. hidden layer</td>
+</tr>
+<tr>
+<td>LayerHidden04</td>
+<td>Integer</td>
+<td>Number of neurons on 4. hidden layer</td>
+</tr>
+<tr>
+<td>LayerHidden05</td>
+<td>Integer</td>
+<td>Number of neurons on 5. hidden layer</td>
+</tr>
+<tr>
+<td>LayerHidden06</td>
+<td>Integer</td>
+<td>Number of neurons on 6. hidden layer</td>
+</tr>
+<tr>
+<td>LayerHidden07</td>
+<td>Integer</td>
+<td>Number of neurons on 7. hidden layer</td>
+</tr>
+<tr>
+<td>LayerHidden08</td>
+<td>Integer</td>
+<td>Number of neurons on 8. hidden layer</td>
+</tr>
+<tr>
+<td>LayerHidden09</td>
+<td>Integer</td>
+<td>Number of neurons on 9. hidden layer</td>
+</tr>
+<tr>
+<td>LayerHidden10</td>
+<td>Integer</td>
+<td>Number of neurons on 10. hidden layer</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>String</td>
+<td>Object name</td>
+</tr>
+<tr>
+<td>Ni</td>
+<td>Real</td>
+<td>Learning coefficient</td>
+</tr>
+<tr>
+<td>SignalInputs</td>
+<td>TStrings</td>
+<td>Names of input signals</td>
+</tr>
+<tr>
+<td>SignalOutputs</td>
+<td>TStrings</td>
+<td>Names of output signals</td>
+</tr>
+</table>
+
+<p>
+
+After placing the necessary objects in to the form it is necessary to connect the neural network with input and output signals. First we choose input signals by clicking on property SignalInputs. The given dialog box is used for an easy selection of object names on a neural network input. The same way we connect output signals with neural network.
+<p>
+
+By connecting signals with neural networks the value of property InputsLayer and OutuptsLayer is automatically changed.
+<p>
+
+<b>Methods</b>
+<br>
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=2 >
+<tr VALIGN=TOP BGCOLOR="#F0F0F0">
+<td WIDTH="120">Method name</td>
+<td>Description</td>
+</tr>
+<tr>
+<td>Constructor Create</td>
+<td>Creates object TNeuralNet</td>
+</tr>
+<tr>
+<td>Destructor Destroy</td>
+<td>Free memory taken by object</td>
+</tr>
+<tr>
+<td>Procedure LoadFromFile(FileName:String)</td>
+<td>Load weights and thresholds from file.
+<p>
+<b>Note:</b> Number of layers and neurons on every layer in the program must be the same as the number of layers and neurons on every layer in neural net what was trained by program ANN.</td>
+</tr>
+<tr>
+<td>Procedure SaveToFile(FileName:String)</td>
+<td>Saves weights and thresholds to file.</td>
+</tr>
+<tr>
+<td>Procedure Update</td>
+<td>Calculate values on networks outputs depending on input data.</td>
+</tr>
+</table>
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Example 1"></a><b>EXAMPLE 1 - USING NEUROVCL
+</td></tr></tbody></table>
+
+Using ANN on created appropriate training set is trained neural network for specific problem solving. Given weights and thresholds from neural networks are saved to file, which is later used in the program that is being created.
+<p>
+
+In this example neural network is trained to recognize 12 different patterns size 3×3 (figure 1.1) in array size 5×5. These patterns can be placed in 9 positions in array (figure 1.2.). The training set for this net is consisted of 108 elements (the number of positions × the number of shapes) and the exact examples (figure 1.1, and 1.2).
+<p>
+
+<b>Neural network configuration:</b><br>
+Three layers neural net with backpropagation algorithm of training:<br>
+Number neurons at input layer (number of inputs): 5×5 = 25 (figure 1.1.)<br>
+Number neurons at hidden layer: 20<br>
+Number neurons at output layer (number of outputs): 12<br>
+Learning coefficient (alpha): 0.25<br>
+Number of patterns in training set: 12×9 = 108 (figure 1.1 and figure 1.2)<p>
+<b>Training set:</b>
+<p>
+
+<b>a) Inputs:</b>
+<center><img SRC="poz.png" BORDER=2 height=207 width=223>
+<br>figure 1.1. - positions of object in array</center>
+<p>
+
+ANN has been trained by using 3 textual files (*.INI, *.INP, *.OUT). The details about file specification can be read in [5, 6].
+<p>
+
+After a successful training the neural network is necessary for saving weights and thresholds in the file (for example <i>shapes.net</i>).
+<p>
+
+<center><img SRC="all.jpg" BORDER=2 height=127 width=173>
+<br>figure 1.2. - different objects</center>
+<p>
+
+This example shows the flow of the application building for the pattern recognition in array 5×5. It is necessary to set 37 objects type of TSignal (25 inputs + 12 outputs). Set 25 TImage that reacts when user clicks on it and object changes colors (black or white). By changing colors the value of the signals (TSignal) linked to image (Algorithm 1.1.) were changed.
+<p>
+
+<table CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#F0F0F0" >
+<tr>
+<td><tt>
+TForm1.Image1Click(Sender: TObject);<br>
+begin<br>
+If Image1.Canvas.Pixels[12,12]=RGB(0,0,0) then<br>
+&nbsp;&nbsp; begin<br>
+&nbsp;&nbsp; Image1.Canvas.Brush.Color:=RGB(255,255,255);<br>
+&nbsp;&nbsp; In01.Value:=0;<br>
+&nbsp;&nbsp; end<br>
+&nbsp;&nbsp; else<br>
+&nbsp;&nbsp; begin<br>
+&nbsp;&nbsp; Image1.Canvas.brush.Color:=RGB(0,0,0);<br>
+&nbsp;&nbsp; In01.Value:=1;<br>
+&nbsp;&nbsp; end;<br>
+Image1.Canvas.Rectangle(5,5,46,53);<br>
+end;</tt></td>
+</tr>
+</table>
+
+<center>Algorithm 1.1. Procedure links the reaction of the user (clicking mouse button on image) with inputs of neural networks.</center>
+<p>
+
+The TneuralNet type object must be set on the form. This object has to be linked with input and output signals (figure 4).
+<p>
+
+Two buttons (TButton) are placed so that the program could be controlled easier.
+<p>
+
+When designing of the user interface is finished, it is necessary to add programming code to link events.
+<p>
+
+In procedure that is performed during the start of the program, we should load network weights and thresholds and activate objects.
+<p>
+
+<table CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#F0F0F0" >
+<tr>
+<td><tt>Procedure TForm1.FormCreate(Sender: TObject);<br>
+Begin<br>
+&nbsp;&nbsp; NeuralNet1.LoadFromFile(shapes.net');<br>
+&nbsp;&nbsp; NeuralNet1.Activate:=true;<br>
+End;</tt></td>
+</tr>
+</table>
+
+<center>Algorithm 1.2 - Loading network coefficients and activating object</center>
+
+<p>
+Procedure that determinates what symbol is drawn on array (Algorithm 1.3.).
+<br>
+<table CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#F0F0F0" >
+<tr>
+<td><tt>Procedure TForm1.Button1Click(Sender: TObject);<br>
+Begin<br>
+NeuralNet1.Update;//update outputs on neural net<br>
+Max:=Out01.Value; //determinate max output value<br>
+Pos:=1;<br>
+If max&lt;Out02.Value then<br>
+&nbsp;&nbsp; Begin<br>
+&nbsp;&nbsp; Max:=Out02.Value;<br>
+&nbsp;&nbsp; Pos:=2;<br>
+&nbsp;&nbsp; End;<br>
+.....<br>
+Repeated for every 12 values<br>
+.....<br>
+If pos=1 then label1.caption:='1';<br>
+If pos=2 then label1.caption:='2';<br>
+...<br>
+&nbsp;&nbsp; End;<br>
+&nbsp;&nbsp; Str(max:4:2,SMax);<br>
+&nbsp;&nbsp; Label2.Caption:=SMax;// probability<br>
+End;</tt></td>
+</tr>
+</table>
+
+<center>Algorithm 1.3 – Determination of the symbol in array</center>
+<p>
+
+Symbols that we want to determinate are brought on input of neural network using classical programming method. Comparisons of the values on neural network outputs are performed with IF command, by which the symbol in the array is determined. As we can see in this program neural networks can be viewed as complex function (black box) with 25 inputs and 12 outputs.
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="example 2"></a>EXAMPLE 2 - BYNARY FUNCTIONS
+</td></tr></tbody></table>
+
+<p><b>Description of problem</b>
+<p>
+
+Program demonstrate calculation of 10 binary function with apliance neural networks.
+<p>
+
+In this program is used three layers neural net with backpropagation algorithm of training:
+<p>
+
+Number neurons at input layer (number of inputs): 2<br>
+Number neurons at hidden layer: 6<br>
+Number neurons at output layer (number of outputs): 10<br>
+Learning coefficient (alpha): 0.25<br>
+Number of patterns in training set: 10
+<p>
+Training set which is used for neural network training is shown in following table:
+<br>
+<table BORDER CELLSPACING=0 COLS=12 WIDTH="100%" >
+<tr ALIGN=CENTER>
+<td BGCOLOR="#FFFFCC">input 1</td>
+<td BGCOLOR="#FFFFCC">input 2</td>
+<td>output 1</td>
+<td>output 2</td>
+<td>output 3</td>
+<td>output 4</td>
+<td>output 5</td>
+<td>output 6</td>
+<td>output 7</td>
+<td>output 8</td>
+<td>output 9</td>
+<td>output 10</td>
+</tr>
+<tr ALIGN=CENTER BGCOLOR="#CCCCCC">
+<td BGCOLOR="#FFFF99">x</td>
+<td BGCOLOR="#FFFF99">y</td>
+<td>x <b>and</b> y</td>
+<td>x <b>or</b> y</td>
+<td>x <b>xor</b> y</td>
+<td>x<b> =></b> y</td>
+<td>x <b>&lt;=></b> y</td>
+<td><b>not</b>(x)</td>
+<td><b>not</b>(y)</td>
+<td><b>not</b>
+<br>(x <b>and</b> y)</td>
+<td><b>not</b>
+<br>(x <b>or</b> y)</td>
+<td><b>not</b>
+<br>(x <b>=></b> y)</td>
+</tr>
+<tr ALIGN=CENTER>
+<td BGCOLOR="#FFFFCC">0</td>
+<td BGCOLOR="#FFFFCC">0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr ALIGN=CENTER>
+<td BGCOLOR="#FFFFCC">0</td>
+<td BGCOLOR="#FFFFCC">1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr ALIGN=CENTER>
+<td BGCOLOR="#FFFFCC">1</td>
+<td BGCOLOR="#FFFFCC">0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr ALIGN=CENTER>
+<td BGCOLOR="#FFFFCC">1</td>
+<td BGCOLOR="#FFFFCC">1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</table>
+
+<p>
+
+<b>Creating and training neural networks</b>
+<p>
+
+First is created file BIN.INI that is used to define neural network structure, number of layer and number of neurons on every layer. Then is necessary to create two files to describe training set (BIN.INP, BIN.OUT).<br>
+
+ANN (neural network training program) is used to train created neural network and save states of connection weights in file (BIN.NET).
+<center>
+<p><img SRC="ANN.jpg" height=233 width=300>
+<br>Figure 2.1. - ANN - neural network training program</center>
+<p>
+
+<b>Developing application in Delphi</b>
+<p>
+
+On form was putted 12 object type TNNSignal (2 for inputs and 10 for outputs of network) and 1 object type TNeuralNet. In object inspector was adopted properties SignalInputs and SignalOutputs by dialog box to connect input and output signals with neural network. On hidden layer must be putted same number of neurons as in network during training with ANN.
+<center>
+<p>
+
+<img SRC="example1.gif" BORDER=0 height=157 width=180>
+<br>Figure 2.2. - Form in Delphi during development application</center>
+
+<p>When user click on button is executed following procedure:
+<br>
+<table CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#F0F0F0">
+<tr>
+<td><tt>procedure TForm1.Button1Click(Sender: TObject);<br>
+var s:string;<br>
+begin<br>
+&nbsp; Input1.Value:=StrToFloat(Edit1.text); //set new value on first network input<br>
+&nbsp; Input2.Value:=StrToFloat(Edit2.text); //set new value on second network input<br>
+&nbsp; NeuralNet1.Update;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// count now values on network outputs<br>
+&nbsp; str(Output1.Value:2:2,s); // read value on first network output and convert to string<br>
+&nbsp; Label1.Caption:=s;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// show value on first network output<br>
+&nbsp; str(Output2.Value:2:2,s);<br>
+&nbsp; Label2.Caption:=s;<br>
+&nbsp; str(Output3.Value:2:2,s);<br>
+&nbsp; Label3.Caption:=s;<br>
+&nbsp; str(Output4.Value:2:2,s);<br>
+&nbsp; Label4.Caption:=s;<br>
+&nbsp; str(Output5.Value:2:2,s);<br>
+&nbsp; Label5.Caption:=s;<br>
+&nbsp; str(Output6.Value:2:2,s);<br>
+&nbsp; Label6.Caption:=s;<br>
+&nbsp; str(Output7.Value:2:2,s);<br>
+&nbsp; Label7.Caption:=s;<br>
+&nbsp; str(Output8.Value:2:2,s);<br>
+&nbsp; Label8.Caption:=s;<br>
+&nbsp; str(Output9.Value:2:2,s);<br>
+&nbsp; Label9.Caption:=s;<br>
+&nbsp; str(Output10.Value:2:2,s);<br>
+&nbsp; Label10.Caption:=s;<br>
+end;</tt></td>
+</tr>
+</table>
+
+<center>Algorithm  2.1 - Loading network parameters and activating objects</center>
+<p>
+
+<b>Content of file with example N_SRC1.ZIP</b>
+<br><tt>/data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // copy files from this directory in directory data of program ANN<br>
+&nbsp;&nbsp; bin.ini&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // information about network configuration<br>
+&nbsp;&nbsp; bin.inp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // training set - inputs<br>
+&nbsp;&nbsp; bin.out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // training set - outputs<br>
+/source<br>
+&nbsp; bin.net&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // connection weights count using ANN V2.3<br>
+&nbsp; Project1.cfg<br>
+&nbsp; Project1.dof<br>
+&nbsp; Project1.dpr<br>
+&nbsp; Project1.res<br>
+&nbsp; Unit1.dcu<br>
+&nbsp; Unit1.dfm<br>
+&nbsp; Unit1.pas</tt>
+<p>
+
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="example 3"></a>EXAMPLE 3 - PATTERN RECOGNITION
+</td></tr></tbody></table>
+
+<p><b>Description of problem</b>
+<p>
+
+This program demonstrate using of NeuroVCL components for pattern recognition. Neural network is trained on examples to recognize 8 shapes in matrix 3×3.
+<p>
+
+In this program is used three layers neural net with backpropagation algorithm of training:
+<p>
+
+Number neurons at input layer (number of inputs): 9<br>
+Number neurons at hidden layer: 6<br>
+Number neurons at output layer (number of outputs): 8<br>
+Learning coefficient (alpha): 0.25<br>
+Number of patterns in training set: 8
+<p>
+
+Training set what is used for training neural network. Training set is consisting eight patterns (figure 3.1).
+<p>
+
+<center>
+<img SRC="paterns_ex1.gif" BORDER=2 height=148 width=266>
+<br>Figure 3.1 - pattrerns from training set</center>
+<p>
+
+Neural network have 8 outputs (every output present one of patterns). Output of neural networks is one value 1 and rest of values is 0. Position of 1 determinate pattrern on input.
+<p>
+
+<b>Creating and training neural networks</b>
+<p>
+
+First is created file PATTERNS.INI that is used to define neural network structure, number of layer and number of neurons on every layer. Then is necessary to create two files to describe training set (PATERNS.INP, PATERNS.OUT).<br>
+
+ANN (neural network training program) is used to train created neural network and save states of connection weights in file (PATERNS.NET).
+<p>
+
+<center>
+<img SRC="ANN.jpg" height=233 width=300>
+<br>Figure 3.2 - ANN - neural network training program</center>
+<p>
+
+<b>Developing application in Delphi</b>
+<p>
+
+On form was putted 17 object type TNNSignal (9 for inputs and 8 for outputs of network) and 1 object type TNeuralNet. In object inspector was adopted properties SignalInputs and SignalOutputs by dialog box to connect input and output signals with neural network. On hidden layer must be putted same number of neurons as in network during training with ANN.
+<p>
+
+<center>
+<img SRC="example2.gif" BORDER=2 height=164 width=250>
+<br>Figure 3.2 - Form in Delphi during development application</center>
+<p>
+
+<table CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#F0F0F0" >
+<tr>
+<td><tt>procedure TForm1.Image1Click(Sender: TObject);<br>
+begin<br>
+&nbsp; if image1.Canvas.Pixels[12,12]=RGB(0,0,0) then<br>
+&nbsp;&nbsp;&nbsp; begin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; image1.Canvas.brush.Color:=RGB(255,255,255);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In01.Value:=0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// &lt;- field color white<br>
+&nbsp;&nbsp;&nbsp; end<br>
+&nbsp; else<br>
+&nbsp;&nbsp;&nbsp; begin<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; image1.Canvas.brush.Color:=RGB(0,0,0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In01.Value:=1;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// &lt;- field color black<br>
+&nbsp;&nbsp;&nbsp; end;<br>
+&nbsp; image1.Canvas.Rectangle(5,5,46,53);<br>
+end;</tt></td>
+</tr>
+</table>
+
+<center>Algorithm 3.1 - connecting user reaction
+(click on Image) with neural network</center>
+
+<p><br>
+<table CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" BGCOLOR="#F0F0F0" >
+<tr>
+<td><tt>procedure TForm1.Button1Click(Sender: TObject);<br>
+&nbsp;var max:real;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; pos:integer;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; smax:string;<br>
+&nbsp;begin<br>
+&nbsp;&nbsp; NeuralNet1.Update;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // &lt;- update values on neural network output<br>
+&nbsp;&nbsp; max:=Out01.Value;<br>
+&nbsp;&nbsp; pos:=1;<br>
+&nbsp;&nbsp; if max&lt;Out02.Value then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin max:=Out02.Value; pos:=2;
+end;<br>
+&nbsp;&nbsp; if max&lt;Out03.Value then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin max:=Out03.Value; pos:=3;
+end;<br>
+&nbsp;&nbsp; if max&lt;Out04.Value then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin max:=Out04.Value; pos:=4;
+end;<br>
+&nbsp;&nbsp; if max&lt;Out05.Value then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin max:=Out05.Value; pos:=5;
+end;<br>
+&nbsp;&nbsp; if max&lt;Out06.Value then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin max:=Out06.Value; pos:=6;
+end;<br>
+&nbsp;&nbsp; if max&lt;Out07.Value then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin max:=Out07.Value; pos:=7;
+end;<br>
+&nbsp;&nbsp; if max&lt;Out08.Value then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; begin max:=Out08.Value; pos:=8;
+end;&nbsp;<br>
+&nbsp;&nbsp; Case pos of<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1:label9.caption:='1';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2:label9.caption:='2';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3:label9.caption:='3';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4:label9.caption:='4';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5:label9.caption:='5';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6:label9.caption:='6';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7:label9.caption:='7';<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8:label9.caption:='8';<br>
+&nbsp;&nbsp;&nbsp; end;<br>
+&nbsp;&nbsp;&nbsp; str(max:4:2,smax);<br>
+&nbsp;&nbsp;&nbsp; label10.caption:=smax;<br>
+&nbsp;end;</tt></td>
+</tr>
+</table>
+
+<center>Algorithm 3.2 - updating network outputs and showing results</center>
+<p>
+
+Content of file with example N_SRC2.ZIP
+<br><tt>/data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // copy files from this directory in directory data of program ANN<br>
+&nbsp;&nbsp; paterns.ini&nbsp;&nbsp;&nbsp; // information about network configuration<br>
+&nbsp;&nbsp; paterns.inp&nbsp;&nbsp;&nbsp; // training set - inputs<br>
+&nbsp;&nbsp; paterns.out&nbsp;&nbsp;&nbsp; // training set - outputs<br>
+/source<br>
+&nbsp; paterns.net&nbsp;&nbsp;&nbsp;&nbsp; // connection weights count using ANN V2.3<br>
+&nbsp; Project1.cfg<br>
+&nbsp; Project1.dof<br>
+&nbsp; Project1.dpr<br>
+&nbsp; Project1.res<br>
+&nbsp; Unit1.dcu<br>
+&nbsp; Unit1.dfm<br>
+&nbsp; Unit1.pas</tt>
+<p>
+
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Conclusion"></a>CONCLUSION
+</td></tr></tbody></table>
+
+NeuroVCL components in combination with <a href="ANN.html">ANN</a> - neural network training program is not limited on patterns recognition. These components can be used for solving any problem, which can be presented in an appropriate way.
+<p>
+
+With the example given in this text we have seen that neural networks and classical methods for solving the problems (programming languages) are interlarded. The NeuroVCL components can be observed as an expansion of possibilities of Delphi programming languages.
+<p>
+
+The advantage of such combining is that the programmer does not have to know complex mathematics and logic functions that link inputs and outputs, as he must know that he solved the problem by classic method.
+<p>
+
+With the appliance of the object oriented programming, neural network is presented as an object, which is simply used for solving the exact problem. With such a method the programmer is free from necessity of knowing inputs and outputs of the inside projection principles of the neural network. It can be observed as a black box (unknown complex logic function).
+<p>
+
+The advantage of using the object components regarding to the other software that makes the appliance of the neural networks possible, is that the programmer may write an application of his own, not depending on other software (exp. MathLab).
+<p>
+
+Also, with the appliance of the object components, the programmer has freedom for creating the users interface, what differs from the specialized application.
+<p>
+
+Using <a href="ANN.html">ANN</a> and objects, which are forgoing developing NeuroVCL components, is developed <a href="ocr.html">OCR
+V1.1</a> program for recognizing Cyrillic letters [5, 6].
+<p>
+
+
+<hr WIDTH="100%">
+<p>Please send me a comments, suggestion and critics about improvement NeuroVCL components in newer version. Also if you have interesting examples with NeuroVCL components please send me on mail <a href="mailto:ilicv@EUnet.rs">ilicv@EUnet.rs</a>.
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="References"></a>REFERENCES
+</td></tr></tbody></table>
+
+[1] “Frequently asked questions about AI”, http://www.cs.cmu.edu/Web/Groups/AI/html/faqs/ai/ai_general/top.html<br>
+[2] “Neural Network Frequently asked questions”, ftp://ftp.sas.com/pub/neural/FAQ.html<br>
+[3] Hotomski, P., (1995): “Sistemi Veštačke inteligencije”, Tehnički fakultet “Mihajlo Pupin”, Zrenjanin<br>
+[4] Ilić, V., (1999) “ANN - Program za obučavanje neuronskih mreža sa backpropagation algoritmom učenja”, http://SOLAIR.EUnet.rs/~ilicv/ANN.html<br>
+[5] Ilić, V., (1999) “Obučavanje neuronskih mreža za prepoznavanje ćiriličnih slova”, magistarski rad, Tehnički Fakultet
+“Mihajlo Pupin”, Zrenjanin<br>
+[6] Ilić, V., (1999) “OCR - Program za prepoznavanje ćiriličnih slova”, http://SOLAIR.EUnet.rs/~ilicv/ocr.html
+<br>
+[7] Jocković, M., Ognjanović Z., Stankovski S. (1997) “Veštačka inteligencija inteligentne mašine i sistemi”, Grafomed, Beograd
+<br>
+[8] Milenković, S., (1997): “Veštačke neuronske mreže”, Zadužbina Andrejević, Beograd<br>
+[9] Reisdorph, K., (1999): “Naučite Delphi 4 za 21dan”, Kompjuter biblioteka, Čačak<br>
+[10] Sajić, I., (1995): “Neuronske mreže” , časopis “Računari” br 108, BIGZ, Beograd<br>
+[11] Savić, D., (1992), “Uvod u objektno programiranje”, PC Program, Beograd<br>
+[12] Subašić, P., (1998): “Fazi logika i neuronske mreže”, Tehnička Knjiga, Beograd
+<p>
+
+
+</td>
+
+
+<td valign="top" width="150" class="menu2"> <!--main right or menu-->
+
+<center><a href="NeuroVCL.html"><img SRC="yu.gif" BORDER=2 height=20 width=39></a></center>
+<font size="-2"><a href="NeuroVCL.html">Verzija
+na srpskom</a></font>
+<br>
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#F0F0F0" >
+<tr>
+<td>
+<center>Relatied with:</center>
+</td>
+</tr>
+</table>
+<a href="ocr.html">OCR</a>
+<p><a href="ANN.html">ANN</a>
+<p><a href="AI_index.htm">Artificial
+intelligence</a>
+<p><a href="neuro.html">Neural
+networks</a>
+<p><a href="FLAlg_eng.html">Force
+learn algorithm</a>
+<p><a href="enaa_eng.html">ENAA</a>
+
+<br>
+<br>
+<br><hr>
+<p>
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+<!-- Place this tag where you want the +1 button to render -->
+<g:plusone size="medium" href="NeuroVCL_eng.html"></g:plusone>
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+
+
+
+
+
+</td></tr>
+
+
+
+
+
+
+
+
+
+</tbody></table>
+</td></tr></tbody></table>
+
+
+<table width="100%">
+  <tbody><tr align="center">
+    <td class="footer" align="right">
+	  <hr>
+<table width="100%">
+<tbody><tr><td align="left">
+Page url: <a href="http://SOLAIR.EUnet.rs/~ilicv/NeuroVCL_eng.html">http://SOLAIR.EUnet.rs/~ilicv/NeuroVCL_eng.html</a></td>
+<td align="right">
+Web design by: <a href="http://solair.eunet.rs/%7Eilicv/">Velibor Ilic</a>
+</td></tr></tbody></table>
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<td width="30"></td></tr>
+</tbody></table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-11148888-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</center></body></html>

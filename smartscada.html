@@ -1,0 +1,508 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+   <meta name="Author" content="Velibor Ilic">
+   <meta name="KeyWords" content="scada, delphi, objektno, orijentisano, programiranje, oop, process, control, signal, alarm,">
+   <meta name="revisit-after" content="15 days">
+   <meta name="ROBOTS" content="ALL">
+   <meta name="Description" content="U radu se govori o postupku izrade nadzornih i upravljackih programa upotrebom SmartSCADA programskog alata; sa primerom primene u NIS Naftagas Novi Sad.">
+   <title>SmartSCADA programski alat za kreiranje upravljackog i nadzornog softvera</title>
+
+  <link rel="stylesheet" type="text/css" href="my.css" media="screen,projection">
+</head>
+<body>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 728x15, created 10/17/09 */
+google_ad_slot = "8046978970";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<table width=100% cellpadding="0" cellspacing="0">
+<tr>
+<td width="30"></td>
+<td align="left" background="header_bg.png">
+<img src="header.png"><br>
+
+
+
+
+<table width="100%" bgcolor="#FFFFFF" border="1" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td>
+          
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tbody><tr valign="top">
+
+<td class="menu_back" width="150" align="left"> <!--menu-->
+<table cellpadding="2" cellspacing="0">
+<tbody><tr valign="top">
+<td>
+
+<a href="index.html">Home</a><br>
+<a href="VeliborCV.html">Biografija</a><br>
+<hr width="135" align="center">
+
+<a href="automatsko_trgovanje.html">Automatsko trgovanje</a><br>
+<a href="PProgrami.htm">Poslovni programi</a><br>
+<a href="recnik.html">Rečnik</a><br>
+<a href="PlanB.htm">PlanB</a><br>
+<hr width="135" align="center">
+
+<a href="AI_index.htm">Veštačka inteligencija</a><br>
+<a href="neuro.html">Neuronske mreže</a><br>
+<a href="ANN.html">ANN</a><br>
+<a href="FLAlg.html">Force learn algoritam</a><br>
+<a href="NeuroVCL.html">NeuroVCL</a><br>
+<a href="agenti.html">Agenti</a><br>
+<a href="enaa.html">ENAA</a><br>
+
+<hr width="135" align="center">
+
+<a href="ocr_opis.html">OCR</a><br>
+<a href="ocr.html">OCR soft</a><br>
+<hr width="135" align="center">
+
+<a href="scada.html">Izrada SCADA</a><br>
+<a href="smartscada.html">SmartSCADA</a><br>
+<hr width="135" align="center">
+
+<a href="https://www.dropbox.com/s/a8p6nygmuqemzbf/nanotehnlogija.pdf?dl=0">Nanotehnologija</a><br>
+<a href="linkovi.htm">Linkovi</a><br>
+<a href="free.html">Free Download</a>
+<br>
+<hr width="135" align="center">
+<br>
+<br>
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0327694111200541";
+/* 120x90, created 10/17/09 */
+google_ad_slot = "0178951326";
+google_ad_width = 120;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+<br>
+<br>
+<p style="margin-top: 0; margin-bottom: 0">
+<a href="http://usa.nedstatbasic.net/cgi-bin/viewstat?name=ilicv"><img
+src="http://usa.nedstatbasic.net/cgi-bin/nedstat.gif?name=ilicv"
+border=0 alt="" nosave width=22 height=22></a>
+</center>
+
+
+
+</td></tr></tbody>
+</table>
+</td> <!--menu-->
+
+
+<td valign="top" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+
+
+<td valign="top" width="100%" align="left"> <!--main-->
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+ <tbody><tr>
+   <td>
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="3">
+<tbody><tr>
+
+<td valign="top" align="left"> <!--main left-->
+
+<table BORDER CELLSPACING=0 CELLPADDING=0 COLS=1 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP BGCOLOR="#333333">
+<center><font size="+2" face="Arial,Helvetica" color="#EDE8DE">
+<b>SmartSCADA programski alat za kreiranje upravljackog i nadzornog softvera</b>
+</font></center></td>
+</tr>
+</table>
+<br> 
+
+<p><b>Autori:</b>
+<br><a href="VeliborCV.html">Velibor Ilić</a>,
+<a href="mailto:ilicv@EUnet.rs">ilicv@EUnet.rs</a>
+<br>Jovan Mirilovic<br>
+
+<p><b>ABSTRAKT: </b><i>U radu se govori o postupku izrade nadzornih i upravljačkih programa upotrebom SmartSCADA
+programskog alata; sa primerom primene u NIS Naftagas Novi Sad.</i>
+<p><b>KLJUČNE REČI: </b>procesno upravljanje, nadzorni sistemi, OOP (Object Oriented Programming), OPC (Ole for Process
+Control), ActiveX, baze podataka, client/server, Delphi
+<p>
+<hr WIDTH="100%"><b>Title:</b> SmartSCADA programming tool for development control and monitoring software
+<p><b>Abstract:</b> This text describes SmartSCADA programming tool for development control and monitoring software.
+<br><b>Key words:</b> process control, data acquisition, OOP (Object Oriented Programming), OPC (Ole for Process Control), ActiveX, database, client/server, Delphi
+<br>
+<hr WIDTH="100%">
+<br>Rad je prezentovan na seminaru “Primena informatičkih tehnologija u industriji nafte i gasa” JUNG info
+<p><b>Datum izrade</b>: Novembar, 2001.
+<br>
+
+<p>
+<p>
+<hr width="97%">
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<tr>
+<td>
+<a href="http://twitter.com/velibor" class="twitter-follow-button" data-show-count="false">Follow @velibor</a>
+<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+&nbsp; &nbsp; &nbsp;
+<td>
+<a title="Velibor Ilic" href="http://www.researchgate.net/profile/Velibor_Ilic/"><img src="http://www.researchgate.net/images/public/profile_image_my_profile_big.png" alt="Velibor Ilic" /></a>
+</td>
+</tr>
+</table>
+<hr width="97%">
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Sadrzaj"></a>Sadržaj
+</td></tr></tbody></table>
+
+<a href="#uvod">Uvod</a>
+<br><a href="#orgnaizacija_scade">Organizacija SmartSCADE</a>
+<br><a href="#komponente">Komponente SmartSCADE</a>
+<br><a href="#otvorenost_sistema">Otvorenost sistema</a>
+<br><a href="#zakljucak">Zaključak</a>
+<br><a href="smartscada.html#literatura">Literatura</a>
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="uvod"></a>Uvod
+</td></tr></tbody></table>
+
+Razvoj savremenih objektno orijentisanih programskih jezika u WINDOWS okruženju, sa mogućnošću vizuelnog programiranja pomoću komponenti, omogućio je enormno ubrzanje u kreiranju programa raznih namena. Naročito se razvio deo koji se odnosi na upravljanje bazama podataka. Danas se na tržištu može naći više softverskih paketa koji pružaju mogućnost vizuelnog razvoja aplikacija kao što su Borland Delphi, Borland C++ Builder, Microsoft Visual Studio (Visual C++, Visual Basic), Microsoft Access i drugi.
+
+<p>Ovi programski paketi se odlikuju velikom brzinom izrade aplikacija (RAD, Rapid Application Develop). Programi se u njima kreiraju postavljanjem i povezivanjem softverskih komponenti u celinu, poput slaganja LEGO kockica. Da bi se moglo na ovaj način programirati, ovi programski paketi moraju da imaju niz predefinisanih komponenti, formi i čarobnjaka (wizard) za razne delove programa.
+
+<p>Danas na tržištu postoji veliki broj nezavisnih proizvođača softverskih komponenti za razne namene, pa tako i za razvoj SCADA aplikacija. Međutim, većina njih obuhvata samo pojedine elemente jednog SCADA sistema.
+
+<br>SmartSCADA predstavlja nadogradnju (sistem softverskih komponenti) za razvojno okruženje DELPHI i C++ Builder, kompanije Borland, koje omogućava ovim razvojnim sistemima da postanu sistemi za razvoj SCADA aplikacija, zadržavajući jednostavnost i brzinu kreiranja aplikacija.
+
+<p>Sistem komponenti, SmartSCADA, smo kreirali iz sledećih razloga:
+<ul>
+<li>Brzina izrade aplikacije. Uvek postoji vremensko ograničenje, odnosno rok do kada aplikacija mora da se završi i proveri
+u praksi.</li>
+<li>Veliki dijapazon zahteva korisnika aplikacija.</li>
+<li>Nedovoljna definisanost projekata i često nejasni ciljevi. Što kasnije dovodi do izmena u softveru, pa i hardveru.</li>
+<li>Primena standardnih objektno orjentisanih programskih jezika, DELPHI ili C++ Builder.</li>
+<li>Mogućnost izrade aplikacija sa minimumom koda, čime se drastično povećava stabilnost softvera.</li>
+<li>Standardan interfejs za komunikaciju prema različitim hardverskim uređajima i raznim softverima.</li>
+<li>Niža cena krajnje aplikacije jer se ne koristi Run Time modul, već je proizvod aplikacija u izvršnom kodu (EXE).</li>
+</ul>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="orgnaizacija_scade"></a>Organizacija SmartSCADE
+</td></tr></tbody></table>
+
+Zahtevi nadzorno/upravljačkih sistema koje pokriva SmartSCADA su:
+<ul>
+<li>Komuniciranje sa signalima iz realnog sveta.</li>
+<li>Alarmiranje nedozvoljenih stanja signala.</li>
+<li>Konverzija vrednosti signala iz sirovih u inženjerske i obrnuto.</li>
+<li>Arhiviranje podataka stanja signala.</li>
+<li>Prikaz trenutnih vrednosti signala na različite načine.</li>
+<li>Prikaz arhiviranih vrednosti signala na različite načine.</li>
+<li>Menjanje vrednosti signala, radi upravljanja procesima.</li>
+<li>Kreiranje raznih izveštaja, kako standardnih tako i nestandardnih.</li>
+</ul>Komponente koje se upotrebljavaju u SmartSCADI, mogu se podeliti na vizuelne (preko kojih se prikazuje situacija nadgledanog sistema MMI) i nevizuelne komponente koje omogućavaju očitavanje i obradu signala iz realnog sveta.
+
+<br>SmartSCADA komponente su dizajnirane tako da se određene metode objekata automatski izvršavaju bez posebnog programiranja. Na primer, komponenta TAlarmHandler konstantno nadgleda signale koji se nalaze u sistemu i ukoliko neki od signala prekorači dozvoljeni opseg vrednosti, komponenta automatski prikazuje na ekranu poruku o alarmu sa pratećim zvučnim signalom i u bazu podataka upisuje datum/vreme pojave alarma, opis i nivo alarma.
+
+<p>Prenošenje stanja nekog signala na bilo koju vizuelnu ili nevizuelnu komponentu se obavlja prostim povezivanjem osobina jedne komponente sa signalom, što se ostvaruje u vreme dizajniranja aplikacije.
+
+<center>
+<p><img SRC="scada.jpg" height=300 width=400>
+<br>Slika 1 – Izgled jedne gotove aplikacije
+na objektu NIS-NAFTAGAS-a</center>
+
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="komponente"></a>Komponente SmartSCADE 
+</td></tr></tbody></table>
+
+Komponente SmartSCADE su podeljene na dve palete komponenti, Process System na kojoj se nalaze sistemske nevizuelne komponente, i Process Signal Controls na kojoj se nalaze vizuelne komponente.
+
+<center>
+<p><img SRC="ss_system.gif" height=53 width=576>
+<br>Slika 2 - Paleta Process System
+<p><img SRC="ss_controls.gif" height=54 width=582>
+<br>Slika 3 - Paleta Process Signal Controls</center>
+
+<p><b>DEKLARACIJA I OBRADA SIGNALA</b>
+<br>Osnovu sistema SmartSCADA predstavljaju nevizuelne komponente, signali različitog tipa (TFloatSignal, TBooleanSignal, TIntegerSignal, TDateTimeSignal i TStringSignal). Upravljanje signalima se vrši pomoću komponente TSignalCollection. Komponenta omogućava kreiranje, brisanje i podešavanje signala.
+
+<p>Signalne komponente su izrađene u skladu sa standardom OPC DA 2.04. Osnovne osobine (property) signala su:
+<ul>
+<li>TagName: tehnološki naziv.</li>
+<li>Description: opis osnovnih funkcija.</li>
+<li>AditionalProperties: dodatni skup osobina koje korisnik može naknadno definisati.</li>
+<li>IniFile: određuje u koji ini fajl će biti snimljene osobine signala.</li>
+<li>TimeStamp: opisuje vreme između dva osvežavanja stanja signala.</li>
+<li>RawDataType: tip sirovih podataka koji se dobijaju sa upravljačkih sistema.</li>
+<li>Alarms: skup osobina koje opisuju alarmna stanja.</li>
+<li>ConvertProperties: skup osobina koje opisuju konverziju iz sirovih u inženjerske jedinice i obrnuto.</li>
+</ul>
+
+Osim navedenih osnovnih osobina svaki od tipova signala ima i svoje specifične osobine. 
+
+<br>Osobine signala se mogu obrađivati i menjati pomoću standardnih editora (ObjectInspector) ili specijalizovanih editora kako za vreme dizajniranja, tako i za vreme izvršavanja izrađenih aplikacija.
+
+<br>Specijalizovani editori se koriste prilikom izrade programa (dizajniranja) i omogućavaju grupno podešavanje signala u aplikaciji. Kreirani su sledeći editori:
+
+<p>
+<table WIDTH="100%" >
+<tr>
+<td VALIGN=TOP WIDTH="20%">Signals Editor</td>
+<td WIDTH="80%">omogućava kreiranje, brisanje i konfigurisanje signala koji se upotrebljavaju u sistemu. Editori koji se opisuju u ostatku teksta pozivaju se pomoću dugmića koji se mogu videti na gornjem delu editora.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Link editor</td>
+<td>prikazuje listu svih signala i komponenti na koje se ti signali mogu vezati. Omogućava povezivanje komponenti upotrebom
+drag and drop tehnike (prevlačenjem mišem).</td>
+</tr>
+<tr>
+<td VALIGN=TOP>Ini editor</td>
+<td>povezuje signale sa ini komponentom i na taj način se vrednost signala automatski snima i učitava iz ini fajla. Kada je signal povezan na Ini komponentu prilikom učitavanja programa dobija vrednost kakvu je imao pre zatvaranja aplikacije.</td>
+</tr>
+<tr>
+<td VALIGN=TOP>Alarm Editor</td>
+<td>omogućava grupno podešavanje alarma (alarmnih nivoa, alarmnih poruka, zvukova koji se javljaju u slučaju alarmnih situacija i prioritet alarma).</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Convert Editor</td>
+<td>pomoću ovog editora se podešava tip i parametri konverzije signala (sirov signal u inženjerske jedinice i obrnuto).</td>
+</tr>
+<tr>
+<td VALIGN=TOP>Active Editor</td>
+<td>u ovom editoru se podešava stanje signala (da li su aktivni ili ne).</td>
+</tr>
+<tr>
+<td VALIGN=TOP>Description Editor</td>
+<td>omogućava upisivanje komentara za svaki signal (funkcija signala, tip, gde je povezan u realnom sistemu i drugi bitni komentari vezani za određeni signal).</td>
+</tr>
+<tr>
+<td VALIGN=TOP>Aditional Properti Editor</td>
+<td>predstavlja editor pomoću koga se mogu dodavati dodatne osobine signala prema specifičnim zahtevima korisnika.</td>
+</tr>
+</table>
+
+<p><b>Prikaz i podešavanje vrednosti analognih signala</b>
+<br>Komponente koje omogućavaju prikaz i promenu vrednosti signala su u obliku prekidača, klizača, progres barova i mernih instrumenata.
+
+<p><b>Vizualizacija procesa</b>
+<br>Grupa komponenata koja omogućava vizuelno predstavljanje situacije u realnom procesu, ima sposobnosti za:
+<ul>
+<li>Promenu boje objekta u nekom geometrijskom obliku (četvorougao, krug, i sl.) u zavisnosti od stanja signala.</li>
+<li>Smenjivanje slika u zavisnosti od stanja signala.</li>
+<li>Pokretanje i zaustavljanje animacija.</li>
+</ul>
+
+<p><br><b>Alarmni sistem</b>
+<br>Komponente koje omogućavaju detektovanje i evidenciju alarmnih situacija u sistemu kojim se upravlja. Realizovana komponenta detektuje promene digitalnih signala i analognih signala u željenom opsegu (sa razlikovanjem gornje i donje granice).
+
+<br>Kada dođe do alarmne situacije na ekranu se pojavljuje tekstualna poruka koja se beleži i u bazu podataka, što kasnije omogućava generisanje izveštaja o pojavi alarmnih situacija u određenom
+vremenskom periodu.
+
+<p><b>Bezbednosne komponente</b>
+<br>Sistem komponenti koji omogućava zaštitu pojedinih delova programa pomoću lozinki. Pored zaštitne uloge, sistem komponenti omogućava praćenje upotrebe procesne aplikacije (startovanje i zatvaranje programa, podešavanje parametara, generisanje izveštaja). Svaka promena operatera (unos nove lozinke) se beleži u bazu podataka tako da se lako može utvrditi koji operater je bio prisutan kada se vršila izmena parametara sistema ili kada se dogodila alarmna situacija u nadgledanom sistemu. Komponente se mogu podesiti tako da se dijalog za unos lozinke pojavi u tačno određeno vreme (evidentiranje promene operatera prilikom promene smene).
+
+<p><b>Praćenja eksternih događaja sa procesnog računara</b>
+<br>Pomoću skupa ovih komponenti se prate promene stanja signala iz realnog sistema. Pojava ovakvih signala ne predstavlja alarmnu situaciju ali je bitno evidentirati da su se dogodili i kada su se dogodili (na primer, puštanje u rad nekog motora).
+
+<p><b>Praćenje promene vrednosti analognih signala</b>
+<br>TSignalRecoder je komponenta na koju se vezuju analogni signali čije vrednosti želimo da pratimo radi kasnije obrade. Ima osobinu da automatski kreira sva potrebna polja u bazi sa imenima analognih signala koji su vezani za nju. Može se podesiti period snimanja vrednosti signala u bazu, veličina baze (konstantan broj recorda), da li se popunjava sa test podacima za vreme dizajniranja programa.
+
+<p><b>Generisanje izveštaja</b>
+<br>Izveštaji mogu biti grafički ili tabelarni, i uglavnom se generišu iz baza podataka. Izveštaji se mogu prilagoditi potrebama krajnjeg korisnika. Izveštaji se prikazuju u vremenskom periodu po izboru korisnika. Neki od mogućih izveštaja koji se mogu dobiti su:
+<ul>
+<li>Izveštaj o alarmima.</li>
+<li>Izveštaj o događajima u realnom sistemu.</li>
+<li>Izveštaj o upotrebi procesne aplikacije (startovanje i izlasci iz programa i podešavanje osetljivih delova programa).</li>
+<li>Tabelarni izveštaj o promeni analognih signala (temperature, pritisci, nivoi).</li>
+</ul>
+
+Pored standardnih izveštaja moguće je kreirati specifične grafičke izveštaje kao što je: 
+
+<br>Grafički izveštaj koji vadi podatke iz baze AnalogRecorderTable, a može da prikazuje i trenutne vrednosti iz tih merenih veličina:
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="otvorenost_sistema"></a>Otvorenost Sistema
+</td></tr></tbody></table>
+
+Signali u sistemu SmartSCADA sistemski su kreirani tako da sadrže editor kojim se omogućava podešavanje sistema bez izmena u izvornom kodu i kompajliranja krajnje aplikacije. Editor se poziva pomoću PopUp menija bilo koje od vizuelnih komponenti na koju je vezan dati signal. Omogućeno je grupno konfigurisanje više signala pozivanjem Edit metode u komponenti TSignalCollection. Naravno, programer koji kreira SCADA aplikaciju ima mogućnost da zaštiti šifrom ili potpuno onemogući konfigurisanje vrednosti programa u krajnjoj aplikaciji.
+
+<p>Editor je kreiran po uzoru na ObjectInspector iz programskog okruženja Delphi. Radi preglednosti, parametri koji se mogu podešavati su podeljeni na grupe (standardni, za konverziju, alarmni, dodatni). Ukoliko se pozove editor za analogni signal može se prikazati i grafikon na kome se vidi promena vrednosti signala u vremenu.
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="zakljucak"></a>Zaključak
+</td></tr></tbody></table>
+
+Sistem izrade SCADA softvera preko specijalizovanih objekata (komponenti) u standardnim objektno orjentisanim jezicima se, po lakoći upotrebe i brzini izrade softvera, približio gotovim paketima za izradu SCADA. Sve veći broj proizvođača procesnih (PLC) računara, isporučuje drajvere za OPC servere za komunikaciju sa svojim uređajima. Na taj način se sve više širi upotrebna vrednost softverskog paketa za izradu SCADA softvera prikazanog u ovom radu.
+<p>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="Down"></a>Download
+</td></tr></tbody></table>
+
+<b>SmartSCADA </b>komponente za Delphi 6
+<br>postavljeno za download 22.12.2001.
+<br>zadnja izmena 22.01.2002.
+<br><a href="https://www.dropbox.com/s/cspphdqodr4jnyq/SmartSCADA.zip?dl=0">Download!!!</a>
+SmartSCADA V1.0 (SmartSCADA.zip 676Kb)
+<br>https://www.dropbox.com/s/cspphdqodr4jnyq/SmartSCADA.zip?dl=0
+
+<p><b>SmartSCADA primeri</b>
+<br>postavljeno za download 22.12.2001.
+<br>zadnja izmena 22.01.2002.
+<br><a href="https://www.dropbox.com/s/poanxdfgjytfhcq/SCADAexamples.zip?dl=0">Download!!!</a>
+SmartSCADA primeri (examples.zip 165Kb)
+<br>https://www.dropbox.com/s/poanxdfgjytfhcq/SCADAexamples.zip?dl=0
+<br>
+
+<table class="header_large" width="450" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
+<a NAME="literatura"></a>Literatura
+</td></tr></tbody></table>
+
+[1] Mirilović, J., Ilić, V., (2001), “Izrada upravljačkog i nadzornog softvera upotrebom objektno orijentisanih programskih
+jezika”, II Seminar Automatike, AUP 2000, Banja Koviljača.
+<br>[2] “OPC/Open Control”, OCSTechnical.pdf, <a href="http://www.opctoolkit.com">http://www.opctoolkit.com</a>,
+<br>[3] “Ole for Process Control - Data Access Automation Interface Standard”, Version 2.1, OPC_20_Automation_Interface.pdf,
+January 1999
+<br>[4] Savić, D., (1992): “Uvod u objektno programiranje”, PC Program, Beograd
+<br>[5] Yao. P., Leinecker, C. R., (1995): “Visual C++ 5 Biblija”, Mikro Knjiga, Beograd
+<br>[6] Papeš, I., (1990): “Turbo Paskal 5.5”, Naučna Knjiga, Beograd
+<br>[7] Hansen, A., (1991): “Programiranje na jeziku C”, Mirko Knjiga, Beograd
+<br>[8] Stajić, D., Bilinski, P., (1991): “Računarske telekomunikacije i mreže”, Tehnička Knjiga, Beograd
+<br>[9] Stojić, M., (1978): “Kontinualni sistemi automatskog upravljanja”
+<br>[10] Cantu, M., (2000): “Delphi 5, Detaljan Izvornik”, Kompjuter biblioteka, Čačak
+<br>[11] Borland, (1992):"Programers reference"
+<br>[12] Borland, (1992):"Languge guide"
+<p>
+
+</td>
+
+
+<td valign="top" width="150" class="menu2"> <!--main right or menu-->
+
+<a href="http://translate.google.com/translate?prev=_t&hl=en&ie=UTF-8&u=http%3A%2F%2Fsolair.eunet.rs%2F%7Eilicv%2Fsmartscada.html&sl=sr&tl=en"><img SRC="en.gif" height=20 width=39> <font face="Arial,Helvetica"size=-2><br>English version<br>(Google Translate)</font></a> 
+<br>
+<br>
+<table BORDER CELLSPACING=0 CELLPADDING=0 WIDTH="100%" BGCOLOR="#F0F0F0" >
+<tr>
+<td>
+<center>Povezano sa:</center>
+</td>
+</tr>
+</table>
+<a href="scada.html">Izrada SCADA</a>
+
+
+<br>
+<br>
+<br><hr>
+<p>
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+<!-- Place this tag where you want the +1 button to render -->
+<g:plusone size="medium" href="http://SOLAIR.EUnet.rs/~ilicv/smartscada.html"></g:plusone>
+
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+
+
+
+
+
+</td></tr>
+
+
+
+
+
+
+
+
+
+</tbody></table>
+</td></tr></tbody></table>
+
+
+<table width="100%">
+  <tbody><tr align="center">
+    <td class="footer" align="right">
+	  <hr>
+<table width="100%">
+<tbody><tr><td align="left">
+Page url: <a href="http://SOLAIR.EUnet.rs/~ilicv/smartscada.html">http://SOLAIR.EUnet.rs/~ilicv/smartscada.html</a></td>
+<td align="right">
+Web design by: <a href="http://solair.eunet.rs/%7Eilicv/">Velibor Ilic</a>
+</td></tr></tbody></table>
+
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+<td width="30"></td></tr>
+</tbody></table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-11148888-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</center></body></html>
