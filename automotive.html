@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Velibor Ilić - WebPage - Automotive Software</title>
+
+  <style>
+:root{
+  --bg:#0b1220;
+  --card:#111a2e;
+  --text:#e7eefc;
+  --muted:#b9c6e6;
+  --line:rgba(255,255,255,.10);
+  --accent:#7aa7ff;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 16px;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(900px 500px at 20% 0%, rgba(122,167,255,.25), transparent 60%),
+              radial-gradient(900px 500px at 80% 10%, rgba(119,242,194,.18), transparent 60%),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+a{ color: var(--text); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+.wrap{ max-width: 1100px; margin: 0 auto; padding: 28px 18px 44px; }
+
+/* HERO */
+.hero{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap:24px;
+  align-items:start;
+  padding:22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.name-block{
+  display:grid;
+  grid-template-columns: auto 1fr;
+  column-gap:16px;
+  row-gap:6px;
+  align-items:start;
+}
+.name-row{ display:contents; }
+.logo{
+  grid-column:1; grid-row:1 / span 2;
+  height:100px; width:auto; opacity:.95;
+}
+.title{
+  grid-column:2; grid-row:1;
+  font-size:30px; font-weight:750; margin:0;
+}
+.subtitle{
+  grid-column:2; grid-row:2;
+  margin:0 0 14px; color: var(--muted);
+}
+.pillbar{ display:flex; flex-wrap:wrap; gap:8px; }
+.pill{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 10px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--line);
+  border-radius:999px;
+  font-size:13px;
+  color: var(--muted);
+}
+.photo{
+  width:116px; height:116px;
+  border-radius:14px; object-fit:cover;
+  border:1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+/* LAYOUT: left menu + right content */
+.page{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns: 220px 1fr;
+  gap:16px;
+}
+.card{
+  background: rgba(17,26,46,.78);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding:16px;
+}
+.section-title{
+  margin:0 0 10px;
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.profiles{ display:grid; gap:10px; margin-top:10px; }
+.plink{
+  display:flex; align-items:center; gap:12px;
+  padding:10px 12px;
+  border-radius:12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.plink:hover{
+  border-color: rgba(122,167,255,.35);
+  background: rgba(122,167,255,.08);
+  text-decoration:none;
+}
+.icon{ height:75px; width:auto; object-fit:contain; flex:0 0 auto; border-radius:14px; }
+.plink-title{ font-weight:650; font-size:14px; margin:0; }
+.plink-url{ font-size:12px; color: var(--muted); margin:0; }
+
+/* Active menu item */
+.plink.active{
+  border-color: rgba(122,167,255,.55);
+  background: rgba(122,167,255,.10);
+}
+
+/* Content area */
+.content h1{ margin:0 0 10px; font-size:24px; }
+.content p{ margin:0 0 12px; color: var(--muted); }
+.hero-img{
+  width:100%;
+  max-height:320px;
+  object-fit:cover;
+  border-radius:14px;
+  border:1px solid var(--line);
+  display:block;
+  margin: 10px 0 14px;
+}
+.links{
+  display:flex; flex-wrap:wrap; gap:10px;
+  margin-top:10px;
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:14px 12px;
+  border-radius:12px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--text);
+}
+.btn:hover{
+  border-color: rgba(119,242,194,.35);
+  background: rgba(119,242,194,.08);
+  text-decoration:none;
+}
+
+.ref-section{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:26px 0 10px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--line);
+}
+
+.ref-section img{
+  height:30px;
+  width:auto;
+  object-fit:contain;
+  flex:0 0 auto;
+  opacity:.95;
+}
+
+.ref-section h2{
+  margin:0;
+  font-size:16px;
+  font-weight:700;
+  color:var(--text);
+}
+
+.footer{
+  margin-top:22px;
+  color: var(--muted);
+  font-size:12px;
+  border-top: 1px solid var(--line);
+  padding-top:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px 16px;
+  justify-content: space-between;
+  align-items:center;
+}
+
+@media (max-width: 860px){
+  .hero{ grid-template-columns: 1fr; }
+  .photo{ width:140px; height:140px; }
+  .page{ grid-template-columns: 1fr; }
+  .icon{ height:56px; }
+}
+
+
+
+.yt-link a{
+  display:inline-flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  color: var(--text);
+  text-decoration:none;
+  padding:3 14px;
+}
+
+.yt-link a:hover{
+  border-color: rgba(255,0,0,.55);
+  background: rgba(255,0,0,.08);
+}
+.yt-link{
+  margin-bottom:8px;
+  
+}
+
+.yt-icon{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+}
+
+.yt-title{
+  font-weight:650;
+  font-size:14px;
+  margin:0;
+  line-height:1.15;
+}
+.yt-link p{
+  margin:0;
+}
+
+
+/* Compact menu */
+.menu{
+  display:grid;
+  gap:6px;
+  margin-top:8px;
+}
+
+.mlink{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 8px;
+  border-radius:10px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+  text-decoration:none;
+}
+
+.mlink:hover{
+  border-color: rgba(122,167,255,.35);
+  background: rgba(122,167,255,.08);
+  text-decoration:none;
+}
+
+.micon{
+  width:auto;
+  height:15px;
+  flex:0 0 auto;
+  object-fit:contain;
+  opacity:.95;
+}
+
+.mtext{
+  font-size:13px;
+  font-weight:650;
+  line-height:1.15;
+  margin:0;              /* ⬅️ nema prostora oko teksta */
+  white-space:nowrap;    /* ⬅️ sve u jednom redu */
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.mlink.active{
+  border-color: rgba(122,167,255,.55);
+  background: rgba(122,167,255,.10);
+}
+
+.hero-image{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:22px;
+}
+
+.hero-image img{
+  width:100%;
+  max-width:1280px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+
+.cv-layout{
+  display:grid;
+  grid-template-columns: 1fr 320px;
+  gap:22px;
+  align-items:start;
+  margin-bottom:10px;
+}
+
+.cv-text{
+  color: var(--muted);
+}
+
+.cv-image img{
+  width:100%;
+  border-radius:14px;
+  border:1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+<!-- TOP / HERO -->
+<div class="hero-image">
+    <img src="header.png" alt="Velibor Ilić Header">
+</div>
+
+    <!-- PAGE: menu + content -->
+    <div class="page">
+
+      <!-- LEFT MENU -->
+<aside class="card">
+  <div class="section-title">Menu</div>
+
+  <nav class="menu">
+    <a class="mlink" href="index.html">
+      <img class="micon" src="ai_ml_icon.png" alt="">
+      <span class="mtext">Home</span>
+    </a>
+
+    <a class="mlink" href="VeliborCV.html">
+      <img class="micon" src="cv_icon.jpg" alt="">
+      <span class="mtext">Velibor - Resume, CV</span>
+    </a>
+
+    <a class="mlink" href="ai_ml_application.html">
+      <img class="micon" src="ai_ml_icon.png" alt="">
+      <span class="mtext">AI / ML application</span>
+    </a>
+
+    <a class="mlink active" href="automotive.html">
+      <img class="micon" src="automotive_icon.jpg" alt="">
+      <span class="mtext">Automotive</span>
+    </a>
+
+    <a class="mlink" href="ai_trade.html">
+      <img class="micon" src="ai_trade_icon.jpg" alt="">
+      <span class="mtext">Algorithmic Trading</span>
+    </a>
+
+    <a class="mlink" href="music_video.html">
+      <img class="micon" src="music_img.jpg" alt="">
+      <span class="mtext">Music / Video</span>
+    </a>
+
+    <a class="mlink" href="automatsko_trgovanje.html">
+      <img class="micon" src="automatsko_trgovanje.png" alt="">
+      <span class="mtext">Book</span>
+    </a>
+  </nav>
+</aside>
+
+      <!-- RIGHT CONTENT -->
+      <main class="card content">
+<div class="ref-section">
+  <img src="automotive_icon.jpg" alt="">
+  <h1>Automotive Software</h1>
+</div>
+
+<div class="cv-layout">
+
+  <div class="cv-text">
+    Modern automotive systems increasingly rely on advanced software architectures, intelligent algorithms, and data-driven computational methods. My work in automotive software development focuses on the design, implementation, testing, and validation of complex embedded and AI-assisted systems. These contributions span perception algorithms, driver assistance technologies, ECU software engineering, communication protocols, and system-level validation frameworks.
+  </div>
+
+  <div class="cv-image">
+    <img src="automotive_image.jpg" alt="automotive">
+  </div>
+</div>
+
+Rather than addressing a single technological aspect, the listed publications reflect interdisciplinary research and engineering activities across intelligent vehicle systems, embedded platforms, and automotive software infrastructures. The references are organized below according to the dominant technical themes and methodological focus areas.
+<br>
+<br>
+
+
+<b>Automotive topics</b>:
+<ul>
+<li><a href="#adas">Autonomous Driving / ADAS / Perception</a></li>
+<li><a href="#ecu">Automotive Software / ECU / Testing / Validation</a></li>
+<li><a href="#comm">Communications / Networks / Data Transmission / Embedded Systems / FPGA / Low-Level Systems</a></li>
+</ul>
+
+<br>
+<br>
+
+
+
+
+<div class="ref-section" id="adas">
+  <img src="automotive_icon.jpg" alt="">
+  <h2>Autonomous Driving / ADAS / Perception</h2>
+</div>
+
+<div class="cv-layout">
+
+  <div class="cv-text">
+    Automotive perception and Advanced Driver Assistance Systems (ADAS) focus on enabling vehicles to interpret their surroundings, recognize relevant objects, and support intelligent driving decisions. These technologies integrate computer vision, sensor fusion, and machine learning techniques to enhance vehicle awareness, safety, and automation. The publications listed in this section reflect my work on perception algorithms, driver monitoring systems, predictive modeling, and AI-driven assistance methodologies. The studies emphasize algorithmic design, real-time processing, and intelligent analysis of dynamic traffic environments.
+  </div>
+
+  <div class="cv-image">
+    <img src="automotive_adas_image.jpg" alt="automotive">
+  </div>
+</div>
+
+
+<li>
+<a href="https://www.researchgate.net/publication/356537081" target="_blank" rel="noopener noreferrer">
+Arsić A., <b>Ilić V.</b>, Pavković B., Samardžija D. (2021) 
+<b>“System for detecting driver’s drowsiness, fatigue and inattention”</b>, 
+Telfor 2021, Belgrade, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/341869416" target="_blank" rel="noopener noreferrer">
+Novak, B, <b>Ilić V.</b>, Pavković B., (2020) 
+<b>“YOLOv3 Algorithm with additional convolutional neural network trained for traffic sign recognition”</b>, 
+ZINC 2020, Novi Sad, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/329117641" target="_blank" rel="noopener noreferrer">
+Ćorović A., <b>Ilić V.</b>, Đurić S., Marijan M., Pavković B., (2018) 
+<b>“The Real-Time Detection of Traffic Participants Using YOLO Algorithm”</b>, 
+26th Telecommunications forum TELFOR 2018, Belgrade, Serbia
+</a>
+
+<li>
+<a href="https://www.researchgate.net/publication/333534629" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Kukolj D., Marijan M., Teslić N., (2019) 
+<b>“Predicting Positions and Velocities of Surrounding Vehicles using Deep Neural Networks”</b>, 
+ZINC 2019, Novi Sad, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/325545984" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Marijan M., Mehmed A., Antlanger M., (2018) 
+<b>“Development of Sensor Fusion Based ADAS Modules in Virtual Environments”</b>, 
+ZINC 2018, 
+Novi Sad, Serbia
+</a>
+</li>
+
+
+
+
+<br>
+<br>
+
+<div class="ref-section" id="ecu">
+  <img src="automotive_icon.jpg" alt="">
+  <h2>Automotive Software / ECU / Testing / Validation</h2>
+</div>
+
+<div class="cv-layout">
+
+  <div class="cv-text">
+    Automotive software engineering involves the development, testing, and validation of complex embedded systems operating within Electronic Control Units (ECUs). These systems require robust architectures, reliable communication mechanisms, and rigorous verification strategies to ensure functional safety and system reliability. The publications listed in this section reflect my work on ECU software design, automated testing frameworks, validation methodologies, and system-level analysis. The studies emphasize reliability, performance, and structured evaluation of automotive software infrastructures.
+  </div>
+
+  <div class="cv-image">
+    <img src="automotive_ecu_image.jpg" alt="automotive">
+  </div>
+</div>
+
+
+
+<br>
+<br>
+
+<li>
+<a href="https://www.researchgate.net/publication/337832026" target="_blank" rel="noopener noreferrer">
+Kakuća N, Davidović D, Todorović B, <b>Ilić V.</b>, (2019), 
+<b>“Partial update of automobile software”</b>, 
+Telfor 2019, Belgrade, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/337832053" target="_blank" rel="noopener noreferrer">
+Novaković O., Tešić V., <b>Ilić V.</b> Pavković B., (2019), 
+<b>“Automatic generation of tests for Inter-ECU communication for automotive systems”</b>, 
+Telfor 2019, Belgrade, Serbia
+</a>
+</li>
+
+
+<li>
+<a href="https://www.researchgate.net/publication/326146727" target="_blank" rel="noopener noreferrer">
+Ćorluka G., <b>Ilić V.</b>, Marijan M., Spasojević D., (2018) 
+<b>“Testing communication between software components on the electronic control units”</b>, 
+ETRAN 2018, Palić, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/326146945" target="_blank" rel="noopener noreferrer">
+Sekulić S., Davidović D., Marijan M., <b>Ilić V.</b>, (2018) 
+<b>“Testing Automotive Applications with Software Signal Generator”</b>, 
+IcETRAN 2018, Palić, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/326173490" target="_blank" rel="noopener noreferrer">
+Jordaković S., Tikvić S., <b>Ilić V.</b>, Pavković B., (2018) 
+<b>“Automating the Process of Preparation and Verification of Unit Tests”</b>, 
+ETRAN 2018, Palić, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/320558740" target="_blank" rel="noopener noreferrer">
+Korać A., <b>Ilić V.</b>, Kovačić N., Samardžija D. (2017) 
+<b>“Process Schedule Optimization according to Event Chains on Automotive Embedded Platforms”</b>, 
+TELSIKS 2017, 
+Nis, Serbia, 18-20 October, 2017
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/320558755" target="_blank" rel="noopener noreferrer">
+Kovačić N., <b>Ilić V.</b>, Korać A., Zejak A., (2017) 
+<b>“Validation of process execution on automotive embedded devices”</b>, 
+TELSIKS 2017, Nis, Serbia, 18-20 October, 2017
+</a>
+</li>
+
+<li>
+<a href="https://doi.org/10.1109/ZINC.2016.7513639" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Popić S., Kovačić M., (2016) 
+<b>“Data flow in automated testing of the complex automotive electronic control units”</b>, 
+ZINC Consumer electronics, Novi Sad, Serbia
+</a>
+</li>
+
+<li>
+<a href="http://dx.doi.org/10.13140/RG.2.1.2466.2647" target="_blank" rel="noopener noreferrer">
+Popić S., <b>Ilić V.</b>, Velikić I., Teslić N., (2016) 
+<b>“Analysis of information on C compiler based on the contents of binary files”</b>, 
+Society for Electronics, Telecommunications, Computers, Automatic Control and Nuclear Engineering ETRAN 60, Zlatibor, Serbia
+</a>
+</li>
+
+<li>
+<a href="http://dx.doi.org/10.13140/RG.2.1.4563.4168" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Vujanović V., Popić S., Pap M., (2016) 
+<b>“Analysis of test results during development complex electronic control units”</b>, 
+Society for Electronics, Telecommunications, Computers, Automatic Control and Nuclear Engineering ETRAN 60, Zlatibor, Serbia
+</a>
+</li>
+
+<li>
+<a href="http://dx.doi.org/10.13140/RG.2.1.4423.8484" target="_blank" rel="noopener noreferrer">
+Rajković I., <b>Ilić V.</b>, Majstorović B. Z., Hariba I., (2015) 
+<b>“Real-time visualization of signals from electronic control units on mobile platforms”</b>, 
+23nd Telecommunications Forum (TELFOR 2015), Belgrade, Serbia
+</a>
+</li>
+
+<li>
+<a href="http://dx.doi.org/10.13140/RG.2.1.2326.6963" target="_blank" rel="noopener noreferrer">
+Jovanović M., Čotra D., Stamenković R., <b>Ilić V.</b>, (2015) 
+<b>“Implementation of system for monitoring and processing signals from electronic control units at automobile networks”</b>, 
+23nd Telecommunications Forum (TELFOR 2015), Belgrade, Serbia
+</a>
+</li>
+
+<li>
+<a href="http://dx.doi.org/10.13140/RG.2.1.3375.2728" target="_blank" rel="noopener noreferrer">
+Tešić V., Pap M., <b>Ilić V.</b>, Nedeljković M., (2015) 
+<b>“Automated testing of electronic control units in a Hardware-in-the-Loop simulation environment”</b>, 
+23nd Telecommunications Forum (TELFOR 2015), Belgrade, Serbia
+</a>
+</li>
+
+<li>
+<a href="http://dx.doi.org/10.13140/RG.2.1.1147.0482" target="_blank" rel="noopener noreferrer">
+Pap M., Vujanović V., <b>Ilić V.</b>, Dimitrijević A., (2015) 
+<b>“Environment for validating of electronic control units”</b>, 
+Society for Electronics, Telecommunications, Computers, Automatic Control and Nuclear Engineering ETRAN 59, Serbia, Srebrno Jezero
+</a>
+</li>
+
+
+
+
+
+
+<div class="ref-section" id="comm">
+  <img src="automotive_icon.jpg" alt="">
+  <h2>Communications / Networks / Data Transmission / Embedded Systems / FPGA / Low-Level Systems</h2>
+</div>
+
+<div class="cv-layout">
+
+  <div class="cv-text">
+    Communications, embedded systems, and low-level computational architectures form the technological foundation of modern intelligent and distributed systems. These areas focus on reliable data transmission, protocol design, hardware–software integration, and performance-oriented system optimization. The publications listed in this section reflect my work on communication mechanisms, embedded platforms, FPGA-based solutions, and system-level modeling. The studies emphasize efficiency, reliability, and robust design of complex computational and electronic infrastructures.
+  </div>
+
+  <div class="cv-image">
+    <img src="automotive_network_image.jpg" alt="automotive">
+  </div>
+</div>
+
+
+
+<br>
+<br>
+
+<li>
+<a href="https://www.researchgate.net/publication/351100364" target="_blank" rel="noopener noreferrer">
+Čadovski O., <b>Ilić V.</b>, Rikić B., Kovačević B., (2021) 
+<b>“Model Proposal for Bandwidth Prediction Using Divided Machine Learning models”</b>, 
+2021 IEEE International Conference on Consumer Electronics (ICCE), 
+Las Vegas, USA
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/329117886" target="_blank" rel="noopener noreferrer">
+Dutina F., Radanović D., Pavković B., <b>Ilić V.</b>, Nikolić N., (2018) 
+<b>“One Software Solution for Safe Data Transmission Via Broadr-Reach Interface”</b>, 
+26th Telecommunications forum TELFOR 2018, Belgrade, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/325687083" target="_blank" rel="noopener noreferrer">
+Horvat Z, <b>Ilić V.</b>, Nikolić M., (2018), 
+<b>“Web server and QR decoder applications for Xilinx FPGA Boards”</b>, 
+ZINC 2018, Novi Sad, Serbia
+</a>
+</li>
+
+
+<li>
+<a href="http://dx.doi.org/10.13140/RG.2.1.4948.1362" target="_blank" rel="noopener noreferrer">
+Sinđelić M., Pjevalica N, <b>Ilić V</b>, Janičić V., (2015) 
+<b>“Verification of UART protocol using the BFM”</b>, 
+Society for Electronics, Telecommunications, Computers, Automatic Control and Nuclear Engineering ETRAN 59, Serbia, Srebrno Jezero
+</a>
+</li>
+
+<li>
+<a href="http://dx.doi.org/10.1109/TELFOR.2014.7034518" target="_blank" rel="noopener noreferrer">
+Janičić V., <b>Ilić V.</b>, Pjevalica N., Nikolić M., (2014) 
+<b>“Modeling hysteresis in ferromagnetics by adaptation of Preisach model”</b>, 
+22nd Telecommunications Forum (TELFOR 2014), pp. 761-764, ISBN:978-1-4799-1419-7, Belgrade, Serbia
+</a>
+</li>
+
+
+
+      </main>
+
+    </div>
+
+    <div class="footer">
+      <div><a href="index.html">← Back to Home</a></div>
+      <div>© Velibor Ilić</div>
+    </div>
+
+  </div>
+</body>
+</html>

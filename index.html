@@ -1,299 +1,569 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-   <meta name="Description" content="Velibor Ilic WebPage - programiranje, software, vestacka inteligencija, automatsko trgovanje, forex, neuronske mreze, ocr, scada, nanotehnologija, elektronska razmena podataka (edi)">
-
-   <meta name="KeyWords" content="velibor, ilic, becej, vojvodina, srbija, jugoslavija, ai, artificial, intelligence, vestacka, inteligencija, neuronske, mreze, neural, network, networks, ann, nn, agenti, agent, agents, ekspertni, sistemi, expert, systems, fazi, logika, fuzzy, logic, ocr, prepoznavanje, cirilicnih, slova, optical, character, recognition, delphi, delfi, visual, basic, bejzik, c++, c, database, oracle, sql, macromedia, shock, wave, flash, shockwave, shockwavefash, tcp/ip, programiranje, programer, programming, programi, programs, programs, web, webdizajn, webdesign, dizajn, prezentacije, stranice, izrada, obrazovni, softver, ors, multimedia, multimedija, multimedijalni, softver, software, poslovni, programi, business, application, internet, edi, electronic, data, interchange, elektronska, razmena, podataka, ec, elektronska, trgovina, electronic commerce, nanotehnologija, assembler, racunarstvo, trazim, posao, job, wanted, seek, wanted,">
+<!DOCTYPE html>
+<html lang="sr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Description" content="Velibor Ilic WebPage - programiranje, software, veštačka inteligencija, automatsko trgovanje, forex, neuronske mreže, ocr, scada, nanotehnologija, edi">
   <meta name="Author" content="Velibor Ilic">
-  <meta name="revisit-after" content="15 days">
   <meta name="ROBOTS" content="ALL">
-  <meta name="google-site-verification" content="al8FRKvpN6IoT-6CfQU7oNN4SFCeGZfFultmbjbageQ" />
 
-  <link rel="stylesheet" type="text/css" href="my.css" media="screen,projection">
-  <title>Velibor Ilic - WebPage</title>
+  <!-- Google Search Console verification (keep yours) -->
+  <meta name="google-site-verification" content="al8FRKvpN6IoT-6CfQU7oNN4SFCeGZfFultmbjbageQ">
+
+  <!-- Keep your old CSS if you want, but this page is self-styled below -->
+  <!-- <link rel="stylesheet" type="text/css" href="my.css" media="screen,projection"> -->
+
+  <title>Velibor Ilic</title>
+
+  <style>
+:root{
+  --bg:#0b1220;
+  --card:#111a2e;
+  --card2:#0f172a;
+  --text:#e7eefc;
+  --muted:#b9c6e6;
+  --line:rgba(255,255,255,.10);
+  --accent:#7aa7ff;
+  --accent2:#77f2c2;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 16px;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(900px 500px at 20% 0%, rgba(122,167,255,.25), transparent 60%),
+              radial-gradient(900px 500px at 80% 10%, rgba(119,242,194,.18), transparent 60%),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+a{ color: var(--text); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+.wrap{ max-width: 980px; margin: 0 auto; padding: 28px 18px 44px; }
+
+/* =========================
+   HERO (Header)
+   ========================= */
+.hero{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap:24px;
+  align-items:start;
+  padding:22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.hero-left{ min-width:0; }
+
+/* logo + title + subtitle layout */
+.name-block{
+  display:grid;
+  grid-template-columns: auto 1fr;
+  column-gap:16px;
+  row-gap:6px;
+  align-items:start;
+}
+.name-row{ display:contents; }
+
+.logo{
+  grid-column:1;
+  grid-row:1 / span 2;
+  height:100px;
+  width:auto;
+  opacity:.95;
+}
+
+.title{
+  grid-column:2;
+  grid-row:1;
+  font-size: 30px;
+  font-weight: 750;
+  letter-spacing: .2px;
+  margin:0;
+}
+
+.subtitle{
+  grid-column:2;
+  grid-row:2;
+  margin:0 0 14px;
+  color: var(--muted);
+  max-width: 58ch;
+}
+
+.pillbar{ display:flex; flex-wrap:wrap; gap:8px; }
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding: 7px 10px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.photo{
+  width:116px;
+  height:116px;
+  border-radius:14px;
+  object-fit:cover;
+  border:1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+/* =========================
+   GRID + CARDS
+   ========================= */
+.grid{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:16px;
+}
+
+.card{
+  background: rgba(17,26,46,.78);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding:16px;
+}
+.card h2{
+  margin:0 0 10px;
+  font-size:16px;
+  letter-spacing:.2px;
+}
+.muted{ color: var(--muted); }
+
+/* =========================
+   LIST CARDS (Quick links + Profiles)
+   ========================= */
+.profiles{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+  margin-top:10px;
+}
+
+.plink{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.plink:hover{
+  border-color: rgba(122,167,255,.35);
+  background: rgba(122,167,255,.08);
+  text-decoration:none;
+}
+
+.plink-icon{
+  width:72px;
+  min-width:72px;
+  display:flex;
+  align-items:flex-start; 
+}
+
+.plink-icon img{
+  width:72px;
+  height:auto;
+  border-radius:10px;
+}
+
+
+.icon{
+  width:18px;
+  height:18px;
+  flex:0 0 auto;
+  opacity:.95;
+}
+
+.qicon{
+  width:18px;
+  height:18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  opacity:.95;
+}
+
+.plink-title{
+  font-weight:650;
+  font-size:14px;
+  margin:0;
+}
+.plink-url{
+  font-size:12px;
+  color: var(--muted);
+  margin:0;
+  padding-left: 0;
+}
+
+.plink.large ul{
+  margin: 6px 0 0 0;
+  padding-left: 16px;
+}
+
+/* Book thumbnail inside plink */
+.plink-book .book-icon{
+  width:44px;
+  height:60px;
+  object-fit:cover;
+  border-radius:10px;
+  flex:0 0 auto;
+}
+
+/* Large icon variant for Quick links */
+.plink.large{
+  align-items:flex-start;
+  gap:18px;
+  padding:16px;
+}
+
+.plink.large .icon{
+  width: 65px;
+  height: 52px;
+  object-fit: fill;
+  border-radius: 18px;
+  flex: 0 0 auto;
+}
+
+/* =========================
+   LEGACY (bottom section only)
+   ========================= */
+.section-title{
+  margin: 22px 0 10px;
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.legacy{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+}
+.legacy a{
+  display:block;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.legacy a:hover{
+  background: rgba(119,242,194,.07);
+  border-color: rgba(119,242,194,.30);
+  text-decoration:none;
+}
+.legacy strong{ display:block; margin-bottom:4px; }
+
+/* =========================
+   FOOTER
+   ========================= */
+.footer{
+  margin-top:22px;
+  color: var(--muted);
+  font-size:12px;
+  border-top: 1px solid var(--line);
+  padding-top:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px 16px;
+  justify-content: space-between;
+  align-items:center;
+}
+.footer a{ color: var(--muted); }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 860px){
+  .hero{ grid-template-columns: 1fr; }
+  .photo{ width:140px; height:140px; }
+  .grid{ grid-template-columns: 1fr; }
+  .legacy{ grid-template-columns: 1fr; }
+}
+
+.hero-image{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:22px;
+}
+
+.hero-image img{
+  width:100%;
+  max-width:980px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+  </style>
 </head>
+
 <body>
-<center>
-<script type="text/javascript"><!--
-google_ad_client = "pub-0327694111200541";
-/* 728x15, created 10/17/09 */
-google_ad_slot = "8046978970";
-google_ad_width = 728;
-google_ad_height = 15;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+  <div class="wrap">
+  
+<!-- TOP / HERO -->
+<div class="hero-image">
+    <img src="header.png" alt="Velibor Ilić Header">
+</div>
 
 
-<table width=100% cellpadding="0" cellspacing="0">
-<tr>
-<td width="30"></td>
-<td align="center">
-<img src="header.png"><br>
-</td>
-<td width="30"></td>
-</tr>
-</table>
-
-<table width="780" bgcolor="#FFFFFF" border="1" cellpadding="0" cellspacing="0">
-  <tbody><tr>
-    <td>
-          
-
-<table width="100%" cellpadding="0" cellspacing="0">
-<tbody><tr valign="top">
+    <div class="grid">
+        <!-- LEFT: quick access -->
+        <div class="card">
 
 
-
-<td valign="top" width="100%" align="left"> <!--main-->
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
- <tbody><tr>
-   <td>
+        <div class="profiles">
 
 
+<a class="plink large" href="VeliborCV.html">
+  <img src="cv_icon.jpg" alt="CV page" class="icon pdf-icon">
+  <div>
+    <p class="plink-title">Velibor - Resume, CV</p>
+    <p class="plink-url">Professional experience, education, publications and technologies.</p>
+  </div>
+</a>
 
-<br>
-<table width="100%" border="0" cellpadding="0" cellspacing="10">
-<tbody><tr>
-<td valign="top" width="50%" align="left">
-<OBJECT classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0' WIDTH=220 HEIGHT=220 id=main_page>
-<PARAM NAME=movie VALUE='logo.swf'>
-<PARAM NAME=quality VALUE=high>
-<PARAM NAME=bgcolor VALUE=#ffffff>
-<EMBED src='logo.swf' quality=high bgcolor=#ffffff  WIDTH=220 HEIGHT=220 NAME='main_page' ALIGN='' TYPE='application/x-shockwave-flash' PLUGINSPAGE='http://www.macromedia.com/go/getflashplayer'></EMBED>
-</OBJECT>
-</td>
-<td valign="top" width="50%" align="left">
-<ul><li>
-<b><a href="VeliborCV.html">Biografija</a></b>
-- Poslovna biografija, radno iskustvo, obrazovanje, operativni sistemi,
-programski jezici, baze podataka, tehnologije, softver</li>
-<br>
-<br>
+<a class="plink large" href="ai_ml_application.html">
+  <img src="ai_ml_icon.png" alt="ai_ml" class="icon pdf-icon">
+  <div>
+    <p class="plink-title">AI and ML application</p>
+    <p class="plink-url">
+<ul class="plink-url">
+<li>Computer Vision / Detection / Segmentation</li>
 <li>
-<b><a href="VeliborCV_eng.html">Biography</a></b>
-- (Resume, CV) - Business experience, education, skills &amp; knowledge, operating systems, programming language, databases, technologies, software (english version)
+GeoAI / Water Quality / Environmental Monitoring / Atmospheric Science / Geostatistics / Environmental Modeling / Wildfire / Environmental Risk / Remote Sensing
 </li>
+<li>Industrial / Manufacturing / Engineering AI</li>
+<li>LLMs / Multi-Agent Systems / Generative AI</li>
+<li>UAV / Robots / Path Planning</li>
+<li>Active Learning</li>
+<li>AI Bio / Chem</li>
+<li>OCR</li>
 </ul>
+    </p>
+  </div>
+</a>
 
-<ul>
-<li>
-eMail:<a href="mailto:ilicv@EUnet.rs">ilicv@EUnet.rs</a>
+
+<a class="plink large" href="automotive.html">
+  <img src="automotive_icon.jpg" alt="PDF" class="icon pdf-icon">
+  <div>
+    <p class="plink-title">Automotive Software</p>
+    <p class="plink-url">
+<ul class="plink-url">
+<li>Automotive / ADAS / Autonomous Driving / Perception</li>
+<li>Automotive Software / ECU / Testing / Validation</li>
+<li>Communications / Networks / Data Transmission / Embedded Systems / FPGA / Low-Level Systems</li>
+</ul>    
+    </p>
+  </div>
+</a>
+
+
+<a class="plink large" href="automotive.html">
+  <img src="ai_trade_icon.jpg" alt="PDF" class="icon pdf-icon">
+  <div>
+    <p class="plink-title">Algorithmic Traiding</p>
+    <p class="plink-url">
+<ul class="plink-url">
+<li>Automated trading on foreign exchange market / software for automated trading / analysis of financial data</li>
 </ul>
+    </p>
+  </div>
+</a>
 
-</td>
-</tr></tbody></table>
+
+
+
+
+
+
+
+        
+<a class="plink large" href="music_video.html">
+  <img src="music_img.jpg" alt="PDF" class="icon pdf-icon">
+  <div>
+    <p class="plink-title">Music and Video</p>
+    <p class="plink-url">Links to composed and generated music and video files.</p>
+  </div>
+</a>
+
+
+<a class="plink large" href="index_old.html">
+  <img src="old_webpages_icon.jpg" alt="web" class="icon pdf-icon">
+  <div>
+    <p class="plink-title">Pages from old WebSite</p>
+    <p class="plink-url">OCR / SCADA / PlanB / Dictionary</p>
+  </div>
+</a>
+
+
+        </div>
+
+        <div class="section-title">Site note</div>
+        <p class="muted" style="margin:0;">
+          Originally hosted at <span style="color:var(--text)">solair.eunet.rs/~ilicv</span>, migrated to GitHub Pages in 2026.
+        </p>
+      </div>
+
+      <!-- RIGHT: profiles -->
+
+      <div class="card">
+
+        <div class="profiles">
+
+<a class="plink large" href="automatsko_trgovanje.html">
+<div class="plink-icon">
+   <img src="automatsko_trgovanje.png">
+</div>
  
+  <div top>
+    <p class="plink-title">Knjiga - Automatsko trgovanje</p>
+    <p class="plink-url">Forex · algoritmi · analiza tržišta</p>
+  </div>
+</a>
+        
+<!-- Email -->
+<a class="plink" href="mailto:ilicv@EUnet.rs">
+  <svg class="icon" viewBox="0 0 24 24" fill="none">
+    <path d="M3 6.5 12 13l9-6.5" stroke="currentColor" stroke-width="2"/>
+    <rect x="3" y="6" width="18" height="12" rx="2" stroke="currentColor" stroke-width="2"/>
+  </svg>
+  <div>
+    <p class="plink-title">Email</p>
+    <p class="plink-url">ilicv@EUnet.rs</p>
+  </div>
+</a>
+        
+          <!-- LinkedIn -->
+          <a class="plink" href="http://www.linkedin.com/in/velibor" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.06c.53-.98 1.82-2 3.74-2 4 0 4.74 2.63 4.74 6.05V21h-4v-5.27c0-1.26-.02-2.88-1.76-2.88-1.76 0-2.03 1.37-2.03 2.79V21h-4V9Z"></path>
+            </svg>
+            <div>
+              <p class="plink-title">LinkedIn</p>
+              <p class="plink-url">linkedin.com/in/velibor</p>
+            </div>
+          </a>
 
-<table width="100%" border="0" cellpadding="0" cellspacing="10">
-<tbody><tr>
+          <!-- ResearchGate -->
+          <a class="plink" href="http://www.researchgate.net/profile/Velibor_Ilic/" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M6 18V6h6.2c3.2 0 5.3 2 5.3 4.8 0 2.9-2.2 5.2-6 5.2H10" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              <path d="M10 16v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+            <div>
+              <p class="plink-title">ResearchGate</p>
+              <p class="plink-url">researchgate.net/profile/Velibor_Ilic</p>
+            </div>
+          </a>
 
-<td valign="top" width="45%" align="left"> <!--main left-->
- 
-<table class="header_top" width="280" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
-Knjiga o Forex-u
-</td></tr></tbody></table>
-<b>
-<a href="automatsko_trgovanje.html">Automatsko trgovanje na tržištu stranih valuta</a></b><br>
-Knjiga objašnjava šta je berza stranog novca (<em>Forex</em>),  upoznaje čitaoce sa terminologijom i tehnikama trgovanja na ovakvom tržištu. Knjiga opisuje neke od metoda koje se koriste za analizu finansijskih podataka i upoznaje čitaoce sa postupkom razvoja softvera za automatsko trgovanje.
-<br>
-<br>
+          <!-- X (Twitter) -->
+          <a class="plink" href="http://twitter.com/velibor" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.7l-5.2-6.7L5.7 22H2.6l7.3-8.4L.7 2h6.9l4.7 6.1L18.9 2Zm-1.2 18h1.7L7.4 3.9H5.6L17.7 20Z"></path>
+            </svg>
+            <div>
+              <p class="plink-title">X (Twitter)</p>
+              <p class="plink-url">twitter.com/velibor</p>
+            </div>
+          </a>
 
-<table class="header_top" width="280" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
-Software
-</td></tr></tbody></table>
-<b><a href="PProgrami.htm">Poslovni programi</a></b><br>
-Ponuda za izradu poslovnih programa prema Vašim zahtevima.
-<br>
-<br>
+          <!-- Google Scholar -->
+          <a class="plink" href="https://scholar.google.com/citations?user=d68vryYAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3 2 9l10 6 10-6-10-6Z" stroke="currentColor" stroke-width="2"></path>
+              <path d="M6 11v5c0 2 3 4 6 4s6-2 6-4v-5" stroke="currentColor" stroke-width="2" opacity=".9"></path>
+            </svg>
+            <div>
+              <p class="plink-title">Google Scholar</p>
+              <p class="plink-url">scholar.google.com/citations?user=d68vryYAAAAJ</p>
+            </div>
+          </a>
 
-<b><a href="PlanB.htm">PlanB</a></b><br>
-Interaktivna mapa i poslovni imenik grada Bečeja.
-<br>
-<br>
+          <!-- ORCID -->
+          <a class="plink" href="https://orcid.org/0000-0001-5010-1377" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2a10 10 0 100 20 10 10 0 000-20Z" stroke="currentColor" stroke-width="2"></path>
+              <path d="M8 8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+              <path d="M11 8h2.8c2.4 0 4.2 1.7 4.2 4s-1.8 4-4.2 4H11V8Z" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+            <div>
+              <p class="plink-title">ORCID</p>
+              <p class="plink-url">orcid.org/0000-0001-5010-1377</p>
+            </div>
+          </a>
 
-<b><a href="recnik.html">Rečnik</a></b><br>
-Englesko-Srpski rečnik koji sadrži 42600 reči.
-<br>
-<br>
+          <!-- Facebook -->
+          <a class="plink" href="https://www.facebook.com/ilicv" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5h1.7V5c-.3 0-1.5-.1-2.8-.1-2.8 0-4.7 1.7-4.7 4.8V11H7v3h2.6v8h3.9Z"></path>
+            </svg>
+            <div>
+              <p class="plink-title">Facebook</p>
+              <p class="plink-url">facebook.com/ilicv</p>
+            </div>
+          </a>
+          
+        <!-- GitHub -->
+        <a class="plink" href="https://github.com/ilicv/" target="_blank" rel="noopener">
+          <!-- GitHub icon (inline SVG) -->
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.1.68-.22.68-.48 0-.24-.01-.88-.01-1.72-2.78.62-3.37-1.1-3.37-1.1-.45-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .08 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.15-4.56-5.13 0-1.13.39-2.05 1.03-2.77-.1-.26-.45-1.33.1-2.77 0 0 .84-.27 2.75 1.06.8-.23 1.66-.34 2.51-.35.85.01 1.71.12 2.51.35 1.91-1.33 2.75-1.06 2.75-1.06.55 1.44.2 2.51.1 2.77.64.72 1.03 1.64 1.03 2.77 0 3.99-2.34 4.87-4.57 5.12.36.32.68.96.68 1.93 0 1.39-.01 2.52-.01 2.86 0 .27.18.59.69.48A10.29 10.29 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/>
+          </svg>
 
-<table class="header_top" width="280" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
-OCR
-</td></tr></tbody></table>
-<b><a href="ocr_opis.html">OCR - prepoznavanje ćiriličnih slova</a></font></b><br>
-U radu se govori o programu OCR za prepoznavanje ćiriličnih slova. Opisani su problemi koji se javljaju prilikom izrade softvera za prepoznavanje slova i predložena su neka od rešenja koja se mogu primeniti da bi se prevazišli postojeći problemi. Opisan je i postupak primene neuronskih mreža u prepoznavanju slova.
-<br>
-<br>
+          <div>
+            <p class="plink-title">GitHub</p>
+            <p class="plink-url">github.com/ilicv</p>
+          </div>
+        </a>
 
-<b><a href="ocr.html">OCR - opis softvera</a></b><br>
-Program za prepoznavanje ćiriličnih slova, razvijen u Delphiju.
-<br>
-<br>
-
-<table class="header_top" width="280" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
-SCADA
-</td></tr></tbody></table>
-<b><a href="scada.html">Izrada  SCADA upotrebom OOP</a></b><br>
-U radu se govori o postupku izrade nadzornih i upravljačkih programa upotrebom objektno orijentisanih programski jezika. Sa realizovanim primerom u programskom paketu Borland Delphi.
-<br>
-<br>
-
-<b><a href="smartscada.html">SmartSCADA - komponente</a></b><br>
-U radu se govori o postupku izrade nadzornih i upravljačkih programa upotrebom programskog alata SmartSCADA.
-<br>
-<br>
-
-<br>
-
-
-<table class="header_top" width="280" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
-Free Download
-</td></tr></tbody></table>
-<b>
-<a href="free.html">Free Download</a></b><br>
-Programi koji se mogu slobodno preuzeti sa prezentacije.
-<br>
-<br>
-<hr>
-
-
-Broj poseta: <img src="/cgi-bin/Count.cgi?df=ilicv.dat">
-
-
-
-</td>
-
-<td valign="top" width="10%"> <!--main right or menu-->
-</td>
-
-
-<td valign="top" width="45%"> <!--main right or menu-->
-
-<table class="header_top" width="280" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
-Veštačka inteligencija
-</td></tr></tbody></table>
-<b><a href="AI_index.htm">Veštačka inteligencija</a></b><br>
-Šta je veštačka inteligencija? Istorijat, oblasti, neuronske mreže, ekspertni sistemi, fuzzy logika.
-<br>
-<br>
-<b><a href="neuro.html">Neuronske mreže</a></b><br>
-Istorijat razvoja neuronskih mreža. Šta su neuronske mreže? Model veštačkog neurona, model neuronske mreže. Razlike između neuronskih mreža i klasičnih računara i primene.
-<br>
-<br>
-
-<b><a href="ANN.html">ANN</a></b><br>
-Program za obučavanje neuronskih mreža sa backpropagation algoritmom obučavanja.
-<br>
-<br>
-
-<b><a href="FLAlg.html">Force learn algorithm</a>&nbsp;</b><br>
-Poboljšan postupak obučavanja neuronskih mreža sa backpropagation algoritmom obučavanja.
-<br>
-<br>
-
-<b><a href="NeuroVCL.html">NeuroVCL komponente</a></b><br>
-VCL komponente za programski jezik Delphi. Omogućavaju jednostavnu upotrebu neuronskih mreža u programiranju.
-<br>
-<br>
-
-<b><a href="agenti.html">Softverski agenti</a></b><br>
-U radu se govori o softverskim sistemima na izrađenim bazi tehnologije agenata, klasifikaciji agenata prema funkciji i njihovoj primeni. Napravljeno je poređenje između objektno orijentisanog programiranja i tehnologije na bazi agenata.
-<br>
-<br>
-
-<b> <a href="enaa.html">ENAA - Evolutivni Neuro Agenti</a></b><br>
-U radu se govori o evolutivnim autonomnim agentima kojima upravlja neuronska mreža. Predložen je hijerarhijskih model neuronskih mreža. Prikazan softver ENAA koji simulira evolutivno obučavanje agenata koji se kreću unutar arene i izvršavaju postavljene ciljeve.
-<br>
-<br>
-
-<table class="header_top" width="280" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
-Razno
-</td></tr></tbody></table>
-<b><a href="https://www.dropbox.com/s/a8p6nygmuqemzbf/nanotehnlogija.pdf?dl=0">Nanotehnologija</a></b><br>
-Tehnologija izrade predmeta velikih dimenzija pomeranjem pojedinačnih atoma. Tehnologija 21-vog veka. Materijali izuzetnih karakteristika. Uticaj nanotehnologije na svakodnevni život. Primena u medicini i ekologiji.
-<br>
-<br>
+          <!-- Website -->
+          <a class="plink" href="https://ilicv.github.io/" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2a10 10 0 100 20 10 10 0 000-20Z" stroke="currentColor" stroke-width="2"></path>
+              <path d="M2 12h20" stroke="currentColor" stroke-width="2" opacity=".85"></path>
+              <path d="M12 2c3 3.5 3 16.5 0 20" stroke="currentColor" stroke-width="2" opacity=".85"></path>
+              <path d="M12 2c-3 3.5-3 16.5 0 20" stroke="currentColor" stroke-width="2" opacity=".85"></path>
+            </svg>
+            <div>
+              <p class="plink-title">Website</p>
+              <p class="plink-url">https://ilicv.github.io</p>
+            </div>
+          </a>
+        </div>
 
 
-<table class="header_top" width="280" border="0"><tbody><tr><td cellpadding="10" cellspacing="10" align="left">
-Linkovi
-</td></tr></tbody></table>
-<b><a href="linkovi.htm">Linkovi</a></b><br>
-Stranica sa izabranim linkovima.
-<br>
-<br>
-
-
-</td></tr></tbody></table>
-
-</td></tr>
+      </div>
+    </div>
 
 
 
+    <div class="footer">
+      <div>Page URL: <a href="https://ilicv.github.io/">https://ilicv.github.io</a></div>
+      <div>© Velibor Ilić — migrated to GitHub Pages (2026)</div>
+    </div>
+
+  </div>
 
 
-
-
-
-
-</tbody></table>
-</td></tr></tbody></table>
-
-
-<table width="775">
-  <tbody><tr align="center">
-    <td class="footer" align="right">
-	  <hr>
-<table width="100%">
-<tbody><tr><td align="left">
-Page url: <a href="https://ilicv.github.io/">https://ilicv.github.io</a></td>
-<td align="right">
-Web design by: <a href="https://ilicv.github.io">Velibor Ilic</a>
-</td></tr></tbody></table>
-
-    </td>
-  </tr>
-</tbody></table>
-</td></tr></tbody></table>
-    </td>
-  </tr>
-</tbody></table>
-</td></tr></tbody></table>
-Originally hosted at solair.eunet.rs/~ilicv, migrated to GitHub Pages in 2026.
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-11148888-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
-
-</center></body></html>
+</body></html>

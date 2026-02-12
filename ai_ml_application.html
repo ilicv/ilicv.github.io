@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Velibor Ilić - WebPage - AI and ML application</title>
+
+  <style>
+:root{
+  --bg:#0b1220;
+  --card:#111a2e;
+  --text:#e7eefc;
+  --muted:#b9c6e6;
+  --line:rgba(255,255,255,.10);
+  --accent:#7aa7ff;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 16px;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(900px 500px at 20% 0%, rgba(122,167,255,.25), transparent 60%),
+              radial-gradient(900px 500px at 80% 10%, rgba(119,242,194,.18), transparent 60%),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+a{ color: var(--text); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+.wrap{ max-width: 1100px; margin: 0 auto; padding: 28px 18px 44px; }
+
+/* HERO */
+.hero{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap:24px;
+  align-items:start;
+  padding:22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.name-block{
+  display:grid;
+  grid-template-columns: auto 1fr;
+  column-gap:16px;
+  row-gap:6px;
+  align-items:start;
+}
+.name-row{ display:contents; }
+.logo{
+  grid-column:1; grid-row:1 / span 2;
+  height:100px; width:auto; opacity:.95;
+}
+.title{
+  grid-column:2; grid-row:1;
+  font-size:30px; font-weight:750; margin:0;
+}
+.subtitle{
+  grid-column:2; grid-row:2;
+  margin:0 0 14px; color: var(--muted);
+}
+.pillbar{ display:flex; flex-wrap:wrap; gap:8px; }
+.pill{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 10px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--line);
+  border-radius:999px;
+  font-size:13px;
+  color: var(--muted);
+}
+.photo{
+  width:116px; height:116px;
+  border-radius:14px; object-fit:cover;
+  border:1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+/* LAYOUT: left menu + right content */
+.page{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns: 220px 1fr;
+  gap:16px;
+}
+.card{
+  background: rgba(17,26,46,.78);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding:16px;
+}
+.section-title{
+  margin:0 0 10px;
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.profiles{ display:grid; gap:10px; margin-top:10px; }
+.plink{
+  display:flex; align-items:center; gap:12px;
+  padding:10px 12px;
+  border-radius:12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.plink:hover{
+  border-color: rgba(122,167,255,.35);
+  background: rgba(122,167,255,.08);
+  text-decoration:none;
+}
+.icon{ height:75px; width:auto; object-fit:contain; flex:0 0 auto; border-radius:14px; }
+.plink-title{ font-weight:650; font-size:14px; margin:0; }
+.plink-url{ font-size:12px; color: var(--muted); margin:0; }
+
+/* Active menu item */
+.plink.active{
+  border-color: rgba(122,167,255,.55);
+  background: rgba(122,167,255,.10);
+}
+
+/* Content area */
+.content h1{ margin:0 0 10px; font-size:24px; }
+.content p{ margin:0 0 12px; color: var(--muted); }
+.hero-img{
+  width:100%;
+  max-height:320px;
+  object-fit:cover;
+  border-radius:14px;
+  border:1px solid var(--line);
+  display:block;
+  margin: 10px 0 14px;
+}
+.links{
+  display:flex; flex-wrap:wrap; gap:10px;
+  margin-top:10px;
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:14px 12px;
+  border-radius:12px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--text);
+}
+.btn:hover{
+  border-color: rgba(119,242,194,.35);
+  background: rgba(119,242,194,.08);
+  text-decoration:none;
+}
+
+.ref-section{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:26px 0 10px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--line);
+}
+
+.ref-section img{
+  height:30px;
+  width:auto;
+  object-fit:contain;
+  flex:0 0 auto;
+  opacity:.95;
+}
+
+.ref-section h2{
+  margin:0;
+  font-size:16px;
+  font-weight:700;
+  color:var(--text);
+}
+
+.footer{
+  margin-top:22px;
+  color: var(--muted);
+  font-size:12px;
+  border-top: 1px solid var(--line);
+  padding-top:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px 16px;
+  justify-content: space-between;
+  align-items:center;
+}
+
+@media (max-width: 860px){
+  .hero{ grid-template-columns: 1fr; }
+  .photo{ width:140px; height:140px; }
+  .page{ grid-template-columns: 1fr; }
+  .icon{ height:56px; }
+}
+
+
+
+.yt-link a{
+  display:inline-flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  color: var(--text);
+  text-decoration:none;
+  padding:3 14px;
+}
+
+.yt-link a:hover{
+  border-color: rgba(255,0,0,.55);
+  background: rgba(255,0,0,.08);
+}
+.yt-link{
+  margin-bottom:8px;
+  
+}
+
+.yt-icon{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+}
+
+.yt-title{
+  font-weight:650;
+  font-size:14px;
+  margin:0;
+  line-height:1.15;
+}
+.yt-link p{
+  margin:0;
+}
+
+
+/* Compact menu */
+.menu{
+  display:grid;
+  gap:6px;
+  margin-top:8px;
+}
+
+.mlink{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 8px;
+  border-radius:10px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+  text-decoration:none;
+}
+
+.mlink:hover{
+  border-color: rgba(122,167,255,.35);
+  background: rgba(122,167,255,.08);
+  text-decoration:none;
+}
+
+.micon{
+  width:auto;
+  height:15px;
+  flex:0 0 auto;
+  object-fit:contain;
+  opacity:.95;
+}
+
+.mtext{
+  font-size:13px;
+  font-weight:650;
+  line-height:1.15;
+  margin:0;              /* ⬅️ nema prostora oko teksta */
+  white-space:nowrap;    /* ⬅️ sve u jednom redu */
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.mlink.active{
+  border-color: rgba(122,167,255,.55);
+  background: rgba(122,167,255,.10);
+}
+
+.hero-image{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:22px;
+}
+
+.hero-image img{
+  width:100%;
+  max-width:1280px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+
+.cv-layout{
+  display:grid;
+  grid-template-columns: 1fr 320px;
+  gap:22px;
+  align-items:start;
+  margin-bottom:10px;
+}
+
+.cv-text{
+  color: var(--muted);
+}
+
+.cv-image img{
+  width:100%;
+  border-radius:14px;
+  border:1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+<!-- TOP / HERO -->
+<div class="hero-image">
+    <img src="header.png" alt="Velibor Ilić Header">
+</div>
+
+    <!-- PAGE: menu + content -->
+    <div class="page">
+
+      <!-- LEFT MENU -->
+<aside class="card">
+  <div class="section-title">Menu</div>
+
+  <nav class="menu">
+    <a class="mlink" href="index.html">
+      <img class="micon" src="ai_ml_icon.png" alt="">
+      <span class="mtext">Home</span>
+    </a>
+
+    <a class="mlink" href="VeliborCV.html">
+      <img class="micon" src="cv_icon.jpg" alt="">
+      <span class="mtext">Velibor - Resume, CV</span>
+    </a>
+
+    <a class="mlink active" href="ai_ml_application.html">
+      <img class="micon" src="ai_ml_icon.png" alt="">
+      <span class="mtext">AI / ML application</span>
+    </a>
+
+
+
+    <a class="mlink" href="automotive.html">
+      <img class="micon" src="automotive_icon.jpg" alt="">
+      <span class="mtext">Automotive</span>
+    </a>
+
+    <a class="mlink" href="ai_trade.html">
+      <img class="micon" src="ai_trade_icon.jpg" alt="">
+      <span class="mtext">Algorithmic Trading</span>
+    </a>
+
+    <a class="mlink" href="music_video.html">
+      <img class="micon" src="music_img.jpg" alt="">
+      <span class="mtext">Music / Video</span>
+    </a>
+
+    <a class="mlink" href="automatsko_trgovanje.html">
+      <img class="micon" src="automatsko_trgovanje.png" alt="">
+      <span class="mtext">Book</span>
+    </a>
+  </nav>
+</aside>
+
+      <!-- RIGHT CONTENT -->
+      <main class="card content">
+<div class="ref-section">
+  <img src="ai_ml_icon.png" alt="">
+  <h1>AI and ML application</h1>
+</div>
+
+The publications listed on this page represent my practical research and engineering experience in Artificial Intelligence (AI) and Machine Learning (ML). AI and ML technologies focus on building computational systems capable of learning from data, recognizing patterns, making predictions, and supporting intelligent decision-making. My work primarily involves the design, training, and application of machine learning and deep learning models across various methodological and technological contexts.
+<br>
+The references reflect contributions spanning computer vision, geospatial AI, active learning, multi-agent systems, generative AI, and AI-driven modeling approaches. Rather than emphasizing specific application domains, the works highlight algorithmic development, model optimization, and intelligent data analysis techniques. The research topics are grouped below according to the dominant AI/ML methodologies and technical themes explored in the publications.
+<br>
+<br>
+
+
+<b>AI topics:</b>
+<ul>
+<li><a href="#cv">Computer Vision / Detection / Segmentation</a></li>
+<li><a href="#geoai">
+GeoAI / Water Quality / Environmental Monitoring / Atmospheric Science / Geostatistics / Environmental Modeling / Wildfire / Environmental Risk / Remote Sensing
+</a></li>
+<li><a href="#industrial">Industrial / Manufacturing / Engineering AI</a></li>
+<li><a href="#llm">LLMs / Multi-Agent Systems / Generative AI</a></li>
+<li><a href="#uav">UAV / Robots / Path Planning</a></li>
+<li><a href="#al">Active Learning</a></li>
+<li><a href="#bio">AI Bio / Chem</a></li>
+<li><a href="#ocr">OCR</a></li>
+</ul>
+
+
+<br>
+<br>
+
+
+<div class="ref-section" id="cv">
+  <img src="compture_vision_icon.jpg" alt="">
+  <h2>Computer Vision / Detection / Segmentation</h2>
+</div>
+<div class="cv-layout">
+
+  <div class="cv-text">
+    Computer Vision focuses on enabling machines to interpret and understand visual information derived from images and video data. Detection and segmentation techniques represent key components of computer vision systems, allowing the identification, localization, and structural analysis of objects within visual scenes. The publications listed in this section reflect my work on designing and applying deep learning-based vision models across various computer vision tasks. These studies emphasize algorithmic development, model optimization, and practical implementation of intelligent visual analysis methods.
+  </div>
+
+  <div class="cv-image">
+    <img src="cv_detection.jpg" alt="Computer Vision">
+  </div>
+
+</div>
+
+
+<br>
+<br>
+<li>
+<a href="https://www.researchgate.net/publication/382035522" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, (2024), 
+<b>“The Integration of Artificial Intelligence and Computer Vision in Large-Scale Video Surveillance of Railway Stations”</b>, 
+2024 Zooming Innovation in Consumer Technologies Conference (ZINC), Novi Sad, Serbia
+</a>
+</li>
+<li>
+<a href="https://www.researchgate.net/publication/375437294" target="_blank" rel="noopener noreferrer">
+Jovišić N., <b>Ilic V.</b>, Ilić S., Šešić I., Dragičević A., (2023) 
+<b>“Utilizing the Segment Anything Model for Mammography Image Analysis”</b>, 
+IS'23, 19th International Scientific Conference on Industrial Systems, 
+Novi Sad
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/374867400" target="_blank" rel="noopener noreferrer">
+Vajkanovic L., <b>Ilic V.</b>, Culibrk D., Cvejić S., Jocić S., Zoric M., (2023) 
+<b>“Automatic Color Segmentation For Hybrid Sunflower Ray Florets”</b>, 
+IS'23, 19th International Scientific Conference on Industrial Systems, 
+Novi Sad
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/361985383" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Romić M., Ilić S. (2022)
+<b>“Machine learning-based system for weed control on railways”</b>,
+ICIST 2022, Kopaonik, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/374750485" target="_blank" rel="noopener noreferrer">
+Ilic T., <b>Ilic V.</b>, (2023) 
+<b>“Analysis of Microbiological Samples using the Segment Anything Model”</b>, 
+IS'23, 19th International Scientific Conference on Industrial Systems, 
+Novi Sad
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/371554613" target="_blank" rel="noopener noreferrer">
+Ilić S. Pavlović M., Antonić N., <b>Ilić V.</b>, (2023), 
+<b>“Tuning the configuration of a convolutional neural network to produce sharper land use/land coverage maps based on satellite imagery”</b>, 
+ICIST 2023, 13th International Conference on Information Society and Technology, Kopaonik, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/360996473" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Romić M. Ilić S. (2022), 
+<b>“Vegetation suppression system on and near the railway tracks based on PLC and deep learning”</b>, 
+ZINC 2022, ZINC 2020, Novi Sad, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/361985383" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Romić M., Ilić S. (2022), 
+<b>“Machine learning-based system for weed control on railways”</b>, 
+ICIST 2022, 12th International Conference on Information Society and Technology, Kopaonik, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/356537081" target="_blank" rel="noopener noreferrer">
+Arsić A., <b>Ilić V.</b>, Pavković B., Samardžija D. (2021) 
+<b>“System for detecting driver’s drowsiness, fatigue and inattention”</b>, 
+Telfor 2021, Belgrade, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/341869416" target="_blank" rel="noopener noreferrer">
+Novak, B, <b>Ilić V.</b>, Pavković B., (2020) 
+<b>“YOLOv3 Algorithm with additional convolutional neural network trained for traffic sign recognition”</b>, 
+ZINC 2020, Novi Sad, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/329117641" target="_blank" rel="noopener noreferrer">
+Ćorović A., <b>Ilić V.</b>, Đurić S., Marijan M., Pavković B., (2018) 
+<b>“The Real-Time Detection of Traffic Participants Using YOLO Algorithm”</b>, 
+26th Telecommunications forum TELFOR 2018, Belgrade, Serbia
+</a>
+</li>
+
+
+<br>
+<br>
+
+<div class="ref-section" id="geoai">
+  <img src="compture_vision_icon.jpg" alt="">
+  <h2>GeoAI / Water Quality / Environmental Monitoring / Atmospheric Science / Geostatistics / Environmental Modeling / Wildfire / Environmental Risk / Remote Sensing</h2>
+</div>
+
+<div class="cv-layout">
+
+  <div class="cv-text">
+    GeoAI and Remote Sensing integrate artificial intelligence with geospatial and environmental data, enabling large-scale analysis, modeling, and prediction of complex natural processes. These approaches combine machine learning, deep learning, and geostatistical techniques to interpret satellite observations and spatial measurements. The publications listed in this section reflect my work on AI-driven environmental modeling, risk assessment, and monitoring methodologies. The studies emphasize predictive modeling, spatial analysis, and hybrid AI–geostatistical frameworks for understanding environmental dynamics.
+  </div>
+
+  <div class="cv-image">
+    <img src="geo_ai_image.jpg" alt="GeoAI">
+  </div>
+
+</div>
+
+
+
+
+<li>
+<a href="https://www.researchgate.net/publication/399614383" target="_blank" rel="noopener noreferrer">
+Durlević U., <b>Ilić V.</b>, Aleksova B., (2026)
+<b>“Wildfire Probability Mapping in Southeastern Europe Using Deep Learning and Machine Learning Models Based on Open Satellite Data”</b>
+, AI, MDPI
+</a>
+</li>
+ 
+
+<li>
+<a href="https://www.researchgate.net/publication/397990747" target="_blank" rel="noopener noreferrer">
+Durlević U., Čegar N., <b>Ilić V.</b>, Kovjanić A., (2025)
+<b>"Machine Learning and Deep Learning Approaches for Wildfire Susceptibility Prediction: A Case Study of the Djerdap Geopark"</b>, 
+Earth Systems and Environment, Springer Nature
+</a>
+</li>
+<li>
+<a href="https://www.researchgate.net/publication/396702488" target="_blank" rel="noopener noreferrer">
+Durlević U., <b>Ilić V.</b>, Valjarević A., (2025)
+<b>“Wildfire Susceptibility Mapping Using Deep Learning and Machine Learning Models Based on Multi-Sensor Satellite Data Fusion: A Case Study of Serbia”</b>, 
+Fire, MDPI
+</a>
+</li>
+
+<a href="https://www.researchgate.net/publication/380494006" target="_blank" rel="noopener noreferrer">
+Tadić J., <b>Ilić V.</b>, Ilić S., Pavlović M., Tadić V., (2024)
+<b>“Hybrid Machine Learning and Geostatistical Methods for Gap Filling and Predicting Solar-Induced Fluorescence Values”</b>
+, Remote Sensing, MDPI
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/374924563" target="_blank" rel="noopener noreferrer">
+Kostić S., Stojković M., Ilic V., Trivan J., (2023)
+<b>“Deep Neural Network Model for Determination of Coal Cutting Resistance and Performance of Bucket-Wheel Excavator Based on the Environmental Properties and Excavation Parameters”</b>
+, Processes, MDPI
+</a>
+</li>
+
+<li>
+<a href="http://dx.doi.org/10.1021/acs.est.7b03100" target="_blank" rel="noopener noreferrer">
+Tadić J. M., Michalak A. M., Iraci L. T., <b>Ilić V.</b>, et al., (2017)
+<b>“Elliptic cylinder airborne sampling and geostatistical mass balance approach for quantifying local greenhouse gas emissions”</b>
+, Environmental Science & Technology, ACS
+</a>
+</li>
+
+<li>
+<a href="http://www.sciencedirect.com/science/article/pii/S1352231015002873" target="_blank" rel="noopener noreferrer">
+Tadić J. M., <b>Ilić V.</b>, Biraud S., (2015)
+<b>“Examination of geostatistical and machine-learning techniques as interpolators in anisotropic atmospheric environments”</b>
+, Atmospheric Environment, Elsevier
+</a>
+</li>
+<li>
+<a href="https://www.researchgate.net/publication/319205953" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Tadić J., Imširagić A., (2016)
+<b>“Kriging with machine learning covariates in environmental sciences: A hybrid approach”</b>
+, GeoMLA – Geostatistics and Machine Learning, Applications in Climate and Environmental Sciences,
+Belgrade, Serbia
+</a>
+</li>
+<li>
+<a href="https://www.researchgate.net/publication/395923945" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Sekulic M. T., Brborić M., Radonić J., Dmitrašinović S., Stojković M., (2025) 
+<b>“Enhancing the Monitoring System for River Water Quality: Harnessing the Power of Satellite Data and Machine Learning”</b>, 
+Blue-Green Systems, IWA Publishing.
+</a>
+</li>
+<li>
+<a href="https://www.researchgate.net/publication/384453480" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Stojković M., Dodevska Z., Ilić S. (2024), 
+<b>“Machine Learning Model for Prediction of Indicative Water Parameters on the Danube River based on Satellite Data”</b>, 
+ICIST 2024, 14h International Conference on Information Society and Technology, 
+Kopaonik, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/371555750" target="_blank" rel="noopener noreferrer">
+Ilić S., Antonić N., Kisačanin B., Vilotić M., <b>Ilić V.</b>, Ćulibrk D. (2022), 
+<b>“A Deep Learning Approach to Long-term Monitoring of Environmental Changes Based on Satellite Imagery”</b>, 
+ICIST 2022, 12th International Conference on Information Society and Technology, 
+Kopaonik, Serbia
+</a>
+</li>
+
+
+<br>
+<br>
+
+<div class="ref-section" id="industrial">
+  <img src="ai_ml_icon.png" alt="">
+  <h2>Industrial / Manufacturing / Engineering AI</h2>
+</div>
+
+<div class="cv-layout">
+
+  <div class="cv-text">
+    Industrial, Manufacturing, and Engineering AI focuses on the application of artificial intelligence techniques to technical systems, production processes, and engineered environments. These approaches leverage machine learning and deep learning models to support automation, anomaly detection, predictive analysis, and system optimization. The publications listed in this section reflect my work on developing AI-driven solutions for intelligent industrial and engineering systems. The studies emphasize practical implementation, model design, and data-driven analysis within complex technical infrastructures.
+  </div>
+
+  <div class="cv-image">
+    <img src="industrial_ai_image.jpg" alt="Industrial">
+  </div>
+
+</div>
+
+
+
+<li>
+<a href="https://www.researchgate.net/publication/374743152" target="_blank" rel="noopener noreferrer">
+<b>Ilic V.</b>, Medojević M., (2023) 
+<b>“Detection of Anomalies on the Surface of Workpieces Produced on CNC Machines”</b>, 
+IS'23, 19th International Scientific Conference on Industrial Systems, Novi Sad
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/372436538" target="_blank" rel="noopener noreferrer">
+Medojević M., <b>Ilić V.</b>, (2023), 
+<b>“A CNN Network-Driven Autonomous Work-Piece Surface Anomalies Detection in CNC Manufacturing”</b>, 
+AAI2023, The Second Serbian International Conference on Applied Artificial Intelligence (SICAAI)
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/372434155" target="_blank" rel="noopener noreferrer">
+Medojević M., <b>Ilić V.</b>, (2023), 
+<b>“Autonomous State-Based Determination of the Machine Operation Behavior in the Hinge on Energy Consumption”</b>, 
+AAI2023, The Second Serbian International Conference on Applied Artificial Intelligence (SICAAI)
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/377721423" target="_blank" rel="noopener noreferrer">
+Medojević M., <b>Ilić V.</b>, (2023), 
+<b>“Intelligent train-related IoT system for monitoring environmental, safety, and maintenance issues in dynamic spatiotemporal variability along the route”</b>, 
+ICIST 2023, 13h International Conference on Information Society and Technology, Kopaonik, Serbia
+</a>
+</li>
+
+
+
+
+
+
+
+<div class="ref-section" id="llm">
+  <img src="ai_ml_icon.png" alt="">
+  <h2>LLMs / Multi-Agent Systems / Generative AI</h2>
+</div>
+<div class="cv-layout">
+
+  <div class="cv-text">
+    Large Language Models (LLMs), Multi-Agent Systems, and Generative AI represent a class of AI technologies focused on reasoning, knowledge representation, autonomous interaction, and content generation. These approaches enable systems capable of language understanding, decision-making, collaborative problem solving, and adaptive behavior. The publications listed in this section reflect my work on LLM-driven simulations, multi-agent architectures, and AI-assisted generative systems. The studies emphasize system design, emergent behavior modeling, and practical integration of generative AI methodologies.
+  </div>
+
+  <div class="cv-image">
+    <img src="llm_image.jpg" alt="LLMs">
+  </div>
+
+</div>
+
+
+<li>
+<a href="https://www.researchgate.net/publication/398486837" target="_blank" rel="noopener noreferrer">
+Bojić Lj., <b>Ilić V.</b>, Prodanović V., Vuković V. (2025)
+<b>“An Agent-Based Simulation of Politicized Topics Using Large Language Models: Algorithmic Personalization and Polarization on Social Media”</b>,
+Chinese Political Science Review, Springer Nature
+</a>
+</li>
+<li>
+<a href="https://www.researchgate.net/publication/382946982" target="_blank" rel="noopener noreferrer">
+Jovišić N., Ilić S., <b>Ilić V.</b> (2024)
+<b>“Mirror AI: Self-optimizing multimodal multi-agent AI”</b>,
+ICIST 2024, 14th International Conference on Information Society and Technology, Kopaonik, Serbia
+</a>
+</li>
+<li>
+<a href="https://www.researchgate.net/publication/377706469" target="_blank" rel="noopener noreferrer">
+Bala K., <b>Ilić V.</b> (2023)
+<b>“AI-Powered Programming: Using ChatGPT for Code Generation Support”</b>,
+Mathematical Institute of the Serbian Academy of Sciences and Arts, Belgrade
+</a>
+</li>
+
+
+
+
+<br>
+<br>
+
+<div class="ref-section" id="uav">
+  <img src="ai_ml_icon.png" alt="">
+  <h2>UAV / Robots / Path Planning</h2>
+</div>
+
+<div class="cv-layout">
+
+  <div class="cv-text">
+    Unmanned Aerial Vehicles (UAVs), robotic systems, and path planning techniques represent an important area of AI research focused on autonomous navigation, perception, and intelligent control. These approaches combine machine learning, computer vision, and optimization algorithms to enable adaptive and data-driven decision-making in dynamic environments. The publications listed in this section reflect my work on UAV control, intelligent navigation strategies, and AI-supported spatial analysis. The studies emphasize system design, algorithmic development, and practical implementation of autonomous and semi-autonomous platforms.
+  </div>
+
+  <div class="cv-image">
+    <img src="robot_drone_image.jpg" alt="Robot">
+  </div>
+
+</div>
+
+<br>
+<br>
+
+
+<li>
+<a href="http://www.researchgate.net/publication/398262915" target="_blank" rel="noopener noreferrer">
+Šeljmeši D., Ognjenović V., Ilić, V., Dobrilović D., Brtka, V., Nikolić M. (2025). 
+<b>“Automated construction of global 3D maps from mobile LiDAR scans in industrial environments”</b>, 
+Artificial intelligence in Industry 4.0 and 5.0, Belgrade
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/397561933" target="_blank" rel="noopener noreferrer">
+Šeljmeši D., <b>Ilić V.</b>, Ognjenović V., Brtka V., Dobrilović D., (2025) 
+<b>“Intelligent UAV Surveillance: GIS-Based Path Planning and Post-Flight Object Detection Using YOLOv11”</b> 
+XV International Conference on Applied Internet and Information Technologies (AIIT 2025), Bitola, N. Macedonia
+</a>
+</li>
+
+<li>
+<a href="http://dx.doi.org/10.1109/TELFOR.2013.6716374" target="_blank" rel="noopener noreferrer">
+Bokan D., Cetić N., Kovačević J., <b>Ilić V.</b>, (2013) 
+<b>“Control of unmanned aerial vehicle based on XMOS platform”</b>, 
+21st Telecommunications Forum (TELFOR 2013), pp. 893-896, ISBN:978-1-4799-1419-7, Belgrade, Serbia
+</a>
+</li>
+
+
+<br>
+<br>
+
+<div class="ref-section"  id="al">
+  <img src="ai_ml_icon.png" alt="">
+  <h2>Active Learning</h2>
+</div>
+
+<div class="cv-layout">
+
+  <div class="cv-text">
+    Active Learning is a machine learning paradigm designed to improve model performance while minimizing the need for extensive labeled datasets. These approaches enable models to selectively identify the most informative samples for annotation, thereby optimizing the learning process. The publications listed in this section reflect my work on developing and applying active learning strategies across different machine learning contexts. The studies emphasize algorithmic design, data efficiency, and intelligent sampling techniques for model training and optimization.
+  </div>
+
+  <div class="cv-image">
+    <img src="active_learning_image.jpg" alt="Active Learning">
+  </div>
+
+</div>
+
+
+<br>
+<br>
+<li>
+<a href="https://www.researchgate.net/publication/352051875" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Tadić J. M. (2021) 
+<b>“Active Learning using a Self-Correcting Neural Network (ALSCN)”</b>, 
+Applied Intelligence, The International Journal of Research on Intelligent Systems for Real Life Complex Problems, ISSN: 0924-669X, Springer
+</a>
+</li>
+<li>
+<a href="https://www.researchgate.net/publication/385859001" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, (2024), 
+<b>“Reducing Manual Labeling Effort by Identifying the Most Informative Unlabeled Data via Active Learning”</b>, 
+International conference on Applied Internet and Information Technologies (AIIT 2024), 
+Zrenjanin, Serbia
+</a>
+</li>
+<li>
+<a href="https://www.researchgate.net/publication/374170866" target="_blank" rel="noopener noreferrer">
+Wang Y., <b>Ilić V.</b>, Li J., Kisačanin B., Pavlović V. (2023)
+<b>“ALWOD: Active Learning for Weakly-Supervised Object Detection”</b>,
+International Conference on Computer Vision (ICCV 2023)
+</a>
+</li>
+<li>
+<a href="https://www.researchgate.net/publication/371562046" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Prodanović N., Kalušev V. (2023), 
+<b>“Applying Active Learning in NLP Domin”</b>, 
+AAI2023, The Second Serbian International Conference on Applied Artificial Intelligence (SICAAI)
+</a>
+</li>
+
+
+
+
+<br>
+<br>
+
+<div class="ref-section"  id="bio">
+  <img src="ai_bio_chem_icon.jpg" alt="">
+  <h2>AI Bio / Chemistry / Pharmacy</h2>
+</div>
+
+<div class="cv-layout">
+
+  <div class="cv-text">
+    Interdisciplinary research area where artificial intelligence methods are applied to biological, chemical, and molecular data analysis. These approaches enable intelligent modeling, pattern recognition, and computational support for complex scientific investigations. The publications listed in this section reflect my work on integrating AI techniques with bioinformatics, molecular modeling, and data-driven scientific analysis. The studies emphasize methodological development, intelligent data interpretation, and AI-assisted research frameworks.
+  </div>
+
+  <div class="cv-image">
+    <img src="bio_ai_image.jpg" alt="BioAI">
+  </div>
+
+</div>
+
+<li>
+<a href="https://www.researchgate.net/publication/392361522" target="_blank" rel="noopener noreferrer">
+Krtolica I., <b>Ilić V.</b>, Tadić J., (2025), 
+<b>“Automated Chemical Research with Multi-Agent Collaboration and Molecular Transformers in a Case Study of Aspirin Synthesis”</b>, 
+ICIST 2025, 15th International Conference on Information Society and Technology, Kopaonik
+</a>
+</li>
+
+<li>
+<a href="http://dx.doi.org/10.13140/RG.2.1.2850.9841" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Ilić T., (2015) 
+<b>“Software tool for selection restriction enzymes for modification of DNA sequence in plasmids”</b>, 
+AIIT 2015 International Conference on Applied Internet and Information Technologies, 
+Zrenjanin, Serbia
+</a>
+</li>
+
+<li>
+<a href="https://www.researchgate.net/publication/374750485" target="_blank" rel="noopener noreferrer">
+Ilic T., <b>Ilic V.</b>, (2023) 
+<b>“Analysis of Microbiological Samples using the Segment Anything Model”</b>, 
+IS'23, 19th International Scientific Conference on Industrial Systems, 
+Novi Sad
+</a>
+</li>
+
+
+
+<br>
+<br>
+
+<div class="ref-section"  id="ocr">
+  <img src="compture_vision_icon.jpg" alt="">
+  <h2>OCR</h2>
+</div>
+
+<div class="cv-layout">
+
+  <div class="cv-text">
+    Optical Character Recognition (OCR) focuses on enabling computational systems to automatically detect, interpret, and digitize textual information from images and scanned documents. These technologies combine pattern recognition, computer vision, and machine learning techniques to transform visual text into structured digital data. The publications listed in this section reflect my work on the development and application of OCR methodologies, particularly for Cyrillic script recognition. The studies emphasize algorithmic design, character recognition accuracy, and intelligent text processing approaches.
+  </div>
+
+  <div class="cv-image">
+    <img src="ocr_image.jpg" alt="OCR">
+  </div>
+
+</div>
+
+
+<br>
+<br>
+<li>
+<a href="https://www.researchgate.net/publication/362695247" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, Bajčetić L., Petrović S., Španović I., (2022),
+<b>“SCyDia - OCR for Serbian Cyrillic with Diacritics”</b>, 
+XX EURALEX International Congress, Mannheim, Germany
+</a>
+</li>
+
+<li>
+<a href="http://scindeks.nb.rs/article.aspx?artid=1451-43970201038I" target="_blank" rel="noopener noreferrer">
+<b>Ilić V.</b>, (2002): 
+<b>“OCR – Software for recognition Cyrillic letters”</b>, 
+InfoM – Journal of Information Technology and Multimedia Systems, vol. 1, no. 1, pp. 38-43,  Belgrade
+</a>
+</li>
+
+
+
+
+
+      </main>
+
+    </div>
+
+    <div class="footer">
+      <div><a href="index.html">← Back to Home</a></div>
+      <div>© Velibor Ilić</div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Velibor Ilić - WebPage - Music / Video</title>
+
+  <style>
+:root{
+  --bg:#0b1220;
+  --card:#111a2e;
+  --text:#e7eefc;
+  --muted:#b9c6e6;
+  --line:rgba(255,255,255,.10);
+  --accent:#7aa7ff;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 16px;
+}
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(900px 500px at 20% 0%, rgba(122,167,255,.25), transparent 60%),
+              radial-gradient(900px 500px at 80% 10%, rgba(119,242,194,.18), transparent 60%),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+a{ color: var(--text); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+.wrap{ max-width: 1100px; margin: 0 auto; padding: 28px 18px 44px; }
+
+/* HERO */
+.hero{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap:24px;
+  align-items:start;
+  padding:22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.name-block{
+  display:grid;
+  grid-template-columns: auto 1fr;
+  column-gap:16px;
+  row-gap:6px;
+  align-items:start;
+}
+.name-row{ display:contents; }
+.logo{
+  grid-column:1; grid-row:1 / span 2;
+  height:100px; width:auto; opacity:.95;
+}
+.title{
+  grid-column:2; grid-row:1;
+  font-size:30px; font-weight:750; margin:0;
+}
+.subtitle{
+  grid-column:2; grid-row:2;
+  margin:0 0 14px; color: var(--muted);
+}
+.pillbar{ display:flex; flex-wrap:wrap; gap:8px; }
+.pill{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:7px 10px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--line);
+  border-radius:999px;
+  font-size:13px;
+  color: var(--muted);
+}
+.photo{
+  width:116px; height:116px;
+  border-radius:14px; object-fit:cover;
+  border:1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+/* LAYOUT: left menu + right content */
+.page{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns: 220px 1fr;
+  gap:16px;
+}
+.card{
+  background: rgba(17,26,46,.78);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding:16px;
+}
+.section-title{
+  margin:0 0 10px;
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.profiles{ display:grid; gap:10px; margin-top:10px; }
+.plink{
+  display:flex; align-items:center; gap:12px;
+  padding:10px 12px;
+  border-radius:12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.plink:hover{
+  border-color: rgba(122,167,255,.35);
+  background: rgba(122,167,255,.08);
+  text-decoration:none;
+}
+.icon{ height:75px; width:auto; object-fit:contain; flex:0 0 auto; border-radius:14px; }
+.plink-title{ font-weight:650; font-size:14px; margin:0; }
+.plink-url{ font-size:12px; color: var(--muted); margin:0; padding-left:0px;}
+
+/* Active menu item */
+.plink.active{
+  border-color: rgba(122,167,255,.55);
+  background: rgba(122,167,255,.10);
+}
+
+/* Content area */
+.content h1{ margin:0 0 10px; font-size:24px; }
+.content p{ margin:0 0 12px; color: var(--muted); }
+.hero-img{
+  width:100%;
+  max-height:320px;
+  object-fit:cover;
+  border-radius:14px;
+  border:1px solid var(--line);
+  display:block;
+  margin: 10px 0 14px;
+}
+.links{
+  display:flex; flex-wrap:wrap; gap:10px;
+  margin-top:10px;
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:14px 12px;
+  border-radius:12px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  color: var(--text);
+}
+.btn:hover{
+  border-color: rgba(119,242,194,.35);
+  background: rgba(119,242,194,.08);
+  text-decoration:none;
+}
+
+.ref-section{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:26px 0 10px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--line);
+}
+
+.ref-section img{
+  height:30px;
+  width:auto;
+  object-fit:contain;
+  flex:0 0 auto;
+  opacity:.95;
+}
+
+.ref-section h2{
+  margin:0;
+  font-size:16px;
+  font-weight:700;
+  color:var(--text);
+}
+
+.footer{
+  margin-top:22px;
+  color: var(--muted);
+  font-size:12px;
+  border-top: 1px solid var(--line);
+  padding-top:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px 16px;
+  justify-content: space-between;
+  align-items:center;
+}
+
+@media (max-width: 860px){
+  .hero{ grid-template-columns: 1fr; }
+  .photo{ width:140px; height:140px; }
+  .page{ grid-template-columns: 1fr; }
+  .icon{ height:56px; }
+}
+
+
+
+.yt-link a{
+  display:inline-flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.10);
+  color: var(--text);
+  text-decoration:none;
+  padding:3 14px;
+}
+
+.yt-link a:hover{
+  border-color: rgba(255,0,0,.55);
+  background: rgba(255,0,0,.08);
+}
+.yt-link{
+  margin-bottom:8px;
+  
+}
+
+.yt-icon{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+}
+
+.yt-title{
+  font-weight:650;
+  font-size:14px;
+  margin:0;
+  line-height:1.15;
+}
+.yt-link p{
+  margin:0;
+}
+
+
+/* Compact menu */
+.menu{
+  display:grid;
+  gap:6px;
+  margin-top:8px;
+}
+
+.mlink{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 8px;
+  border-radius:10px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.10);
+  text-decoration:none;
+}
+
+.mlink:hover{
+  border-color: rgba(122,167,255,.35);
+  background: rgba(122,167,255,.08);
+  text-decoration:none;
+}
+
+.micon{
+  width:auto;
+  height:15px;
+  flex:0 0 auto;
+  object-fit:contain;
+  opacity:.95;
+}
+
+.mtext{
+  font-size:13px;
+  font-weight:650;
+  line-height:1.15;
+  margin:0;              /* ⬅️ nema prostora oko teksta */
+  white-space:nowrap;    /* ⬅️ sve u jednom redu */
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.mlink.active{
+  border-color: rgba(122,167,255,.55);
+  background: rgba(122,167,255,.10);
+}
+
+.hero-image{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  margin-bottom:22px;
+}
+
+.hero-image img{
+  width:100%;
+  max-width:1280px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+<!-- TOP / HERO -->
+<div class="hero-image">
+    <img src="header.png" alt="Velibor Ilić Header">
+</div>
+
+    <!-- PAGE: menu + content -->
+    <div class="page">
+
+      <!-- LEFT MENU -->
+<aside class="card">
+  <div class="section-title">Menu</div>
+
+  <nav class="menu">
+    <a class="mlink" href="index.html">
+      <img class="micon" src="ai_ml_icon.png" alt="">
+      <span class="mtext">Home</span>
+    </a>
+
+    <a class="mlink" href="VeliborCV.html">
+      <img class="micon" src="cv_icon.jpg" alt="">
+      <span class="mtext">Velibor - Resume, CV</span>
+    </a>
+
+    <a class="mlink" href="ai_ml_application.html">
+      <img class="micon" src="ai_ml_icon.png" alt="">
+      <span class="mtext">AI / ML application</span>
+    </a>
+
+
+
+    <a class="mlink" href="automotive.html">
+      <img class="micon" src="automotive_icon.jpg" alt="">
+      <span class="mtext">Automotive</span>
+    </a>
+
+    <a class="mlink" href="ai_trade.html">
+      <img class="micon" src="ai_trade_icon.jpg" alt="">
+      <span class="mtext">Algorithmic Trading</span>
+    </a>
+
+    <a class="mlink active" href="music_video.html">
+      <img class="micon" src="music_img.jpg" alt="">
+      <span class="mtext">Music / Video</span>
+    </a>
+
+    <a class="mlink" href="automatsko_trgovanje.html">
+      <img class="micon" src="automatsko_trgovanje.png" alt="">
+      <span class="mtext">Book</span>
+    </a>
+  </nav>
+</aside>
+
+      <!-- RIGHT CONTENT -->
+      <main class="card content">
+        <h1>Music / Video</h1>
+
+
+
+<div class="yt-link">
+  <a href="https://www.youtube.com/watch?v=X4PNLWPLRdM&list=PLKvPBxDqrySwk6UxQcpmjwlcCoNLnDS5V"
+     target="_blank" rel="noopener noreferrer">
+
+    <img src="youtube_icon.png" alt="YouTube" class="yt-icon">
+
+    <div>
+      <div class="yt-title">Tišina Me Prati (2026)</div>
+
+      <div class="plink-url">
+        Dark alternative rock with strong dark post-punk influence, Serbian language
+      </div>
+
+      <ul class="plink-url">
+        •	Čekajući Bolje Sutra<br>
+        •	Iza Mene<br>
+        •	Kao Senka Koja Zna<br>
+        •	Bez Horizonta<br>
+        •	Sećanja Bez Slike<br>
+        •	To Vreme Je Prošlo<br>
+        •	Zašto Sam Tu?<br>
+        •	Sve Što Ostaje<br>
+        •	Rodjen u Bečeju<br>
+        •	Ovaj Grad Posle Ponoći<br>
+      </ul>
+    </div>
+
+  </a>
+</div>
+
+
+
+<div class="yt-link">
+  <a href="https://www.youtube.com/watch?v=eIdgV6auqo4"
+     target="_blank" rel="noopener noreferrer">
+    <img src="youtube_icon.png" alt="YouTube" class="yt-icon">
+    <div>
+      <div class="yt-title">Fragments of Tomorrow (2026)</div>
+      <div class="plink-url">
+        progressive space electronic / cinematic ambient / alternative atmospheric / dark synthwave / post-punk
+      </div>
+    </div>
+
+  </a>
+</div>
+
+
+
+<div class="yt-link">
+  <a href="https://www.youtube.com/watch?v=vOYO2ZW4fTU"
+     target="_blank" rel="noopener noreferrer">
+    <img src="youtube_icon.png" alt="YouTube" class="yt-icon">
+    <div>
+      <div class="yt-title">Midnight Data Run (2025)</div>
+      <div class="plink-url">
+        Experiment in multimodal storytelling, AI - driven story, video, and sound!<br>
+        Dive into a cyberpunk thriller where hackers, ex-SWAT operatives,<br>
+        and a conflicted agent collide under neon lights.
+      </div>
+    </div>
+
+  </a>
+</div>
+
+
+<div class="yt-link">
+  <a href="https://www.dropbox.com/scl/fi/ow05rp9m8i7sexp7yn40s/Midnight-Data-Run-with-dialogs-complete-character-and-location-description.pdf?rlkey=sso0prg4ph14rpwh8tvdi2ucb&e=3&dl=0"
+     target="_blank" rel="noopener noreferrer">
+    <img src="pdf_icon.png" alt="YouTube" class="yt-icon">
+    <div>
+      <div class="yt-title">Midnight Data Run (2025)</div>
+      <div class="plink-url">
+        Midnight Data Run, story and images, dive into a cyberpunk thriller where hackers,<br>
+        ex-SWAT operatives, and a conflicted agent collide under neon lights.
+      </div>
+    </div>
+
+  </a>
+</div>
+
+<div class="yt-link">
+  <a href="https://www.youtube.com/watch?v=IqBoY9oTgNg"
+     target="_blank" rel="noopener noreferrer">
+    <img src="youtube_icon.png" alt="YouTube" class="yt-icon">
+    <div>
+      <div class="yt-title">Velibor Ilic - Deep Indigo Midnight Echoes (2024)</div>
+      <div class="plink-url">
+        Music composed at Arturia KEYLAB61 MK II and FL Studio 20.
+      </div>
+    </div>
+  </a>
+</div>
+
+
+
+
+
+        
+<br><br>
+
+
+      </main>
+
+    </div>
+
+    <div class="footer">
+      <div><a href="index.html">← Back to Home</a></div>
+      <div>© Velibor Ilić</div>
+    </div>
+
+  </div>
+</body>
+</html>
