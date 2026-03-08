@@ -1,0 +1,2861 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Unitree Exploration Simulation (Unknown Terrain) - v6 (Sampled Frontiers + Forward Bias)</title>
+  <style>
+    :root{
+      --ui-w: 340px;
+      --border:#3b3b3b;
+      --wall:#4a4a4a;
+      --panel:#dbe6f6;
+      --text:#141414;
+      --muted:#3b3b3b;
+
+      --ob:#a9a9a9;
+      --ob-stroke:#5a5a5a;
+
+      --start:#e21818;
+      --goal:#5ac248;
+
+      --wp:#b9d7ff;
+      --wp-stroke:#2b3f66;
+
+      --robot:#2f62c7;
+      --sel:#1c7cff;
+
+      --unknown:#0b0b0b;
+      --known:#ffffff;
+      --knownOcc:#c8c8c8;
+
+      --frontier:#ffcc00;
+      --frontierBlocked:#2f62c7;
+      --frontierStroke:#7a5a00;
+      --target:#ff3b3b;
+    }
+
+    body{ margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: var(--text); overflow:hidden; }
+    .wrap{ display:flex; height:100vh; width:100vw; }
+    #simArea{ flex:1; background:#f7f7f7; position:relative; border-right: 6px solid var(--border); }
+    #canvas{ display:block; width:100%; height:100%; }
+    #panel{ width: var(--ui-w); background: var(--panel); padding:14px 12px; box-sizing:border-box; overflow:auto; }
+    #panel h2{ margin:0 0 10px 0; font-size:18px; font-weight:800; }
+    .field{ margin:10px 0; display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:13px; }
+    input[type="number"]{ width:120px; padding:6px 8px; border-radius:10px; border:1px solid #6d6d6d; font-weight:700; }
+    .btnrow{ display:flex; gap:8px; flex-wrap:wrap; margin:10px 0; }
+    button{ cursor:pointer; border:1px solid #6d6d6d; border-radius:10px; padding:8px 10px; background:#fff; font-weight:700; font-size:13px; }
+    button:disabled{ opacity:.5; cursor:not-allowed; }
+    .small{ color:var(--muted); font-size:12px; line-height:1.35; }
+    #log{
+      margin-top:10px;
+      background:#fff;
+      border:1px solid #6d6d6d;
+      border-radius:12px;
+      padding:8px;
+      height:260px;
+      overflow:auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size:12px;
+      white-space:pre-wrap;
+    }
+    .tag{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid #6d6d6d;
+      background:#fff;
+      font-size:12px;
+      font-weight:800;
+      margin-top:6px;
+    }
+    .sep{ height:1px; background:rgba(0,0,0,.15); margin:10px 0; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div id="simArea"><canvas id="canvas"></canvas></div>
+  <aside id="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:0 0 10px 0;">
+      <h2 id="panelTitle" data-i18n="title" style="margin:0;font-size:18px;font-weight:800;">polje za kontrolu simulacije</h2>
+      <select id="langSelect" style="padding:6px 10px;border-radius:10px;border:1px solid #6d6d6d;font-weight:800;">
+        <option value="sr">🇷🇸 SR</option>
+        <option value="en">🇬🇧 EN</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <div data-i18n="stepLenLabel">Dužina koraka (px)</div>
+      <input id="stepLen" type="number" min="10" max="120" value="50" />
+    </div>
+
+    <div class="field">
+      <div data-i18n="cellSizeLabel">Veličina kockice (px)</div>
+      <input id="cellSize" type="number" min="2" max="12" value="4" />
+    </div>
+
+    <div class="field">
+      <div data-i18n="sensorRadiusLabel">Sensor radius (px)</div>
+      <input id="sensorRadius" type="number" min="20" max="600" value="120" />
+    </div>
+
+
+    <div class="field">
+      <div data-i18n="safeDistanceLabel">Safe distance (px)</div>
+      <input id="safeDistance" type="number" min="0" max="200" value="15" />
+    </div>
+    <div class="btnrow">
+      <button id="addObstacleBtn" data-i18n="addObstacle">Dodaj novu prepreku</button>
+      <button id="delSelectedBtn" data-i18n="deleteSelected">Ukloni selektovano</button>
+    </div>
+
+    <div class="btnrow">
+      <button id="autoBtn" data-i18n="runAuto">Pokreni novu simulaciju (automatski)</button>
+      <button id="stepModeBtn" data-i18n="runStep">Pokreni novu simulaciju (korak po korak)</button>
+      <button id="nextStepBtn" disabled data-i18n="nextStep">Sledeći korak</button>
+    </div>
+
+    <div class="btnrow">
+      <button id="stopBtn" disabled data-i18n="stop">Zaustavi</button>
+      <button id="resetBtn" data-i18n="reset">Reset (bez brisanja objekata)</button>
+      <button id="clearLogBtn" data-i18n="clearLog">Obriši log</button>
+    </div>
+
+    <div class="btnrow">
+
+      <button id="exportBtn" data-i18n="exportPlan">Export prepreke + putanja (JSON)</button>
+      <button id="importPlanBtn" data-i18n="importPlan">Učitaj prepreke + putanju (JSON)</button>
+      <input id="importPlanInput" type="file" accept="application/json" style="display:none;" />
+    </div>
+
+    
+    <div class="sep"></div>
+
+    <h3 style="margin:0 0 6px 0;font-size:14px;font-weight:900;"><span data-i18n="spacesHeader">Prostori (preset / snimi / učitaj)</span></h3>
+    <div class="field">
+      <div data-i18n="presetLabel">Preset</div>
+      <select id="presetSelect" style="width:170px;padding:6px 8px;border-radius:10px;border:1px solid #6d6d6d;font-weight:800;">
+        <option value="default" data-i18n="presetDefault">Default</option>
+        <option value="empty" data-i18n="presetEmpty">Prazan prostor</option>
+        <option value="two" data-i18n="presetTwo">Dve prepreke</option>
+      </select>
+    </div>
+    <div class="btnrow">
+      <button id="loadPresetBtn" data-i18n="loadPreset">Učitaj preset</button>
+      <button id="saveSpaceBtn" data-i18n="saveSpace">Sačuvaj prostor (JSON)</button>
+      <button id="loadSpaceBtn" data-i18n="loadSpace">Učitaj prostor (JSON)</button>
+      <input id="loadSpaceInput" type="file" accept="application/json" style="display:none;" />
+    </div>
+<div class="small">• v6: frontier tačke su “sampled” (ravnomerniji razmak po ivici), izbor prioritizuje blizinu + tačke ispred robota (da ne luta). I dalje: LoS-frontier first, pa A* distance. Deadzone + forward-first + turn-streak limiter + target hold.<br>• Dodatno: ako robot ponovo uđe u START i cilj je već viđen → planira se A* putanja od START do CILJ i kreiraju se svetlo plave referentne tačke.</div>
+
+    <div class="sep"></div>
+
+    <div class="tag" id="modeTag">MODE: EDIT</div>
+    <div class="tag" id="statusTag" style="margin-left:6px;">STATUS: exploring</div>
+    <div id="log"></div>
+  </aside>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  // ----------------------------
+  // Math helpers
+  // ----------------------------
+  const clamp = (v,a,b)=>Math.max(a,Math.min(b,v));
+  const dist  = (ax,ay,bx,by)=>Math.hypot(ax-bx, ay-by);
+  const deg2rad = d=>d*Math.PI/180;
+  const rad2deg = r=>r*180/Math.PI;
+
+  function normalizeAngleRad(a){
+    while (a<=-Math.PI) a+=2*Math.PI;
+    while (a> Math.PI) a-=2*Math.PI;
+    return a;
+  }
+
+  function angleLerpRad(a,b,t){
+    // interpolate angle a -> b by fraction t on shortest arc
+    const d = normalizeAngleRad(b - a);
+    return normalizeAngleRad(a + d*t);
+  }
+
+
+  // Alias used by some patched code
+  function normalizeAngle(a){ return normalizeAngleRad(a); }
+
+  function randIn(a,b){ return a + Math.random()*(b-a); }
+  function randSign(){ return Math.random()<0.5 ? -1 : 1; }
+
+  // ----------------------------
+  // Canvas setup
+  // ----------------------------
+  const simArea = document.getElementById('simArea');
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.style.touchAction = 'none';
+
+  function resizeCanvas(){
+    const r = simArea.getBoundingClientRect();
+    canvas.width  = Math.floor(r.width);
+    canvas.height = Math.floor(r.height);
+  }
+  resizeCanvas();
+
+  // ----------------------------
+  // UI
+  // ----------------------------
+  const stepLenEl      = document.getElementById('stepLen');
+  const cellSizeEl     = document.getElementById('cellSize');
+  const sensorRadiusEl = document.getElementById('sensorRadius');
+  const safeDistanceEl = document.getElementById('safeDistance');
+
+  const addObstacleBtn = document.getElementById('addObstacleBtn');
+  const delSelectedBtn = document.getElementById('delSelectedBtn');
+  const autoBtn        = document.getElementById('autoBtn');
+  const stepModeBtn    = document.getElementById('stepModeBtn');
+  const nextStepBtn    = document.getElementById('nextStepBtn');
+  const stopBtn        = document.getElementById('stopBtn');
+  const resetBtn       = document.getElementById('resetBtn');
+  const clearLogBtn    = document.getElementById('clearLogBtn');
+  const exportBtn      = document.getElementById('exportBtn');
+  const importPlanBtn   = document.getElementById('importPlanBtn');
+  const importPlanInput = document.getElementById('importPlanInput');
+
+  // Space presets / Save / Load (offline JSON)
+  const presetSelect   = document.getElementById('presetSelect');
+  const loadPresetBtn  = document.getElementById('loadPresetBtn');
+  const saveSpaceBtn   = document.getElementById('saveSpaceBtn');
+  const loadSpaceBtn   = document.getElementById('loadSpaceBtn');
+  const loadSpaceInput = document.getElementById('loadSpaceInput');
+  const logEl          = document.getElementById('log');
+  const modeTag        = document.getElementById('modeTag');
+  const statusTag      = document.getElementById('statusTag');
+
+  // ----------------------------
+  // i18n (SR/EN)
+  // ----------------------------
+  const I18N = {
+    sr: {
+      title: "polje za kontrolu simulacije",
+      stepLenLabel: "Dužina koraka (px)",
+      cellSizeLabel: "Veličina kockice (px)",
+      sensorRadiusLabel: "Sensor radius (px)",
+      safeDistanceLabel: "Safe distance (px)",
+
+      addObstacle: "Dodaj novu prepreku",
+      deleteSelected: "Ukloni selektovano",
+      runAuto: "Pokreni novu simulaciju (automatski)",
+      runStep: "Pokreni novu simulaciju (korak po korak)",
+      nextStep: "Sledeći korak",
+      stop: "Zaustavi",
+      reset: "Reset (bez brisanja objekata)",
+      clearLog: "Obriši log",
+      exportPlan: "Export prepreke + putanja (JSON)",
+      importPlan: "Učitaj prepreke + putanju (JSON)",
+
+      spacesHeader: "Prostori (preset / snimi / učitaj)",
+      presetLabel: "Preset",
+      loadPreset: "Učitaj preset",
+      saveSpace: "Sačuvaj prostor (JSON)",
+      loadSpace: "Učitaj prostor (JSON)",
+      presetDefault: "Default",
+      presetEmpty: "Prazan prostor",
+      presetTwo: "Dve prepreke",
+      obstacle: "Prepreka",
+      start: "Start",
+      goal: "Cilj",
+    },
+    en: {
+      title: "Simulation control panel",
+      stepLenLabel: "Step length (px)",
+      cellSizeLabel: "Cell size (px)",
+      sensorRadiusLabel: "Sensor radius (px)",
+      safeDistanceLabel: "Safe distance (px)",
+
+      addObstacle: "Add obstacle",
+      deleteSelected: "Delete selected",
+      runAuto: "Start new simulation (auto)",
+      runStep: "Start new simulation (step-by-step)",
+      nextStep: "Next step",
+      stop: "Stop",
+      reset: "Reset (keep objects)",
+      clearLog: "Clear log",
+      exportPlan: "Export obstacles + path (JSON)",
+      importPlan: "Import obstacles + path (JSON)",
+
+      spacesHeader: "Spaces (preset / save / load)",
+      presetLabel: "Preset",
+      loadPreset: "Load preset",
+      saveSpace: "Save space (JSON)",
+      loadSpace: "Load space (JSON)",
+      presetDefault: "Default",
+      presetEmpty: "Empty space",
+      presetTwo: "Two obstacles",
+      obstacle: "Obstacle",
+      start: "Start",
+      goal: "Goal",
+    }
+  };
+
+  function applyLanguage(lang){
+    const dict = I18N[lang] || I18N.sr;
+
+    // Generic elements (textContent)
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const key = el.getAttribute("data-i18n");
+      if (!key) return;
+      if (el.tagName === "OPTION"){
+        // options use textContent too
+        if (dict[key] != null) el.textContent = dict[key];
+        return;
+      }
+      if (dict[key] != null) el.textContent = dict[key];
+    });
+  }
+
+
+  function getCurrentLang(){
+    const sel = document.getElementById("langSelect");
+    const v = (sel && sel.value) ? sel.value : (localStorage.getItem("unitree_lang") || "en");
+    return (v === "sr") ? "sr" : "en";
+  }
+
+  function t(key){
+    const lang = getCurrentLang();
+    const dict = I18N[lang] || I18N.en;
+    return (dict && dict[key] != null) ? dict[key] : key;
+  }
+
+  // Wire language selector
+  const langSelect = document.getElementById("langSelect");
+  if (langSelect){
+    const saved = localStorage.getItem("unitree_lang") || "en";
+    langSelect.value = (saved === "en") ? "en" : "sr";
+    applyLanguage(langSelect.value);
+
+    langSelect.addEventListener("change", ()=>{
+      localStorage.setItem("unitree_lang", langSelect.value);
+      applyLanguage(langSelect.value);
+    });
+  }
+
+
+  function log(line){
+    const t=new Date();
+    const ts=`${String(t.getHours()).padStart(2,'0')}:${String(t.getMinutes()).padStart(2,'0')}:${String(t.getSeconds()).padStart(2,'0')}`;
+    logEl.textContent += `[${ts}] ${line}\n`;
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+  clearLogBtn.addEventListener('click', ()=> logEl.textContent='');
+  exportBtn.addEventListener('click', ()=> exportPlanJSON());
+
+  if (importPlanBtn && importPlanInput){
+    importPlanBtn.addEventListener('click', ()=> importPlanInput.click());
+    importPlanInput.addEventListener('change', async (ev)=>{
+      const f = ev.target.files && ev.target.files[0];
+      ev.target.value = "";
+      if (!f) return;
+      try{
+        const text = await f.text();
+        const obj = JSON.parse(text);
+        if (!obj || obj.version !== "unitree-explore-export-v1"){
+          throw new Error("Očekujem unitree-explore-export-v1 (export prepreke+putanja).");
+        }
+        applySpaceV1(obj, { loadPathIfPresent: true });
+        log("🧭 Učitana putanja (export format).");
+      }catch(e){
+        console.error(e);
+        log("❌ Import plan error: " + e.message);
+      }
+    });
+  }
+
+  function setModeTag(t){ modeTag.textContent=t; }
+  
+  function exportPlanJSON(){
+    const payload = {
+      version: "unitree-explore-export-v1",
+      cellSize: cellSize,
+      grid: {w: gridW, h: gridH},
+      start: {...scene.start},
+      goal: {...scene.goal},
+      obstacles: scene.obstacles.map(o=>({x:o.x,y:o.y,w:o.w,h:o.h})),
+      // planned path (current): waypoints if any; otherwise empty.
+      waypoints: (scene.waypoints && scene.waypoints.length) ? scene.waypoints.map(p=>({x:p.x,y:p.y})) : [],
+      // for convenience in other programs: also include raw A* cells if present
+      plannedCells: (sim.plannedPath && sim.plannedPath.length) ? sim.plannedPath.map(([gx,gy])=>({gx,gy})) : [],
+      timestamp: new Date().toISOString()
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "unitree_path_export.json";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 0);
+    log("⬇️ Exportovan JSON (prepreke + putanja).");
+  }
+
+
+  function downloadJSON(obj, filename){
+    const blob = new Blob([JSON.stringify(obj, null, 2)], {type:"application/json"});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename || "unitree_space.json";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 0);
+  }
+
+  function captureSpaceV1(){
+    return {
+      version: "unitree-space-v1",
+      ui: {
+        stepLen: clamp(Number(stepLenEl.value)||50, 10, 120),
+        cellSize: clamp(Number(cellSizeEl.value)||4, 2, 12),
+        sensorRadius: clamp(Number(sensorRadiusEl.value)||120, 20, 2000),
+        safeDistance: clamp(Number(safeDistanceEl.value)||15, 0, 200),
+      },
+      start: {...scene.start},
+      goal:  {...scene.goal},
+      obstacles: scene.obstacles.map(o=>({x:o.x,y:o.y,w:o.w,h:o.h})),
+      walls: scene.walls ? scene.walls.map(w=>({x1:w.x1,y1:w.y1,x2:w.x2,y2:w.y2})) : [],
+      timestamp: new Date().toISOString()
+    };
+  }
+
+  function applySpaceV1(space, opts = {}){
+    if (!space || (space.version!=="unitree-space-v1" && space.version!=="unitree-explore-export-v1")){
+      throw new Error("Nepoznat format (očekujem unitree-space-v1 ili unitree-explore-export-v1).");
+    }
+
+    // If user loads an export file, use obstacles/start/goal + ui if present.
+    const ui = space.ui || {};
+    if (ui.stepLen!=null) stepLenEl.value = String(ui.stepLen);
+    if (ui.cellSize!=null) cellSizeEl.value = String(ui.cellSize);
+    if (ui.sensorRadius!=null) sensorRadiusEl.value = String(ui.sensorRadius);
+    if (ui.safeDistance!=null) safeDistanceEl.value = String(ui.safeDistance);
+
+    // Stop simulation if running
+    if (sim.running){ stopSimulation(); }
+
+    // Apply geometry
+    if (space.start) Object.assign(scene.start, space.start);
+    if (space.goal)  Object.assign(scene.goal,  space.goal);
+    scene.obstacles = (space.obstacles||[]).map(o=>({
+      id: crypto.randomUUID(),
+      x: Number(o.x)||0, y:Number(o.y)||0, w:Number(o.w)||60, h:Number(o.h)||60
+    }));
+    scene.walls = (space.walls||[]).map(w=>({x1:+w.x1, y1:+w.y1, x2:+w.x2, y2:+w.y2}));
+
+    // Keep inside room
+    keepInsideRoomRect(scene.start);
+    keepInsideRoomRect(scene.goal);
+    for (const o of scene.obstacles){ keepInsideRoomRect(o); }
+
+    // Rebuild grid + truth + clear known + reset robot pose
+    rebuildGrid();
+    sim.robot.x = scene.start.x + scene.start.w/2;
+    sim.robot.y = scene.start.y + scene.start.h/2;
+    sim.robot.a = randIn(-Math.PI, Math.PI);
+    sim.stepCount = 0;
+    sim.turnStreak = 0;
+    sim.targetHold = 0;
+    sim.turnHistory = [];
+    sim.posHistory = [];
+    sim.stuckCounter = 0;
+    sim.goalLocked = false;
+    sim.goalEverSeen = false;
+    scene.waypoints = [];
+    sim.plannedPath = [];
+    sim.target = null;
+
+    const wantPath = !!opts.loadPathIfPresent;
+    if (wantPath && space && space.version === "unitree-explore-export-v1") {
+      if (Array.isArray(space.waypoints) && space.waypoints.length){
+        scene.waypoints = space.waypoints.map(p=>({ id: crypto.randomUUID(), x: Number(p.x)||0, y: Number(p.y)||0 }));
+      }
+      if (Array.isArray(space.plannedCells) && space.plannedCells.length){
+        sim.plannedPath = space.plannedCells.map(c=>[Number(c.gx),Number(c.gy)]).filter(v=>Number.isFinite(v[0])&&Number.isFinite(v[1]));
+      }
+      setModeTag("MODE: EDIT");
+      setStatus("plan loaded");
+    }
+
+    setModeTag("MODE: EDIT");
+    setStatus("exploring");
+    log("🧩 Učitan prostor (primenjen).");
+    draw();
+  }
+
+  function buildPresetSpace(name){
+    const W=canvas.width, H=canvas.height;
+    const baseUI = {
+      stepLen: clamp(Number(stepLenEl.value)||50, 10, 120),
+      cellSize: clamp(Number(cellSizeEl.value)||4, 2, 12),
+      sensorRadius: clamp(Number(sensorRadiusEl.value)||120, 20, 2000),
+      safeDistance: clamp(Number(safeDistanceEl.value)||15, 0, 200),
+    };
+    const base = {
+      version: "unitree-space-v1",
+      ui: baseUI,
+      start: {x: 28, y: H - WALL_THICK - START_SIZE.h - 18, w: START_SIZE.w, h: START_SIZE.h},
+      goal:  {x: 28, y: WALL_THICK + 18,              w: GOAL_SIZE.w,  h: GOAL_SIZE.h},
+      obstacles: [],
+      walls: []
+    };
+
+    if (name==="empty") return base;
+
+    if (name==="two"){
+      base.obstacles = [
+        {x: 180, y: H*0.45, w: 260, h: 110},
+        {x: W*0.62, y: H*0.25, w: 110, h: 320},
+      ];
+      return base;
+    }
+
+    // default: use the same as initial seedObstacles()
+    base.obstacles = [
+      {x: 70,  y: H*0.45, w: 320, h: 110},
+      {x: 340, y: H*0.22, w: 100, h: 260},
+      {x: 420, y: H*0.45, w: 180, h: 110},
+      {x: 560, y: H*0.38, w: 100, h: 320},
+      {x: W*0.68, y: H*0.12, w: 320, h: 110},
+      {x: W*0.64, y: H*0.72, w: 320, h: 110},
+      {x: 200, y: H*0.72, w: 100, h: 220},
+    ];
+    return base;
+  }
+
+  // Wire preset/save/load
+  if (sensorRadiusEl){
+    sensorRadiusEl.addEventListener('input', ()=>{ sensorRadiusEl._manual = true; });
+  }
+
+  if (loadPresetBtn){
+    loadPresetBtn.addEventListener('click', ()=>{
+      try{
+        const space = buildPresetSpace(presetSelect ? presetSelect.value : "default");
+        applySpaceV1(space);
+      }catch(e){
+        console.error(e);
+        log("❌ Preset load error: " + e.message);
+      }
+    });
+  }
+
+  if (saveSpaceBtn){
+    saveSpaceBtn.addEventListener('click', ()=>{
+      try{
+        const space = captureSpaceV1();
+        downloadJSON(space, "unitree_space.json");
+        log("⬇️ Sačuvan prostor (JSON).");
+      }catch(e){
+        console.error(e);
+        log("❌ Save error: " + e.message);
+      }
+    });
+  }
+
+  if (loadSpaceBtn && loadSpaceInput){
+    loadSpaceBtn.addEventListener('click', ()=> loadSpaceInput.click());
+    loadSpaceInput.addEventListener('change', async (ev)=>{
+      const f = ev.target.files && ev.target.files[0];
+      ev.target.value = ""; // allow re-load same file
+      if (!f) return;
+      try{
+        const text = await f.text();
+        const obj = JSON.parse(text);
+        applySpaceV1(obj);
+      }catch(e){
+        console.error(e);
+        log("❌ Load error: " + e.message);
+      }
+    });
+  }
+function setStatus(t){ statusTag.textContent=`STATUS: ${t}`; }
+
+  // ----------------------------
+  // Scene constants
+  // ----------------------------
+  const WALL_THICK = 14;
+  const ROBOT_R = 10;
+  const WP_R = 14;
+  const START_SIZE = {w:46,h:46};
+  const GOAL_SIZE  = {w:58,h:40};
+  const HANDLE=10;
+
+  // Exploration + motion tuning (spec-inspired)
+  const DEADZONE_DEG = 30;             // less rotation
+  const FORWARD_FIRST_DEG = 55;        // allow "good enough" forward
+  const TURN_STREAK_LIMIT = 2;
+  const TARGET_HOLD_STEPS = 4;
+
+  const STUCK_POS_EPS = 2.0;
+  const STUCK_LIMIT   = 10;
+
+  // Wall standoff (helps avoid wall-hugging oscillations)
+  const STANDOFF_SOFT = 30;
+  const REPULSE_GAIN  = 0.85;
+
+  // ----------------------------
+  // Scene objects
+  // ----------------------------
+  const scene = {
+    obstacles: [],
+    waypoints: [],
+    start: {x:0,y:0,w:START_SIZE.w,h:START_SIZE.h},
+    goal:  {x:0,y:0,w:GOAL_SIZE.w,h:GOAL_SIZE.h},
+
+    // Optional internal walls as segments (thin geometric walls)
+    // NOTE: outer borders are handled by WALL_THICK checks.
+    walls: [
+      // Example (disabled by default):
+      // {x1: 260, y1: 180, x2: 520, y2: 180},
+    ]
+  };
+
+  function keepInsideRoomRect(r){
+    const minX=WALL_THICK, minY=WALL_THICK;
+    const maxX=canvas.width-WALL_THICK, maxY=canvas.height-WALL_THICK;
+    r.x = clamp(r.x, minX, maxX - r.w);
+    r.y = clamp(r.y, minY, maxY - r.h);
+  }
+
+  // Snap distance (px): when dragging/resizing, edges "stick" to room walls.
+  // Hold Shift while dragging/resizing to temporarily disable snapping.
+  const SNAP_PX_DEFAULT = 12;
+
+  function currentSnapPx(){
+    // Use the same Safe distance field if present (more intuitive), otherwise fallback.
+    // NOTE: safeDistance is intended for planning; snapping is a UX helper.
+    const v = (typeof safeDistance === 'number' && isFinite(safeDistance)) ? safeDistance : SNAP_PX_DEFAULT;
+    // Keep snapping reasonable even if safeDistance is huge.
+    return clamp(v, 4, 40);
+  }
+
+  function snapRectPosition(r, snapPx){
+    const minX=WALL_THICK, minY=WALL_THICK;
+    const maxX=canvas.width-WALL_THICK, maxY=canvas.height-WALL_THICK;
+
+    if (Math.abs(r.x - minX) <= snapPx) r.x = minX;
+    if (Math.abs(r.y - minY) <= snapPx) r.y = minY;
+    if (Math.abs((r.x + r.w) - maxX) <= snapPx) r.x = maxX - r.w;
+    if (Math.abs((r.y + r.h) - maxY) <= snapPx) r.y = maxY - r.h;
+
+    // Hard clamp
+    r.x = clamp(r.x, minX, maxX - r.w);
+    r.y = clamp(r.y, minY, maxY - r.h);
+  }
+
+  function clampAndSnapRect(r, minW, minH, snapPx){
+    const minX=WALL_THICK, minY=WALL_THICK;
+    const maxX=canvas.width-WALL_THICK, maxY=canvas.height-WALL_THICK;
+
+    // Minimum sizes
+    r.w = Math.max(minW, r.w);
+    r.h = Math.max(minH, r.h);
+
+    // Snap edges first (so resizing can "stick" to walls)
+    if (Math.abs(r.x - minX) <= snapPx) r.x = minX;
+    if (Math.abs(r.y - minY) <= snapPx) r.y = minY;
+    if (Math.abs((r.x + r.w) - maxX) <= snapPx) r.w = maxX - r.x;
+    if (Math.abs((r.y + r.h) - maxY) <= snapPx) r.h = maxY - r.y;
+
+    // Hard clamp within room
+    r.x = clamp(r.x, minX, maxX - r.w);
+    r.y = clamp(r.y, minY, maxY - r.h);
+    r.w = clamp(r.w, minW, maxX - r.x);
+    r.h = clamp(r.h, minH, maxY - r.y);
+
+    // Re-snap right/bottom after clamping position (helps when dragging left/top then snapping right/bottom)
+    if (Math.abs((r.x + r.w) - maxX) <= snapPx) r.w = maxX - r.x;
+    if (Math.abs((r.y + r.h) - maxY) <= snapPx) r.h = maxY - r.y;
+  }
+
+  function initStartGoal(){
+    scene.start.x = 28;
+    scene.start.y = canvas.height - WALL_THICK - scene.start.h - 18;
+    scene.goal.x  = 28;
+    scene.goal.y  = WALL_THICK + 18;
+    keepInsideRoomRect(scene.start);
+    keepInsideRoomRect(scene.goal);
+  }
+
+  function seedObstacles(){
+    const W=canvas.width, H=canvas.height;
+    scene.obstacles = [
+      { id: crypto.randomUUID(), x: 70,  y: H*0.45, w: 320, h: 110 },
+      { id: crypto.randomUUID(), x: 340, y: H*0.22, w: 100, h: 260 },
+      { id: crypto.randomUUID(), x: 420, y: H*0.45, w: 180, h: 110 },
+      { id: crypto.randomUUID(), x: 560, y: H*0.38, w: 100, h: 320 },
+      { id: crypto.randomUUID(), x: W*0.68, y: H*0.12, w: 320, h: 110 },
+      { id: crypto.randomUUID(), x: W*0.64, y: H*0.72, w: 320, h: 110 },
+      { id: crypto.randomUUID(), x: 200, y: H*0.72, w: 100, h: 220 },
+    ].map(o => ({
+      ...o,
+      x: clamp(o.x, WALL_THICK+2, W - WALL_THICK - o.w - 2),
+      y: clamp(o.y, WALL_THICK+2, H - WALL_THICK - o.h - 2)
+    }));
+  }
+
+  // ----------------------------
+  // Geometry
+  // ----------------------------
+  function segmentIntersectsSegment(ax,ay,bx,by, cx,cy,dx,dy){
+    // Standard 2D segment intersection with orientation tests
+    const eps = 1e-9;
+    function orient(px,py, qx,qy, rx,ry){
+      return (qx-px)*(ry-py) - (qy-py)*(rx-px);
+    }
+    function onSeg(px,py, qx,qy, rx,ry){
+      return Math.min(px,qx)-eps <= rx && rx <= Math.max(px,qx)+eps &&
+             Math.min(py,qy)-eps <= ry && ry <= Math.max(py,qy)+eps;
+    }
+    const o1 = orient(ax,ay,bx,by,cx,cy);
+    const o2 = orient(ax,ay,bx,by,dx,dy);
+    const o3 = orient(cx,cy,dx,dy,ax,ay);
+    const o4 = orient(cx,cy,dx,dy,bx,by);
+
+    if ((o1>eps && o2<-eps || o1<-eps && o2>eps) && (o3>eps && o4<-eps || o3<-eps && o4>eps)) return true;
+    if (Math.abs(o1)<=eps && onSeg(ax,ay,bx,by,cx,cy)) return true;
+    if (Math.abs(o2)<=eps && onSeg(ax,ay,bx,by,dx,dy)) return true;
+    if (Math.abs(o3)<=eps && onSeg(cx,cy,dx,dy,ax,ay)) return true;
+    if (Math.abs(o4)<=eps && onSeg(cx,cy,dx,dy,bx,by)) return true;
+    return false;
+  }
+
+  function segmentIntersectsRect(x1,y1,x2,y2, r){
+    // Quick reject: bounding box
+    const minX = Math.min(x1,x2), maxX = Math.max(x1,x2);
+    const minY = Math.min(y1,y2), maxY = Math.max(y1,y2);
+    if (maxX < r.x || minX > r.x+r.w || maxY < r.y || minY > r.y+r.h) return false;
+
+    // If either endpoint is inside rect
+    const in1 = (x1>=r.x && x1<=r.x+r.w && y1>=r.y && y1<=r.y+r.h);
+    const in2 = (x2>=r.x && x2<=r.x+r.w && y2>=r.y && y2<=r.y+r.h);
+    if (in1 || in2) return true;
+
+    // Check intersection with each edge
+    const rx=r.x, ry=r.y, rw=r.w, rh=r.h;
+    const e = [
+      [rx,ry, rx+rw,ry],
+      [rx+rw,ry, rx+rw,ry+rh],
+      [rx+rw,ry+rh, rx,ry+rh],
+      [rx,ry+rh, rx,ry]
+    ];
+    for (const [ax,ay,bx,by] of e){
+      if (segmentIntersectsSegment(x1,y1,x2,y2, ax,ay,bx,by)) return true;
+    }
+    return false;
+  }
+
+  function segmentIntersectsWalls(x1,y1,x2,y2){
+    for (const w of scene.walls){
+      if (segmentIntersectsSegment(x1,y1,x2,y2, w.x1,w.y1,w.x2,w.y2)) return true;
+    }
+    return false;
+  }
+
+  // ----------------------------
+  // Grid mapping:
+  // known: 0 unknown, 1 known-free, 2 known-occupied
+  // truth: 0 free, 1 occupied
+  // ----------------------------
+  let cellSize=4, gridW=0, gridH=0;
+  let known=null, truth=null;
+
+  function idx(gx,gy){ return gy*gridW + gx; }
+  function isInside(gx,gy){ return gx>=0 && gy>=0 && gx<gridW && gy<gridH; }
+  function cellCenter(gx,gy){ return { x:(gx+0.5)*cellSize, y:(gy+0.5)*cellSize }; }
+
+  // Nudge a grid cell to a nearby safer (higher-clearance) cell.
+  // This helps keep planned waypoints a bit farther from obstacles/walls.
+  function nudgeToSaferCell(gx,gy, r=6){
+    updateClearanceMap();
+    let bestGX=gx, bestGY=gy;
+    let bestD = occDist[idx(gx,gy)] ?? -1;
+    for (let dy=-r; dy<=r; dy++){
+      for (let dx=-r; dx<=r; dx++){
+        const nx=gx+dx, ny=gy+dy;
+        if (nx<1||ny<1||nx>=gridW-1||ny>=gridH-1) continue;
+        if (!isSafeFree(nx,ny)) continue;
+        const d = occDist[idx(nx,ny)] ?? -1;
+        if (d > bestD){
+          bestD = d; bestGX = nx; bestGY = ny;
+        }
+      }
+    }
+    return {gx:bestGX, gy:bestGY};
+  }
+
+  function toCell(x,y){
+    return { gx: clamp(Math.floor(x/cellSize), 0, gridW-1), gy: clamp(Math.floor(y/cellSize), 0, gridH-1) };
+  }
+  function neighbors4(gx,gy){
+    return [[gx+1,gy],[gx-1,gy],[gx,gy+1],[gx,gy-1]].filter(([x,y])=>isInside(x,y));
+  }
+
+  function isTruthOccupiedAtPoint(x,y){
+    // Outer room
+    if (x < WALL_THICK || y < WALL_THICK || x > canvas.width - WALL_THICK || y > canvas.height - WALL_THICK) return true;
+
+    // Obstacles
+    for (const o of scene.obstacles){
+      if (x>=o.x && x<=o.x+o.w && y>=o.y && y<=o.y+o.h) return true;
+    }
+
+    // Internal wall segments as thin lines with thickness
+    const half = 5; // internal wall half thickness
+    for (const w of scene.walls){
+      // Distance point-to-segment <= half => occupied
+      const vx = w.x2 - w.x1, vy = w.y2 - w.y1;
+      const wx = x - w.x1, wy = y - w.y1;
+      const c1 = vx*wx + vy*wy;
+      if (c1 <= 0){
+        if (dist(x,y,w.x1,w.y1) <= half) return true;
+        continue;
+      }
+      const c2 = vx*vx + vy*vy;
+      if (c2 <= c1){
+        if (dist(x,y,w.x2,w.y2) <= half) return true;
+        continue;
+      }
+      const t = c1 / c2;
+      const px = w.x1 + vx*t, py = w.y1 + vy*t;
+      if (dist(x,y,px,py) <= half) return true;
+    }
+
+    return false;
+  }
+
+  function recomputeTruth(){
+    for (let gy=0; gy<gridH; gy++){
+      for (let gx=0; gx<gridW; gx++){
+        const {x,y} = cellCenter(gx,gy);
+        truth[idx(gx,gy)] = isTruthOccupiedAtPoint(x,y) ? 1 : 0;
+      }
+    }
+  }
+
+  function rebuildGrid(){
+    cellSize = clamp(Number(cellSizeEl.value)||4, 2, 12);
+    gridW = Math.floor(canvas.width / cellSize);
+    gridH = Math.floor(canvas.height / cellSize);
+    known = new Uint8Array(gridW*gridH);
+    truth = new Uint8Array(gridW*gridH);
+    recomputeTruth();
+  }
+
+  // ----------------------------
+  // LOS
+  // ----------------------------
+  function lineOfSight(p1, p2){
+    // True if segment does NOT cross obstacles/walls (truth-based occlusion).
+    // Using rect intersection for obstacles + segment intersection for internal walls.
+    // Outer borders are included via point occupancy sampling for safety.
+    if (segmentIntersectsWalls(p1.x,p1.y,p2.x,p2.y)) return false;
+    for (const o of scene.obstacles){
+      if (segmentIntersectsRect(p1.x,p1.y,p2.x,p2.y, o)) return false;
+    }
+
+    // Safety sampling to respect wall thickness and corner cases
+    const dx=p2.x-p1.x, dy=p2.y-p1.y;
+    const steps = Math.ceil(Math.max(Math.abs(dx),Math.abs(dy)) / (cellSize*0.6));
+    for (let i=1;i<=steps;i++){
+      const t=i/steps;
+      const x=p1.x+dx*t, y=p1.y+dy*t;
+      if (isTruthOccupiedAtPoint(x,y)) return false;
+    }
+    return true;
+  }
+
+  
+  // Line of sight used for sensing: allows the ray to "hit" the obstacle cell itself.
+  // i.e., if the target point lies inside an obstacle rectangle, we allow intersection with that same obstacle,
+  // but still block intersections with any other obstacle/wall.
+  function lineOfSightForSense(p1, p2){
+    if (segmentIntersectsWalls(p1.x,p1.y,p2.x,p2.y)) {
+      // allow only if the endpoint is inside a wall-thickness occupied area (rare) - otherwise block
+      if (!isTruthOccupiedAtPoint(p2.x,p2.y)) return false;
+    }
+
+    let targetObs = null;
+    for (const o of scene.obstacles){
+      if (pointInRect(p2.x,p2.y,o)) { targetObs = o; continue; }
+      if (segmentIntersectsRect(p1.x,p1.y,p2.x,p2.y,o)) return false;
+    }
+
+    // Safety sampling to respect wall thickness and corner cases.
+    // Allow occupied samples only if they belong to the obstacle that contains the target point.
+    const dx=p2.x-p1.x, dy=p2.y-p1.y;
+    const steps = Math.ceil(Math.max(Math.abs(dx),Math.abs(dy)) / (cellSize*0.6));
+    for (let i=1;i<=steps;i++){
+      const t=i/steps;
+      const x=p1.x+dx*t, y=p1.y+dy*t;
+      if (isTruthOccupiedAtPoint(x,y)) {
+        if (targetObs && pointInRect(x,y,targetObs)) continue;
+        return false;
+      }
+    }
+    return true;
+  }
+
+function senseAndUpdateKnown(){
+    const stepLen = clamp(Number(stepLenEl.value)||24, 10, 120);
+    const radius = clamp(Number(sensorRadiusEl.value)|| (3*stepLen), 20, 2000);
+
+    // Keep sensor synced with stepLen if user didn't touch it much
+    // (but do not override manual values aggressively)
+    if (!sensorRadiusEl._manual){
+      sensorRadiusEl.value = String(Math.round(3*stepLen));
+    }
+
+    const rx=sim.robot.x, ry=sim.robot.y;
+    const {gx:rgx, gy:rgy} = toCell(rx,ry);
+
+    const minGX = clamp(Math.floor((rx-radius)/cellSize), 0, gridW-1);
+    const maxGX = clamp(Math.floor((rx+radius)/cellSize), 0, gridW-1);
+    const minGY = clamp(Math.floor((ry-radius)/cellSize), 0, gridH-1);
+    const maxGY = clamp(Math.floor((ry+radius)/cellSize), 0, gridH-1);
+
+    let newly=0;
+    for (let gy=minGY; gy<=maxGY; gy++){
+      for (let gx=minGX; gx<=maxGX; gx++){
+        const c = cellCenter(gx,gy);
+        if (dist(rx,ry,c.x,c.y) > radius) continue;
+
+        if (!lineOfSightForSense({x:rx,y:ry},{x:c.x,y:c.y})) continue;
+
+        const tOcc = truth[idx(gx,gy)];
+        const prev = known[idx(gx,gy)];
+        const now  = tOcc ? 2 : 1;
+        if (prev===0 && now!==0) newly++;
+        known[idx(gx,gy)] = now;
+      }
+    }
+    if (truth[idx(rgx,rgy)]===0) known[idx(rgx,rgy)] = 1;
+    if (newly>0) markOccDistDirty();
+    return newly;
+  }
+
+  function goalIsVisible(){
+  const radius = clamp(Number(sensorRadiusEl.value) || 120, 20, 2000);
+
+  const rx = sim.robot.x, ry = sim.robot.y;
+
+  // Goal rectangle in world/pixel coords
+  const x0 = scene.goal.x;
+  const y0 = scene.goal.y;
+  const w  = scene.goal.w;
+  const h  = scene.goal.h;
+
+  // Sample points along the perimeter (and a couple inside) so "any part of the goal" can be detected.
+  // More samples = more robust, but slower. 12–20 is usually plenty.
+  const samples = 16;
+
+  // helper: test visibility of point
+  function pointVisible(px, py){
+    if (dist(rx, ry, px, py) > radius) return false;
+    return lineOfSight({x: rx, y: ry}, {x: px, y: py});
+  }
+
+  // 1) sample top and bottom edges
+  for (let i = 0; i <= samples; i++){
+    const t = i / samples;
+    const px = x0 + t * w;
+
+    if (pointVisible(px, y0)) return true;        // top edge
+    if (pointVisible(px, y0 + h)) return true;    // bottom edge
+  }
+
+  // 2) sample left and right edges
+  for (let i = 0; i <= samples; i++){
+    const t = i / samples;
+    const py = y0 + t * h;
+
+    if (pointVisible(x0, py)) return true;        // left edge
+    if (pointVisible(x0 + w, py)) return true;    // right edge
+  }
+
+  // 3) a few interior samples (helps if edges are just barely occluded)
+  const cx = x0 + 0.5 * w;
+  const cy = y0 + 0.5 * h;
+  if (pointVisible(cx, cy)) return true;
+
+  if (pointVisible(x0 + 0.25*w, y0 + 0.25*h)) return true;
+  if (pointVisible(x0 + 0.75*w, y0 + 0.25*h)) return true;
+  if (pointVisible(x0 + 0.25*w, y0 + 0.75*h)) return true;
+  if (pointVisible(x0 + 0.75*w, y0 + 0.75*h)) return true;
+
+  return false;
+}
+
+  // ----------------------------
+  // Clearance + repulsion (soft)
+  // ----------------------------
+  function distToWallsInside(x,y){
+    const left = x - WALL_THICK;
+    const top = y - WALL_THICK;
+    const right = (canvas.width - WALL_THICK) - x;
+    const bottom = (canvas.height - WALL_THICK) - y;
+    return Math.min(left, top, right, bottom);
+  }
+
+  function distToRect(x,y, r){
+    const cx = clamp(x, r.x, r.x+r.w);
+    const cy = clamp(y, r.y, r.y+r.h);
+    return dist(x,y,cx,cy);
+  }
+
+  function clearanceAt(x,y){
+    let d = distToWallsInside(x,y);
+    for (const o of scene.obstacles){
+      d = Math.min(d, distToRect(x,y,o));
+    }
+    return d - ROBOT_R;
+  }
+
+  function repulsionVector(x,y){
+    let bestD = Infinity;
+    let vx=0, vy=0;
+
+    // Walls push inward
+    const left = x - WALL_THICK;
+    const top  = y - WALL_THICK;
+    const right = (canvas.width - WALL_THICK) - x;
+    const bottom= (canvas.height - WALL_THICK) - y;
+
+    const wallCandidates = [
+      {d:left,  nx: 1, ny: 0},
+      {d:right, nx:-1, ny: 0},
+      {d:top,   nx: 0, ny: 1},
+      {d:bottom,nx: 0, ny:-1},
+    ];
+    for (const w of wallCandidates){
+      if (w.d < bestD){
+        bestD = w.d;
+        vx = w.nx;
+        vy = w.ny;
+      }
+    }
+
+    // Obstacles push away from closest point
+    for (const o of scene.obstacles){
+      const cx = clamp(x, o.x, o.x+o.w);
+      const cy = clamp(y, o.y, o.y+o.h);
+      const d = dist(x,y,cx,cy);
+      if (d < bestD){
+        bestD = d;
+        const dx = x - cx, dy = y - cy;
+        const n = Math.hypot(dx,dy) || 1;
+        vx = dx/n; vy = dy/n;
+      }
+    }
+
+    return {d: bestD, vx, vy};
+  }
+
+  // ----------------------------
+  // Collision / kinematics
+  // ----------------------------
+  function robotCollides(nx,ny){
+    if (nx-ROBOT_R < WALL_THICK) return true;
+    if (ny-ROBOT_R < WALL_THICK) return true;
+    if (nx+ROBOT_R > canvas.width-WALL_THICK) return true;
+    if (ny+ROBOT_R > canvas.height-WALL_THICK) return true;
+    for (const o of scene.obstacles){
+      const cx = clamp(nx, o.x, o.x+o.w);
+      const cy = clamp(ny, o.y, o.y+o.h);
+      if (dist(nx,ny,cx,cy) <= ROBOT_R) return true;
+    }
+    // Internal walls (thin line collision with a small thickness)
+    const half = 6;
+    for (const w of scene.walls){
+      const vx = w.x2 - w.x1, vy = w.y2 - w.y1;
+      const wx = nx - w.x1, wy = ny - w.y1;
+      const c1 = vx*wx + vy*wy;
+      if (c1 <= 0){
+        if (dist(nx,ny,w.x1,w.y1) <= half) return true;
+        continue;
+      }
+      const c2 = vx*vx + vy*vy;
+      if (c2 <= c1){
+        if (dist(nx,ny,w.x2,w.y2) <= half) return true;
+        continue;
+      }
+      const t = c1 / c2;
+      const px = w.x1 + vx*t, py = w.y1 + vy*t;
+      if (dist(nx,ny,px,py) <= half) return true;
+    }
+    return false;
+  }
+
+  function canMoveTo(nx,ny){
+    if (robotCollides(nx,ny)) return false;
+    return true;
+  }
+
+  // ----------------------------
+  // A* (known-free)
+  // ----------------------------
+  function fromIndex(i){
+    const gy = Math.floor(i/gridW);
+    const gx = i - gy*gridW;
+    return {gx,gy};
+  }
+
+  class MinHeap{
+    constructor(){ this.a=[]; this.pos=new Map(); }
+    size(){ return this.a.length; }
+    push(node){ this.a.push(node); this.pos.set(node.i, this.a.length-1); this.bubbleUp(this.a.length-1); }
+    pop(){
+      const top=this.a[0];
+      const last=this.a.pop();
+      this.pos.delete(top.i);
+      if (this.a.length>0){
+        this.a[0]=last; this.pos.set(last.i,0); this.bubbleDown(0);
+      }
+      return top;
+    }
+    updateKey(i, newF){
+      const p=this.pos.get(i);
+      if (p==null) return;
+      const old=this.a[p].f;
+      this.a[p].f=newF;
+      if (newF<old) this.bubbleUp(p); else this.bubbleDown(p);
+    }
+    bubbleUp(p){
+      while (p>0){
+        const q=(p-1)>>1;
+        if (this.a[q].f<=this.a[p].f) break;
+        this.swap(p,q); p=q;
+      }
+    }
+    bubbleDown(p){
+      const n=this.a.length;
+      while(true){
+        let m=p;
+        const l=p*2+1, r=l+1;
+        if (l<n && this.a[l].f<this.a[m].f) m=l;
+        if (r<n && this.a[r].f<this.a[m].f) m=r;
+        if (m===p) break;
+        this.swap(p,m); p=m;
+      }
+    }
+    swap(i,j){
+      const t=this.a[i]; this.a[i]=this.a[j]; this.a[j]=t;
+      this.pos.set(this.a[i].i,i);
+      this.pos.set(this.a[j].i,j);
+    }
+  }
+
+  
+  // ----------------------------
+  // Safety / clearance map (keep planned paths away from obstacles)
+  // known: 0 unknown, 1 free, 2 occupied
+  // We compute distance (in cells) to nearest occupied cell in the *known* map,
+  // and treat cells within `safeClearCells` as non-traversable for planning & path smoothing.
+  // ----------------------------
+  let occDist = null;          // Int16Array distances in cell units
+  let safeClearCells = 4;      // minimum clearance (cells)
+  let _occDistDirty = true;
+
+  function markOccDistDirty(){ _occDistDirty = true; }
+
+  // Call whenever we want to plan/smooth a path.
+  function updateClearanceMap(){
+    // user-controlled safe distance in pixels, converted to grid cells
+    const safePx = clamp(Number(safeDistanceEl?.value ?? 15) || 15, 0, 300);
+    const c = Math.ceil(safePx / Math.max(1, cellSize)); // px->cells
+    safeClearCells = clamp(c, 1, 60);
+if (!_occDistDirty && occDist && occDist.length === gridW*gridH) return;
+
+    const N = gridW*gridH;
+    occDist = new Int16Array(N);
+    // init to large
+    for (let i=0;i<N;i++) occDist[i] = 32767;
+
+    // multi-source BFS from occupied cells (known==2)
+    const qx = new Int16Array(N);
+    const qy = new Int16Array(N);
+    let qh=0, qt=0;
+
+    for (let gy=0; gy<gridH; gy++){
+      for (let gx=0; gx<gridW; gx++){
+        const ii = idx(gx,gy);
+        if (known[ii] === 2){
+          occDist[ii] = 0;
+          qx[qt]=gx; qy[qt]=gy; qt++;
+        }
+      }
+    }
+
+    // If there are no occupied cells known yet, keep everything "far" => no clearance blocking.
+    if (qt===0){
+      _occDistDirty = false;
+      return;
+    }
+
+    while(qh<qt){
+      const gx = qx[qh], gy = qy[qh]; qh++;
+      const base = occDist[idx(gx,gy)];
+      const nd = base + 1;
+      // 4-neighbors
+      if (gx>0){
+        const ni = idx(gx-1,gy);
+        if (nd < occDist[ni]){ occDist[ni]=nd; qx[qt]=gx-1; qy[qt]=gy; qt++; }
+      }
+      if (gx<gridW-1){
+        const ni = idx(gx+1,gy);
+        if (nd < occDist[ni]){ occDist[ni]=nd; qx[qt]=gx+1; qy[qt]=gy; qt++; }
+      }
+      if (gy>0){
+        const ni = idx(gx,gy-1);
+        if (nd < occDist[ni]){ occDist[ni]=nd; qx[qt]=gx; qy[qt]=gy-1; qt++; }
+      }
+      if (gy<gridH-1){
+        const ni = idx(gx,gy+1);
+        if (nd < occDist[ni]){ occDist[ni]=nd; qx[qt]=gx; qy[qt]=gy+1; qt++; }
+      }
+    }
+
+    _occDistDirty = false;
+  }
+
+  function isSafeFree(gx,gy){
+    const ii = idx(gx,gy);
+    if (known[ii] !== 1) return false;
+    if (!occDist) return true;
+    return occDist[ii] >= safeClearCells;
+  }
+
+  function segmentIsSafe(p0, p1){
+    // sample along segment in ~half-cell steps
+    const d = dist(p0.x,p0.y,p1.x,p1.y);
+    const step = Math.max(1, cellSize*0.5);
+    const steps = Math.max(2, Math.ceil(d/step));
+    for (let s=0; s<=steps; s++){
+      const t = s/steps;
+      const x = p0.x + (p1.x-p0.x)*t;
+      const y = p0.y + (p1.y-p0.y)*t;
+      const c = toCell(x,y);
+      if (!isSafeFree(c.gx, c.gy)) return false;
+    }
+    return true;
+  }
+
+function aStar(startGX,startGY, goalGX,goalGY){
+    updateClearanceMap();
+    const startI = idx(startGX,startGY);
+    const goalI  = idx(goalGX,goalGY);
+
+    const open = new MinHeap();
+    const gScore = new Map();
+    const came = new Map();
+
+    function h(gx,gy){ return Math.abs(gx-goalGX)+Math.abs(gy-goalGY); }
+
+    gScore.set(startI, 0);
+    open.push({i:startI, gx:startGX, gy:startGY, f:h(startGX,startGY)});
+    const inOpen = new Set([startI]);
+
+    while (open.size()>0){
+      const cur = open.pop();
+      inOpen.delete(cur.i);
+      if (cur.i === goalI){
+        const path = [];
+        let ci = cur.i;
+        while (ci !== startI){
+          const {gx,gy} = fromIndex(ci);
+          path.push([gx,gy]);
+          ci = came.get(ci);
+          if (ci==null) break;
+        }
+        path.push([startGX,startGY]);
+        path.reverse();
+        return path;
+      }
+      for (const [nx,ny] of neighbors4(cur.gx,cur.gy)){
+        const ni = idx(nx,ny);
+        if (!isSafeFree(nx,ny)) continue; // only traverse known free with clearance
+        const tentative = gScore.get(cur.i) + 1;
+        const best = gScore.get(ni);
+        if (best==null || tentative < best){
+          came.set(ni, cur.i);
+          gScore.set(ni, tentative);
+          const f = tentative + h(nx,ny);
+          if (!inOpen.has(ni)){
+            open.push({i:ni,gx:nx,gy:ny,f});
+            inOpen.add(ni);
+          } else {
+            open.updateKey(ni, f);
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  
+  // ----------------------------
+  // Goal reach helpers (rect-based, no need to touch center)
+  // ----------------------------
+  const GOAL_REACH_DIST_PX = 22; // stop when we're within this distance from goal rectangle
+
+  function pointInRect(px,py, r){
+    return (px>=r.x && px<=r.x+r.w && py>=r.y && py<=r.y+r.h);
+  }
+
+  function distPointToRect(px,py, r){
+    const dx = (px < r.x) ? (r.x - px) : (px > r.x + r.w) ? (px - (r.x + r.w)) : 0;
+    const dy = (py < r.y) ? (r.y - py) : (py > r.y + r.h) ? (py - (r.y + r.h)) : 0;
+    return Math.hypot(dx,dy);
+  }
+
+  function reachedGoal(){
+    // Sufficient to get close to the goal rectangle, not necessarily its center.
+    if (pointInRect(sim.robot.x, sim.robot.y, scene.goal)) return true;
+    return distPointToRect(sim.robot.x, sim.robot.y, scene.goal) <= GOAL_REACH_DIST_PX;
+  }
+
+  function goalCellsKnownFree(){
+    // Return all grid cells overlapping goal rect that are known free.
+    const x0 = Math.floor(scene.goal.x / cellSize);
+    const y0 = Math.floor(scene.goal.y / cellSize);
+    const x1 = Math.floor((scene.goal.x + scene.goal.w - 1) / cellSize);
+    const y1 = Math.floor((scene.goal.y + scene.goal.h - 1) / cellSize);
+
+    const cells = [];
+    for (let gy=y0; gy<=y1; gy++){
+      for (let gx=x0; gx<=x1; gx++){
+        if (gx<0||gy<0||gx>=gridW||gy>=gridH) continue;
+        const ii = idx(gx,gy);
+        if (known[ii] === 1) cells.push([gx,gy]);
+      }
+    }
+    if (cells.length) return cells;
+
+    // Fallback: one-cell "ring" around goal, still only known free
+    const ring = [];
+    for (let gy=y0-1; gy<=y1+1; gy++){
+      for (let gx=x0-1; gx<=x1+1; gx++){
+        if (gx<0||gy<0||gx>=gridW||gy>=gridH) continue;
+        const onRing = (gx===x0-1 || gx===x1+1 || gy===y0-1 || gy===y1+1);
+        if (!onRing) continue;
+        const ii = idx(gx,gy);
+        if (known[ii] === 1) ring.push([gx,gy]);
+      }
+    }
+    return ring;
+  }
+
+  function aStarToAnyGoal(startGX,startGY, goals){
+    updateClearanceMap();
+    // A* where goal is any cell in 'goals' list (must be known-free for traversal)
+    if (!goals || goals.length===0) return null;
+    const goalSet = new Set(goals.map(([gx,gy])=>idx(gx,gy)));
+
+    function h(gx,gy){
+      // Manhattan distance to the closest goal cell (cheap: iterate goals; goals are small)
+      let best = 1e9;
+      for (const [tx,ty] of goals){
+        const d = Math.abs(gx-tx)+Math.abs(gy-ty);
+        if (d<best) best=d;
+      }
+      return best;
+    }
+
+    const startI = idx(startGX,startGY);
+    const open = new MinHeap();
+    const gScore = new Map();
+    const came = new Map();
+    const inOpen = new Set();
+
+    gScore.set(startI, 0);
+    open.push({i:startI, gx:startGX, gy:startGY, f:h(startGX,startGY)});
+    inOpen.add(startI);
+
+    while (open.size()>0){
+      const cur = open.pop();
+      inOpen.delete(cur.i);
+
+      if (goalSet.has(cur.i)){
+        // reconstruct
+        const path = [];
+        let ci = cur.i;
+        while (ci !== startI){
+          const gx = (ci % gridW); const gy = (ci / gridW) | 0;
+          path.push([gx,gy]);
+          ci = came.get(ci);
+          if (ci==null) break;
+        }
+        path.push([startGX,startGY]);
+        path.reverse();
+        return path;
+      }
+
+      for (const [nx,ny] of neighbors4(cur.gx,cur.gy)){
+        const ni = idx(nx,ny);
+        if (!isSafeFree(nx,ny)) continue; // only traverse known free with clearance
+        const tentative = (gScore.get(cur.i) ?? 1e9) + 1;
+        const best = gScore.get(ni);
+        if (best==null || tentative < best){
+          came.set(ni, cur.i);
+          gScore.set(ni, tentative);
+          const f = tentative + h(nx,ny);
+          if (!inOpen.has(ni)){
+            open.push({i:ni,gx:nx,gy:ny,f});
+            inOpen.add(ni);
+          } else {
+            open.updateKey(ni, f);
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+
+function cellsToWaypoints(pathCells){
+    // Turn dense A* cell path into a small set of key waypoints:
+    // - keep clearance from obstacles (via isSafeFree / segmentIsSafe)
+    // - minimize turns (greedy farthest line-of-sight simplification)
+    updateClearanceMap();
+
+    if (!pathCells || pathCells.length < 2) return [];
+
+    const pts = pathCells.map(([gx,gy]) => {
+      const n = nudgeToSaferCell(gx,gy, 6);
+      return cellCenter(n.gx, n.gy);
+    });
+
+    const wps = [];
+    let i = 0;
+
+    // Greedy: from point i, connect to the farthest point j that is safe in a straight line.
+    while (i < pts.length - 1){
+      let j = pts.length - 1;
+      // ensure progress even in pathological cases
+      while (j > i + 1 && !segmentIsSafe(pts[i], pts[j])) j--;
+      if (j <= i) break;
+
+      const p = pts[j];
+      wps.push({ id: crypto.randomUUID(), x: p.x, y: p.y });
+      i = j;
+    }
+
+    // Ensure last waypoint is exactly the last cell center (goal-side)
+    const last = pts[pts.length - 1];
+    if (wps.length === 0 || dist(wps[wps.length-1].x, wps[wps.length-1].y, last.x, last.y) > cellSize*0.25){
+      wps.push({ id: crypto.randomUUID(), x: last.x, y: last.y });
+    }
+
+    return wps;
+  }
+
+  // ----------------------------
+  // Frontiers (spec: known cell with unknown neighbor)
+  // + v6: downsample (roughly uniform spacing) + forward/near bias to avoid end-to-end wandering
+  // ----------------------------
+  function findFrontiers(){
+    const fronts = [];
+    for (let gy=1; gy<gridH-1; gy++){
+      for (let gx=1; gx<gridW-1; gx++){
+        if (known[idx(gx,gy)] !== 1) continue;
+        const nbs = neighbors4(gx,gy);
+        if (nbs.some(([nx,ny])=>known[idx(nx,ny)]===0)) fronts.push([gx,gy]);
+      }
+    }
+    return fronts;
+  }
+
+
+  // A frontier can be "false" when its unknown neighbors are actually OCCUPIED in truth (wall/obstacle interior),
+  // i.e., there is no real free unknown space to explore behind that boundary.
+  function isBlockedFrontierCell(gx,gy){
+    const unk = neighbors4(gx,gy).filter(([nx,ny]) => known[idx(nx,ny)] === 0);
+    if (!unk.length) return false;
+    // If ALL unknown neighbors are occupied in truth => frontier is blocked/ignore
+    return unk.every(([nx,ny]) => truth[idx(nx,ny)] === 1);
+  }
+
+  function downsampleFrontiers(fronts, minSpacingPx){
+    // Greedy thinning: keep a frontier only if far enough from previously kept ones.
+    // Produces more uniform yellow points + more stable target choice.
+    if (fronts.length === 0) return fronts;
+
+    const kept = [];
+    const min2 = minSpacingPx * minSpacingPx;
+
+    // Shuffle to reduce ordering bias
+    const a = fronts.slice();
+    for (let i=a.length-1; i>0; i--){
+      const j = (Math.random()*(i+1))|0;
+      const t=a[i]; a[i]=a[j]; a[j]=t;
+    }
+
+    for (const [gx,gy] of a){
+      const c = cellCenter(gx,gy);
+      let ok = true;
+      for (let k=0; k<kept.length; k++){
+        const kc = kept[k];
+        const dx = c.x - kc.x;
+        const dy = c.y - kc.y;
+        if (dx*dx + dy*dy < min2){ ok = false; break; }
+      }
+      if (ok) kept.push(c);
+    }
+
+    // Convert back to cell coords by rounding to nearest cell (safe since c came from cellCenter)
+    const out = [];
+    for (const c of kept){
+      const gx = clamp(Math.floor(c.x / cellSize), 0, gridW-1);
+      const gy = clamp(Math.floor(c.y / cellSize), 0, gridH-1);
+      out.push([gx,gy]);
+    }
+    return out;
+  }
+
+  function expectedNewUnknownInSensor(frontGX, frontGY){
+    const stepLen = clamp(Number(stepLenEl.value)||25, 10, 120);
+    const radius = clamp(Number(sensorRadiusEl.value)||120, 20, 2000);
+    const c0 = cellCenter(frontGX, frontGY);
+
+    const radiusCells = Math.ceil(radius / cellSize);
+    const minGX = clamp(frontGX-radiusCells, 0, gridW-1);
+    const maxGX = clamp(frontGX+radiusCells, 0, gridW-1);
+    const minGY = clamp(frontGY-radiusCells, 0, gridH-1);
+    const maxGY = clamp(frontGY+radiusCells, 0, gridH-1);
+
+    let gain = 0;
+    for (let gy=minGY; gy<=maxGY; gy++){
+      for (let gx=minGX; gx<=maxGX; gx++){
+        if (known[idx(gx,gy)] !== 0) continue;
+        const c = cellCenter(gx,gy);
+        if (dist(c0.x,c0.y,c.x,c.y) > radius) continue;
+        if (!lineOfSight({x:c0.x,y:c0.y},{x:c.x,y:c.y})) continue;
+        gain++;
+      }
+    }
+    return gain;
+  }
+
+  function forwardnessCos(targetX,targetY){
+    const hx = Math.cos(sim.robot.ang);
+    const hy = Math.sin(sim.robot.ang);
+    const vx = targetX - sim.robot.x;
+    const vy = targetY - sim.robot.y;
+    const n = Math.hypot(vx,vy) || 1;
+    return (hx*(vx/n) + hy*(vy/n));
+  }
+
+  function scoreFrontierV6(frontGX, frontGY, distCostPx, useAStar){
+    const radius = clamp(Number(sensorRadiusEl.value)||120, 20, 2000);
+    const c = cellCenter(frontGX, frontGY);
+    const gain = expectedNewUnknownInSensor(frontGX, frontGY);
+
+    // Ignore tiny pockets
+    const minGain = Math.max(6, Math.floor(radius * 0.06));
+    if (gain < minGain) return -Infinity;
+
+    const dNorm = distCostPx / Math.max(radius, 1);
+    const cosA = forwardnessCos(c.x, c.y);
+    const fwd = clamp(cosA, 0, 1);
+
+    const Wgain = 1.0;
+    const Wd = 1.2;
+    const Wf = 0.8;
+
+    let s = (Wgain * gain) - (Wd * dNorm) + (Wf * fwd);
+
+    if (!useAStar) s += 0.25;
+
+    // Switch penalty
+    if (sim.exploreTarget){
+      const prevC = cellCenter(sim.exploreTarget.gx, sim.exploreTarget.gy);
+      const prevD = dist(sim.robot.x,sim.robot.y, prevC.x, prevC.y);
+      const newD  = dist(sim.robot.x,sim.robot.y, c.x, c.y);
+      const muchBetter = (newD < 0.7 * prevD);
+      if (!muchBetter) s -= 0.2;
+    }
+    return s;
+  }
+
+  function pickFrontierTargetLoSFirst(previewOnly=false){
+    const frontsRaw = findFrontiers();
+    if (frontsRaw.length === 0) return null;
+
+    const stepLen = clamp(Number(stepLenEl.value)||25, 10, 120);
+    const radius  = clamp(Number(sensorRadiusEl.value)||120, 20, 2000);
+
+    // Use downsample ONLY for rendering; decision should consider ALL frontiers so we don't miss closer ones.
+    const minSpacingPx = Math.max(2*stepLen, 0.35*radius);
+    const frontsViz = downsampleFrontiers(frontsRaw, minSpacingPx);
+
+    // --- Blocked (grey) frontiers: those that do NOT border any truly-free unknown space ---
+    const blockedSet = new Set();
+    for (const [fx,fy] of frontsRaw){
+      if (isBlockedFrontierCell(fx,fy)) blockedSet.add(`${fx},${fy}`);
+    }
+
+    if (previewOnly){
+      return {
+        cell: null,
+        via: "PREVIEW",
+        score: 0,
+        frontsSampled: frontsViz,
+        blockedSet
+      };
+    }
+
+    // Candidates for decision: unblocked only
+    const candidatesRaw = frontsRaw.filter(([fx,fy]) => !blockedSet.has(`${fx},${fy}`));
+    if (candidatesRaw.length === 0){
+      return { cell: frontsRaw[0], via: "LOS", score: -Infinity, frontsSampled: frontsViz, blockedSet };
+    }
+
+    const rx = sim.robot.x, ry = sim.robot.y;
+    const {gx:sgx, gy:sgy} = toCell(rx,ry);
+
+    // Separate LOS vs non-LOS pool (prefer LOS)
+    const los = [];
+    for (const [fx,fy] of candidatesRaw){
+      if (truth[idx(fx,fy)]===1) continue;
+      const c = cellCenter(fx,fy);
+      if (lineOfSight({x:rx,y:ry},{x:c.x,y:c.y}) && segmentIsSafe({x:rx,y:ry},{x:c.x,y:c.y})) los.push([fx,fy]);
+    }
+
+    const useAStar = (los.length === 0);
+    const pool = (los.length > 0) ? los : candidatesRaw;
+
+    // Pre-rank by Euclidean distance and keep the nearest K to avoid missing close ones while staying fast.
+    const K = 250;
+    const ranked = pool.map(([fx,fy])=>{
+      const c = cellCenter(fx,fy);
+      const d = dist(rx,ry,c.x,c.y);
+      return {fx,fy,d};
+    }).sort((a,b)=> a.d - b.d);
+
+    const shortlist = ranked.slice(0, Math.min(K, ranked.length));
+
+    let best=null;
+    let bestCost=Infinity;
+    let bestAng=Infinity;
+
+    for (const it of shortlist){
+      const fx = it.fx, fy = it.fy;
+
+      let cost = it.d;
+      if (useAStar){
+        const path = aStar(sgx,sgy, fx,fy);
+        if (!path) continue;
+        cost = path.length * cellSize;
+      }
+
+      const c = cellCenter(fx,fy);
+      const angTo = Math.atan2(c.y - ry, c.x - rx);
+      const dAng = Math.abs(normalizeAngle(angTo - sim.robot.ang));
+
+      if (cost < bestCost - 1e-6 || (Math.abs(cost - bestCost) <= 1e-6 && dAng < bestAng)){
+        bestCost = cost;
+        bestAng = dAng;
+        best = [fx,fy];
+      }
+    }
+
+    if (!best) return null;
+
+    return {
+      cell: best,
+      via: (useAStar ? "ASTAR" : "LOS"),
+      score: -bestCost,
+      frontsSampled: frontsViz,
+      blockedSet
+    };
+  }
+
+  // Refresh frontier visualization (yellow/grey points) without changing the current explore target.
+  function refreshFrontierViz(){
+    const info = pickFrontierTargetLoSFirst(true);
+    if (info){
+      sim.frontierViz = info.frontsSampled;
+      sim.frontierBlocked = info.blockedSet;
+    } else {
+      sim.frontierViz = null;
+      sim.frontierBlocked = null;
+    }
+  }
+
+
+
+  // ----------------------------
+  const sim = {
+    running:false,
+    auto:false,
+    timer:null,
+    stepIndex:0,
+
+    targetMode:"explore",     // explore | gotoGoal
+    goalSeen:false,       // becomes true once goal is observed
+    plannedPath: [],
+    planCursor: 0,
+    backoffPath: [],
+    backoffCursor: 0,
+    backoffTarget: null,
+    waypoints: [],
+    waypointIndex: 0,
+
+    exploreTarget: null,      // {gx,gy, holdLeft}
+    frontierViz: null,      // sampled frontier cells for rendering
+    frontierBlocked: null,  // Set of 'gx,gy' strings for blocked/grey frontiers
+    rotateStreak: 0,
+    lastAction: "",
+
+    lastPos:{x:0,y:0},
+    noProgressCount: 0,
+    noNewSeenCount: 0,
+
+    robot:{ x:0,y:0, ang:0, lastCmd:'' },
+  };
+
+  function reachedPoint(px,py){
+    const stepLen = clamp(Number(stepLenEl.value)||24, 10, 120);
+    return dist(sim.robot.x,sim.robot.y,px,py) < (stepLen/2);
+  }
+
+  function commandLabel(cmd){
+    // Localized command labels shown next to the robot
+    const lang = getCurrentLang ? getCurrentLang() : "en";
+    const SR = {
+      ROTATE_LEFT:  "Levo",
+      ROTATE_RIGHT: "Desno",
+      FORWARD:      "Napred",
+      BACKWARD:     "Nazad",
+      SIDESTEP:     "Bočno",
+      SCAN:         "Skeniraj",
+      ESCAPE:       "Escape",
+      WAIT:         "Čekaj",
+      ESCAPE_SIDE:  "Bočno",
+      ESCAPE_BACK:  "Nazad"
+    };
+    const EN = {
+      ROTATE_LEFT:  "Left",
+      ROTATE_RIGHT: "Right",
+      FORWARD:      "Forward",
+      BACKWARD:     "Backward",
+      SIDESTEP:     "Side",
+      SCAN:         "Scan",
+      ESCAPE:       "Escape",
+      WAIT:         "Wait",
+      ESCAPE_SIDE:  "Side",
+      ESCAPE_BACK:  "Backward"
+    };
+    const dict = (lang === "sr") ? SR : EN;
+    return dict[cmd] || cmd;
+  }
+
+  // ----------------------------
+  // Low-level actions
+  // ----------------------------
+  function rotateTowards(targetAng){
+    // diff is normalized to (-PI, PI], so the sign indicates the shortest rotation direction
+    const diff = normalizeAngleRad(targetAng - sim.robot.ang);
+    const rotStep = deg2rad(randIn(15,30)); // user preference: random 15°..30°
+    if (diff > 0) sim.robot.ang = normalizeAngleRad(sim.robot.ang + rotStep);
+    else          sim.robot.ang = normalizeAngleRad(sim.robot.ang - rotStep);
+    return diff > 0 ? "ROTATE_LEFT" : "ROTATE_RIGHT";
+  }
+
+  function tryMoveForward(){
+    const stepLen = clamp(Number(stepLenEl.value)||24, 10, 120);
+    const nx = sim.robot.x + Math.cos(sim.robot.ang)*stepLen;
+    const ny = sim.robot.y + Math.sin(sim.robot.ang)*stepLen;
+    if (!canMoveTo(nx,ny)) return false;
+    sim.robot.x=nx; sim.robot.y=ny;
+    return true;
+  }
+
+  function canMoveForward(){
+    const stepLen = clamp(Number(stepLenEl.value)||24, 10, 120);
+    const nx = sim.robot.x + Math.cos(sim.robot.ang)*stepLen;
+    const ny = sim.robot.y + Math.sin(sim.robot.ang)*stepLen;
+    return canMoveTo(nx,ny);
+  }
+
+
+  function tryMoveBackward(){
+    const stepLen = clamp(Number(stepLenEl.value)||24, 10, 120);
+    const nx = sim.robot.x - Math.cos(sim.robot.ang)*stepLen;
+    const ny = sim.robot.y - Math.sin(sim.robot.ang)*stepLen;
+    if (!canMoveTo(nx,ny)) return false;
+    sim.robot.x=nx; sim.robot.y=ny;
+    return true;
+  }
+
+  function trySidestep(){
+    const stepLen = clamp(Number(stepLenEl.value)||24, 10, 120);
+    for (const s of [1,-1]){
+      const a = normalizeAngleRad(sim.robot.ang + s*Math.PI/2);
+      const nx = sim.robot.x + Math.cos(a)*stepLen;
+      const ny = sim.robot.y + Math.sin(a)*stepLen;
+      if (!canMoveTo(nx,ny)) continue;
+      sim.robot.ang = a;
+      sim.robot.x = nx; sim.robot.y = ny;
+      return true;
+    }
+    return false;
+  }
+
+  function doScan(){
+    sim.robot.ang = normalizeAngleRad(sim.robot.ang + randSign()*deg2rad(randIn(20,30)));
+    return "SCAN";
+  }
+
+  function escapeMove(){
+    // Order: sidestep -> forward -> backward -> planned backoff (A*) -> rotate big
+    if (trySidestep()) return {cmd:"ESCAPE", note:"sidestep"};
+    if (tryMoveForward()) return {cmd:"ESCAPE", note:"forward"};
+    if (tryMoveBackward()) return {cmd:"ESCAPE", note:"backward"};
+
+    // If we're boxed-in (common near corners), don't spin: step away from walls into open space.
+    // Pick a nearby known-free, high-clearance cell, plan to it, and take the first step.
+    updateClearanceMap();
+    const rc = toCell(sim.robot.x, sim.robot.y);
+    let best = null;
+    const R = 14; // cells
+    for (let dy=-R; dy<=R; dy++){
+      for (let dx=-R; dx<=R; dx++){
+        const gx = rc.gx + dx, gy = rc.gy + dy;
+        if (gx<1||gy<1||gx>=gridW-1||gy>=gridH-1) continue;
+        if (!isSafeFree(gx,gy)) continue;
+        const d = occDist[idx(gx,gy)] ?? -1;
+        if (d < safeClearCells + 1) continue;
+        // prefer farther clearance, slight preference for being farther from current cell
+        const score = d*10 + Math.hypot(dx,dy);
+        if (!best || score > best.score) best = {gx,gy,score};
+      }
+    }
+    if (best){
+      const path = aStar(rc.gx, rc.gy, best.gx, best.gy);
+      if (path && path.length>1){
+        sim.plannedPath = path;
+        sim.planCursor = 1; // next cell (0 is current)
+        const [pgx,pgy] = sim.plannedPath[sim.planCursor];
+        const p = cellCenter(pgx,pgy);
+        const cmd = moveToward(p.x,p.y);
+        if (reachedPoint(p.x,p.y)) sim.planCursor++;
+        return {cmd, note:"backoff"};
+      }
+    }
+
+    // Last resort: rotate a chunk to break symmetry
+    sim.robot.ang = normalizeAngleRad(sim.robot.ang + randSign()*deg2rad(90));
+    return {cmd:"ESCAPE", note:"rotate"};
+  }
+
+  // ----------------------------
+  // Higher-level movement toward a target (goto)
+  // ----------------------------
+  function moveToward(tx,ty){
+    // Base desired heading: point directly to the target point
+    const desiredPure = Math.atan2(ty - sim.robot.y, tx - sim.robot.x);
+    let desired = desiredPure;
+
+    // Soft repulsion if too close (avoid wall-hugging oscillations)
+    const clr = clearanceAt(sim.robot.x, sim.robot.y);
+    if (clr < STANDOFF_SOFT){
+      const rep = repulsionVector(sim.robot.x, sim.robot.y);
+      const repAng = Math.atan2(rep.vy, rep.vx);
+      const t = clamp((STANDOFF_SOFT - clr) / STANDOFF_SOFT, 0, 1) * REPULSE_GAIN;
+      desired = angleLerpRad(desired, repAng, t);
+    }
+
+    // Strict heading alignment before moving forward:
+    // do NOT move forward until angular error is within 25 degrees.
+    const diff = normalizeAngleRad(desired - sim.robot.ang);
+    const align = deg2rad(25);
+
+    if (Math.abs(diff) > align){
+      // If forward is possible AND it still moves us closer to the target,
+      // prefer continuing straight rather than rotating in place near walls.
+      const stepLen = clamp(Number(stepLenEl.value)||24, 10, 120);
+      const nx = sim.robot.x + Math.cos(sim.robot.ang)*stepLen;
+      const ny = sim.robot.y + Math.sin(sim.robot.ang)*stepLen;
+      if (canMoveForward()){
+        const d0 = Math.hypot(tx - sim.robot.x, ty - sim.robot.y);
+        const d1 = Math.hypot(tx - nx, ty - ny);
+        if (d1 < d0){
+          sim.rotateStreak = 0;
+          sim.turnLockLeft = 0;
+          sim.robot.x = nx; sim.robot.y = ny;
+          return "FORWARD";
+        }
+      }
+      sim.rotateStreak = (sim.rotateStreak||0) + 1;
+      return rotateTowards(desired);
+    }
+
+    // Aligned enough -> attempt forward
+    if (tryMoveForward()){
+      sim.rotateStreak = 0;
+      sim.turnLockLeft = 0;
+      return "FORWARD";
+    }
+
+    // Forward blocked: near walls/obstacles this can cause long rotate-in-place loops.
+    // If we're close to a wall, prefer a sidestep/back-off to regain clearance, then continue.
+    if (clr < STANDOFF_SOFT*0.75){
+      if (trySidestep()){
+        sim.rotateStreak = 0;
+        sim.turnLockLeft = 0;
+        return "ESCAPE_SIDE";
+      }
+      if (tryMoveBackward()){
+        sim.rotateStreak = 0;
+        sim.turnLockLeft = 0;
+        return "ESCAPE_BACK";
+      }
+    }
+
+    // Otherwise rotate (shortest direction) to search for a free forward direction
+    sim.rotateStreak = (sim.rotateStreak||0) + 1;
+    return rotateTowards(desired);
+  }
+
+// ----------------------------
+  // Control: reset / start / stop
+  // ----------------------------
+  function resetRobotAndMap(){
+    known.fill(0);
+    recomputeTruth();
+
+    sim.robot.x = scene.start.x + scene.start.w/2;
+    sim.robot.y = scene.start.y + scene.start.h/2;
+    sim.robot.ang = deg2rad(randIn(0,360));
+    sim.robot.lastCmd = '';
+
+    sim.stepIndex = 0;
+
+    sim.targetMode = "explore";
+    sim.goalSeen = false;
+    setStatus('exploring');
+
+    scene.waypoints = [];
+    sim.waypointIndex = 0;
+
+    sim.plannedPath = [];
+    sim.planCursor = 0;
+      sim.backoffPath = [];
+      sim.backoffCursor = 0;
+      sim.backoffTarget = null;
+    sim.backoffPath = [];
+    sim.backoffCursor = 0;
+    sim.backoffTarget = null;
+
+    sim.exploreTarget = null;
+    sim.frontierViz = null;
+    sim.frontierBlocked = null;
+    sim.rotateStreak = 0;
+    sim.lastAction = "";
+
+    sim.lastPos = {x: sim.robot.x, y: sim.robot.y};
+    sim.noProgressCount = 0;
+    sim.noNewSeenCount = 0;
+
+    const newly = senseAndUpdateKnown();
+    log(`Reset: robot na Startu, random orijentacija = ${rad2deg(sim.robot.ang).toFixed(1)}°. (novoviđeno: ${newly})`);
+  }
+
+  function startSimulation(auto){
+    if (sim.running) stopSimulation(false);
+    sim.running=true;
+    sim.auto=auto;
+    setModeTag(auto?'MODE: RUN (AUTO)':'MODE: RUN (STEP)');
+    updateButtons();
+    resetRobotAndMap();
+    log('Nova simulacija (nepoznat teren) pokrenuta.');
+    if (auto) sim.timer=setInterval(()=>stepOnce(), 1000);
+  }
+
+  function stopSimulation(logLine=true){
+    sim.running=false;
+    sim.auto=false;
+    if (sim.timer){ clearInterval(sim.timer); sim.timer=null; }
+    setModeTag('MODE: EDIT');
+    updateButtons();
+    if (logLine) log('Simulacija zaustavljena.');
+  }
+
+  function updateButtons(){
+    const editing = !sim.running;
+    addObstacleBtn.disabled = !editing;
+    delSelectedBtn.disabled = !editing;
+    autoBtn.disabled        = !editing;
+    stepModeBtn.disabled    = !editing;
+    nextStepBtn.disabled    = !(sim.running && !sim.auto);
+    stopBtn.disabled        = !sim.running;
+  }
+
+  // ----------------------------
+  
+// ----------------------------
+// Back-off behavior: if robot is too close to obstacles/walls, move to a safer nearby cell
+// to improve visibility and avoid getting stuck oscillating near corners.
+// ----------------------------
+function robotClearanceCells(){
+  updateClearanceMap();
+  if (!occDist) return 999;
+  const {gx,gy} = toCell(sim.robot.x, sim.robot.y);
+  return occDist[idx(gx,gy)] || 0;
+}
+
+function needsBackoff(){
+  // Trigger if clearance is below a small threshold (in cells)
+  const cur = robotClearanceCells();
+  const thr = Math.max(2, safeClearCells); // at least 2 cells away from obstacles
+  return cur < thr;
+}
+
+function pickBackoffGoalCell(){
+  updateClearanceMap();
+  const {gx:rgx, gy:rgy} = toCell(sim.robot.x, sim.robot.y);
+
+  const R = 10; // search radius in cells
+  let best = null;
+  let bestScore = -1e18;
+
+  const minGX = clamp(rgx - R, 0, gridW-1);
+  const maxGX = clamp(rgx + R, 0, gridW-1);
+  const minGY = clamp(rgy - R, 0, gridH-1);
+  const maxGY = clamp(rgy + R, 0, gridH-1);
+
+  for (let gy=minGY; gy<=maxGY; gy++){
+    for (let gx=minGX; gx<=maxGX; gx++){
+      if (!isSafeFree(gx,gy)) continue;
+      const man = Math.abs(gx-rgx) + Math.abs(gy-rgy);
+      if (man < 2) continue;
+
+      const clear = occDist ? (occDist[idx(gx,gy)] || 0) : 0;
+      const c = cellCenter(gx,gy);
+      const fwd = forwardnessCos(c.x,c.y); // [-1..1]
+      // Prefer much higher clearance + some move-away distance + slight forward bias
+      const score = (clear*5.0) + (man*0.25) + (Math.max(0,fwd)*0.15);
+
+      if (score > bestScore){
+        bestScore = score;
+        best = {gx,gy};
+      }
+    }
+  }
+  return best;
+}
+
+function ensureBackoffPlan(){
+  if (sim.backoffPath && sim.backoffCursor < sim.backoffPath.length) return true;
+  const goal = pickBackoffGoalCell();
+  if (!goal) return false;
+
+  const {gx:sgx, gy:sgy} = toCell(sim.robot.x, sim.robot.y);
+  const path = aStar(sgx, sgy, goal.gx, goal.gy);
+  if (!path || path.length < 2) return false;
+
+  sim.backoffPath = path;
+  sim.backoffCursor = 0;
+  sim.backoffTarget = goal;
+  return true;
+}
+
+function doBackoffStep(){
+  if (!ensureBackoffPlan()) return null;
+  const [pgx,pgy] = sim.backoffPath[sim.backoffCursor];
+  const p = cellCenter(pgx,pgy);
+  const cmd = moveToward(p.x,p.y);
+  if (reachedPoint(p.x,p.y)) sim.backoffCursor++;
+  // If we already improved clearance enough, stop backoff.
+  if (!needsBackoff()){
+    sim.backoffPath = [];
+    sim.backoffCursor = 0;
+    sim.backoffTarget = null;
+  }
+  return cmd;
+}
+// Exploration action selection (LoS-frontier first)
+  // ----------------------------
+  function chooseExplorationTarget(){
+    // Target hold
+    if (sim.exploreTarget && sim.exploreTarget.holdLeft > 0){
+      sim.exploreTarget.holdLeft--;
+      return {gx: sim.exploreTarget.gx, gy: sim.exploreTarget.gy, via: sim.exploreTarget.via, held:true};
+    }
+
+    const pick = pickFrontierTargetLoSFirst();
+    if (!pick) return null;
+
+    // Store sampled frontiers for rendering
+    sim.frontierViz = pick.frontsSampled || null;
+
+    // Ensure the chosen target cell is always visible in the frontier dots (sampling may omit it)
+    if (sim.frontierViz){
+      const tx = pick.cell[0], ty = pick.cell[1];
+      let found = false;
+      for (const [gx,gy] of sim.frontierViz){ if (gx===tx && gy===ty){ found=true; break; } }
+      if (!found) sim.frontierViz.push([tx,ty]);
+    }
+
+
+    sim.frontierBlocked = pick.blockedSet || null;
+    sim.exploreTarget = {gx: pick.cell[0], gy: pick.cell[1], via: pick.via, holdLeft: TARGET_HOLD_STEPS};
+    return {gx: pick.cell[0], gy: pick.cell[1], via: pick.via, held:false};
+  }
+
+  function chooseActionExplore(){
+/* PATCH: goal-lock-on-visible */
+// If the goal is visible at any time, immediately switch to gotoGoal and keep pursuing it until reached.
+if (goalIsVisible()){
+  if (!sim.goalLocked){
+    sim.goalLocked = true;
+    sim.goalEverSeen = true;
+    log('🎯 Cilj je u vidnom polju → prelazim na gotoGoal (lock).');
+  }
+  sim.targetMode = "gotoGoal";
+  scene.waypoints = [];
+  sim.waypointIndex = 0;
+  sim.exploreTarget = null;
+  sim.frontierViz = null;
+  sim.frontierBlocked = null;
+  setStatus('gotoGoal (goal visible)');
+  return chooseActionGotoGoal();
+}
+if (sim.goalLocked){
+  // Keep going to goal even if LOS is temporarily lost.
+  sim.targetMode = "gotoGoal";
+  return chooseActionGotoGoal();
+}
+
+    // If we're hugging an obstacle/corner, back off to a safer cell to avoid oscillations.
+    if (needsBackoff()){
+      const bc = doBackoffStep();
+      if (bc) return {cmd: bc, targetLabel:"backoff"};
+    }
+
+
+    const tgt = chooseExplorationTarget();
+    if (!tgt){
+      return {cmd: doScan(), targetLabel:"scan (no frontier)"};
+    }
+
+    const c = cellCenter(tgt.gx, tgt.gy);
+    const label = `frontier(${tgt.via}${tgt.held?":hold":""})`;
+
+    // If LoS target exists, we move directly. If not, we follow planned path produced by pickFrontierTargetLoSFirst.
+    // Note: pickFrontierTargetLoSFirst already computes A* only when needed, but we store no path here.
+    // For reliability in ASTAR mode, compute path again and follow it for a few steps.
+    if (tgt.via === "ASTAR"){
+      if (!sim.plannedPath.length || sim.planCursor >= sim.plannedPath.length){
+        const {gx:sgx, gy:sgy} = toCell(sim.robot.x, sim.robot.y);
+        const path = aStar(sgx, sgy, tgt.gx, tgt.gy);
+        if (path){
+          sim.plannedPath = path;
+          sim.planCursor = 0;
+        } else {
+          // can't reach, drop target
+          sim.exploreTarget = null;
+    sim.frontierViz = null;
+    sim.frontierBlocked = null;
+          return {cmd: doScan(), targetLabel:"scan (unreachable frontier)"};
+        }
+      }
+      const [pgx,pgy] = sim.plannedPath[sim.planCursor];
+      const p = cellCenter(pgx,pgy);
+      const cmd = moveToward(p.x,p.y);
+      if (reachedPoint(p.x,p.y)) sim.planCursor++;
+      return {cmd, targetLabel: label};
+    }
+
+    // LOS mode: go straight toward frontier center
+    const cmd = moveToward(c.x,c.y);
+    return {cmd, targetLabel: label};
+  }
+
+  function chooseActionGotoGoal(){
+    if (sim.waypointIndex < scene.waypoints.length){
+      const w = scene.waypoints[sim.waypointIndex];
+      const cmd = moveToward(w.x,w.y);
+      if (reachedPoint(w.x,w.y)){
+        log(`Robot stigao do referentne tačke ${sim.waypointIndex+1}.`);
+        sim.waypointIndex++;
+      }
+      return {cmd, targetLabel:`Tačka ${sim.waypointIndex+1}`};
+    }
+    const gx = scene.goal.x + scene.goal.w/2;
+    const gy = scene.goal.y + scene.goal.h/2;
+    const cmd = moveToward(gx,gy);
+    if (reachedGoal()){
+      log('✅ Simulacija uspešno završena (stigao do cilja).');
+      stopSimulation(false);
+      setStatus('done (goal reached)');
+      return {cmd, targetLabel:"Cilj"};
+    }
+    return {cmd, targetLabel:"Cilj"};
+  }
+
+  // ----------------------------
+  // One step
+  // ----------------------------
+  function stepOnce(){
+    if (!sim.running) return;
+
+    // 1) Sense
+    const newly = senseAndUpdateKnown();
+
+    // 2) Anti-stuck counters
+    const moved = dist(sim.robot.x, sim.robot.y, sim.lastPos.x, sim.lastPos.y) > STUCK_POS_EPS;
+    sim.lastPos = {x: sim.robot.x, y: sim.robot.y};
+
+    if (!moved) sim.noProgressCount++; else sim.noProgressCount = 0;
+    if (newly === 0) sim.noNewSeenCount++; else sim.noNewSeenCount = 0;
+
+
+    // Update frontier markers every step (visual-only)
+    refreshFrontierViz();
+    // 3) Goal discovery => plan START→GOAL and freeze exploration (exportable plan)
+    if (sim.targetMode === "explore" && goalIsVisible()){
+      sim.goalSeen = true;
+
+      // Always plan from START, not from current robot pose.
+      const sx = scene.start.x + scene.start.w/2;
+      const sy = scene.start.y + scene.start.h/2;
+      const {gx:sgx, gy:sgy} = toCell(sx, sy);
+
+      const goals = goalCellsKnownFree();
+      const path = aStarToAnyGoal(sgx, sgy, goals);
+
+      if (path){
+        // Store both raw grid path and rendered waypoints (for export + for the 2nd app).
+        sim.plannedPath = path;
+        sim.planCursor = 0;
+
+        scene.waypoints = cellsToWaypoints(path);
+        sim.waypointIndex = 0;
+
+        setStatus('goal found → planned START→GOAL (ready to export)');
+        log(`🎯 Robot je pronašao cilj (u vidnom polju). Planirana START→CILJ putanja. Tačke: ${scene.waypoints.length}.`);
+
+        // Stop exploration run so the user can export the plan and use it in the waypoint-following app.
+        stopSimulation(false);
+        setModeTag('MODE: PLANNED');
+        draw();
+        return;
+      } else {
+        // Goal is visible but we still don't have a continuous known-free corridor from START to GOAL.
+        // Keep exploring to reveal missing free cells, then we can plan (also happens when returning to START).
+        setStatus('goal visible, but no START→GOAL path yet (continue exploring)');
+        log('🎯 Cilj je u vidnom polju, ali nema START→CILJ putanje kroz poznat slobodan prostor → nastavljam istraživanje.');
+      }
+    }
+
+    // 3b) v6: if robot returns to START after goal has been seen → plan START→GOAL and freeze (exportable plan)
+    const sx = scene.start.x + scene.start.w/2;
+    const sy = scene.start.y + scene.start.h/2;
+    const robotInStart = (sim.robot.x>=scene.start.x && sim.robot.x<=scene.start.x+scene.start.w &&
+                          sim.robot.y>=scene.start.y && sim.robot.y<=scene.start.y+scene.start.h);
+
+    if (sim.targetMode === "explore" && robotInStart && sim.goalSeen && sim.stepIndex > 5){
+      const sc = toCell(sx, sy);
+      const gc = toCell(scene.goal.x + scene.goal.w/2, scene.goal.y + scene.goal.h/2);
+      const pathSG = aStar(sc.gx, sc.gy, gc.gx, gc.gy);
+
+      if (pathSG){
+        sim.plannedPath = pathSG;
+        sim.planCursor = 0;
+
+        scene.waypoints = cellsToWaypoints(pathSG);
+        sim.waypointIndex = 0;
+
+        setStatus('back at start → planned START→GOAL (ready to export)');
+        log(`🏁 Robot se vratio na START i cilj je već viđen → planirana A* putanja START→CILJ. Tačke: ${scene.waypoints.length}.`);
+
+        stopSimulation(false);
+        setModeTag('MODE: PLANNED');
+        draw();
+        return;
+      } else {
+        log('Robot je na START-u, cilj je viđen, ali nema START→CILJ putanje kroz poznat slobodan prostor (nastavljam istraživanje).');
+      }
+    }
+
+    // 4) Escape if stuck
+    let cmd = "WAIT";
+    let targetLabel = "";
+
+    if (sim.targetMode === "explore" && sim.noProgressCount >= STUCK_LIMIT && sim.noNewSeenCount >= STUCK_LIMIT){
+      const e = escapeMove();
+      cmd = e.cmd;
+      targetLabel = `escape:${e.note}`;
+      sim.noProgressCount = 0;
+      sim.noNewSeenCount = 0;
+      sim.exploreTarget = null;
+    sim.frontierViz = null;
+    sim.frontierBlocked = null;
+      sim.plannedPath = [];
+      sim.planCursor = 0;
+      log(`⚠️ Zaglavljeno (${STUCK_LIMIT} koraka bez pomeranja i bez novih ćelija) → ESCAPE (${e.note}).`);
+    } else {
+      // 5) Choose action based on mode
+      const out = (sim.targetMode === "gotoGoal") ? chooseActionGotoGoal() : chooseActionExplore();
+      cmd = out.cmd;
+      targetLabel = out.targetLabel;
+    }
+
+    // 6) Track rotate streak
+    if (cmd === "ROTATE_LEFT" || cmd === "ROTATE_RIGHT" || cmd === "SCAN"){
+      sim.rotateStreak++;
+    } else {
+      sim.rotateStreak = 0;
+    }
+
+    sim.stepIndex++;
+    sim.lastAction = cmd;
+    sim.robot.lastCmd = commandLabel(cmd);
+    log(`Korak ${sim.stepIndex}: ${sim.robot.lastCmd} (target: ${targetLabel}, novo-viđeno: ${newly})`);
+
+    draw();
+  }
+
+  // ----------------------------
+  // Editing (selection/drag/resize)
+  // ----------------------------
+  let selected=null;
+  let dragging=null;
+  let resizing=null;
+
+  function getObstacleById(id){ return scene.obstacles.find(o=>o.id===id); }
+
+  function hitTestHandles(o,mx,my){
+    const corners = [
+      {name:'nw', x:o.x,     y:o.y},
+      {name:'ne', x:o.x+o.w, y:o.y},
+      {name:'se', x:o.x+o.w, y:o.y+o.h},
+      {name:'sw', x:o.x,     y:o.y+o.h},
+    ];
+    for (const c of corners){
+      if (Math.abs(mx-c.x)<=HANDLE && Math.abs(my-c.y)<=HANDLE) return c.name;
+    }
+    return null;
+  }
+
+  function hitTest(mx,my){
+    const pad = HANDLE + 4;
+
+    // Obstacles on top (reverse order)
+    for (let i=scene.obstacles.length-1;i>=0;i--){
+      const o=scene.obstacles[i];
+      const inside = (mx>=o.x && mx<=o.x+o.w && my>=o.y && my<=o.y+o.h);
+      const near = (mx>=o.x-pad && mx<=o.x+o.w+pad && my>=o.y-pad && my<=o.y+o.h+pad);
+      if (inside) return {type:'obstacle', id:o.id};
+      if (near){
+        // If we're only "near", treat as a hit only if we are on a resize handle.
+        const h = hitTestHandles(o,mx,my);
+        if (h) return {type:'obstacle', id:o.id, _handle:h};
+      }
+    }
+
+    if (mx>=scene.start.x && mx<=scene.start.x+scene.start.w && my>=scene.start.y && my<=scene.start.y+scene.start.h)
+      return {type:'start', id:'start'};
+    if (mx>=scene.goal.x && mx<=scene.goal.x+scene.goal.w && my>=scene.goal.y && my<=scene.goal.y+scene.goal.h)
+      return {type:'goal', id:'goal'};
+    return null;
+  }
+
+  function getMouse(e){
+    const r=canvas.getBoundingClientRect();
+    return { x:(e.clientX-r.left)*(canvas.width/r.width), y:(e.clientY-r.top)*(canvas.height/r.height) };
+  }
+
+  canvas.addEventListener('pointerdown', (e)=>{
+    e.preventDefault();
+    if (sim.running) return;
+    canvas.setPointerCapture(e.pointerId);
+    const {x:mx,y:my}=getMouse(e);
+    const hit=hitTest(mx,my);
+
+    dragging=null; resizing=null;
+    if (!hit){ selected=null; draw(); return; }
+
+    selected=hit;
+
+    if (hit.type==='obstacle'){
+      const o=getObstacleById(hit.id);
+      const h=(hit._handle ?? hitTestHandles(o,mx,my));
+      if (h){
+        resizing={id:hit.id, handle:h, sx:mx, sy:my, orig:{x:o.x,y:o.y,w:o.w,h:o.h}};
+      } else {
+        dragging={type:'obstacle', id:hit.id, dx:mx-o.x, dy:my-o.y};
+      }
+    } else if (hit.type==='start'){
+      dragging={type:'start', dx:mx-scene.start.x, dy:my-scene.start.y};
+    } else if (hit.type==='goal'){
+      dragging={type:'goal', dx:mx-scene.goal.x, dy:my-scene.goal.y};
+    }
+    recomputeTruth();
+    draw();
+  });
+
+  canvas.addEventListener('pointermove', (e)=>{
+    e.preventDefault();
+    if (sim.running) return;
+    const {x:mx,y:my}=getMouse(e);
+
+    if (resizing){
+      const o=getObstacleById(resizing.id);
+      if (!o) return;
+      const dx=mx-resizing.sx, dy=my-resizing.sy;
+      let {x,y,w,h}=resizing.orig;
+
+      if (resizing.handle==='nw'){ x+=dx; y+=dy; w-=dx; h-=dy; }
+      if (resizing.handle==='ne'){ y+=dy; w+=dx; h-=dy; }
+      if (resizing.handle==='se'){ w+=dx; h+=dy; }
+      if (resizing.handle==='sw'){ x+=dx; w-=dx; h+=dy; }
+
+      w=Math.max(40,w); h=Math.max(40,h);
+      o.x=x; o.y=y; o.w=w; o.h=h;
+      {
+        const snapPx = e.shiftKey ? 0 : currentSnapPx();
+        clampAndSnapRect(o, 40, 40, snapPx);
+      }
+      recomputeTruth();
+      draw();
+      return;
+    }
+
+    if (dragging){
+      if (dragging.type==='obstacle'){
+        const o=getObstacleById(dragging.id);
+        o.x=mx-dragging.dx; o.y=my-dragging.dy;
+        {
+        const snapPx = e.shiftKey ? 0 : currentSnapPx();
+        clampAndSnapRect(o, 40, 40, snapPx);
+      }
+      } else if (dragging.type==='start'){
+        scene.start.x=mx-dragging.dx; scene.start.y=my-dragging.dy;
+        {
+          const snapPx = e.shiftKey ? 0 : currentSnapPx();
+          snapRectPosition(scene.start, snapPx);
+        }
+      } else if (dragging.type==='goal'){
+        scene.goal.x=mx-dragging.dx; scene.goal.y=my-dragging.dy;
+        {
+          const snapPx = e.shiftKey ? 0 : currentSnapPx();
+          snapRectPosition(scene.goal, snapPx);
+        }
+      }
+      recomputeTruth();
+      draw();
+    }
+  });
+
+  canvas.addEventListener('pointerup', (e)=>{
+    if (sim.running) return;
+    dragging=null; resizing=null;
+    canvas.releasePointerCapture(e.pointerId);
+  });
+
+  // ----------------------------
+  // Buttons
+  // ----------------------------
+  addObstacleBtn.addEventListener('click', ()=>{
+    if (sim.running) return;
+    const W=canvas.width, H=canvas.height;
+    const o={
+      id: crypto.randomUUID(),
+      x: clamp(W*0.35 + randIn(-60,60), WALL_THICK+2, W - WALL_THICK - 160),
+      y: clamp(H*0.35 + randIn(-60,60), WALL_THICK+2, H - WALL_THICK - 110),
+      w:160, h:110
+    };
+    scene.obstacles.push(o);
+    selected={type:'obstacle', id:o.id};
+    recomputeTruth();
+    log('Dodana nova prepreka.');
+    draw();
+  });
+
+  delSelectedBtn.addEventListener('click', ()=>{
+    if (sim.running) return;
+    if (!selected){ log('Nije selektovano ništa.'); return; }
+    if (selected.type==='obstacle'){
+      scene.obstacles = scene.obstacles.filter(o=>o.id!==selected.id);
+      selected=null;
+      recomputeTruth();
+      log('Obrisana selektovana prepreka.');
+      draw();
+      return;
+    }
+    log('Start/Cilj se ne brišu (samo se pomeraju).');
+  });
+
+  autoBtn.addEventListener('click', ()=> startSimulation(true));
+  stepModeBtn.addEventListener('click', ()=> startSimulation(false));
+  nextStepBtn.addEventListener('click', ()=> stepOnce());
+  stopBtn.addEventListener('click', ()=> stopSimulation(true));
+
+  resetBtn.addEventListener('click', ()=>{
+    if (sim.running) stopSimulation(false);
+    rebuildGrid();
+    initStartGoal();
+    resetRobotAndMap();
+    setModeTag('MODE: EDIT');
+    setStatus('exploring');
+    log('Reset završen (objekti ostaju).');
+    draw();
+  });
+
+  cellSizeEl.addEventListener('change', ()=>{
+    if (sim.running) return;
+    rebuildGrid();
+    initStartGoal();
+    log(`Promenjena veličina kockice: ${cellSize}px. Mapa resetovana.`);
+    draw();
+  });
+
+  sensorRadiusEl.addEventListener('input', ()=>{
+    sensorRadiusEl._manual = true;
+  });
+  safeDistanceEl.addEventListener('input', ()=>{ _occDistDirty = true; });
+  cellSizeEl.addEventListener('input', ()=>{ _occDistDirty = true; });
+
+  // ----------------------------
+  // Drawing helpers
+  // ----------------------------
+  function getCSS(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+  function drawWalls(){
+    ctx.save();
+    ctx.fillStyle = getCSS('--wall');
+    ctx.fillRect(0,0,canvas.width,WALL_THICK);
+    ctx.fillRect(0,0,WALL_THICK,canvas.height);
+    ctx.fillRect(0,canvas.height-WALL_THICK,canvas.width,WALL_THICK);
+    ctx.fillRect(canvas.width-WALL_THICK,0,WALL_THICK,canvas.height);
+
+    // Internal walls as thick strokes
+    if (scene.walls.length){
+      ctx.strokeStyle = getCSS('--wall');
+      ctx.lineWidth = 10;
+      ctx.lineCap = 'round';
+      for (const w of scene.walls){
+        ctx.beginPath();
+        ctx.moveTo(w.x1,w.y1);
+        ctx.lineTo(w.x2,w.y2);
+        ctx.stroke();
+      }
+    }
+    ctx.restore();
+  }
+
+  function drawGridMap(){
+    ctx.save();
+    const minX=WALL_THICK, minY=WALL_THICK;
+    const maxX=canvas.width-WALL_THICK;
+    const maxY=canvas.height-WALL_THICK;
+
+    ctx.fillStyle = getCSS('--unknown');
+    ctx.fillRect(minX,minY,maxX-minX,maxY-minY);
+
+    for (let gy=0; gy<gridH; gy++){
+      for (let gx=0; gx<gridW; gx++){
+        const v = known[idx(gx,gy)];
+        if (v===0) continue;
+        // Show occupied cells only on the boundary with explored free space
+        if (v===2){
+          let border=false;
+          if (gx>0 && known[idx(gx-1,gy)]===1) border=true;
+          else if (gx<gridW-1 && known[idx(gx+1,gy)]===1) border=true;
+          else if (gy>0 && known[idx(gx,gy-1)]===1) border=true;
+          else if (gy<gridH-1 && known[idx(gx,gy+1)]===1) border=true;
+          if (!border) continue;
+        }
+        const x = gx*cellSize, y=gy*cellSize;
+        if (x<minX || y<minY || x+cellSize>maxX || y+cellSize>maxY) continue;
+        ctx.fillStyle = (v===1) ? getCSS('--known') : getCSS('--knownOcc');
+        ctx.fillRect(x,y,cellSize,cellSize);
+      }
+    }
+
+    // Optional sparse grid lines
+    ctx.globalAlpha=0.06;
+    ctx.strokeStyle='#000';
+    ctx.lineWidth=1;
+    for (let x=minX; x<=maxX; x+=cellSize*6){
+      ctx.beginPath(); ctx.moveTo(x,minY); ctx.lineTo(x,maxY); ctx.stroke();
+    }
+    for (let y=minY; y<=maxY; y+=cellSize*6){
+      ctx.beginPath(); ctx.moveTo(minX,y); ctx.lineTo(maxX,y); ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+    ctx.restore();
+  }
+
+  function drawObstacles(){
+    // When simulation is running, obstacles should be hidden.
+    // The robot reveals obstacles through the known-grid occupied cells (gray).
+    if (sim.running) return;
+
+    ctx.save();
+    ctx.fillStyle = getCSS('--ob');
+    ctx.strokeStyle = getCSS('--ob-stroke');
+    ctx.lineWidth = 2;
+
+    for (const o of scene.obstacles){
+      ctx.fillRect(o.x,o.y,o.w,o.h);
+      ctx.strokeRect(o.x,o.y,o.w,o.h);
+      ctx.fillStyle='#fff';
+      ctx.font='bold 22px system-ui';
+      ctx.textAlign='center';
+      ctx.textBaseline='middle';
+      ctx.fillText(t('obstacle'), o.x+o.w/2, o.y+o.h/2);
+      ctx.fillStyle=getCSS('--ob');
+    }
+    ctx.restore();
+  }
+
+  function drawStartGoal(){
+    ctx.save();
+    ctx.fillStyle = getCSS('--start');
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 2;
+    ctx.fillRect(scene.start.x,scene.start.y,scene.start.w,scene.start.h);
+    ctx.strokeRect(scene.start.x,scene.start.y,scene.start.w,scene.start.h);
+    ctx.fillStyle='#fff';
+    ctx.font='bold 16px system-ui';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText('start', scene.start.x+scene.start.w/2, scene.start.y+scene.start.h/2);
+
+    ctx.fillStyle = getCSS('--goal');
+    ctx.strokeStyle = '#184a18';
+    ctx.fillRect(scene.goal.x,scene.goal.y,scene.goal.w,scene.goal.h);
+    ctx.strokeRect(scene.goal.x,scene.goal.y,scene.goal.w,scene.goal.h);
+    ctx.fillStyle='#fff';
+    ctx.fillText(t('goal'), scene.goal.x+scene.goal.w/2, scene.goal.y+scene.goal.h/2);
+    ctx.restore();
+  }
+
+  function drawWaypoints(){
+    if (scene.waypoints.length===0) return;
+    ctx.save();
+    ctx.fillStyle = getCSS('--wp');
+    ctx.strokeStyle = getCSS('--wp-stroke');
+    ctx.lineWidth=2;
+
+    const pts = [
+      {x: scene.start.x+scene.start.w/2, y: scene.start.y+scene.start.h/2},
+      ...scene.waypoints.map(w=>({x:w.x,y:w.y})),
+      {x: scene.goal.x+scene.goal.w/2, y: scene.goal.y+scene.goal.h/2}
+    ];
+    ctx.beginPath();
+    for (let i=0;i<pts.length;i++){
+      if (i===0) ctx.moveTo(pts[i].x,pts[i].y);
+      else ctx.lineTo(pts[i].x,pts[i].y);
+    }
+    ctx.setLineDash([8,8]);
+    ctx.globalAlpha=0.4;
+    ctx.stroke();
+    ctx.globalAlpha=1;
+    ctx.setLineDash([]);
+
+    for (let i=0;i<scene.waypoints.length;i++){
+      const w=scene.waypoints[i];
+      ctx.beginPath();
+      ctx.arc(w.x,w.y,WP_R,0,Math.PI*2);
+      ctx.fill(); ctx.stroke();
+      ctx.fillStyle='#0f1a2a';
+      ctx.font='bold 14px system-ui';
+      ctx.textAlign='center';
+      ctx.textBaseline='middle';
+      ctx.fillText(String(i+1), w.x,w.y);
+      ctx.fillStyle=getCSS('--wp');
+    }
+    ctx.restore();
+  }
+
+  function drawSelection(){
+    if (!selected) return;
+    ctx.save();
+    ctx.strokeStyle=getCSS('--sel');
+    ctx.lineWidth=3;
+    ctx.setLineDash([6,4]);
+
+    if (selected.type==='obstacle'){
+      const o=getObstacleById(selected.id);
+      if (o){
+        ctx.strokeRect(o.x-2,o.y-2,o.w+4,o.h+4);
+        ctx.setLineDash([]);
+        ctx.fillStyle='#fff';
+        ctx.strokeStyle=getCSS('--sel');
+        const corners=[
+          {x:o.x,y:o.y},{x:o.x+o.w,y:o.y},{x:o.x+o.w,y:o.y+o.h},{x:o.x,y:o.y+o.h}
+        ];
+        for (const c of corners){
+          ctx.beginPath();
+          ctx.rect(c.x-HANDLE,c.y-HANDLE,HANDLE*2,HANDLE*2);
+          ctx.fill(); ctx.stroke();
+        }
+      }
+    } else if (selected.type==='start'){
+      ctx.strokeRect(scene.start.x-2,scene.start.y-2,scene.start.w+4,scene.start.h+4);
+    } else if (selected.type==='goal'){
+      ctx.strokeRect(scene.goal.x-2,scene.goal.y-2,scene.goal.w+4,scene.goal.h+4);
+    }
+    ctx.restore();
+  }
+
+  function roundRect(ctx,x,y,w,h,r){
+    const rr=Math.min(r,w/2,h/2);
+    ctx.beginPath();
+    ctx.moveTo(x+rr,y);
+    ctx.arcTo(x+w,y,x+w,y+h,rr);
+    ctx.arcTo(x+w,y+h,x,y+h,rr);
+    ctx.arcTo(x,y+h,x,y,rr);
+    ctx.arcTo(x,y,x+w,y,rr);
+    ctx.closePath();
+  }
+
+  function drawRobot(){
+    if (!sim.running) return;
+    const x=sim.robot.x, y=sim.robot.y, a=sim.robot.ang;
+
+    const len=26, wid=18;
+    const tip={x:x+Math.cos(a)*len, y:y+Math.sin(a)*len};
+    const left={x:x+Math.cos(a+2.6)*wid, y:y+Math.sin(a+2.6)*wid};
+    const right={x:x+Math.cos(a-2.6)*wid, y:y+Math.sin(a-2.6)*wid};
+
+    ctx.save();
+    ctx.fillStyle=getCSS('--robot');
+    ctx.strokeStyle='#0c2d66';
+    ctx.lineWidth=2;
+
+    ctx.beginPath();
+    ctx.moveTo(tip.x,tip.y);
+    ctx.lineTo(left.x,left.y);
+    ctx.lineTo(x,y);
+    ctx.lineTo(right.x,right.y);
+    ctx.closePath();
+    ctx.fill(); ctx.stroke();
+
+    const label=sim.robot.lastCmd||'';
+    if (label){
+      ctx.font='bold 14px system-ui';
+      const padX=10, padY=6;
+      const tw=ctx.measureText(label).width;
+      const bw=tw+padX*2;
+      const bh=22+padY;
+      const bx=x+22, by=y-30;
+
+      ctx.fillStyle='rgba(255,255,255,0.92)';
+      ctx.strokeStyle='#111';
+      ctx.lineWidth=1.5;
+      roundRect(ctx,bx,by,bw,bh,10);
+      ctx.fill(); ctx.stroke();
+
+      ctx.fillStyle='#111';
+      ctx.textAlign='left';
+      ctx.textBaseline='middle';
+      ctx.fillText(label,bx+padX,by+bh/2);
+    }
+
+    const stepLen = clamp(Number(stepLenEl.value)||24, 10, 120);
+    const radius = clamp(Number(sensorRadiusEl.value)|| (3*stepLen), 20, 2000);
+    ctx.globalAlpha=0.07;
+    ctx.fillStyle=getCSS('--robot');
+    ctx.beginPath();
+    ctx.arc(x,y,radius,0,Math.PI*2);
+    ctx.fill();
+    ctx.globalAlpha=1;
+
+    ctx.restore();
+  }
+
+  function drawFrontiersAndTarget(){
+    const fronts = sim.frontierViz || [];
+    if (!fronts.length) return;
+
+    const blocked = sim.frontierBlocked || null;
+
+    ctx.save();
+
+    for (const [gx,gy] of fronts){
+      const c = cellCenter(gx,gy);
+      const isBlocked = blocked && blocked.has(`${gx},${gy}`);
+      ctx.fillStyle = isBlocked ? getCSS('--frontierBlocked') : getCSS('--frontier');
+      ctx.beginPath();
+      ctx.arc(c.x,c.y,2.3,0,Math.PI*2);
+      ctx.fill();
+    }
+
+    if (sim.exploreTarget){
+      const c = cellCenter(sim.exploreTarget.gx, sim.exploreTarget.gy);
+      ctx.strokeStyle = getCSS('--target');
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(c.x,c.y,10,0,Math.PI*2);
+      ctx.stroke();
+    }
+
+    ctx.restore();
+  }
+
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    drawGridMap();
+    drawWalls();
+    drawWaypoints();
+    drawObstacles();
+    drawStartGoal();
+    drawSelection();
+    if (sim.running) drawFrontiersAndTarget();
+    drawRobot();
+  }
+
+  // ----------------------------
+  // Init / resize
+  // ----------------------------
+  function fullInit(){
+    rebuildGrid();
+    initStartGoal();
+    seedObstacles();
+    resetRobotAndMap();
+    setModeTag('MODE: EDIT');
+    setStatus('exploring');
+    updateButtons();
+    draw();
+  }
+
+  const ro = new ResizeObserver(()=>{
+    resizeCanvas();
+    rebuildGrid();
+    initStartGoal();
+    recomputeTruth();
+    if (!sim.running) draw();
+  });
+  ro.observe(simArea);
+
+  window.addEventListener('resize', ()=>{
+    resizeCanvas();
+    rebuildGrid();
+    initStartGoal();
+    recomputeTruth();
+    if (!sim.running) draw();
+  });
+
+  // ----------------------------
+  // Start
+  // ----------------------------
+  fullInit();
+})();</script>
+</body>
+    goalLocked: false,        // once goal is seen, keep pursuing it until reached
+    goalEverSeen: false,        // for logging/debug
+</html>
