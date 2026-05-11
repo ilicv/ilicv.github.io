@@ -1,29 +1,240 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ilicv.github.io/</loc></url>
-  <url><loc>https://ilicv.github.io/agenti.html</loc></url>
-  <url><loc>https://ilicv.github.io/AI_index.htm</loc></url>
-  <url><loc>https://ilicv.github.io/ANN.html</loc></url>
-  <url><loc>https://ilicv.github.io/automatic_trading.html</loc></url>
-  <url><loc>https://ilicv.github.io/automatsko_trgovanje.html</loc></url>
-  <url><loc>https://ilicv.github.io/enaa.html</loc></url>
-  <url><loc>https://ilicv.github.io/enaa_eng.html</loc></url>
-  <url><loc>https://ilicv.github.io/FLAlg.html</loc></url>
-  <url><loc>https://ilicv.github.io/FLAlg_eng.html</loc></url>
-  <url><loc>https://ilicv.github.io/free.html</loc></url>
-  <url><loc>https://ilicv.github.io/free_eng.html</loc></url>
-  <url><loc>https://ilicv.github.io/index.html</loc></url>
-  <url><loc>https://ilicv.github.io/linkovi.htm</loc></url>
-  <url><loc>https://ilicv.github.io/neuro.html</loc></url>
-  <url><loc>https://ilicv.github.io/NeuroVCL.html</loc></url>
-  <url><loc>https://ilicv.github.io/NeuroVCL_eng.html</loc></url>
-  <url><loc>https://ilicv.github.io/ocr.html</loc></url>
-  <url><loc>https://ilicv.github.io/ocr_opis.html</loc></url>
-  <url><loc>https://ilicv.github.io/PlanB.htm</loc></url>
-  <url><loc>https://ilicv.github.io/PProgrami.htm</loc></url>
-  <url><loc>https://ilicv.github.io/recnik.html</loc></url>
-  <url><loc>https://ilicv.github.io/scada.html</loc></url>
-  <url><loc>https://ilicv.github.io/smartscada.html</loc></url>
-  <url><loc>https://ilicv.github.io/VeliborCV.html</loc></url>
-  <url><loc>https://ilicv.github.io/VeliborCV_eng.html</loc></url>
+
+  <!-- Main pages -->
+  <url>
+    <loc>https://ilicv.github.io/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/index.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/index_old.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- CV / Resume -->
+  <url>
+    <loc>https://ilicv.github.io/VeliborCV.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- AI / ML -->
+  <url>
+    <loc>https://ilicv.github.io/ai_ml_application.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/AI_index.htm</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/agenti.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Automotive -->
+  <url>
+    <loc>https://ilicv.github.io/automotive.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Trading -->
+  <url>
+    <loc>https://ilicv.github.io/ai_trade.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/automatic_trading.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/automatsko_trgovanje.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Music / Media -->
+  <url>
+    <loc>https://ilicv.github.io/music_video.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- OCR / Neural Networks -->
+  <url>
+    <loc>https://ilicv.github.io/ocr.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/ocr_opis.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/neuro.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/ANN.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/NeuroVCL.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/NeuroVCL_eng.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- SCADA -->
+  <url>
+    <loc>https://ilicv.github.io/scada.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/smartscada.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Legacy -->
+  <url>
+    <loc>https://ilicv.github.io/PlanB.htm</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/PProgrami.htm</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/recnik.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/linkovi.htm</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- AI legacy -->
+  <url>
+    <loc>https://ilicv.github.io/FLAlg.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/FLAlg_eng.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/enaa.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/enaa_eng.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Free Download -->
+  <url>
+    <loc>https://ilicv.github.io/free_eng.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/_free.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Robotics / Simulators -->
+  <url>
+    <loc>https://ilicv.github.io/robot_dog_simulator_kretanja.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ilicv.github.io/unitree_explore_simulator.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
